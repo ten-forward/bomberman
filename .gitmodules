@@ -1,0 +1,12 @@
+[submodule "jni/SDL"]
+	path = jni/SDL
+	url = https://github.com/davidsiaw/SDL2.git
+[submodule "jni/SDL_image"]
+	path = jni/SDL_image
+	url = https://github.com/davidsiaw/SDL2_image.git
+[submodule "jni/SDL_mixer"]
+	path = jni/SDL_mixer
+	url = https://github.com/davidsiaw/SDL2_mixer.git
+[submodule "jni/SDL_ttf"]
+	path = jni/SDL_ttf
+	url = https://github.com/davidsiaw/SDL2_ttf.git
