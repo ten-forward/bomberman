@@ -4,11 +4,10 @@ before_install:
   - tar -xf ndk.tar.bz2
   - export ANDROID_HOME=$(pwd)/android-sdk-linux
 before_script: 
-  - sudo wget -q http://dl.google.com/android/android-sdk_r18-linux.tgz 
-  - sudo tar xzvf android-sdk_r18-linux.tgz > /dev/null
-  - sudo android-sdk-linux/tools/android -s update sdk --filter android-7,platform-tool --no-ui
-  - sudo android-sdk-linux/tools/android -s update project --path .
+  - sudo wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
+  - sudo tar xzvf http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz > /dev/null
+  - sudo $ANDROID_HOME/tools/android -s update sdk --filter android-10,platform-tool --no-ui
+  - sudo $ANDROID_HOME/tools/android -s update project --path . --target "android-10"
   - sudo chmod -R 777 ./*
 script:
-  - ndk-build
-  - ant release
+  - make
