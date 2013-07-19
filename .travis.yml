@@ -4,8 +4,8 @@ before_install:
   - tar -xf ndk.tar.bz2
   - export ANDROID_HOME=$(pwd)/android-sdk-linux
 before_script: 
-  - wget -q http://dl.google.com/android/android-sdk_r18-linux.tgz 
-  - tar xzvf android-sdk_r18-linux.tgz > /dev/null
+  - wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
+  - tar xzvf android-sdk_r22.0.1-linux.tgz > /dev/null
   - $ANDROID_HOME/tools/android list sdk
   - $ANDROID_HOME/tools/android -s update sdk --no-ui
   - $ANDROID_HOME/tools/android list targets
