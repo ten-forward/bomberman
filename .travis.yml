@@ -3,7 +3,7 @@ before_install:
   - wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r8e-linux-x86.tar.bz2 -O ndk.tar.bz2
   - tar -xf ndk.tar.bz2
   - export ANDROID_HOME=$(pwd)/android-sdk-linux
-  - echo "y" | sudo apt-get install make ia32-libs
+  - echo "y" | sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install ia32-libs
 before_script: 
   - wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
   - tar xzvf android-sdk_r22.0.1-linux.tgz > /dev/null
