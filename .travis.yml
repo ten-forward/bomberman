@@ -3,7 +3,7 @@ before_install:
   - wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r8e-linux-x86.tar.bz2 -O ndk.tar.bz2
   - tar -xf ndk.tar.bz2
   - export ANDROID_HOME=$(pwd)/android-sdk-linux
-  - echo "y" | sudo apt-get install -f libsane libgphoto2-2 ia32-libs-multiarch ia32-libs ant
+  - echo "y" | sudo apt-get install libgcc1:i386 ant
 before_script: 
   - wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
   - tar xzvf android-sdk_r22.0.1-linux.tgz > /dev/null
