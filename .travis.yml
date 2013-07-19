@@ -6,7 +6,9 @@ before_install:
 before_script: 
   - wget -q http://dl.google.com/android/android-sdk_r18-linux.tgz 
   - tar xzvf android-sdk_r18-linux.tgz > /dev/null
-  - $ANDROID_HOME/tools/android -s update sdk --filter android-10,platform-tool --no-ui
+  - $ANDROID_HOME/tools/android list sdk
+  - $ANDROID_HOME/tools/android -s update sdk --no-ui
+  - $ANDROID_HOME/tools/android list targets
   - $ANDROID_HOME/tools/android -s update project --path . --target "android-10"
 script:
   - make
