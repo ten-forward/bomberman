@@ -9,9 +9,9 @@ ifeq ($(NDK),)
 $(error no ndk found - set ANDROID_HOME or ANDROID_NDK)
 endif
 
-.PHONY: andprof clean
+.PHONY: all clean
 
-andprof:
+all:
 	$(NDK)/ndk-build V=1
 	ant debug
 
