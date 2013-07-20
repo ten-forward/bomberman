@@ -21,12 +21,13 @@ Linux
 You can refer to the .travis.yml file if you encounter problems.
 
 You will need to set the environment variables
-  ANDROID_HOME=.../android-sdk-linux
-  ANDROID_NDK=.../android-ndk-r8e
+
+	ANDROID_HOME=.../android-sdk-linux
+	ANDROID_NDK=.../android-ndk-r8e
 
 Then simply run
 
-  make all
+	make all
   
 It will create the .apk for you.
 
@@ -41,10 +42,10 @@ D:/adt-bundle-windows-x86_64-20130522/sdk/platform-tools
 
 After this, in the main directory of this repository, run 
 
-  ndk-build
+	ndk-build
 
 to compile the native sources.
 
 You have an option of compiling using eclipse or installing the JDK and compiling using ant by typing
 
-  ant debug
+	ant debug
