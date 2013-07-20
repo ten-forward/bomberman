@@ -1,7 +1,7 @@
 language: java
 before_install:
-  - sudo apt-get update
-  - echo "y" | sudo apt-get install ia32-libs ant
+  - sudo apt-get update -qq
+  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
   - wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r8e-linux-x86.tar.bz2 -O ndk.tar.bz2
   - tar -xf ndk.tar.bz2
   - export ANDROID_HOME=$(pwd)/android-sdk-linux
