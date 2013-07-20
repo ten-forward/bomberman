@@ -48,4 +48,5 @@ to compile the native sources.
 
 You have an option of compiling using eclipse or installing the JDK and compiling using ant by typing
 
+	android update project --path . --target "android-10"
 	ant debug
