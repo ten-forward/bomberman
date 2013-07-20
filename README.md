@@ -36,9 +36,9 @@ Windows
 
 Install the SDK and NDK, then set PATH variables to these folders: 
 
-D:\adt-bundle-windows-x86_64-20130522\android-ndk-r8e-windows-x86_64
-D:/adt-bundle-windows-x86_64-20130522/sdk/tools
-D:/adt-bundle-windows-x86_64-20130522/sdk/platform-tools
+	D:\adt-bundle-windows-x86_64-20130522\android-ndk-r8e-windows-x86_64
+	D:/adt-bundle-windows-x86_64-20130522/sdk/tools
+	D:/adt-bundle-windows-x86_64-20130522/sdk/platform-tools
 
 After this, in the main directory of this repository, run 
 
