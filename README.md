@@ -27,6 +27,7 @@ You will need to set the environment variables
 
 Then simply run
 
+	$ANDROID_HOME/tools/android -s update project --path . --target "android-10"
 	make all
   
 It will create the .apk for you.
@@ -36,9 +37,9 @@ Windows
 
 Install the SDK and NDK, then set PATH variables to these folders: 
 
-	D:\adt-bundle-windows-x86_64-20130522\android-ndk-r8e-windows-x86_64
-	D:/adt-bundle-windows-x86_64-20130522/sdk/tools
-	D:/adt-bundle-windows-x86_64-20130522/sdk/platform-tools
+	...\adt-bundle-windows-x86_64-20130522\android-ndk-r8e-windows-x86_64
+	...\adt-bundle-windows-x86_64-20130522\sdk\tools
+	...\adt-bundle-windows-x86_64-20130522\sdk/platform-tools
 
 After this, in the main directory of this repository, run 
 
