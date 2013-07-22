@@ -10,3 +10,6 @@
 [submodule "jni/SDL_ttf"]
 	path = jni/SDL_ttf
 	url = https://github.com/davidsiaw/SDL2_ttf.git
+[submodule "jni/boost"]
+	path = jni/boost
+	url = https://github.com/davidsiaw/boost

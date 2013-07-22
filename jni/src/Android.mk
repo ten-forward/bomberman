@@ -8,12 +8,19 @@ SDL_PATH := ../SDL
 SDL_image_PATH := ../SDL_image
 SDL_mixer_PATH := ../SDL_mixer
 SDL_ttf_PATH := ../SDL_ttf
+BOOST_PATH := ../boost
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include $(LOCAL_PATH)/$(SDL_image_PATH) $(LOCAL_PATH)/$(SDL_mixer_PATH) $(LOCAL_PATH)/$(SDL_ttf_PATH)
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
+	$(LOCAL_PATH)/$(BOOST_PATH) \
+	$(LOCAL_PATH)/$(SDL_image_PATH) \
+	$(LOCAL_PATH)/$(SDL_mixer_PATH) \
+	$(LOCAL_PATH)/$(SDL_ttf_PATH)
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
-	main.cpp
+	main.cpp \
+	testscene.cpp \
+	inputstate.cpp
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 
