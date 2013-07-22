@@ -32,6 +32,26 @@ Then simply run
   
 It will create the .apk for you.
 
+
+Mac OS X
+--------
+
+Assuming you unzipped the ADT and the NDK to ~/Development:
+
+	export PATH=$PATH:~/Development/adt-bundle-mac-x86_64/sdk/tools
+	export PATH=$PATH:~/Development/adt-bundle-mac-x86_64/sdk/platform-tools
+	export PATH=$PATH:~/Development/android-ndk-r8e/
+
+You will also need to install API Level 10 using
+
+	android update sdk
+
+Then in the directory run
+
+	android update project --path . --target "android-10"
+	ndk-build
+	ant debug
+
 Windows
 -------
 
