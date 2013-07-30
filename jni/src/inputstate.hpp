@@ -13,6 +13,7 @@ class InputState
     bool c : 1;
     bool d : 1;
 public:
+	InputState();
 	bool GetUpButtonState() const;
 	bool GetDownButtonState() const;
 	bool GetLeftButtonState() const;

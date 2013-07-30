@@ -1,7 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-
 #include <boost/tr1/memory.hpp>
 #include "scene_interface.hpp"
 #include "inputstate.hpp"
@@ -18,6 +17,7 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 	InputState inputState;
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	Uint32 time = SDL_GetTicks();
+	scene->Init(window, renderer);
 	while (scene->Running())
 	{
 		SDL_Event e;
@@ -65,9 +65,9 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 					inputState.SetRightButtonState(false);
 				}
 			}
-			scene->Update(inputState);
 		}
 		
+		scene->Update(inputState);
 		Uint32 now = SDL_GetTicks();
 		if (now - time > 15)
 		{
@@ -79,7 +79,7 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 	}
 }
 
-void game(SDL_Window* window)
+void game()
 {
 	std::tr1::shared_ptr<TestScene> ts(new TestScene());
 	
@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 	TTF_Init();
 
 	SDL_DisplayMode mode;
-	int WIDTH = 1280, HEIGHT = 720;
+	int WIDTH = 1024, HEIGHT = 600;
 	//if (SDL_GetCurrentDisplayMode(0, &mode)==0)
 	//{
 	//	/* I read that android ignores these so you can just as well set
@@ -120,7 +120,7 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	game(window);
+	game();
 
 	SDL_DestroyWindow(window);
 

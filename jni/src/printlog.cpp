@@ -7,7 +7,7 @@
 #define PRINTLOG_DEFINED
 #include <android/log.h>
 
-void printlog(char *fmt, ...)
+void printlog(const char *fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
@@ -20,7 +20,7 @@ void printlog(char *fmt, ...)
 // Final fallback: printf
 #ifndef PRINTLOG_DEFINED
 
-void printlog(char *fmt, ...)
+void printlog(const char *fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);

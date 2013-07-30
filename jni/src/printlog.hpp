@@ -1,6 +1,6 @@
 #ifndef PRINTLOG_HPP
 #define PRINTLOG_HPP
 
-void printlog(char *fmt, ...);
+void printlog(const char *fmt, ...);
 
 #endif // PRINTLOG_HPP

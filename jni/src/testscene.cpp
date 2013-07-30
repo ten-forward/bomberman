@@ -2,11 +2,18 @@
 
 
 TestScene::TestScene() : 
-	font(TTF_OpenFont("led_display-7.ttf", 60), TTF_CloseFont)
+	map(10, 10),
+	player(map.CreateEntity())
 {
+	map.TrySetEntity(player, 0, 0);
 }
 
 TestScene::~TestScene()
+{
+
+}
+
+void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 
 }
@@ -15,48 +22,65 @@ void TestScene::Update(const InputState& inputs)
 {
 	if (inputs.GetLeftButtonState())
 	{
-		x = true;
-	}else
+		player->dx = -1;
+	}
+	else if (inputs.GetRightButtonState())
 	{
-		x = false;
+		player->dx = 1;
+	}
+	else if (inputs.GetDownButtonState())
+	{
+		player->dy = 1;
+	}
+	else if (inputs.GetUpButtonState())
+	{
+		player->dy = -1;
+	}
+
+	static Uint32 lastUpdate = SDL_GetTicks();
+	Uint32 now = SDL_GetTicks();
+	if (now - lastUpdate > 50)
+	{
+		map.Update(1);
+		lastUpdate = now;
 	}
 }
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-	if (!left)
+	map.ForeachTile([&](int x, int y, Map::entity_type tile)
 	{
-		SDL_Color color = {255,255,255};
+		SDL_Rect r;
+		r.w = 20;
+		r.h = 20;
+		r.x = x * r.w + 20;	// <- just for overscan
+		r.y = y * r.h + 20;
 
-		SDL_Surface* surf = TTF_RenderText_Solid(font.get(), "left", color);
-		left = std::tr1::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, surf), SDL_DestroyTexture);
+		if (!tile)
+		{
+			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
+			SDL_RenderDrawRect(renderer, &r);
+		}
+		else
+		{
+			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+			SDL_RenderFillRect(renderer, &r);
+		}
+	});
 
-		leftrect.x = 50;
-		leftrect.y = 50;
-		leftrect.w = surf->w;
-		leftrect.h = surf->h;
-
-		SDL_FreeSurface(surf);
-
-		surf = TTF_RenderText_Solid(font.get(), "right", color);
-		right = std::tr1::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, surf), SDL_DestroyTexture);
-
-		rightrect.x = 50;
-		rightrect.y = 50;
-		rightrect.w = surf->w;
-		rightrect.h = surf->h;
-
-		SDL_FreeSurface(surf);
-	}
-
-	if (x)
+	map.ForeachEntity([&](Map::entity_type ntt)
 	{
-		SDL_RenderCopy(renderer, left.get(), NULL, &leftrect);
-	}
-	else
-	{
-		SDL_RenderCopy(renderer, right.get(), NULL, &rightrect);
-	}
+		SDL_Rect r;
+		r.w = 20;
+		r.h = 20;
+		r.x = ntt->x * r.w + ntt->mx * 2 + 20;
+		r.y = ntt->y * r.h + ntt->my * 2 + 20;
+
+		SDL_SetRenderDrawColor(renderer, 255, 255, 0, 0);
+		SDL_RenderFillRect(renderer, &r);
+	});
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 }
 
 bool TestScene::Running()

@@ -1,5 +1,13 @@
 #include "inputstate.hpp"
 
+InputState::InputState()
+{
+	up = false;
+	down = false;
+	left = false;
+	right = false;
+}
+
 bool InputState::GetUpButtonState() const
 {
 	return up;

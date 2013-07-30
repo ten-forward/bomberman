@@ -7,20 +7,17 @@
 #include <SDL_ttf.h>
 #include <boost/tr1/memory.hpp>
 #include "scene_interface.hpp"
+#include "map.hpp"
 
 class TestScene : public SceneInterface
 {
-	std::tr1::shared_ptr<TTF_Font> font;
+	Map map;
+	Map::entity_type player;
 
-	std::tr1::shared_ptr<SDL_Texture> left;
-	SDL_Rect leftrect;
-	std::tr1::shared_ptr<SDL_Texture> right;
-	SDL_Rect rightrect;
-
-	bool x;
 public:
 	TestScene();
 	virtual ~TestScene();
+	virtual void Init(SDL_Window* window, SDL_Renderer* renderer);
 	virtual void Update(const InputState& inputs);
 	virtual void Render(SDL_Renderer *renderer);
 	virtual bool Running();
