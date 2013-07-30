@@ -18,6 +18,7 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	Uint32 time = SDL_GetTicks();
 	scene->Init(window, renderer);
+	
 	while (scene->Running())
 	{
 		SDL_Event e;
@@ -89,17 +90,19 @@ void game()
 int main(int argc, char** argv)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);   // Initialize SDL2
-	TTF_Init();
+	//TTF_Init();
 
 	SDL_DisplayMode mode;
 	int WIDTH = 1024, HEIGHT = 600;
-	//if (SDL_GetCurrentDisplayMode(0, &mode)==0)
-	//{
-	//	/* I read that android ignores these so you can just as well set
-	//	them to 0 */
-	//	WIDTH=mode.w;
-	//	HEIGHT=mode.h;
-	//}
+
+	if (SDL_GetCurrentDisplayMode(0, &mode)==0)
+	{
+		/* I read that android ignores these so you can just as well set
+		them to 0 */
+		WIDTH=mode.w;
+		HEIGHT=mode.h;
+	}
+
 	printlog("Window size: %d x %d!\n", WIDTH, HEIGHT);
 
 	// Create an application window with the following settings:
@@ -116,10 +119,11 @@ int main(int argc, char** argv)
 	if(window == NULL)
 	{   
 		// In the event that the window could not be made...
-		printf("Could not create window: %s\n", SDL_GetError());
+		printlog("Could not create window: %s\n", SDL_GetError());
 		return 1;
 	}
-
+	
+	printlog("Beginning game with window=%p\n", window);
 	game();
 
 	SDL_DestroyWindow(window);

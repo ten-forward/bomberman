@@ -1,5 +1,6 @@
 #include "testscene.hpp"
 
+#include "printlog.hpp"
 
 TestScene::TestScene() : 
 	map(10, 10),
@@ -41,6 +42,7 @@ void TestScene::Update(const InputState& inputs)
 	Uint32 now = SDL_GetTicks();
 	if (now - lastUpdate > 50)
 	{
+		//printlog("drawing! %d", now);
 		map.Update(1);
 		lastUpdate = now;
 	}
@@ -48,6 +50,7 @@ void TestScene::Update(const InputState& inputs)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
+
 	map.ForeachTile([&](int x, int y, Map::entity_type tile)
 	{
 		SDL_Rect r;
@@ -58,12 +61,12 @@ void TestScene::Render(SDL_Renderer *renderer)
 
 		if (!tile)
 		{
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
+			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 			SDL_RenderDrawRect(renderer, &r);
 		}
 		else
 		{
-			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 			SDL_RenderFillRect(renderer, &r);
 		}
 	});
@@ -76,11 +79,11 @@ void TestScene::Render(SDL_Renderer *renderer)
 		r.x = ntt->x * r.w + ntt->mx * 2 + 20;
 		r.y = ntt->y * r.h + ntt->my * 2 + 20;
 
-		SDL_SetRenderDrawColor(renderer, 255, 255, 0, 0);
+		SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
 	});
 
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 }
 
 bool TestScene::Running()
