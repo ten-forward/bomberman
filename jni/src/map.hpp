@@ -24,6 +24,7 @@ class Map
 		int my;
 		bool active; // is on the map?
 		bool brakes; // brake on tile?
+		int userdata;
 	};
 public:
 	typedef std::tr1::shared_ptr<Entity> entity_type;

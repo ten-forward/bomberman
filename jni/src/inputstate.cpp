@@ -6,7 +6,12 @@ InputState::InputState()
 	down = false;
 	left = false;
 	right = false;
+
+	fingered = false;
+	fingerx = 0;
+	fingery = 0;
 }
+
 
 bool InputState::GetUpButtonState() const
 {
@@ -28,6 +33,21 @@ bool InputState::GetRightButtonState() const
 	return right;
 }
 
+bool InputState::GetFingered() const
+{
+	return fingered;
+}
+
+float InputState::GetFingerX() const
+{
+	return fingerx;
+}
+
+float InputState::GetFingerY() const
+{
+	return fingery;
+}
+
 
 void InputState::SetUpButtonState(bool state)
 {
@@ -47,4 +67,19 @@ void InputState::SetLeftButtonState(bool state)
 void InputState::SetRightButtonState(bool state)
 {
 	right = state;
+}
+
+void InputState::SetFingered(bool state)
+{
+	fingered = state;
+}
+
+void InputState::SetFingerX(float fx)
+{
+	fingerx = fx;
+}
+
+void InputState::SetFingerY(float fy)
+{
+	fingery = fy;
 }

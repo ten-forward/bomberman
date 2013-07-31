@@ -28,6 +28,24 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 			{
 				break;
 			}
+			else if (e.type == SDL_JOYBUTTONDOWN)
+			{
+
+			}
+			else if (e.type == SDL_JOYBUTTONUP)
+			{
+
+			}
+			else if (e.type == SDL_FINGERUP)
+			{	
+				inputState.SetFingered(false);
+			}
+			else if (e.type == SDL_FINGERDOWN)
+			{
+				inputState.SetFingered(true);
+				inputState.SetFingerX(e.tfinger.x);
+				inputState.SetFingerY(e.tfinger.y);
+			}
 			else if (e.type == SDL_KEYDOWN)
 			{
 				if (e.key.keysym.sym == SDLK_UP)
@@ -93,8 +111,9 @@ int main(int argc, char** argv)
 	//TTF_Init();
 
 	SDL_DisplayMode mode;
-	int WIDTH = 1024, HEIGHT = 600;
+	int WIDTH = 1280, HEIGHT = 720;
 
+#ifdef ANDROID
 	if (SDL_GetCurrentDisplayMode(0, &mode)==0)
 	{
 		/* I read that android ignores these so you can just as well set
@@ -102,6 +121,7 @@ int main(int argc, char** argv)
 		WIDTH=mode.w;
 		HEIGHT=mode.h;
 	}
+#endif
 
 	printlog("Window size: %d x %d!\n", WIDTH, HEIGHT);
 
@@ -124,7 +144,18 @@ int main(int argc, char** argv)
 	}
 	
 	printlog("Beginning game with window=%p\n", window);
-	game();
+	try
+	{
+		game();
+	}
+	catch(std::exception e)
+	{
+		printlog("Caught a std::exception! %s\n", e.what());
+	}
+	catch(...)
+	{
+		printlog("Caught an unknown exception!\n");
+	}
 
 	SDL_DestroyWindow(window);
 

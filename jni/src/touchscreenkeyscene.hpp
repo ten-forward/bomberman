@@ -16,6 +16,8 @@ class TouchScreenKeyScene : public SceneInterface
 	SDL_Rect downrect;
 	SDL_Rect leftrect;
 	SDL_Rect rightrect;
+	int screenWidth;
+	int screenHeight;
 
 public:
 	TouchScreenKeyScene();

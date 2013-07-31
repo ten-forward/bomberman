@@ -8,11 +8,18 @@
 #include <boost/tr1/memory.hpp>
 #include "scene_interface.hpp"
 #include "map.hpp"
+#include "touchscreenkeyscene.hpp"
 
 class TestScene : public SceneInterface
 {
 	Map map;
 	Map::entity_type player;
+	TouchScreenKeyScene keys;
+	
+	std::tr1::shared_ptr<SDL_Texture> block;
+	std::tr1::shared_ptr<SDL_Texture> bomb;
+	std::tr1::shared_ptr<SDL_Texture> bomberman;
+	std::tr1::shared_ptr<SDL_Texture> floortile;
 
 public:
 	TestScene();

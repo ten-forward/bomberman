@@ -1,26 +1,47 @@
+#include <SDL_image.h>
+
 #include "testscene.hpp"
 
 #include "printlog.hpp"
 
+#define BLOCKID 0xffff
+
 TestScene::TestScene() : 
-	map(10, 10),
+	map(15, 9),
 	player(map.CreateEntity())
 {
 	map.TrySetEntity(player, 0, 0);
+
+	Map& theMap = map;
+	map.ForeachTile([&](int x, int y, Map::entity_type tile) {
+		if (x % 2 != 0 && y % 2 != 0)
+		{
+			auto blockEntity = theMap.CreateEntity();
+			blockEntity->userdata = BLOCKID;
+			theMap.TrySetEntity(blockEntity, x, y);
+		}
+	});
 }
 
 TestScene::~TestScene()
 {
-
 }
 
 void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
+	keys.Init(window, renderer);
 
+	block = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/block.png"), SDL_DestroyTexture);
+	bomb = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomb.png"), SDL_DestroyTexture);
+	bomberman = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomberman.png"), SDL_DestroyTexture);
+	floortile = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/floor.png"), SDL_DestroyTexture);
 }
 
 void TestScene::Update(const InputState& inputs)
 {
+#ifdef ANDROID
+	keys.Update(inputs);
+#endif
 	if (inputs.GetLeftButtonState())
 	{
 		player->dx = -1;
@@ -50,40 +71,52 @@ void TestScene::Update(const InputState& inputs)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-
-	map.ForeachTile([&](int x, int y, Map::entity_type tile)
+	map.ForeachTile([&](int x, int y, Map::entity_type ntt)
 	{
 		SDL_Rect r;
-		r.w = 20;
-		r.h = 20;
+		r.w = 64;
+		r.h = 64;
 		r.x = x * r.w + 20;	// <- just for overscan
 		r.y = y * r.h + 20;
+		
+		SDL_RenderCopy(renderer, floortile.get(), NULL, &r);
 
-		if (!tile)
+		if (ntt)
 		{
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			SDL_RenderDrawRect(renderer, &r);
+			if(ntt->userdata == BLOCKID)
+			{
+				SDL_RenderCopy(renderer, block.get(), NULL, &r);
+			}
+			//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+			//SDL_RenderFillRect(renderer, &r);
 		}
 		else
 		{
-			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-			SDL_RenderFillRect(renderer, &r);
+			//SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+			//SDL_RenderDrawRect(renderer, &r);
 		}
 	});
 
 	map.ForeachEntity([&](Map::entity_type ntt)
 	{
 		SDL_Rect r;
-		r.w = 20;
-		r.h = 20;
-		r.x = ntt->x * r.w + ntt->mx * 2 + 20;
-		r.y = ntt->y * r.h + ntt->my * 2 + 20;
+		r.w = 64;
+		r.h = 64;
+		r.x = ntt->x * r.w + ntt->mx * 8 + 20;
+		r.y = ntt->y * r.h + ntt->my * 8 + 20;
 
-		SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-		SDL_RenderFillRect(renderer, &r);
+		if (ntt->id == player->id && ntt->x == player->x && ntt->y == player->y)
+		{
+			SDL_RenderCopy(renderer, bomberman.get(), NULL, &r);
+		}
+
+		//SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+		//SDL_RenderFillRect(renderer, &r);
 	});
 
+	keys.Render(renderer);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
 }
 
 bool TestScene::Running()

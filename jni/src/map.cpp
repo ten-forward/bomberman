@@ -100,13 +100,11 @@ int sign(int x)
 
 void Map::Update(int timeSteps)
 {
-	std::vector<int> toRemove;
 	BOOST_FOREACH(registry_type::value_type iter, reg)
 	{
 		auto ntt = iter.second.lock();
 		if (!ntt)
 		{
-			toRemove.push_back(iter.first);
 			continue;
 		}
 
