@@ -14,11 +14,13 @@ class TestScene : public SceneInterface
 {
 	Map map;
 	Map::entity_type player;
+	Map::entity_type computer;
 	TouchScreenKeyScene keys;
 	
 	std::tr1::shared_ptr<SDL_Texture> block;
 	std::tr1::shared_ptr<SDL_Texture> bomb;
 	std::tr1::shared_ptr<SDL_Texture> bomberman;
+	std::tr1::shared_ptr<SDL_Texture> bombergirl;
 	std::tr1::shared_ptr<SDL_Texture> floortile;
 
 public:

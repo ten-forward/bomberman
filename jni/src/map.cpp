@@ -1,6 +1,7 @@
 #include <iostream>
 #include "android_boost_fix.hpp"
 #include "map.hpp"
+#include "printlog.hpp"
 
 Map::Map(int w, int h) : map(boost::extents[w][h]), ids(0)
 {
@@ -146,6 +147,11 @@ void Map::Update(int timeSteps)
 			}
 			else
 			{
+				if (result == OCCUPIED)
+				{
+					printlog("collision of %d with %d!", ntt->id, map[xprime][yprime]->id);
+				}
+
 				// cannot move!
 				ntt->dx = 0;
 				ntt->dy = 0;
