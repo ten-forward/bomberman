@@ -13,7 +13,11 @@ For all environments, in order to build this project, you will need the Android 
 http://developer.android.com/sdk/index.html
 http://developer.android.com/tools/sdk/ndk/index.html
 
-You will need to install the Build Tools, Platform Tools and Android API Level 10
+You will need to install the Build Tools, Platform Tools and Android API Level 10.
+
+With the Android SDK and NDK installed, clone this repository (making sure to include submodules):
+
+    git clone --recursive https://github.com/davidsiaw/bomberman.git
 
 Linux
 -----
