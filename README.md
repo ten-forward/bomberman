@@ -10,8 +10,8 @@ Building
 
 For all environments, in order to build this project, you will need the Android SDK and NDK downloadable here:
 
-http://developer.android.com/sdk/index.html
-http://developer.android.com/tools/sdk/ndk/index.html
+* http://developer.android.com/sdk/index.html
+* http://developer.android.com/tools/sdk/ndk/index.html
 
 You will need to install the Build Tools, Platform Tools and Android API Level 10.
 
