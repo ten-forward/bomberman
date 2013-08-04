@@ -22,7 +22,7 @@ TestScene::TestScene() :
 	map.TrySetEntity(computer, 14, 0);
 
 	Map& theMap = map;
-	map.ForeachTile([&](int x, int y, Map::entity_type tile) {
+	map.ForeachTile([&](int x, int y, const Map::entity_type &tile) {
 		if (x % 2 != 0 && y % 2 != 0)
 		{
 			auto blockEntity = theMap.CreateEntity();
@@ -266,7 +266,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-	map.ForeachTile([&](int x, int y, Map::entity_type ntt)
+	map.ForeachTile([&](int x, int y, const Map::entity_type &ntt)
 	{
 		SDL_Rect r;
 		r.w = 64;
@@ -305,7 +305,7 @@ void TestScene::Render(SDL_Renderer *renderer)
 	};
 
 	// draw the people and other things
-	map.ForeachEntity([&](Map::entity_type ntt)
+	map.ForeachEntity([&](const Map::entity_type &ntt)
 	{
 		SDL_Rect r;
 		r.w = 64;

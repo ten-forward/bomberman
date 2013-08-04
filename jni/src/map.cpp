@@ -37,7 +37,7 @@ Map::entity_type Map::GetEntity(int id)
 	return reg[id].lock();
 }
 
-bool Map::TrySetEntity(entity_type ntt, int x, int y)
+bool Map::TrySetEntity(const entity_type &ntt, int x, int y)
 {
 	if (!map[x][y])
 	{
@@ -218,7 +218,7 @@ void Map::Update(int timeSteps)
 	}
 }
 
-void Map::ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entity>)> func)
+void Map::ForeachTile(std::tr1::function<void(int,int, const std::tr1::shared_ptr<Entity> &)> func)
 {
 	typedef map_type::index index;
 	index xMin = map.index_bases()[0];
@@ -234,7 +234,7 @@ void Map::ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entit
 	}
 }
 
-void Map::ForeachEntity(std::tr1::function<void(std::tr1::shared_ptr<Entity>)> func)
+void Map::ForeachEntity(std::tr1::function<void(const std::tr1::shared_ptr<Entity> &)> func)
 {
 	BOOST_FOREACH(registry_type::value_type iter, reg)
 	{
