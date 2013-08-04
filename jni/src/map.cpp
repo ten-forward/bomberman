@@ -1,5 +1,4 @@
 #include <iostream>
-#include "android_boost_fix.hpp"
 #include "map.hpp"
 #include "printlog.hpp"
 
@@ -23,6 +22,7 @@ Map::entity_type Map::CreateEntity()
 	ntt->my = 0;
 	ntt->active = false;
 	ntt->brakes = true;
+	ntt->userdata = 0;
 	reg[ntt->id] = ntt;
 	return ntt;
 }
@@ -48,6 +48,13 @@ bool Map::TrySetEntity(entity_type ntt, int x, int y)
 		return true;
 	}
 	return false;
+}
+
+Map::entity_type Map::RemoveEntity(int x, int y)
+{
+	auto ntt = map[x][y];
+	map[x][y] = entity_type();
+	return ntt;
 }
 
 Map::PositionCheck Map::CheckPosIsFree(int x, int y)

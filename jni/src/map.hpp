@@ -1,8 +1,6 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include "android_boost_fix.hpp"
-
 #include <boost/tr1/memory.hpp>
 #include <boost/tr1/functional.hpp>
 #include <boost/multi_array.hpp>
@@ -54,6 +52,7 @@ public:
 	entity_type GetEntity(int x, int y);
 	entity_type GetEntity(int id);
 	bool TrySetEntity(entity_type ntt, int x, int y);
+	entity_type RemoveEntity(int x, int y);
 	PositionCheck CheckPosIsFree(int x, int y);
 	void Update(int timeSteps);
 	void ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entity>)> func);

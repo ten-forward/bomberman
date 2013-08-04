@@ -83,3 +83,43 @@ void InputState::SetFingerY(float fy)
 {
 	fingery = fy;
 }
+
+bool InputState::GetAButtonState() const
+{
+	return a;
+}
+
+bool InputState::GetBButtonState() const
+{
+	return b;
+}
+
+bool InputState::GetXButtonState() const
+{
+	return x;
+}
+
+bool InputState::GetYButtonState() const
+{
+	return y;
+}
+
+void InputState::SetAButtonState(bool state)
+{
+	a = state;
+}
+
+void InputState::SetBButtonState(bool state)
+{
+	b = state;
+}
+
+void InputState::SetXButtonState(bool state)
+{
+	x = state;
+}
+
+void InputState::SetYButtonState(bool state)
+{
+	y = state;
+}

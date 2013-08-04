@@ -36,7 +36,7 @@ void TouchScreenKeyScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 }
 
-void TouchScreenKeyScene::Update(const InputState& inputs)
+void TouchScreenKeyScene::Update(const InputState& inputs, Uint32 timestamp)
 {
 	InputState& is = (InputState&)inputs;
 	is.SetUpButtonState(false);

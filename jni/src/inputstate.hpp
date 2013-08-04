@@ -41,6 +41,11 @@ public:
 	bool GetDownButtonState() const;
 	bool GetLeftButtonState() const;
 	bool GetRightButtonState() const;
+
+	bool GetAButtonState() const;
+	bool GetBButtonState() const;
+	bool GetXButtonState() const;
+	bool GetYButtonState() const;
 	
 	bool GetFingered() const;
 	float GetFingerX() const;
@@ -54,6 +59,11 @@ public:
 	void SetFingered(bool state);
 	void SetFingerX(float fx);
 	void SetFingerY(float fy);
+
+	void SetAButtonState(bool state);
+	void SetBButtonState(bool state);
+	void SetXButtonState(bool state);
+	void SetYButtonState(bool state);
 };
 
 #endif // INPUTSTATE_HPP

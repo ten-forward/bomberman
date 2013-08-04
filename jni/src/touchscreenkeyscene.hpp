@@ -23,7 +23,7 @@ public:
 	TouchScreenKeyScene();
 	virtual ~TouchScreenKeyScene();
 	virtual void Init(SDL_Window* window, SDL_Renderer* renderer);
-	virtual void Update(const InputState& inputs);
+	virtual void Update(const InputState& inputs, Uint32 timestamp);
 	virtual void Render(SDL_Renderer *renderer);
 	virtual bool Running();
 };
