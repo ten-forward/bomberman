@@ -149,22 +149,6 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 	{
 		return map.TrySetEntity(bomb, bomb->x, bomb->y);
 	});
-
-	//std::list<Map::entity_type>::iterator i = overlappingBombs.begin();
-	//while (i != overlappingBombs.end())
-	//{
-	//	auto bomb = *i;
-	//	if (map.TrySetEntity(bomb, bomb->x, bomb->y))
-	//	{
-	//		// if the player has left the tile, we can erase it from this list
-	//		overlappingBombs.erase(i++);
-	//	}
-	//	else
-	//	{
-	//		// otherwise leave it there until it explodes
-	//		++i;
-	//	}
-	//}
 	
 	// BLOW THE BOMBS UP
 	Map& theMap = map;
@@ -238,6 +222,12 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 		{
 			explosion.timeout = now + EXPLOSIONTIMER;
 			explosion.stage++;
+		}
+
+		auto ntt = map.GetEntity(explosion.x, explosion.y);
+		if (ntt)
+		{
+			// kill it!
 		}
 	};
 
