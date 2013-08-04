@@ -53,11 +53,11 @@ public:
 	entity_type CreateEntity();
 	entity_type GetEntity(int x, int y);
 	entity_type GetEntity(int id);
-	bool TrySetEntity(entity_type ntt, int x, int y);
+	bool TrySetEntity(const entity_type &ntt, int x, int y);
 	PositionCheck CheckPosIsFree(int x, int y);
 	void Update(int timeSteps);
-	void ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entity>)> func);
-	void ForeachEntity(std::tr1::function<void(std::tr1::shared_ptr<Entity>)> func);
+	void ForeachTile(std::tr1::function<void(int,int,const std::tr1::shared_ptr<Entity> &)> func);
+	void ForeachEntity(std::tr1::function<void(const std::tr1::shared_ptr<Entity> &)> func);
 };
 
 #endif // MAP_HPP
