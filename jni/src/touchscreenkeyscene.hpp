@@ -2,16 +2,16 @@
 #define TOUCHSCREENKEYSCENE_HPP
 
 #include <SDL.h>
-#include <boost/tr1/memory.hpp>
+#include <memory>
 
 #include "scene_interface.hpp"
 
 class TouchScreenKeyScene : public SceneInterface
 {
-	std::tr1::shared_ptr<SDL_Texture> up;
-	std::tr1::shared_ptr<SDL_Texture> down;
-	std::tr1::shared_ptr<SDL_Texture> left;
-	std::tr1::shared_ptr<SDL_Texture> right;
+	std::shared_ptr<SDL_Texture> up;
+	std::shared_ptr<SDL_Texture> down;
+	std::shared_ptr<SDL_Texture> left;
+	std::shared_ptr<SDL_Texture> right;
 	SDL_Rect uprect;
 	SDL_Rect downrect;
 	SDL_Rect leftrect;

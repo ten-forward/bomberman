@@ -10,7 +10,7 @@ SDL_mixer_PATH := ../SDL_mixer
 SDL_ttf_PATH := ../SDL_ttf
 BOOST_PATH := ../boost
 
-LOCAL_CFLAGS := -std=gnu++11 -fexceptions -frtti
+LOCAL_CFLAGS := -std=c++11 -fexceptions -frtti
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 	$(LOCAL_PATH)/$(BOOST_PATH) \

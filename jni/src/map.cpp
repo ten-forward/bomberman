@@ -12,7 +12,7 @@ Map::~Map()
 
 Map::entity_type Map::CreateEntity()
 {
-	auto ntt = std::tr1::shared_ptr<Entity>(new Entity);
+	auto ntt = std::make_shared<Entity>();
 	ntt->id = ids++;
 	ntt->dx = 0;
 	ntt->dy = 0;
@@ -193,7 +193,7 @@ void Map::Update(int timeSteps)
 				int yprime = ntt->y + sign(ntt->my);
 				
 				// clear previous tile
-				map[ntt->x][ntt->y] = std::tr1::shared_ptr<Entity>();
+				map[ntt->x][ntt->y] = std::shared_ptr<Entity>();
 
 				ntt->x = xprime;
 				ntt->y = yprime;
@@ -218,7 +218,7 @@ void Map::Update(int timeSteps)
 	}
 }
 
-void Map::ForeachTile(std::tr1::function<void(int,int, const std::tr1::shared_ptr<Entity> &)> func)
+void Map::ForeachTile(std::function<void(int,int, const std::shared_ptr<Entity> &)> func)
 {
 	typedef map_type::index index;
 	index xMin = map.index_bases()[0];
@@ -234,7 +234,7 @@ void Map::ForeachTile(std::tr1::function<void(int,int, const std::tr1::shared_pt
 	}
 }
 
-void Map::ForeachEntity(std::tr1::function<void(const std::tr1::shared_ptr<Entity> &)> func)
+void Map::ForeachEntity(std::function<void(const std::shared_ptr<Entity> &)> func)
 {
 	BOOST_FOREACH(registry_type::value_type iter, reg)
 	{
