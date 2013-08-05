@@ -13,10 +13,10 @@ TouchScreenKeyScene::~TouchScreenKeyScene()
 
 void TouchScreenKeyScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	up = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/upup.png"), SDL_DestroyTexture);
-	down = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/downup.png"), SDL_DestroyTexture);
-	left = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/leftup.png"), SDL_DestroyTexture);
-	right = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/rightup.png"), SDL_DestroyTexture);
+	up = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/upup.png"), SDL_DestroyTexture);
+	down = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/downup.png"), SDL_DestroyTexture);
+	left = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/leftup.png"), SDL_DestroyTexture);
+	right = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "buttons/rightup.png"), SDL_DestroyTexture);
 	
 	SDL_GetWindowSize(window, &screenWidth, &screenHeight);
 	uprect.w = downrect.w = leftrect.w = rightrect.w = 50;
