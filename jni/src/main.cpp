@@ -1,7 +1,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include <boost/tr1/memory.hpp>
+#include <memory>
 #include "scene_interface.hpp"
 #include "inputstate.hpp"
 
@@ -11,7 +11,7 @@
 
 SDL_Window* window = NULL;
 
-void run(std::tr1::shared_ptr<SceneInterface> scene)
+void run(std::shared_ptr<SceneInterface> scene)
 {
 	InputState inputState;
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -131,7 +131,7 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 
 void game()
 {
-	std::tr1::shared_ptr<TestScene> ts(new TestScene());
+	std::shared_ptr<TestScene> ts(new TestScene());
 	
 	run(ts);
 }

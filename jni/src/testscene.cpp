@@ -40,20 +40,20 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	keys.Init(window, renderer);
 
-	block = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/block.png"), SDL_DestroyTexture);
-	bomb = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomb.png"), SDL_DestroyTexture);
-	bombergirl = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bombergirl.png"), SDL_DestroyTexture);
-	bomberman = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomberman.png"), SDL_DestroyTexture);
-	floortile = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/floor.png"), SDL_DestroyTexture);
+	block = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/block.png"), SDL_DestroyTexture);
+	bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomb.png"), SDL_DestroyTexture);
+	bombergirl = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bombergirl.png"), SDL_DestroyTexture);
+	bomberman = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomberman.png"), SDL_DestroyTexture);
+	floortile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/floor.png"), SDL_DestroyTexture);
 
-	explosionSprite[0] = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion1.png"), SDL_DestroyTexture);
-	explosionSprite[1] = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion2.png"), SDL_DestroyTexture);
-	explosionSprite[2] = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion3.png"), SDL_DestroyTexture);
-	explosionSprite[3] = std::tr1::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion4.png"), SDL_DestroyTexture);
+	explosionSprite[0] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion1.png"), SDL_DestroyTexture);
+	explosionSprite[1] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion2.png"), SDL_DestroyTexture);
+	explosionSprite[2] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion3.png"), SDL_DestroyTexture);
+	explosionSprite[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion4.png"), SDL_DestroyTexture);
 }
 
 template<typename T>
-void RemoveAndProcessWhere(std::list<T>* list, std::tr1::function<bool(T)> pred, std::tr1::function<void(T)> action)
+void RemoveAndProcessWhere(std::list<T>* list, std::function<bool(T)> pred, std::function<void(T)> action)
 {
 	typename std::list<T>::iterator i = list->begin();
 	while (i != list->end())
@@ -74,12 +74,12 @@ void RemoveAndProcessWhere(std::list<T>* list, std::tr1::function<bool(T)> pred,
 }
 
 template<typename T>
-void RemoveWhere(std::list<T>* list, std::tr1::function<bool(T)> pred)
+void RemoveWhere(std::list<T>* list, std::function<bool(T)> pred)
 {
 	RemoveAndProcessWhere<T>(list, pred, [&](T item){});
 }
 
-void CountWhile(int max, std::tr1::function<bool(int)> pred, std::tr1::function<void(int)> action)
+void CountWhile(int max, std::function<bool(int)> pred, std::function<void(int)> action)
 {
 	for (int i=1;i<=max;i++)
 	{
@@ -184,7 +184,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 			explosions.push_back(explosion);
 
 			Map& aMap = theMap;
-			std::tr1::function<bool(TestScene::ExplosionInfo)> isVulnerable = [&](TestScene::ExplosionInfo ex)->bool
+			std::function<bool(TestScene::ExplosionInfo)> isVulnerable = [&](TestScene::ExplosionInfo ex)->bool
 			{
 				auto status = aMap.CheckPosIsFree(ex.x, ex.y);
 				return 
@@ -192,10 +192,10 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 					(status == Map::FREE);
 			};
 
-			std::tr1::function<ExplosionInfo(int)> left  = [&](int dist)->ExplosionInfo { explosion.y = bip.first->y; explosion.x = bip.first->x - dist; return explosion; };
-			std::tr1::function<ExplosionInfo(int)> right = [&](int dist)->ExplosionInfo { explosion.y = bip.first->y; explosion.x = bip.first->x + dist; return explosion; };
-			std::tr1::function<ExplosionInfo(int)> up    = [&](int dist)->ExplosionInfo { explosion.x = bip.first->x; explosion.y = bip.first->y - dist; return explosion; };
-			std::tr1::function<ExplosionInfo(int)> down  = [&](int dist)->ExplosionInfo { explosion.x = bip.first->x; explosion.y = bip.first->y + dist; return explosion; };
+			std::function<ExplosionInfo(int)> left  = [&](int dist)->ExplosionInfo { explosion.y = bip.first->y; explosion.x = bip.first->x - dist; return explosion; };
+			std::function<ExplosionInfo(int)> right = [&](int dist)->ExplosionInfo { explosion.y = bip.first->y; explosion.x = bip.first->x + dist; return explosion; };
+			std::function<ExplosionInfo(int)> up    = [&](int dist)->ExplosionInfo { explosion.x = bip.first->x; explosion.y = bip.first->y - dist; return explosion; };
+			std::function<ExplosionInfo(int)> down  = [&](int dist)->ExplosionInfo { explosion.x = bip.first->x; explosion.y = bip.first->y + dist; return explosion; };
 			
 			std::list<ExplosionInfo>& theExplosions = explosions;
 			CountWhile(bip.second.strength, 

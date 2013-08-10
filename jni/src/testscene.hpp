@@ -5,7 +5,7 @@
 
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include <boost/tr1/memory.hpp>
+#include <memory>
 #include <list>
 #include "scene_interface.hpp"
 #include "map.hpp"
@@ -31,13 +31,13 @@ class TestScene : public SceneInterface
 	Map::entity_type computer;
 	TouchScreenKeyScene keys;
 	
-	std::tr1::shared_ptr<SDL_Texture> block;
-	std::tr1::shared_ptr<SDL_Texture> bomb;
-	std::tr1::shared_ptr<SDL_Texture> bomberman;
-	std::tr1::shared_ptr<SDL_Texture> bombergirl;
-	std::tr1::shared_ptr<SDL_Texture> floortile;
+	std::shared_ptr<SDL_Texture> block;
+	std::shared_ptr<SDL_Texture> bomb;
+	std::shared_ptr<SDL_Texture> bomberman;
+	std::shared_ptr<SDL_Texture> bombergirl;
+	std::shared_ptr<SDL_Texture> floortile;
 
-	std::tr1::shared_ptr<SDL_Texture> explosionSprite[4];
+	std::shared_ptr<SDL_Texture> explosionSprite[4];
 	
 	typedef std::pair<Map::entity_type,BombInfo> bombInfoPair;
 	
