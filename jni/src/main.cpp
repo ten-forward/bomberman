@@ -1,12 +1,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include <boost/tr1/memory.hpp>
+#include <memory>
 #include "scene_interface.hpp"
 #include "inputstate.hpp"
 
 #include "printlog.hpp"
-#include "android_boost_fix.hpp"
 
 #include "testscene.hpp"
 
@@ -28,7 +27,7 @@ extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonUp(
     printlog("controllerButtonUp btn=%d which=%d¥n", button, which);
 }
 
-void run(std::tr1::shared_ptr<SceneInterface> scene)
+void run(std::shared_ptr<SceneInterface> scene)
 {
 	InputState inputState;
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -72,6 +71,22 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 				{
 					inputState.SetRightButtonState(true);
 				}
+				else if (e.key.keysym.sym == SDLK_a)
+				{
+					inputState.SetAButtonState(true);
+				}
+				else if (e.key.keysym.sym == SDLK_s)
+				{
+					inputState.SetBButtonState(true);
+				}
+				else if (e.key.keysym.sym == SDLK_z)
+				{
+					inputState.SetXButtonState(true);
+				}
+				else if (e.key.keysym.sym == SDLK_x)
+				{
+					inputState.SetYButtonState(true);
+				}
 			}
 			else if (e.type == SDL_KEYUP)
 			{
@@ -91,11 +106,27 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 				{
 					inputState.SetRightButtonState(false);
 				}
+				else if (e.key.keysym.sym == SDLK_a)
+				{
+					inputState.SetAButtonState(false);
+				}
+				else if (e.key.keysym.sym == SDLK_s)
+				{
+					inputState.SetBButtonState(false);
+				}
+				else if (e.key.keysym.sym == SDLK_z)
+				{
+					inputState.SetXButtonState(false);
+				}
+				else if (e.key.keysym.sym == SDLK_x)
+				{
+					inputState.SetYButtonState(false);
+				}
 			}
 		}
 		
-		scene->Update(inputState);
 		Uint32 now = SDL_GetTicks();
+		scene->Update(inputState, now);
 		if (now - time > 15)
 		{
 			SDL_RenderClear(renderer);
@@ -108,7 +139,7 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 
 void game()
 {
-	std::tr1::shared_ptr<TestScene> ts(new TestScene());
+	std::shared_ptr<TestScene> ts(new TestScene());
 	
 	run(ts);
 }
@@ -121,7 +152,6 @@ int main(int argc, char** argv)
 	SDL_DisplayMode mode;
 	int WIDTH = 1280, HEIGHT = 720;
 
-#ifdef ANDROID
 	if (SDL_GetCurrentDisplayMode(0, &mode)==0)
 	{
 		/* I read that android ignores these so you can just as well set
@@ -129,7 +159,6 @@ int main(int argc, char** argv)
 		WIDTH=mode.w;
 		HEIGHT=mode.h;
 	}
-#endif
 
 	printlog("Window size: %d x %d!\n", WIDTH, HEIGHT);
 

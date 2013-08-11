@@ -1,5 +1,4 @@
 #include <iostream>
-#include "android_boost_fix.hpp"
 #include "map.hpp"
 #include "printlog.hpp"
 
@@ -13,7 +12,7 @@ Map::~Map()
 
 Map::entity_type Map::CreateEntity()
 {
-	auto ntt = std::tr1::shared_ptr<Entity>(new Entity);
+	auto ntt = std::make_shared<Entity>();
 	ntt->id = ids++;
 	ntt->dx = 0;
 	ntt->dy = 0;
@@ -23,6 +22,7 @@ Map::entity_type Map::CreateEntity()
 	ntt->my = 0;
 	ntt->active = false;
 	ntt->brakes = true;
+	ntt->userdata = 0;
 	reg[ntt->id] = ntt;
 	return ntt;
 }
@@ -37,7 +37,7 @@ Map::entity_type Map::GetEntity(int id)
 	return reg[id].lock();
 }
 
-bool Map::TrySetEntity(entity_type ntt, int x, int y)
+bool Map::TrySetEntity(const entity_type &ntt, int x, int y)
 {
 	if (!map[x][y])
 	{
@@ -48,6 +48,13 @@ bool Map::TrySetEntity(entity_type ntt, int x, int y)
 		return true;
 	}
 	return false;
+}
+
+Map::entity_type Map::RemoveEntity(int x, int y)
+{
+	auto ntt = map[x][y];
+	map[x][y] = entity_type();
+	return ntt;
 }
 
 Map::PositionCheck Map::CheckPosIsFree(int x, int y)
@@ -186,7 +193,7 @@ void Map::Update(int timeSteps)
 				int yprime = ntt->y + sign(ntt->my);
 				
 				// clear previous tile
-				map[ntt->x][ntt->y] = std::tr1::shared_ptr<Entity>();
+				map[ntt->x][ntt->y] = std::shared_ptr<Entity>();
 
 				ntt->x = xprime;
 				ntt->y = yprime;
@@ -211,7 +218,7 @@ void Map::Update(int timeSteps)
 	}
 }
 
-void Map::ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entity>)> func)
+void Map::ForeachTile(std::function<void(int,int, const std::shared_ptr<Entity> &)> func)
 {
 	typedef map_type::index index;
 	index xMin = map.index_bases()[0];
@@ -227,7 +234,7 @@ void Map::ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entit
 	}
 }
 
-void Map::ForeachEntity(std::tr1::function<void(std::tr1::shared_ptr<Entity>)> func)
+void Map::ForeachEntity(std::function<void(const std::shared_ptr<Entity> &)> func)
 {
 	BOOST_FOREACH(registry_type::value_type iter, reg)
 	{

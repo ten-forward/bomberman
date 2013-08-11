@@ -1,9 +1,7 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include "android_boost_fix.hpp"
-
-#include <boost/tr1/memory.hpp>
+#include <memory>
 #include <boost/tr1/functional.hpp>
 #include <boost/multi_array.hpp>
 #include <boost/foreach.hpp>
@@ -27,11 +25,11 @@ class Map
 		int userdata;
 	};
 public:
-	typedef std::tr1::shared_ptr<Entity> entity_type;
+	typedef std::shared_ptr<Entity> entity_type;
 
 private:
 	typedef boost::multi_array<entity_type, 2> map_type;
-	typedef std::map<int, std::tr1::weak_ptr<Entity> > registry_type;
+	typedef std::map<int, std::weak_ptr<Entity> > registry_type;
 
 	int ids;
 	map_type map;
@@ -53,11 +51,12 @@ public:
 	entity_type CreateEntity();
 	entity_type GetEntity(int x, int y);
 	entity_type GetEntity(int id);
-	bool TrySetEntity(entity_type ntt, int x, int y);
+	bool TrySetEntity(const entity_type &ntt, int x, int y);
+	entity_type RemoveEntity(int x, int y);
 	PositionCheck CheckPosIsFree(int x, int y);
 	void Update(int timeSteps);
-	void ForeachTile(std::tr1::function<void(int,int,std::tr1::shared_ptr<Entity>)> func);
-	void ForeachEntity(std::tr1::function<void(std::tr1::shared_ptr<Entity>)> func);
+	void ForeachTile(std::function<void(int,int,const std::shared_ptr<Entity> &)> func);
+	void ForeachEntity(std::function<void(const std::shared_ptr<Entity> &)> func);
 };
 
 #endif // MAP_HPP
