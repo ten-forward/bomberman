@@ -11,6 +11,8 @@
 #include "map.hpp"
 #include "touchscreenkeyscene.hpp"
 
+namespace bomberman {
+
 class TestScene : public SceneInterface
 {
 	struct BombInfo
@@ -27,8 +29,8 @@ class TestScene : public SceneInterface
 	};
 
 	Map map;
-	Map::entity_type player;
-	Map::entity_type computer;
+	EntityPtr player;
+	EntityPtr computer;
 	TouchScreenKeyScene keys;
 	
 	std::shared_ptr<SDL_Texture> block;
@@ -39,11 +41,11 @@ class TestScene : public SceneInterface
 
 	std::shared_ptr<SDL_Texture> explosionSprite[4];
 	
-	typedef std::pair<Map::entity_type,BombInfo> bombInfoPair;
+	typedef std::pair<EntityPtr,BombInfo> bombInfoPair;
 	
 	std::list<ExplosionInfo> explosions;
 	std::list<bombInfoPair> bombs;
-	std::list<Map::entity_type> overlappingBombs;
+	std::list<EntityPtr> overlappingBombs;
 
 
 
@@ -55,5 +57,7 @@ public:
 	virtual void Render(SDL_Renderer *renderer);
 	virtual bool Running();
 };
+
+}
 
 #endif // TESTSCENE_HPP

@@ -2,42 +2,23 @@
 #include "map.hpp"
 #include "printlog.hpp"
 
+namespace bomberman {
+
 Map::Map(int w, int h) : map(boost::extents[w][h]), ids(0)
 {
 }
 
-Map::~Map()
-{
-}
-
-Map::entity_type Map::CreateEntity()
-{
-	auto ntt = std::make_shared<Entity>();
-	ntt->id = ids++;
-	ntt->dx = 0;
-	ntt->dy = 0;
-	ntt->x = 0;
-	ntt->y = 0;
-	ntt->mx = 0;
-	ntt->my = 0;
-	ntt->active = false;
-	ntt->brakes = true;
-	ntt->userdata = 0;
-	reg[ntt->id] = ntt;
-	return ntt;
-}
-
-Map::entity_type Map::GetEntity(int x, int y)
+EntityPtr Map::GetEntity(int x, int y)
 {
 	return map[x][y];
 }
 
-Map::entity_type Map::GetEntity(int id)
+EntityPtr Map::GetEntity(int id)
 {
 	return reg[id].lock();
 }
 
-bool Map::TrySetEntity(const entity_type &ntt, int x, int y)
+bool Map::TrySetEntity(const EntityPtr &ntt, int x, int y)
 {
 	if (!map[x][y])
 	{
@@ -50,10 +31,10 @@ bool Map::TrySetEntity(const entity_type &ntt, int x, int y)
 	return false;
 }
 
-Map::entity_type Map::RemoveEntity(int x, int y)
+EntityPtr Map::RemoveEntity(int x, int y)
 {
 	auto ntt = map[x][y];
-	map[x][y] = entity_type();
+	map[x][y].reset();
 	return ntt;
 }
 
@@ -218,7 +199,7 @@ void Map::Update(int timeSteps)
 	}
 }
 
-void Map::ForeachTile(std::function<void(int,int, const std::shared_ptr<Entity> &)> func)
+void Map::ForeachTile(std::function<void(int, int, const EntityPtr &)> func)
 {
 	typedef map_type::index index;
 	index xMin = map.index_bases()[0];
@@ -234,7 +215,7 @@ void Map::ForeachTile(std::function<void(int,int, const std::shared_ptr<Entity> 
 	}
 }
 
-void Map::ForeachEntity(std::function<void(const std::shared_ptr<Entity> &)> func)
+void Map::ForeachEntity(std::function<void(const EntityPtr &)> func)
 {
 	BOOST_FOREACH(registry_type::value_type iter, reg)
 	{
@@ -245,4 +226,6 @@ void Map::ForeachEntity(std::function<void(const std::shared_ptr<Entity> &)> fun
 		}
 		func(ntt);
 	}
+}
+
 }

@@ -1,10 +1,12 @@
 #include <SDL_image.h>
 
 #include "testscene.hpp"
-
+#include "player.hpp"
+#include "computer.hpp"
+#include "block.hpp"
+#include "bomb.hpp"
 #include "printlog.hpp"
 
-#define BLOCKID 999
 #define BOMBID 3
 #define EXLOSION 5
 
@@ -12,23 +14,29 @@
 #define EXPLOSIONTIMER 200
 #define EXPLOSIONSTAGES 4
 
+using bomberman::bestiary::Player;
+using bomberman::bestiary::Computer;
+using bomberman::architecture::Block;
+using bomberman::arsenal::Bomb;
+
+namespace bomberman {
+
 TestScene::TestScene() : 
 	map(15, 9),
-	player(map.CreateEntity()),
-	computer(map.CreateEntity())
+	player(Player::Create("El Tuco")),
+	computer(Computer::Create())
 {
-	map.TrySetEntity(player, 0, 0);
+	player->x = 0;
+	player->y = 0;
 
-	map.TrySetEntity(computer, 14, 0);
+	computer->x = 14;
+	computer->y = 0;
 
 	Map& theMap = map;
-	map.ForeachTile([&](int x, int y, const Map::entity_type &tile) {
-		if (x % 2 != 0 && y % 2 != 0)
-		{
-			auto blockEntity = theMap.CreateEntity();
-			blockEntity->userdata = BLOCKID;
-			theMap.TrySetEntity(blockEntity, x, y);
-		}
+	map.ForeachTile([&](int x, int y, const EntityPtr &tile) {
+		bool placeObstacle = (x & 1) & (y & 1);		
+		auto blockEntity = Block::Create(placeObstacle ? Block::Obstacle : Block::Floor);
+		theMap.TrySetEntity(blockEntity, x, y);
 	});
 }
 
@@ -39,13 +47,9 @@ TestScene::~TestScene()
 void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	keys.Init(window, renderer);
-
-	block = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/block.png"), SDL_DestroyTexture);
+	
 	bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomb.png"), SDL_DestroyTexture);
-	bombergirl = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bombergirl.png"), SDL_DestroyTexture);
-	bomberman = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomberman.png"), SDL_DestroyTexture);
-	floortile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/floor.png"), SDL_DestroyTexture);
-
+	
 	explosionSprite[0] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion1.png"), SDL_DestroyTexture);
 	explosionSprite[1] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion2.png"), SDL_DestroyTexture);
 	explosionSprite[2] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion3.png"), SDL_DestroyTexture);
@@ -130,7 +134,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 
 		if (!alreadyBombed)
 		{
-			auto newBomb = map.CreateEntity();
+			auto newBomb = Bomb::Create();
 			newBomb->x = player->x;
 			newBomb->y = player->y;
 			newBomb->userdata = BOMBID;
@@ -145,7 +149,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 	}
 
 	// check if player has left the position where a bomb was
-	RemoveWhere<Map::entity_type>(&overlappingBombs, [&](Map::entity_type bomb)->bool
+	RemoveWhere<EntityPtr>(&overlappingBombs, [&](EntityPtr bomb)->bool
 	{
 		return map.TrySetEntity(bomb, bomb->x, bomb->y);
 	});
@@ -167,7 +171,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 			}
 			else
 			{
-				RemoveWhere<Map::entity_type>(&overlappingBombs, [&](Map::entity_type bomb)->bool
+				RemoveWhere<EntityPtr>(&overlappingBombs, [&](EntityPtr bomb)->bool
 				{
 					return bomb->x == bip.first->x && bomb->y == bip.first->y;
 				});
@@ -188,7 +192,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 			{
 				auto status = aMap.CheckPosIsFree(ex.x, ex.y);
 				return 
-					(status == Map::OCCUPIED && aMap.GetEntity(ex.x, ex.y)->userdata != BLOCKID) ||
+					(status == Map::OCCUPIED && typeid(aMap.GetEntity(ex.x, ex.y).get()) != typeid(Block)) ||
 					(status == Map::FREE);
 			};
 
@@ -256,32 +260,14 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-	map.ForeachTile([&](int x, int y, const Map::entity_type &ntt)
-	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = x * r.w + 20;	// <- just for overscan
-		r.y = y * r.h + 20;
-		
-		SDL_RenderCopy(renderer, floortile.get(), NULL, &r);
 
-		if (ntt)
-		{
-			if(ntt->userdata == BLOCKID)
-			{
-				SDL_RenderCopy(renderer, block.get(), NULL, &r);
-			}
-			//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-			//SDL_RenderFillRect(renderer, &r);
-		}
-		else
-		{
-			//SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			//SDL_RenderDrawRect(renderer, &r);
+	map.ForeachTile([&](int x, int y, const EntityPtr &ntt)
+	{
+		if (std::dynamic_pointer_cast<Block>(ntt)) {
+			ntt->Render(renderer);
 		}
 	});
-	
+
 	// draw the bombs first so they appear underneath people
 	BOOST_FOREACH(bombInfoPair bip, bombs)
 	{
@@ -294,27 +280,8 @@ void TestScene::Render(SDL_Renderer *renderer)
 		SDL_RenderCopy(renderer, bomb.get(), NULL, &r);
 	};
 
-	// draw the people and other things
-	map.ForeachEntity([&](const Map::entity_type &ntt)
-	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = ntt->x * r.w + ntt->mx * 8 + 20;
-		r.y = ntt->y * r.h + ntt->my * 8 + 20;
-
-		if (ntt->id == player->id)
-		{
-			SDL_RenderCopy(renderer, bomberman.get(), NULL, &r);
-		}
-		else if (ntt->id == computer->id)
-		{
-			SDL_RenderCopy(renderer, bombergirl.get(), NULL, &r);
-		}
-
-		//SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-		//SDL_RenderFillRect(renderer, &r);
-	});
+	player->Render(renderer);
+	computer->Render(renderer);
 
 	// draw the explosions
 	BOOST_FOREACH(ExplosionInfo explosion, explosions)
@@ -336,4 +303,6 @@ void TestScene::Render(SDL_Renderer *renderer)
 bool TestScene::Running()
 {
 	return true;
+}
+
 }
