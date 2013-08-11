@@ -10,7 +10,23 @@
 
 #include "testscene.hpp"
 
+#include <jni.h>
+
 SDL_Window* window = NULL;
+
+extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonDown(
+                                                               JNIEnv* env, jclass jcls,
+                                                               jint button, jint which)
+{
+    printlog("controllerButtonDown btn=%d which=%d¥n", button, which);
+}
+
+extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonUp(
+                                                                               JNIEnv* env, jclass jcls,
+                                                                               jint button, jint which)
+{
+    printlog("controllerButtonUp btn=%d which=%d¥n", button, which);
+}
 
 void run(std::tr1::shared_ptr<SceneInterface> scene)
 {
@@ -27,14 +43,6 @@ void run(std::tr1::shared_ptr<SceneInterface> scene)
 			if (e.type == SDL_QUIT)
 			{
 				break;
-			}
-			else if (e.type == SDL_JOYBUTTONDOWN)
-			{
-
-			}
-			else if (e.type == SDL_JOYBUTTONUP)
-			{
-
 			}
 			else if (e.type == SDL_FINGERUP)
 			{	

@@ -149,7 +149,7 @@ void Map::Update(int timeSteps)
 			{
 				if (result == OCCUPIED)
 				{
-					printlog("collision of %d with %d!", ntt->id, map[xprime][yprime]->id);
+					//printlog("collision of %d with %d!", ntt->id, map[xprime][yprime]->id);
 				}
 
 				// cannot move!
