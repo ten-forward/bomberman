@@ -30,7 +30,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	player.cpp \
 	computer.cpp \
 	bomb.cpp \
-	touchscreenkeyscene.cpp 
+	explosion.cpp
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 

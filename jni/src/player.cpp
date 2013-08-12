@@ -10,6 +10,7 @@ namespace bestiary {
 	{
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
+		player->zlevel = 1;
 		return player;
 	}
 
@@ -34,7 +35,7 @@ namespace bestiary {
 		r.x = x * r.w + mx * 8 + 20;
 		r.y = y * r.h + my * 8 + 20;
 
-		SDL_RenderCopy(iRenderer, _Bomberman.get(), NULL, &r);
+		SDL_RenderCopy(iRenderer, _Bomberman.get(), nullptr, &r);
 	}
 
 }

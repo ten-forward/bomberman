@@ -5,7 +5,10 @@
 #include "computer.hpp"
 #include "block.hpp"
 #include "bomb.hpp"
+#include "explosion.hpp"
 #include "printlog.hpp"
+
+#include <algorithm>
 
 #define BOMBID 3
 #define EXLOSION 5
@@ -18,6 +21,7 @@ using bomberman::bestiary::Player;
 using bomberman::bestiary::Computer;
 using bomberman::architecture::Block;
 using bomberman::arsenal::Bomb;
+using bomberman::arsenal::Explosion;
 
 namespace bomberman {
 
@@ -46,14 +50,6 @@ TestScene::~TestScene()
 
 void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	keys.Init(window, renderer);
-	
-	bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomb.png"), SDL_DestroyTexture);
-	
-	explosionSprite[0] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion1.png"), SDL_DestroyTexture);
-	explosionSprite[1] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion2.png"), SDL_DestroyTexture);
-	explosionSprite[2] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion3.png"), SDL_DestroyTexture);
-	explosionSprite[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion4.png"), SDL_DestroyTexture);
 }
 
 template<typename T>
@@ -100,9 +96,6 @@ void CountWhile(int max, std::function<bool(int)> pred, std::function<void(int)>
 
 void TestScene::Update(const InputState& inputs, Uint32 now)
 {
-#ifdef ANDROID
-	keys.Update(inputs, now);
-#endif
 	if (inputs.GetLeftButtonState())
 	{
 		player->dx = -1;
@@ -122,7 +115,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 	else if (inputs.GetAButtonState())
 	{
 		// make sure there isn't already a bomb there
-		bool alreadyBombed = false;
+		/*bool alreadyBombed = false;
 		BOOST_FOREACH(bombInfoPair bip, bombs)
 		{
 			if (player->x == bip.first->x && player->y == bip.first->y)
@@ -145,7 +138,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 
 			overlappingBombs.push_back(newBomb);
 			bombs.push_back(bombInfoPair(newBomb,info));
-		}
+		}*/
 	}
 
 	// check if player has left the position where a bomb was
@@ -156,7 +149,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 	
 	// BLOW THE BOMBS UP
 	Map& theMap = map;
-	RemoveAndProcessWhere<bombInfoPair>(&bombs, 
+	/*RemoveAndProcessWhere<bombInfoPair>(&bombs, 
 		[&](bombInfoPair bip)->bool
 		{
 			return now > bip.second.timeout;
@@ -217,10 +210,10 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 			CountWhile(bip.second.strength, 
 				[&](int dist)->bool{ return isVulnerable(down(dist)); }, 
 				[&](int dist) { theExplosions.push_back(down(dist)); });
-		});
+		});*/
 
 	// process explosions.
-	BOOST_FOREACH(ExplosionInfo& explosion, explosions)
+	/*BOOST_FOREACH(ExplosionInfo& explosion, explosions)
 	{
 		if (now > explosion.timeout)
 		{
@@ -247,7 +240,7 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 	{
 		computer->dx = rand() % 3 - 1;
 		computer->dy = rand() % 3 - 1;
-	}
+	}*/
 
 	static Uint32 lastUpdate = SDL_GetTicks();
 	if (now - lastUpdate > 20)
@@ -260,44 +253,18 @@ void TestScene::Update(const InputState& inputs, Uint32 now)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
+	auto &entities(Entity::GetAllEntities());
 
-	map.ForeachTile([&](int x, int y, const EntityPtr &ntt)
+	std::vector<Entity *> entityArray(entities.begin(), entities.end());
+	std::sort(entityArray.begin(), entityArray.end(), [](const Entity *left, const Entity *right) -> bool
 	{
-		if (std::dynamic_pointer_cast<Block>(ntt)) {
-			ntt->Render(renderer);
-		}
+		return left->zlevel < right->zlevel;
 	});
 
-	// draw the bombs first so they appear underneath people
-	BOOST_FOREACH(bombInfoPair bip, bombs)
+	for (auto entity : entityArray) 
 	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = bip.first->x * r.w + bip.first->mx * 8 + 20;
-		r.y = bip.first->y * r.h + bip.first->my * 8 + 20;
-
-		SDL_RenderCopy(renderer, bomb.get(), NULL, &r);
-	};
-
-	player->Render(renderer);
-	computer->Render(renderer);
-
-	// draw the explosions
-	BOOST_FOREACH(ExplosionInfo explosion, explosions)
-	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = explosion.x * r.w + 20;
-		r.y = explosion.y * r.h + 20;
-		
-		SDL_RenderCopy(renderer, explosionSprite[explosion.stage].get(), NULL, &r);
-	};
-
-	keys.Render(renderer);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
+		entity->Render(renderer);
+	}
 }
 
 bool TestScene::Running()

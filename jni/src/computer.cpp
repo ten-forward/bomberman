@@ -6,6 +6,7 @@ namespace bestiary {
 	{
 		auto computer = std::make_shared<Computer>();
 		computer->_name = "T800";
+		computer->zlevel = 1;
 		return computer;
 	}
 }

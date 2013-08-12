@@ -1,5 +1,5 @@
-#ifndef BOMB_HPP
-#define BOMB_HPP
+#ifndef EXPLOSION_HPP
+#define EXPLOSION_HPP
 
 #include "entity.hpp"
 
@@ -11,18 +11,18 @@ struct SDL_Texture;
 namespace bomberman {
 namespace arsenal {
 
-	class Bomb;
-	typedef std::shared_ptr<Bomb> BombPtr;
+	class Explosion;
+	typedef std::shared_ptr<Explosion> ExplosionPtr;
 
-	class Bomb : public Entity {
+	class Explosion : public Entity {
 		public:
-			static BombPtr Create(int iTimeout, int iStrength);
+			static ExplosionPtr Create(int iTimeout);
 			virtual void Render(SDL_Renderer*) const;
 		private:
 			int _timeout;
-			int _strength; // In megaton
+			int _stage;
 			static void InitializeGraphicRessources(SDL_Renderer *iRenderer);
-			static std::shared_ptr<SDL_Texture> _Bomb;
+			static std::shared_ptr<SDL_Texture> _Explosion[4];
 	};
 }
 }

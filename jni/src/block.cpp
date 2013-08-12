@@ -10,6 +10,7 @@ namespace architecture {
 	{
 		auto block = std::make_shared<Block>();
 		block->_type = iType;
+		block->zlevel = 0;
 		return block;
 	}
 

@@ -32,11 +32,17 @@ namespace bomberman
 
 		virtual void Render(SDL_Renderer* iRenderer) const = 0;
 
+		typedef std::unordered_set<Entity *> EntitySet;
+		static EntitySet &GetAllEntities() {
+			return _Entities;
+		}
+
 	protected:
 		Entity();
 
 	private:
-		static std::unordered_set<Entity *> _Entities;
+		
+		static EntitySet _Entities;
 	};
 }
 
