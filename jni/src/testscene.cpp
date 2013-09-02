@@ -29,7 +29,7 @@ TestScene::TestScene() :
 	_presentMap(new Map(15, 9)),
 	_futurMap(new Map(15, 9))
 {
-	auto player = Player::Create("El Tuco"));
+	auto player = Player::Create("El Tuco");
 	player->x = 0;
 	player->y = 0;
 	_presentMap->SetEntity(player);
@@ -81,7 +81,7 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 {
 	_presentMap->ForeachEntity([&](const EntityPtr &entity)
 	{
-		entity->Evolve(inputs, now, __presentMap, _futurMap);
+		entity->Evolve(inputs, now, _presentMap, _futurMap);
 	});
 
 	std::swap(_presentMap, _futurMap);
