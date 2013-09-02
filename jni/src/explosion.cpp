@@ -24,6 +24,31 @@ namespace arsenal {
 		_Explosion[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/explosion4.png"), SDL_DestroyTexture);
 	}
 
+	void Explosion::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &/*iFutureMap*/) const
+	{
+		/*// process explosions.
+		BOOST_FOREACH(ExplosionInfo& explosion, explosions)
+		{
+			if (now > explosion.timeout)
+			{
+				explosion.timeout = now + EXPLOSIONTIMER;
+				explosion.stage++;
+			}
+
+			auto ntt = map.GetEntity(explosion.x, explosion.y);
+			if (ntt)
+			{
+				// kill it!
+			}
+		};	
+
+		// remove expired explosions
+		RemoveWhere<ExplosionInfo>(&explosions, [&](ExplosionInfo explosion)->bool
+		{
+			return explosion.stage > EXPLOSIONSTAGES;
+		});*/
+	}
+
 	void Explosion::Render(SDL_Renderer *iRenderer) const 
 	{
 		if (!_Explosion[0]) 

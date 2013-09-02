@@ -1,5 +1,4 @@
-#ifndef BLOCK_HPP
-#define BLOCK_HPP
+#pragma once
 
 #include "entity.hpp"
 
@@ -23,6 +22,7 @@ namespace architecture {
 			};
 
 			static BlockPtr Create(Type iType);
+			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Render(SDL_Renderer* iRenderer) const;
 		
 		protected:
@@ -33,5 +33,3 @@ namespace architecture {
 	};
 }
 }
-
-#endif

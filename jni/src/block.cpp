@@ -22,6 +22,10 @@ namespace architecture {
 		_Floortile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/floor.png"), SDL_DestroyTexture);
 	}
 
+	void Block::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &/*iFutureMap*/) const
+	{
+	}
+
 	void Block::Render(SDL_Renderer *iRenderer) const 
 	{
 		if (!_Block || ! _Floortile)

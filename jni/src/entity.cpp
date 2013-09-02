@@ -2,8 +2,6 @@
 
 namespace bomberman
 {
-	std::unordered_set<Entity *> Entity::_Entities;
-
 	Entity::Entity() :
 		dx(0),
 		dy(0),
@@ -18,12 +16,10 @@ namespace bomberman
 	{
 		//ntt->id = ids++;
 		//reg[ntt->id] = ntt;
-		_Entities.insert(this);
 	}
 
 	Entity::~Entity() 
 	{
-		_Entities.erase(this);
 	}
 
 }

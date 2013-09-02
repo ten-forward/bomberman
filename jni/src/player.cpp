@@ -22,6 +22,61 @@ namespace bestiary {
 		_Bomberman = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomberman.png"), SDL_DestroyTexture);
 	}
 
+	void Player::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &/*iFutureMap*/) const
+	{
+		/*if (inputs.GetLeftButtonState())
+		{
+			player->dx = -1;
+		}
+		else if (inputs.GetRightButtonState())
+		{
+			player->dx = 1;
+		}
+		else if (inputs.GetDownButtonState())
+		{
+			player->dy = 1;
+		}
+		else if (inputs.GetUpButtonState())
+		{
+			player->dy = -1;
+		}
+		else if (inputs.GetAButtonState())
+		{
+			// make sure there isn't already a bomb there
+			bool alreadyBombed = false;
+			for(auto bip : bombs)
+			{
+				if (player->x == bip.first->x && player->y == bip.first->y)
+				{
+					alreadyBombed = true;
+					break;
+				}
+			};
+
+			if (!alreadyBombed)
+			{
+				auto newBomb = Bomb::Create();
+				newBomb->x = player->x;
+				newBomb->y = player->y;
+				newBomb->userdata = BOMBID;
+
+				BombInfo info;
+				info.strength = 2;
+				info.timeout = now + BOMBTIMER;
+
+				overlappingBombs.push_back(newBomb);
+				bombs.push_back(bombInfoPair(newBomb,info));
+			}
+		}
+	}
+
+	// check if player has left the position where a bomb was
+	RemoveWhere<EntityPtr>(&overlappingBombs, [&](EntityPtr bomb)->bool
+	{
+		return presentMap->TrySetEntity(bomb, bomb->x, bomb->y);
+	});*/
+	}
+
 	void Player::Render(SDL_Renderer *iRenderer) const 
 	{
 		if (!_Bomberman) 

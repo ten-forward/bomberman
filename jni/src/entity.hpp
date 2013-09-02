@@ -1,17 +1,16 @@
-#ifndef ENTITY_HPP
-#define ENTITY_HPP
+#pragma once
+
+#include "entityptr.hpp"
+#include "map.hpp"
 
 #include <unordered_set>
 #include <memory>
 
 struct SDL_Renderer;
+class InputState;
 
 namespace bomberman
 {
-
-	struct Entity;
-
-	typedef std::shared_ptr<Entity> EntityPtr;
 
 	struct Entity
 	{
@@ -30,20 +29,11 @@ namespace bomberman
 
 		virtual ~Entity();
 
-		virtual void Render(SDL_Renderer* iRenderer) const = 0;
+		virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const = 0;
 
-		typedef std::unordered_set<Entity *> EntitySet;
-		static EntitySet &GetAllEntities() {
-			return _Entities;
-		}
+		virtual void Render(SDL_Renderer* iRenderer) const = 0;
 
 	protected:
 		Entity();
-
-	private:
-		
-		static EntitySet _Entities;
 	};
 }
-
-#endif

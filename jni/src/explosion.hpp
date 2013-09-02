@@ -1,5 +1,4 @@
-#ifndef EXPLOSION_HPP
-#define EXPLOSION_HPP
+#pragma once
 
 #include "entity.hpp"
 
@@ -17,6 +16,7 @@ namespace arsenal {
 	class Explosion : public Entity {
 		public:
 			static ExplosionPtr Create(int iTimeout);
+			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Render(SDL_Renderer*) const;
 		private:
 			int _timeout;
@@ -26,5 +26,3 @@ namespace arsenal {
 	};
 }
 }
-
-#endif

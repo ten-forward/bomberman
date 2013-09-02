@@ -1,15 +1,14 @@
-#ifndef TESTSCENE_HPP
-#define TESTSCENE_HPP
-
-#include <string>
+#pragma once
 
 #include <SDL.h>
 #include <SDL_ttf.h>
+
+#include <string>
 #include <memory>
 #include <list>
+
 #include "scene_interface.hpp"
 #include "map.hpp"
-#include "touchscreenkeyscene.hpp"
 
 namespace bomberman {
 
@@ -19,17 +18,11 @@ class TestScene : public SceneInterface
 		TestScene();
 		virtual ~TestScene();
 		virtual void Init(SDL_Window* window, SDL_Renderer* renderer);
-		virtual void Update(const InputState& inputs, Uint32 timestamp);
+		virtual void Update(const InputState& inputs, uint32_t timestamp);
 		virtual void Render(SDL_Renderer *renderer);
 		virtual bool Running();
 	private:
-		Map map;
-		EntityPtr player;
-		EntityPtr computer;
-		
-		std::list<EntityPtr> overlappingBombs;
+		MapPtr _presentMap, _futurMap;
 };
 
 }
-
-#endif // TESTSCENE_HPP

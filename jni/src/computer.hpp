@@ -1,5 +1,4 @@
-#ifndef COMPUTER_HPP
-#define COMPUTER_HPP
+#pragma once
 
 #include "player.hpp"
 
@@ -15,8 +14,7 @@ namespace bestiary {
 	class Computer : public Player {
 	public:
 		static ComputerPtr Create();
-		//virtual void Render(SDL_Renderer*) const;
+		void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 	};
 }
 }
-#endif

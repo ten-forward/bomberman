@@ -1,9 +1,8 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#pragma once
 
 #include "entity.hpp"
 
-// STL- libstd
+// STL- libstdc++
 #include <memory>
 #include <string>
 
@@ -20,6 +19,7 @@ namespace bestiary {
 	class Player : public bomberman::Entity {
 		public:
 			static PlayerPtr Create(const std::string &iName);
+			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Render(SDL_Renderer*) const;
 		protected:
 			std::string _name;
@@ -28,5 +28,3 @@ namespace bestiary {
 	};
 }
 }
-
-#endif

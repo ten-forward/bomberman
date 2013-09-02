@@ -1,5 +1,4 @@
-#ifndef SCENE_INTERFACE_HPP
-#define SCENE_INTERFACE_HPP
+#pragma once
 
 #include <SDL.h>
 #include "inputstate.hpp"
@@ -15,5 +14,3 @@ public:
 	virtual void Render(SDL_Renderer *renderer) = 0;
 	virtual bool Running() = 0;
 };
-
-#endif // SCENE_INTERFACE_HPP

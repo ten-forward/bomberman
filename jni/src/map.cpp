@@ -1,44 +1,44 @@
-#include <iostream>
+
 #include "map.hpp"
+#include "entity.hpp"
 #include "printlog.hpp"
+
+#include <iostream>
 
 namespace bomberman {
 
-Map::Map(int w, int h) : map(boost::extents[w][h]), ids(0)
+Map::Map(int w, int h) : map(boost::extents[w][h])
 {
 }
 
-EntityPtr Map::GetEntity(int x, int y)
+const EntitySet &Map::GetEntities(int x, int y) const
 {
 	return map[x][y];
 }
 
-EntityPtr Map::GetEntity(int id)
+bool Map::SetEntity(const EntityPtr &ntt)
 {
-	return reg[id].lock();
-}
+	typedef map_type::index Index;
+	Index xMin = map.index_bases()[0];
+	Index xMax = xMin + map.shape()[0] - 1;
+	Index yMin = map.index_bases()[1];
+	Index yMax = yMin + map.shape()[1] - 1;
 
-bool Map::TrySetEntity(const EntityPtr &ntt, int x, int y)
-{
-	if (!map[x][y])
+	int x = ntt->x;
+	int y = ntt->y;
+
+	// boundaries
+	if (x < xMin || x > xMax || y < yMin || y > yMax)
 	{
-		map[x][y] = ntt;
-		ntt->x = x;
-		ntt->y = y;
-		ntt->active = true;
-		return true;
+		return false;
 	}
-	return false;
+	
+	map[x][y].insert(ntt);
+
+	return true;
 }
 
-EntityPtr Map::RemoveEntity(int x, int y)
-{
-	auto ntt = map[x][y];
-	map[x][y].reset();
-	return ntt;
-}
-
-Map::PositionCheck Map::CheckPosIsFree(int x, int y)
+/*Map::PositionCheck Map::CheckPosIsFree(int x, int y)
 {
 	typedef map_type::index index;
 	index xMin = map.index_bases()[0];
@@ -59,7 +59,7 @@ Map::PositionCheck Map::CheckPosIsFree(int x, int y)
 	}
 
 	return FREE;
-}
+}*/
 
 int sign(int x)
 {
@@ -87,7 +87,7 @@ int sign(int x)
 			}\
 		}
 
-void Map::Update(int timeSteps)
+/*void Map::Update(int timeSteps)
 {
 	BOOST_FOREACH(registry_type::value_type iter, reg)
 	{
@@ -197,15 +197,15 @@ void Map::Update(int timeSteps)
 
 		}
 	}
-}
+}*/
 
-void Map::ForeachTile(std::function<void(int, int, const EntityPtr &)> func)
+void Map::ForeachTile(std::function<void(int, int, const EntitySet &)> func) const
 {
-	typedef map_type::index index;
-	index xMin = map.index_bases()[0];
-	index xMax = xMin + map.shape()[0];
-	index yMin = map.index_bases()[1];
-	index yMax = yMin + map.shape()[1];
+	typedef map_type::index Index;
+	Index xMin = map.index_bases()[0];
+	Index xMax = xMin + map.shape()[0];
+	Index yMin = map.index_bases()[1];
+	Index yMax = yMin + map.shape()[1];
 	for (int x = xMin; x < xMax; x++)
 	{
 		for (int y = yMin; y < yMax; y++)
@@ -215,16 +215,17 @@ void Map::ForeachTile(std::function<void(int, int, const EntityPtr &)> func)
 	}
 }
 
-void Map::ForeachEntity(std::function<void(const EntityPtr &)> func)
+void Map::ForeachEntity(std::function<void(const EntityPtr &)> func) const
 {
-	BOOST_FOREACH(registry_type::value_type iter, reg)
+	for(auto xbucket : map)
 	{
-		auto ntt = iter.second.lock();
-		if (!ntt)
+		for (auto xybucket : xbucket)
 		{
-			continue;
+			for (auto entity : xybucket)
+			{
+				func(entity);
+			}
 		}
-		func(ntt);
 	}
 }
 
