@@ -14,7 +14,7 @@ namespace architecture {
 	class Block;
 	typedef std::shared_ptr<Block> BlockPtr;
 
-	class Block : public Entity {
+	class Block : public Entity, public std::enable_shared_from_this<Block> {
 		public:
 			enum Type {
 				Floor,

@@ -21,8 +21,11 @@ namespace arsenal {
 		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
 	}
 
-	void Bomb::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &/*iFutureMap*/) const
+	void Bomb::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
+		auto bomb = std::make_shared<Bomb>(*this);
+		iFutureMap->SetEntity(bomb);
+
 		// BLOW THE BOMBS UP
 		/*RemoveAndProcessWhere<bombInfoPair>(&bombs, 
 		[&](bombInfoPair bip)->bool

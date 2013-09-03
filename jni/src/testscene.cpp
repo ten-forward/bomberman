@@ -10,10 +10,8 @@
 
 #include <algorithm>
 
-#define BOMBID 3
 #define EXLOSION 5
 
-#define BOMBTIMER 3000
 #define EXPLOSIONTIMER 200
 #define EXPLOSIONSTAGES 4
 
@@ -79,24 +77,28 @@ void RemoveAndProcessWhere(std::list<T>* list, std::function<bool(T)> pred, std:
 
 void TestScene::Update(const InputState& inputs, uint32_t now)
 {
-	_presentMap->ForeachEntity([&](const EntityPtr &entity)
+	_futurMap->Clear();
+
+	_presentMap->ForeachEntity([&](const EntityConstPtr &entity)
 	{
 		entity->Evolve(inputs, now, _presentMap, _futurMap);
 	});
 
 	std::swap(_presentMap, _futurMap);
+
+
 }
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-	std::list<EntityPtr> entities;
+	std::list<EntityConstPtr> entities;
 
-	_presentMap->ForeachEntity([&](const EntityPtr &entity)
+	_presentMap->ForeachEntity([&](const EntityConstPtr &entity)
 	{
 		entities.push_back(entity);
 	});
 
-	entities.sort([](const EntityPtr &left, const EntityPtr &right) -> bool
+	entities.sort([](const EntityConstPtr &left, const EntityConstPtr &right) -> bool
 	{
 		return left->zlevel < right->zlevel;
 	});
