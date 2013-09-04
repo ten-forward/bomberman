@@ -1,34 +1,58 @@
 #include <SDL_image.h>
 
 #include "testscene.hpp"
-
+#include "player.hpp"
+#include "computer.hpp"
+#include "block.hpp"
+#include "floortile.hpp"
+#include "bomb.hpp"
+#include "explosion.hpp"
 #include "printlog.hpp"
 
-#define BLOCKID 999
-#define BOMBID 3
+#include <algorithm>
+
 #define EXLOSION 5
 
-#define BOMBTIMER 3000
 #define EXPLOSIONTIMER 200
 #define EXPLOSIONSTAGES 4
 
+using bomberman::bestiary::Player;
+using bomberman::bestiary::Computer;
+using bomberman::architecture::Block;
+using bomberman::architecture::FloorTile;
+using bomberman::arsenal::Bomb;
+using bomberman::arsenal::Explosion;
+
+namespace bomberman {
+
 TestScene::TestScene() : 
-	map(15, 9),
-	player(map.CreateEntity()),
-	computer(map.CreateEntity())
+	_presentMap(new Map(15, 9)),
+	_futurMap(new Map(15, 9))
 {
-	map.TrySetEntity(player, 0, 0);
+	auto player = Player::Create("El Tuco");
+	player->x = 0;
+	player->y = 0;
+	_presentMap->SetEntity(player);
 
-	map.TrySetEntity(computer, 14, 0);
+	auto computer = Computer::Create();
+	computer->x = 14;
+	computer->y = 0;
+	_presentMap->SetEntity(computer);
 
-	Map& theMap = map;
-	map.ForeachTile([&](int x, int y, const Map::entity_type &tile) {
-		if (x % 2 != 0 && y % 2 != 0)
+	_presentMap->ForeachTile([&](int x, int y, const EntitySet &) {
+		bool placeObstacle = (x & 1) & (y & 1);		
+		EntityPtr blockEntity;
+		if (placeObstacle)
 		{
-			auto blockEntity = theMap.CreateEntity();
-			blockEntity->userdata = BLOCKID;
-			theMap.TrySetEntity(blockEntity, x, y);
+			blockEntity = Block::Create();
 		}
+		else 
+		{
+		 	blockEntity = FloorTile::Create();
+		}
+		blockEntity->x = x;
+		blockEntity->y = y;
+		_presentMap->SetEntity(blockEntity);
 	});
 }
 
@@ -38,18 +62,6 @@ TestScene::~TestScene()
 
 void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	keys.Init(window, renderer);
-
-	block = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/block.png"), SDL_DestroyTexture);
-	bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomb.png"), SDL_DestroyTexture);
-	bombergirl = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bombergirl.png"), SDL_DestroyTexture);
-	bomberman = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bomberman.png"), SDL_DestroyTexture);
-	floortile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/floor.png"), SDL_DestroyTexture);
-
-	explosionSprite[0] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion1.png"), SDL_DestroyTexture);
-	explosionSprite[1] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion2.png"), SDL_DestroyTexture);
-	explosionSprite[2] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion3.png"), SDL_DestroyTexture);
-	explosionSprite[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/explosion4.png"), SDL_DestroyTexture);
 }
 
 template<typename T>
@@ -73,267 +85,53 @@ void RemoveAndProcessWhere(std::list<T>* list, std::function<bool(T)> pred, std:
 	}
 }
 
-template<typename T>
-void RemoveWhere(std::list<T>* list, std::function<bool(T)> pred)
+void TestScene::Update(const InputState& inputs, uint32_t now)
 {
-	RemoveAndProcessWhere<T>(list, pred, [&](T item){});
-}
+	_futurMap->Clear();
 
-void CountWhile(int max, std::function<bool(int)> pred, std::function<void(int)> action)
-{
-	for (int i=1;i<=max;i++)
+	std::list<EntityConstPtr> entities;
+
+	_presentMap->ForeachEntity([&](const EntityConstPtr &entity)
 	{
-		if (pred(i))
-		{
-			action(i);
-		}
-		else
-		{
-			break;
-		}
-	}
-}
-
-void TestScene::Update(const InputState& inputs, Uint32 now)
-{
-#ifdef ANDROID
-	keys.Update(inputs, now);
-#endif
-	if (inputs.GetLeftButtonState())
-	{
-		player->dx = -1;
-	}
-	else if (inputs.GetRightButtonState())
-	{
-		player->dx = 1;
-	}
-	else if (inputs.GetDownButtonState())
-	{
-		player->dy = 1;
-	}
-	else if (inputs.GetUpButtonState())
-	{
-		player->dy = -1;
-	}
-	else if (inputs.GetAButtonState())
-	{
-		// make sure there isn't already a bomb there
-		bool alreadyBombed = false;
-		BOOST_FOREACH(bombInfoPair bip, bombs)
-		{
-			if (player->x == bip.first->x && player->y == bip.first->y)
-			{
-				alreadyBombed = true;
-				break;
-			}
-		};
-
-		if (!alreadyBombed)
-		{
-			auto newBomb = map.CreateEntity();
-			newBomb->x = player->x;
-			newBomb->y = player->y;
-			newBomb->userdata = BOMBID;
-
-			BombInfo info;
-			info.strength = 2;
-			info.timeout = now + BOMBTIMER;
-
-			overlappingBombs.push_back(newBomb);
-			bombs.push_back(bombInfoPair(newBomb,info));
-		}
-	}
-
-	// check if player has left the position where a bomb was
-	RemoveWhere<Map::entity_type>(&overlappingBombs, [&](Map::entity_type bomb)->bool
-	{
-		return map.TrySetEntity(bomb, bomb->x, bomb->y);
-	});
-	
-	// BLOW THE BOMBS UP
-	Map& theMap = map;
-	RemoveAndProcessWhere<bombInfoPair>(&bombs, 
-		[&](bombInfoPair bip)->bool
-		{
-			return now > bip.second.timeout;
-		},
-
-		[&](bombInfoPair bip)
-		{
-			// bomb's timer has run out. Erase bomb and add explosion
-			if (theMap.GetEntity(bip.first->x, bip.first->y)->userdata == BOMBID)
-			{
-				theMap.RemoveEntity(bip.first->x, bip.first->y);
-			}
-			else
-			{
-				RemoveWhere<Map::entity_type>(&overlappingBombs, [&](Map::entity_type bomb)->bool
-				{
-					return bomb->x == bip.first->x && bomb->y == bip.first->y;
-				});
-			}
-
-			// we don't add explosions to the map. rather we keep
-			// an array of them around. anthing that overlaps with them
-			// dies.
-			ExplosionInfo explosion;
-			explosion.stage = 0;
-			explosion.timeout = now + EXPLOSIONTIMER;
-			explosion.x = bip.first->x;
-			explosion.y = bip.first->y;
-			explosions.push_back(explosion);
-
-			Map& aMap = theMap;
-			std::function<bool(TestScene::ExplosionInfo)> isVulnerable = [&](TestScene::ExplosionInfo ex)->bool
-			{
-				auto status = aMap.CheckPosIsFree(ex.x, ex.y);
-				return 
-					(status == Map::OCCUPIED && aMap.GetEntity(ex.x, ex.y)->userdata != BLOCKID) ||
-					(status == Map::FREE);
-			};
-
-			std::function<ExplosionInfo(int)> left  = [&](int dist)->ExplosionInfo { explosion.y = bip.first->y; explosion.x = bip.first->x - dist; return explosion; };
-			std::function<ExplosionInfo(int)> right = [&](int dist)->ExplosionInfo { explosion.y = bip.first->y; explosion.x = bip.first->x + dist; return explosion; };
-			std::function<ExplosionInfo(int)> up    = [&](int dist)->ExplosionInfo { explosion.x = bip.first->x; explosion.y = bip.first->y - dist; return explosion; };
-			std::function<ExplosionInfo(int)> down  = [&](int dist)->ExplosionInfo { explosion.x = bip.first->x; explosion.y = bip.first->y + dist; return explosion; };
-			
-			std::list<ExplosionInfo>& theExplosions = explosions;
-			CountWhile(bip.second.strength, 
-				[&](int dist)->bool{ return isVulnerable(left(dist)); }, 
-				[&](int dist) { theExplosions.push_back(left(dist)); });
-			
-			CountWhile(bip.second.strength, 
-				[&](int dist)->bool{ return isVulnerable(right(dist)); }, 
-				[&](int dist) { theExplosions.push_back(right(dist)); });
-
-			CountWhile(bip.second.strength, 
-				[&](int dist)->bool{ return isVulnerable(up(dist)); }, 
-				[&](int dist) { theExplosions.push_back(up(dist)); });
-
-			CountWhile(bip.second.strength, 
-				[&](int dist)->bool{ return isVulnerable(down(dist)); }, 
-				[&](int dist) { theExplosions.push_back(down(dist)); });
-		});
-
-	// process explosions.
-	BOOST_FOREACH(ExplosionInfo& explosion, explosions)
-	{
-		if (now > explosion.timeout)
-		{
-			explosion.timeout = now + EXPLOSIONTIMER;
-			explosion.stage++;
-		}
-
-		auto ntt = map.GetEntity(explosion.x, explosion.y);
-		if (ntt)
-		{
-			// kill it!
-		}
-	};
-
-	// remove expired explosions
-	RemoveWhere<ExplosionInfo>(&explosions, [&](ExplosionInfo explosion)->bool
-	{
-		return explosion.stage > EXPLOSIONSTAGES;
+		entities.push_back(entity);
 	});
 
-
-	// random "AI" player
-	if (computer->mx == 0 && computer->my == 0)
+	entities.sort([](const EntityConstPtr &left, const EntityConstPtr &right) -> bool
 	{
-		computer->dx = rand() % 3 - 1;
-		computer->dy = rand() % 3 - 1;
+		return left->elevel < right->elevel;
+	});
+
+	for (auto entity : entities) 
+	{
+		entity->Evolve(inputs, now, _presentMap, _futurMap);
 	}
 
-	static Uint32 lastUpdate = SDL_GetTicks();
-	if (now - lastUpdate > 20)
-	{
-		//printlog("drawing! %d", now);
-		map.Update(1);
-		lastUpdate = now;
-	}
+	std::swap(_presentMap, _futurMap);
 }
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-	map.ForeachTile([&](int x, int y, const Map::entity_type &ntt)
+	std::list<EntityConstPtr> entities;
+
+	_presentMap->ForeachEntity([&](const EntityConstPtr &entity)
 	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = x * r.w + 20;	// <- just for overscan
-		r.y = y * r.h + 20;
-		
-		SDL_RenderCopy(renderer, floortile.get(), NULL, &r);
-
-		if (ntt)
-		{
-			if(ntt->userdata == BLOCKID)
-			{
-				SDL_RenderCopy(renderer, block.get(), NULL, &r);
-			}
-			//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-			//SDL_RenderFillRect(renderer, &r);
-		}
-		else
-		{
-			//SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			//SDL_RenderDrawRect(renderer, &r);
-		}
-	});
-	
-	// draw the bombs first so they appear underneath people
-	BOOST_FOREACH(bombInfoPair bip, bombs)
-	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = bip.first->x * r.w + bip.first->mx * 8 + 20;
-		r.y = bip.first->y * r.h + bip.first->my * 8 + 20;
-
-		SDL_RenderCopy(renderer, bomb.get(), NULL, &r);
-	};
-
-	// draw the people and other things
-	map.ForeachEntity([&](const Map::entity_type &ntt)
-	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = ntt->x * r.w + ntt->mx * 8 + 20;
-		r.y = ntt->y * r.h + ntt->my * 8 + 20;
-
-		if (ntt->id == player->id)
-		{
-			SDL_RenderCopy(renderer, bomberman.get(), NULL, &r);
-		}
-		else if (ntt->id == computer->id)
-		{
-			SDL_RenderCopy(renderer, bombergirl.get(), NULL, &r);
-		}
-
-		//SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-		//SDL_RenderFillRect(renderer, &r);
+		entities.push_back(entity);
 	});
 
-	// draw the explosions
-	BOOST_FOREACH(ExplosionInfo explosion, explosions)
+	entities.sort([](const EntityConstPtr &left, const EntityConstPtr &right) -> bool
 	{
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = explosion.x * r.w + 20;
-		r.y = explosion.y * r.h + 20;
-		
-		SDL_RenderCopy(renderer, explosionSprite[explosion.stage].get(), NULL, &r);
-	};
+		return left->zlevel < right->zlevel;
+	});
 
-	keys.Render(renderer);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
+	for (auto entity : entities) 
+	{
+		entity->Render(renderer);
+	}
 }
 
 bool TestScene::Running()
 {
 	return true;
+}
+	
 }

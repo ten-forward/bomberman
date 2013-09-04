@@ -1,5 +1,4 @@
-#ifndef TOUCHSCREENKEYSCENE_HPP
-#define TOUCHSCREENKEYSCENE_HPP
+#pragma once
 
 #include <SDL.h>
 #include <memory>
@@ -27,5 +26,3 @@ public:
 	virtual void Render(SDL_Renderer *renderer);
 	virtual bool Running();
 };
-
-#endif // TOUCHSCREENKEYSCENE_HPP
