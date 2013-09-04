@@ -9,9 +9,8 @@
 
 #include "testscene.hpp"
 
+#ifdef ANDROID
 #include <jni.h>
-
-SDL_Window* window = NULL;
 
 extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonDown(
                                                                JNIEnv* env, jclass jcls,
@@ -26,6 +25,9 @@ extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonUp(
 {
     printlog("controllerButtonUp btn=%d which=%d¥n", button, which);
 }
+#endif
+
+SDL_Window* window = NULL;
 
 void run(std::shared_ptr<SceneInterface> scene)
 {
@@ -126,9 +128,10 @@ void run(std::shared_ptr<SceneInterface> scene)
 		}
 		
 		Uint32 now = SDL_GetTicks();
-		scene->Update(inputState, now);
+
 		if (now - time > 15)
 		{
+			scene->Update(inputState, now);
 			SDL_RenderClear(renderer);
 			scene->Render(renderer);
 			SDL_RenderPresent(renderer);
@@ -139,7 +142,7 @@ void run(std::shared_ptr<SceneInterface> scene)
 
 void game()
 {
-	std::shared_ptr<TestScene> ts(new TestScene());
+	std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene());
 	
 	run(ts);
 }

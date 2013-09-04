@@ -1,5 +1,4 @@
-#ifndef INPUTSTATE_HPP
-#define INPUTSTATE_HPP
+#pragma once
 
 struct JoystickState
 {
@@ -65,5 +64,3 @@ public:
 	void SetXButtonState(bool state);
 	void SetYButtonState(bool state);
 };
-
-#endif // INPUTSTATE_HPP
