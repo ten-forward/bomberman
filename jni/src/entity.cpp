@@ -12,8 +12,6 @@ namespace bomberman
 		active(false),
 		brakes(true)
 	{
-		//ntt->id = ids++;
-		//reg[ntt->id] = ntt;
 	}
 
 	Entity::~Entity() 
