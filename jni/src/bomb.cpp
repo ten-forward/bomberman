@@ -1,4 +1,5 @@
 #include "bomb.hpp"
+#include "explosion.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -21,33 +22,22 @@ namespace arsenal {
 		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
 	}
 
-	void Bomb::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
+	void Bomb::Evolve(const InputState& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
 		auto bomb = std::make_shared<Bomb>(*this);
-		iFutureMap->SetEntity(bomb);
+		
+		const int kExplosionTimer = 200;
 
-		// BLOW THE BOMBS UP
-		/*RemoveAndProcessWhere<bombInfoPair>(&bombs, 
-		[&](bombInfoPair bip)->bool
-		{
-			return now > bip.second.timeout;
-		},
+		if (iTimestamp >= _timeout) {
+			auto blast = Explosion::Create(iTimestamp + kExplosionTimer);
+			blast->x = x;
+			blast->y = y;
+			iFutureMap->SetEntity(blast);
+		} else {
+			iFutureMap->SetEntity(shared_from_this());
+		}
 
-		[&](bombInfoPair bip)
-		{
-			// bomb's timer has run out. Erase bomb and add explosion
-			if (theMap.GetEntity(bip.first->x, bip.first->y)->userdata == BOMBID)
-			{
-				theMap.RemoveEntity(bip.first->x, bip.first->y);
-			}
-			else
-			{
-				RemoveWhere<EntityPtr>(&overlappingBombs, [&](EntityPtr bomb)->bool
-				{
-					return bomb->x == bip.first->x && bomb->y == bip.first->y;
-				});
-			}
-
+		/*
 			// we don't add explosions to the map. rather we keep
 			// an array of them around. anthing that overlaps with them
 			// dies.

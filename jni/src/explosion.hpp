@@ -13,7 +13,7 @@ namespace arsenal {
 	class Explosion;
 	typedef std::shared_ptr<Explosion> ExplosionPtr;
 
-	class Explosion : public Entity {
+	class Explosion : public Entity, public std::enable_shared_from_this<Explosion> {
 		public:
 			static ExplosionPtr Create(int iTimeout);
 			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;

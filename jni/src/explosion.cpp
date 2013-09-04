@@ -10,7 +10,7 @@ namespace arsenal {
 		auto explosion = std::make_shared<Explosion>();
 		explosion->_timeout = iTimeout;
 		explosion->_stage = 0;
-		explosion->zlevel = 2;
+		explosion->zlevel = 3;
 		return explosion;
 	}
 
@@ -24,8 +24,9 @@ namespace arsenal {
 		_Explosion[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/explosion4.png"), SDL_DestroyTexture);
 	}
 
-	void Explosion::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &/*iFutureMap*/) const
+	void Explosion::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
+		iFutureMap->SetEntity(shared_from_this());
 		/*// process explosions.
 		BOOST_FOREACH(ExplosionInfo& explosion, explosions)
 		{

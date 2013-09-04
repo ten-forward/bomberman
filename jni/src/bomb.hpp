@@ -13,7 +13,7 @@ namespace arsenal {
 	class Bomb;
 	typedef std::shared_ptr<Bomb> BombPtr;
 
-	class Bomb : public Entity {
+	class Bomb : public Entity, public std::enable_shared_from_this<Bomb> {
 		public:
 			static BombPtr Create(int iTimeout, int iStrength);
 			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
