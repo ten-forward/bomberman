@@ -11,18 +11,19 @@ struct SDL_Texture;
 namespace bomberman {
 namespace architecture {
 
-	class Block;
-	typedef std::shared_ptr<Block> BlockPtr;
+	class FloorTile;
+	typedef std::shared_ptr<FloorTile> FloorTilePtr;
 
-	class Block : public Entity, public std::enable_shared_from_this<Block> {
+	class FloorTile : public Entity, public std::enable_shared_from_this<FloorTile> {
 		public:
-			static BlockPtr Create();
+
+			static FloorTilePtr Create();
 			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Render(SDL_Renderer* iRenderer) const;
 		
 		protected:
 			static void InitializeGraphicRessources(SDL_Renderer *iRenderer);
-			static std::shared_ptr<SDL_Texture> _Block;
+			static std::shared_ptr<SDL_Texture> _FloorTile;
 	};
 }
 }

@@ -128,9 +128,10 @@ void run(std::shared_ptr<SceneInterface> scene)
 		}
 		
 		Uint32 now = SDL_GetTicks();
-		scene->Update(inputState, now);
+
 		if (now - time > 15)
 		{
+			scene->Update(inputState, now);
 			SDL_RenderClear(renderer);
 			scene->Render(renderer);
 			SDL_RenderPresent(renderer);

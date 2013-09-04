@@ -10,8 +10,6 @@
 // boost
 #include <boost/multi_array.hpp>
 
-#define amountPerTile 8
-
 namespace bomberman {
 
 class Map;

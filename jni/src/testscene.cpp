@@ -4,6 +4,7 @@
 #include "player.hpp"
 #include "computer.hpp"
 #include "block.hpp"
+#include "floortile.hpp"
 #include "bomb.hpp"
 #include "explosion.hpp"
 #include "printlog.hpp"
@@ -18,6 +19,7 @@
 using bomberman::bestiary::Player;
 using bomberman::bestiary::Computer;
 using bomberman::architecture::Block;
+using bomberman::architecture::FloorTile;
 using bomberman::arsenal::Bomb;
 using bomberman::arsenal::Explosion;
 
@@ -39,7 +41,15 @@ TestScene::TestScene() :
 
 	_presentMap->ForeachTile([&](int x, int y, const EntitySet &) {
 		bool placeObstacle = (x & 1) & (y & 1);		
-		auto blockEntity = Block::Create(placeObstacle ? Block::Obstacle : Block::Floor);
+		EntityPtr blockEntity;
+		if (placeObstacle)
+		{
+			blockEntity = Block::Create();
+		}
+		else 
+		{
+		 	blockEntity = FloorTile::Create();
+		}
 		blockEntity->x = x;
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
@@ -79,14 +89,24 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 {
 	_futurMap->Clear();
 
+	std::list<EntityConstPtr> entities;
+
 	_presentMap->ForeachEntity([&](const EntityConstPtr &entity)
 	{
-		entity->Evolve(inputs, now, _presentMap, _futurMap);
+		entities.push_back(entity);
 	});
 
+	entities.sort([](const EntityConstPtr &left, const EntityConstPtr &right) -> bool
+	{
+		return left->elevel < right->elevel;
+	});
+
+	for (auto entity : entities) 
+	{
+		entity->Evolve(inputs, now, _presentMap, _futurMap);
+	}
+
 	std::swap(_presentMap, _futurMap);
-
-
 }
 
 void TestScene::Render(SDL_Renderer *renderer)

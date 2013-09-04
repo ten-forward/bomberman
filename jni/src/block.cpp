@@ -6,20 +6,19 @@
 namespace bomberman {
 namespace architecture {
 
-	BlockPtr Block::Create(Type iType) 
+	BlockPtr Block::Create() 
 	{
 		auto block = std::make_shared<Block>();
-		block->_type = iType;
 		block->zlevel = 0;
+		block->elevel = -1;
 		return block;
 	}
 
-	std::shared_ptr<SDL_Texture> Block::_Block, Block::_Floortile;
+	std::shared_ptr<SDL_Texture> Block::_Block;
 
 	void Block::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
 		_Block = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/block.png"), SDL_DestroyTexture);
-		_Floortile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/floor.png"), SDL_DestroyTexture);
 	}
 
 	void Block::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
@@ -29,7 +28,7 @@ namespace architecture {
 
 	void Block::Render(SDL_Renderer *iRenderer) const 
 	{
-		if (!_Block || ! _Floortile)
+		if (!_Block)
 		{
 			InitializeGraphicRessources(iRenderer);
 		}
@@ -40,14 +39,7 @@ namespace architecture {
 		r.x = x * r.w + 20;	// <- just for overscan
 		r.y = y * r.h + 20;
 		
-		switch (_type) {
-			case Obstacle:
-				SDL_RenderCopy(iRenderer, _Block.get(), nullptr, &r);
-				return;
-			case Floor:
-				SDL_RenderCopy(iRenderer, _Floortile.get(), nullptr, &r);
-				return;
-		}
+		SDL_RenderCopy(iRenderer, _Block.get(), nullptr, &r);
 	}
 }
 }

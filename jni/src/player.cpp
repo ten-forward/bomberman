@@ -14,7 +14,7 @@ namespace bestiary {
 
 	namespace {
 
-		inline int sign(int x)
+		inline int sign(int x)	
 		{
 			return (x > 0) - (x < 0);
 		}
@@ -28,7 +28,7 @@ namespace bestiary {
 
 			for (auto entity : iMap->GetEntities(x, y)) 
 			{
-				if (/*typeid(*entity) == typeid(Block) || */
+				if (typeid(*entity) == typeid(Block) ||
 					typeid(*entity) == typeid(Player))
 
 				{
@@ -38,34 +38,13 @@ namespace bestiary {
 
 			return true;
 		}
-
-		/*#define PREVENT_DIAGONAL_MOVEMENT \
-			if (ntt->mx != 0 && ntt->dy != 0)\
-			{\
-				ntt->dy = 0;\
-			}\
-			\
-			if (ntt->my != 0 && ntt->dx != 0)\
-			{\
-				ntt->dx = 0;\
-			}\
-			\
-			if (ntt->mx == 0 && ntt->my == 0)\
-			{\
-				if (ntt->dx && ntt->dy)\
-				{\
-					ntt->dy = 0;\
-					ntt->dx = 0;\
-					continue;\
-				}\
-			}*/
 	}
 
 	PlayerPtr Player::Create(const std::string &iName)
 	{
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
-		player->zlevel = 1;
+		player->zlevel = 2;
 		return player;
 	}
 
@@ -79,29 +58,30 @@ namespace bestiary {
 
 	void Player::Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
-
+		const int kAmountPerTile = 8;
+		
 		auto player = std::make_shared<Player>(*this);
 
-		//PREVENT_DIAGONAL_MOVEMENT
-		player->dx = player->dy = 0;
+		int dx = 0, dy = 0;
 
 		if (iInputs.GetLeftButtonState())
 		{
-			player->dx = -1;
+			dx = -1;
 		}
 		else if (iInputs.GetRightButtonState())
 		{
-			player->dx = 1;
+			dx = 1;
 		}
 		else if (iInputs.GetDownButtonState())
 		{
-			player->dy = 1;
+			dy = 1;
 		}
 		else if (iInputs.GetUpButtonState())
 		{
-			player->dy = -1;
+			dy = -1;
 		}
-		else if (iInputs.GetAButtonState())
+
+		if (iInputs.GetAButtonState())
 		{
 			// make sure there isn't already a bomb there
 			bool alreadyBombed = false;
@@ -132,9 +112,6 @@ namespace bestiary {
 		//	return presentMap->TrySetEntity(bomb, bomb->x, bomb->y);
 		//});
 
-		int dx = player->dx;
-		int dy = player->dy;
-
 		if (dx != 0 || dy != 0)
 		{
 			if (player->mx == 0 && player->my == 0)
@@ -145,46 +122,25 @@ namespace bestiary {
 
 				if (CanStayAt(iFutureMap, xprime, yprime))
 				{
-					int mxprime = player->mx + sign(dx);
-					int myprime = player->my + sign(dy);
-
-					// occupy 2 tiles at once.
-					//map[xprime][yprime] = player;
-					player->x = xprime;
-					player->y = yprime;
-					player->mx = mxprime;
-					player->my = myprime;
-				}
-				else
-				{
-					// cannot move!
-					player->dx = 0;
-					player->dy = 0;
+					player->mx = sign(dx);
+					player->my = sign(dy);
 				}
 			}
 			else
 			{
-				// check if we just reversed!
-				// if we did we need to fix
-				// the values to avoid
-				// leaving block trails on the map
-				if (sign(dx) != sign(player->mx))
-				{
-					player->x += sign(player->mx);
-					player->mx = -sign(player->mx) * (amountPerTile - abs(player->mx));
-				}
-
-				if (sign(dy) != sign(player->my))
-				{
-					player->y += sign(player->my);
-					player->my = -sign(player->my) * (amountPerTile - abs(player->my));
-				}
-
 				// calculate where we will be
-				int mxprime = player->mx + sign(dx);
-				int myprime = player->my + sign(dy);
+				int mxprime = 0, myprime = 0;
 
-				if (abs(mxprime) >= amountPerTile || abs(myprime) >= amountPerTile)
+				if (player->mx) 
+				{
+					mxprime = player->mx + sign(dx);
+				}
+				else if (player->my)
+				{	
+					myprime = player->my + sign(dy);
+				}
+				
+				if (abs(mxprime) >= kAmountPerTile || abs(myprime) >= kAmountPerTile)
 				{
 					// completing transition
 					int xprime = player->x + sign(player->mx);
@@ -194,12 +150,6 @@ namespace bestiary {
 					player->y = yprime;
 					player->mx = 0;
 					player->my = 0;
-
-					if (player->brakes)
-					{
-						player->dx = 0;
-						player->dy = 0;
-					}
 				}
 				else
 				{
