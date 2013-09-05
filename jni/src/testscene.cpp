@@ -56,33 +56,8 @@ TestScene::TestScene() :
 	});
 }
 
-TestScene::~TestScene()
-{
-}
-
 void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-}
-
-template<typename T>
-void RemoveAndProcessWhere(std::list<T>* list, std::function<bool(T)> pred, std::function<void(T)> action)
-{
-	typename std::list<T>::iterator i = list->begin();
-	while (i != list->end())
-	{
-		T item = *i;
-		if (pred(item))
-		{
-			// if the item is there then erase it
-			list->erase(i++);
-			action(item);
-		}
-		else
-		{
-			// otherwise leave it
-			++i;
-		}
-	}
 }
 
 void TestScene::Update(const InputState& inputs, uint32_t now)
