@@ -2,6 +2,7 @@
 #include "block.hpp"
 #include "bomb.hpp"
 #include "player.hpp"
+#include "utils.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -115,10 +116,10 @@ namespace arsenal {
 		}
 
 		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = x * r.w + 20;
-		r.y = y * r.h + 20;
+		r.w = TILE_WIDTH;
+		r.h = TILE_HEIGHT;
+		r.x = x * TILE_WIDTH + MAP_X;
+		r.y = y * TILE_HEIGHT + MAP_Y;
 		
 		SDL_RenderCopy(iRenderer, _Explosion[_stage].get(), nullptr, &r);
 	}

@@ -89,7 +89,7 @@
     <ClInclude Include="..\jni\src\scene_interface.hpp" />
     <ClInclude Include="..\jni\src\testscene.hpp" />
     <ClInclude Include="..\jni\src\touchscreenkeyscene.hpp" />
-    <ClInclude Include="utils.hpp" />
+    <ClInclude Include="..\jni\src\utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\src\block.cpp" />
@@ -105,7 +105,7 @@
     <ClCompile Include="..\jni\src\printlog.cpp" />
     <ClCompile Include="..\jni\src\testscene.cpp" />
     <ClCompile Include="..\jni\src\touchscreenkeyscene.cpp" />
-    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="..\jni\src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\jni\SDL\VisualC\SDLmain\SDLmain_VS2010.vcxproj">

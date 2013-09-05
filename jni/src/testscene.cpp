@@ -8,6 +8,7 @@
 #include "bomb.hpp"
 #include "explosion.hpp"
 #include "printlog.hpp"
+#include "utils.hpp"
 
 #include <algorithm>
 #include <boost/foreach.hpp>
@@ -27,8 +28,8 @@ using bomberman::arsenal::Explosion;
 namespace bomberman {
 
 TestScene::TestScene() : 
-	_presentMap(new Map(15, 9)),
-	_futurMap(new Map(15, 9))
+	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
+	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS))
 {
 	auto player = Player::Create("El Tuco");
 	player->x = 0;
@@ -97,6 +98,10 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
+	SDL_Rect safeArea = GetSafeArea1920();
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderDrawRect(renderer, &safeArea);
+
 	std::list<EntityConstPtr> entities;
 
 	_presentMap->ForeachEntity([&](const EntityConstPtr &entity)

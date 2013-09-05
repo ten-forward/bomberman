@@ -33,9 +33,6 @@
     <ClInclude Include="..\jni\src\map.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="utils.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\jni\src\block.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,6 +60,9 @@
     <ClInclude Include="..\jni\src\testscene.hpp">
       <Filter>Source Files\scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\jni\src\utils.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\src\inputstate.cpp">
@@ -78,9 +78,6 @@
       <Filter>Source Files\scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\src\map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\src\block.cpp">
@@ -106,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="..\jni\src\testscene.cpp">
       <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\utils.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

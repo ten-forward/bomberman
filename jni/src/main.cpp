@@ -4,9 +4,8 @@
 #include <memory>
 #include "scene_interface.hpp"
 #include "inputstate.hpp"
-
+#include "utils.hpp"
 #include "printlog.hpp"
-
 #include "testscene.hpp"
 
 #ifdef ANDROID
@@ -132,6 +131,7 @@ void run(std::shared_ptr<SceneInterface> scene)
 		if (now - time > 15)
 		{
 			scene->Update(inputState, now);
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 			SDL_RenderClear(renderer);
 			scene->Render(renderer);
 			SDL_RenderPresent(renderer);
@@ -153,15 +153,15 @@ int main(int argc, char** argv)
 	//TTF_Init();
 
 	SDL_DisplayMode mode;
-	int WIDTH = 1280, HEIGHT = 720;
+	int WIDTH = SCREEN_WIDTH, HEIGHT = SCREEN_HEIGHT;
 
-	if (SDL_GetCurrentDisplayMode(0, &mode)==0)
-	{
-		/* I read that android ignores these so you can just as well set
-		them to 0 */
-		WIDTH=mode.w;
-		HEIGHT=mode.h;
-	}
+	//if (SDL_GetCurrentDisplayMode(0, &mode)==0)
+	//{
+	//	/* I read that android ignores these so you can just as well set
+	//	them to 0 */
+	//	WIDTH=mode.w;
+	//	HEIGHT=mode.h;
+	//}
 
 	printlog("Window size: %d x %d!\n", WIDTH, HEIGHT);
 

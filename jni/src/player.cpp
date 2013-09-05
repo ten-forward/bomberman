@@ -2,6 +2,7 @@
 #include "inputstate.hpp"
 #include "bomb.hpp"
 #include "block.hpp"
+#include "utils.hpp"
 
 // SDL
 #include <SDL.h>
@@ -222,10 +223,10 @@ namespace bestiary {
 		}
 
 		SDL_Rect dst;
-		dst.w = 64;
-		dst.h = 64;
-		dst.x = x * dst.w + mx * 8 + 20;
-		dst.y = y * dst.h + my * 8 + 20;
+		dst.w = PLAYER_WIDTH;
+		dst.h = PLAYER_HEIGHT;
+		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
+		dst.y = y * TILE_HEIGHT + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
 
 		int idx = GetFrameIndex();
 
