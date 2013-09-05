@@ -46,6 +46,9 @@ namespace bestiary {
 		player->_name = iName;
 		player->zlevel = 2;
 		player->_dying = false;
+		player->_frameId = 3;
+		player->_nextFrameDueTime =0;
+		player->_state = IdleDown;
 		return player;
 	}
 
@@ -53,8 +56,9 @@ namespace bestiary {
 
 	void Player::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		//bombergirl = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer, "test/bombergirl.png"), SDL_DestroyTexture);
-		_Bomberman = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomberman.png"), SDL_DestroyTexture);
+		auto surface = IMG_Load("test/SaturnBomberman-BlackBomberman.PNG");
+		SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
+		_Bomberman = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(iRenderer, surface), SDL_DestroyTexture);	
 	}
 
 	void Player::Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
@@ -68,24 +72,56 @@ namespace bestiary {
 		const int kAmountPerTile = 8;
 		
 		auto player = std::make_shared<Player>(*this);
-
+		
 		int dx = 0, dy = 0;
 
 		if (iInputs.GetLeftButtonState())
 		{
 			dx = -1;
+			player->_state = WalkingLeft;
 		}
 		else if (iInputs.GetRightButtonState())
 		{
 			dx = 1;
+			player->_state = WalkingRight;
 		}
 		else if (iInputs.GetDownButtonState())
 		{
 			dy = 1;
+			player->_state = WalkingDown;
 		}
 		else if (iInputs.GetUpButtonState())
 		{
 			dy = -1;
+			player->_state = WalkingUp;
+		} 
+		else
+		{
+			// To Idle states transitions ...
+			switch (_state)
+			{
+				case WalkingDown:
+					player->_state = IdleDown;
+					break;
+				case WalkingUp:
+					player->_state = IdleUp;
+					break;
+				case WalkingRight:
+					player->_state = IdleRight;
+					break;
+				case WalkingLeft:
+					player->_state = IdleLeft;
+					break;
+				default:
+					player->_state = _state;
+			}
+		}
+
+		if (_nextFrameDueTime < iTimestamp)
+		{
+			player->_frameId++;
+			player->_frameId %= 3;
+			player->_nextFrameDueTime = iTimestamp + 150;
 		}
 
 		if (iInputs.GetAButtonState())
@@ -174,18 +210,52 @@ namespace bestiary {
 			InitializeGraphicRessources(iRenderer);
 		}
 
-		SDL_Rect r;
-		r.w = 64;
-		r.h = 64;
-		r.x = x * r.w + mx * 8 + 20;
-		r.y = y * r.h + my * 8 + 20;
+		SDL_Rect src[12];
+		for (int i = 0; i < 12; ++i)
+		{
+			src[i].w = 16;
+			src[i].h = 32;
+			src[i].x = 1 + i * 17;
+			src[i].y = 1;
+		}
 
-		SDL_RenderCopy(iRenderer, _Bomberman.get(), nullptr, &r);
+		SDL_Rect dst;
+		dst.w = 64;
+		dst.h = 64;
+		dst.x = x * dst.w + mx * 8 + 20;
+		dst.y = y * dst.h + my * 8 + 20;
+
+		int idx = GetFrameIndex();
+
+		SDL_RenderCopy(iRenderer, _Bomberman.get(), &src[idx], &dst);
 	}
 
 	void Player::Kill()
 	{
 		_dying = true;
+	}
+
+	int Player::GetFrameIndex() const
+	{
+		switch(_state)
+		{
+			case WalkingUp:
+				return _frameId;
+			case WalkingDown:
+				return 6 + _frameId;
+			case WalkingLeft:
+				return 3 + _frameId;
+			case WalkingRight:
+				return 9 + _frameId;
+			case IdleUp:
+				return 0 + 2;
+			case IdleDown:
+				return 6 + 2;
+			case IdleLeft:
+				return 3 + 2;
+			case IdleRight:
+				return 9 + 2;
+		}
 	}
 }
 }
