@@ -1,6 +1,7 @@
 #include "explosion.hpp"
 #include "block.hpp"
 #include "bomb.hpp"
+#include "player.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -55,7 +56,9 @@ namespace arsenal {
 	{
 		if (iTimestamp < _timeout) 
 		{
-		  iFutureMap->SetEntity(std::make_shared<Explosion>(*this));
+			auto explosion = std::make_shared<Explosion>(*this);
+			explosion->active = true;
+		  	iFutureMap->SetEntity(explosion);
 		}
 		else
 		{
@@ -67,6 +70,7 @@ namespace arsenal {
 		  if (_stage < 4)
 		  {
 		    auto explosion = std::make_shared<Explosion>(*this);
+		    explosion->active = true;
 		    explosion->_timeout = iTimestamp + kExplosionTimer;
 		    explosion->_stage++;
 		    iFutureMap->SetEntity(explosion);		  
@@ -77,6 +81,7 @@ namespace arsenal {
 	void Explosion::Interact(const InputState& iInputs, uint32_t iTimestamp, const EntitySet &iOthers)
 	{	
 		using bomberman::arsenal::Bomb;
+		using bomberman::bestiary::Player;
 
 		for (auto other : iOthers)
 		{
@@ -84,6 +89,19 @@ namespace arsenal {
 			{
 				auto bomb = std::dynamic_pointer_cast<Bomb>(other);
 				bomb->Detonate();
+			}
+			else if(typeid(*other) == typeid(Explosion))
+			{
+				auto explosion = std::dynamic_pointer_cast<Explosion>(other);
+				if (explosion->_stage > _stage)
+				{
+					explosion->active = false;
+				}
+			}
+			else if(typeid(*other) == typeid(Player))
+			{
+				auto player = std::dynamic_pointer_cast<Player>(other);
+				player->Kill();
 			}
 		}
 	}
@@ -113,6 +131,7 @@ namespace arsenal {
  				if (CanPropagate(iPresentMap, x + 1, y))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->x = x + 1;
 				    explosion->_propagation = Right;
@@ -122,6 +141,7 @@ namespace arsenal {
  				if (CanPropagate(iPresentMap, x - 1, y))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->x = x - 1;
 				    explosion->_propagation = Left;
@@ -131,6 +151,7 @@ namespace arsenal {
 				if (CanPropagate(iPresentMap, x, y + 1))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->y = y + 1;
 				    explosion->_propagation = Down;
@@ -140,6 +161,7 @@ namespace arsenal {
  				if (CanPropagate(iPresentMap, x, y - 1))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->y = y - 1;
 				    explosion->_propagation = Up;
@@ -153,6 +175,7 @@ namespace arsenal {
 	 			if (CanPropagate(iPresentMap, x, y - 1))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->y = y - 1;
 				    explosion->_propagation = Up;
@@ -166,6 +189,7 @@ namespace arsenal {
 	 			if (CanPropagate(iPresentMap, x, y + 1))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->y = y + 1;
 				    explosion->_propagation = Down;
@@ -179,6 +203,7 @@ namespace arsenal {
 				if (CanPropagate(iPresentMap, x - 1, y))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->x = x - 1;
 				    explosion->_propagation = Left;
@@ -192,6 +217,7 @@ namespace arsenal {
 	 			if (CanPropagate(iPresentMap, x + 1, y))
  				{
  					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
 				    explosion->_timeout = iTimestamp + kExplosionTimer;
 				    explosion->x = x + 1;
 				    explosion->_propagation = Right;

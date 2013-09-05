@@ -135,7 +135,10 @@ void TestScene::Render(SDL_Renderer *renderer)
 
 	for (auto entity : entities) 
 	{
-		entity->Render(renderer);
+		if (entity->active)
+		{
+			entity->Render(renderer);
+		}
 	}
 }
 
