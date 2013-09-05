@@ -106,6 +106,16 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 		entity->Evolve(inputs, now, _presentMap, _futurMap);
 	}
 
+	entities.clear();
+
+	_futurMap->ForeachTile([&](int x, int y, const EntitySet &iEntities)
+	{	
+		for (auto entity : iEntities)
+		{
+			entity->Interact(inputs, now, iEntities);
+		}
+	});
+
 	std::swap(_presentMap, _futurMap);
 }
 
@@ -125,7 +135,10 @@ void TestScene::Render(SDL_Renderer *renderer)
 
 	for (auto entity : entities) 
 	{
-		entity->Render(renderer);
+		if (entity->active)
+		{
+			entity->Render(renderer);
+		}
 	}
 }
 

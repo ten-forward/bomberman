@@ -9,11 +9,9 @@ namespace bomberman
 		elevel(0),
 		mx(0),
 		my(0),
-		active(false),
+		active(true),
 		brakes(true)
-	{
-		//ntt->id = ids++;
-		//reg[ntt->id] = ntt;
+	{   
 	}
 
 	Entity::~Entity() 

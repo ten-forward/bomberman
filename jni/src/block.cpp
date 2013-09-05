@@ -23,7 +23,7 @@ namespace architecture {
 
 	void Block::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
-		iFutureMap->SetEntity(shared_from_this());
+		iFutureMap->SetEntity(std::make_shared<Block>(*this));		
 	}
 
 	void Block::Render(SDL_Renderer *iRenderer) const 

@@ -28,7 +28,7 @@ namespace bomberman
 		virtual ~Entity();
 
 		virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const = 0;
-
+		virtual void Interact(const InputState& iInputs, uint32_t iTimestamp, const EntitySet &iOthers) = 0;
 		virtual void Render(SDL_Renderer* iRenderer) const = 0;
 
 	protected:
