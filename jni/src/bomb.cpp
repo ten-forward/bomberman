@@ -12,6 +12,7 @@ namespace arsenal {
 		bomb->_timeout = iTimeout;
 		bomb->_strength = iStrength;
 		bomb->zlevel = 1;
+		bomb->_detonating = false;
 		return bomb;
 	}
 
@@ -24,14 +25,13 @@ namespace arsenal {
 
 	void Bomb::Evolve(const InputState& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
-		if (iTimestamp >= _timeout) {
-			const int kExplosionTimer = 200;
-			auto blast = Explosion::Create(iTimestamp + kExplosionTimer);
+		if (iTimestamp >= _timeout || _detonating) {	       
+			auto blast = Explosion::Create(iTimestamp);
 			blast->x = x;
 			blast->y = y;
 			iFutureMap->SetEntity(blast);
 		} else {
-			iFutureMap->SetEntity(shared_from_this());
+			iFutureMap->SetEntity(std::make_shared<Bomb>(*this));
 		}
 	}
 
@@ -49,6 +49,11 @@ namespace arsenal {
 		r.y = y * r.h + my * 8 + 20;
 
 		SDL_RenderCopy(iRenderer, _Bomb.get(), NULL, &r);
+	}
+
+	void Bomb::Detonate()
+	{
+		_detonating = true;
 	}
 }
 }

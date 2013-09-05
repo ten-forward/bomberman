@@ -11,7 +11,7 @@ namespace bomberman
 		my(0),
 		active(false),
 		brakes(true)
-	{
+	{   
 	}
 
 	Entity::~Entity() 
