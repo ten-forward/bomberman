@@ -6,8 +6,6 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
-import tv.ouya.console.api.OuyaController;
-
 import android.app.*;
 import android.content.*;
 import android.view.*;
@@ -547,7 +545,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         setFocusableInTouchMode(true);
         requestFocus();
         setOnKeyListener(this); 
-        setOnTouchListener(this);
+        setOnTouchListener(this);   
 
         mSensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
 
@@ -669,15 +667,13 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             //Log.v("SDL", "key down: " + keyCode);
-        	OuyaController.onKeyUp(keyCode, event);
             SDLActivity.onNativeKeyDown(keyCode);
-            return false;
+            return true;
         }
         else if (event.getAction() == KeyEvent.ACTION_UP) {
             //Log.v("SDL", "key up: " + keyCode);
-        	OuyaController.onKeyDown(keyCode, event);
             SDLActivity.onNativeKeyUp(keyCode);
-            return false;
+            return true;
         }
         
         return false;

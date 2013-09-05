@@ -4,7 +4,9 @@
 #include "block.hpp"
 
 // SDL
+#include <SDL.h>
 #include <SDL_image.h>
+#include <boost/foreach.hpp>
 
 using bomberman::arsenal::Bomb;
 using bomberman::architecture::Block;
@@ -26,7 +28,7 @@ namespace bestiary {
 				return false;
 			}
 
-			for (auto entity : iMap->GetEntities(x, y)) 
+			BOOST_FOREACH(auto entity, iMap->GetEntities(x, y)) 
 			{
 				if (typeid(*entity) == typeid(Block) ||
 					typeid(*entity) == typeid(Player))
@@ -129,7 +131,7 @@ namespace bestiary {
 			// make sure there isn't already a bomb there
 			bool alreadyBombed = false;
 			
-			for(auto entity : iFutureMap->GetEntities(player->x, player->y))
+			BOOST_FOREACH(auto entity, iFutureMap->GetEntities(player->x, player->y))
 			{
 				if (typeid(*entity) == typeid(Bomb))
 				{

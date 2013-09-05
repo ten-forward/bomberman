@@ -1,13 +1,13 @@
 #pragma once
 
 #include "entity.hpp"
+#include <SDL.h>
 
 // STL- libstdc++
 #include <memory>
 #include <string>
 
 // Forward declarations
-struct SDL_Texture;
 
 namespace bomberman {
 namespace bestiary {
@@ -19,8 +19,8 @@ namespace bestiary {
 	class Player : public bomberman::Entity {
 		public:
 			static PlayerPtr Create(const std::string &iName);
-			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-			virtual void Interact(const InputState& , uint32_t , const EntitySet &) {}
+			virtual void Evolve(const InputState& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			virtual void Interact(const InputState& , Uint32 , const EntitySet &) {}
 			virtual void Render(SDL_Renderer*) const;
 			void Kill();
 		protected:
@@ -39,7 +39,7 @@ namespace bestiary {
 			std::string _name;
 			bool _dying;
 			int _frameId;
-			uint32_t _nextFrameDueTime;
+			Uint32 _nextFrameDueTime;
 			State _state;
 
 			int GetFrameIndex() const;

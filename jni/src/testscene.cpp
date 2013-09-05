@@ -10,6 +10,7 @@
 #include "printlog.hpp"
 
 #include <algorithm>
+#include <boost/foreach.hpp>
 
 #define EXLOSION 5
 
@@ -76,7 +77,7 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 		return left->elevel < right->elevel;
 	});
 
-	for (auto entity : entities) 
+	BOOST_FOREACH (auto entity, entities) 
 	{
 		entity->Evolve(inputs, now, _presentMap, _futurMap);
 	}
@@ -85,7 +86,7 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 
 	_futurMap->ForeachTile([&](int x, int y, const EntitySet &iEntities)
 	{	
-		for (auto entity : iEntities)
+		BOOST_FOREACH (auto entity, entities) 
 		{
 			entity->Interact(inputs, now, iEntities);
 		}
@@ -108,7 +109,7 @@ void TestScene::Render(SDL_Renderer *renderer)
 		return left->zlevel < right->zlevel;
 	});
 
-	for (auto entity : entities) 
+	BOOST_FOREACH (auto entity, entities) 
 	{
 		if (entity->active)
 		{

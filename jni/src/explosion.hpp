@@ -16,8 +16,8 @@ namespace arsenal {
 	class Explosion : public Entity {
 		public:
 			static ExplosionPtr Create(int iTimeout);
-			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-			virtual void Interact(const InputState& iInputs, uint32_t iTimestamp, const EntitySet &iOthers);
+			virtual void Evolve(const InputState& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			virtual void Interact(const InputState& iInputs, Uint32 iTimestamp, const EntitySet &iOthers);
 			virtual void Render(SDL_Renderer*) const;
 		private:
 
@@ -30,7 +30,7 @@ namespace arsenal {
 				Right
 			};
 
-			void Propagate(uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			void Propagate(Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 
 			int _timeout;
 			int _stage;

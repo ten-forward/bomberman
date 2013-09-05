@@ -4,6 +4,7 @@
 #include "printlog.hpp"
 
 #include <iostream>
+#include <boost/foreach.hpp>
 
 namespace bomberman {
 
@@ -68,7 +69,7 @@ void Map::ForeachEntity(std::function<void(const EntityConstPtr &)> func) const
 {
 	ForeachTile([&](int, int, const EntitySet &entities)
 	{
-		for (auto entity : entities)
+		BOOST_FOREACH (auto entity, entities)
 		{
 			func(entity);
 		}
@@ -79,7 +80,7 @@ void Map::ForeachEntity(std::function<void(const EntityPtr &)> func)
 {
 	ForeachTile([&](int, int, const EntitySet &entities)
 	{
-		for (auto entity : entities)
+		BOOST_FOREACH (auto entity, entities)
 		{
 			func(entity);
 		}

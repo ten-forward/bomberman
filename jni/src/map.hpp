@@ -17,7 +17,15 @@ class Map;
 typedef std::shared_ptr<Map> MapPtr;
 typedef std::shared_ptr<const Map> MapConstPtr;
 
-typedef std::unordered_set<EntityPtr> EntitySet;
+struct hasher {
+    size_t operator()(const EntityPtr& n) const
+	{
+		return (size_t)n.get();
+	}
+};
+
+typedef std::unordered_set<EntityPtr, hasher> EntitySet;
+
 
 class Map
 {	

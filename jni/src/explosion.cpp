@@ -5,6 +5,7 @@
 
 // SDL
 #include <SDL_image.h>
+#include <boost/foreach.hpp>
 
 namespace bomberman {
 namespace arsenal {
@@ -21,7 +22,7 @@ namespace arsenal {
 				return false;
 			}
 
-			for (auto entity : iMap->GetEntities(x, y)) 
+			BOOST_FOREACH (auto entity, iMap->GetEntities(x, y)) 
 			{
 				if (typeid(*entity) == typeid(Block))
 				{
@@ -52,7 +53,7 @@ namespace arsenal {
 		_Explosion[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/explosion4.png"), SDL_DestroyTexture);
 	}
 
-	void Explosion::Evolve(const InputState& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	void Explosion::Evolve(const InputState& /*iInputs*/, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		if (iTimestamp < _timeout) 
 		{
@@ -78,12 +79,12 @@ namespace arsenal {
 		}
 	}
 
-	void Explosion::Interact(const InputState& iInputs, uint32_t iTimestamp, const EntitySet &iOthers)
+	void Explosion::Interact(const InputState& iInputs, Uint32 iTimestamp, const EntitySet &iOthers)
 	{	
 		using bomberman::arsenal::Bomb;
 		using bomberman::bestiary::Player;
 
-		for (auto other : iOthers)
+		BOOST_FOREACH (auto other, iOthers)
 		{
 			if(typeid(*other) == typeid(Bomb))
 			{
@@ -122,7 +123,7 @@ namespace arsenal {
 		SDL_RenderCopy(iRenderer, _Explosion[_stage].get(), nullptr, &r);
 	}
 
-	 void Explosion::Propagate(uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	 void Explosion::Propagate(Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	 {
 	 	switch(_propagation)
 	 	{

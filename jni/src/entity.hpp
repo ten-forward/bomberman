@@ -6,7 +6,7 @@
 #include <unordered_set>
 #include <memory>
 
-struct SDL_Renderer;
+#include <SDL.h>
 class InputState;
 
 namespace bomberman
@@ -27,8 +27,8 @@ namespace bomberman
 
 		virtual ~Entity();
 
-		virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const = 0;
-		virtual void Interact(const InputState& iInputs, uint32_t iTimestamp, const EntitySet &iOthers) = 0;
+		virtual void Evolve(const InputState& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const = 0;
+		virtual void Interact(const InputState& iInputs, Uint32 iTimestamp, const EntitySet &iOthers) = 0;
 		virtual void Render(SDL_Renderer* iRenderer) const = 0;
 
 	protected:
