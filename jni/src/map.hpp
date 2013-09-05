@@ -17,7 +17,7 @@ class Map;
 typedef std::shared_ptr<Map> MapPtr;
 typedef std::shared_ptr<const Map> MapConstPtr;
 
-typedef std::unordered_set<EntityConstPtr> EntitySet;
+typedef std::unordered_set<EntityPtr> EntitySet;
 
 class Map
 {	
@@ -33,12 +33,15 @@ class Map
 		Map(int w, int h);
 
 		const EntitySet &GetEntities(int x, int y) const;
-		bool SetEntity(const EntityConstPtr &ntt);
+		EntitySet &GetEntities(int x, int y);
+		
+		bool SetEntity(const EntityPtr &ntt);
 		bool IsPointWithin(int x, int y) const;
 		void Clear();
 		
 		void ForeachTile(std::function<void(int, int, const EntitySet &)> func) const;
 		void ForeachEntity(std::function<void(const EntityConstPtr &)> func) const;
+		void ForeachEntity(std::function<void(const EntityPtr &)> func);
 
 	private:
 		int _width, _height;

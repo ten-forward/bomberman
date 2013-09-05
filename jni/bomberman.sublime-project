@@ -1,0 +1,27 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/sb/Hacking/OUYA-ODK/bomberman/jni"
+		}
+	],
+
+   "settings":
+    {
+          "sublimeclang_options":
+		    [
+		        "-isystem", "/usr/include",
+		        "-isystem", "/usr/include/c++/*",
+		        "-I", "src",
+		        "-I", "/usr/local/include/SDL2",
+		        "-Wall",
+		        "-ferror-limit=0",
+		        "-std=c++11"
+		    ],
+
+		    "ignored_packages":
+		    [
+		    	"CTags"
+		    ]
+    }
+}

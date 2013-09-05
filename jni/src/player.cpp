@@ -45,6 +45,7 @@ namespace bestiary {
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
 		player->zlevel = 2;
+		player->_dying = false;
 		return player;
 	}
 
@@ -58,6 +59,12 @@ namespace bestiary {
 
 	void Player::Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
+		if (_dying)
+		{
+			//Adios amigos
+			return;
+		}
+
 		const int kAmountPerTile = 8;
 		
 		auto player = std::make_shared<Player>(*this);
@@ -105,12 +112,6 @@ namespace bestiary {
 				iFutureMap->SetEntity(newBomb);
 			}
 		}
-
-		// check if player has left the position where a bomb was
-		//RemoveWhere<EntityPtr>(&overlappingBombs, [&](EntityPtr bomb)->bool
-		//{
-		//	return presentMap->TrySetEntity(bomb, bomb->x, bomb->y);
-		//});
 
 		if (dx != 0 || dy != 0)
 		{
@@ -182,5 +183,9 @@ namespace bestiary {
 		SDL_RenderCopy(iRenderer, _Bomberman.get(), nullptr, &r);
 	}
 
+	void Player::Kill()
+	{
+		_dying = true;
+	}
 }
 }

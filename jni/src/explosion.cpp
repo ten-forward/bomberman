@@ -1,4 +1,7 @@
 #include "explosion.hpp"
+#include "block.hpp"
+#include "bomb.hpp"
+#include "player.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -6,11 +9,36 @@
 namespace bomberman {
 namespace arsenal {
 
-	ExplosionPtr Explosion::Create(int iTimeout) {
+	namespace {
+		const int kExplosionTimer = 200;
+
+		bool CanPropagate(const MapConstPtr &iMap, int x, int y)
+		{	
+			using bomberman::architecture::Block;
+
+			if (!iMap->IsPointWithin(x, y))
+			{
+				return false;
+			}
+
+			for (auto entity : iMap->GetEntities(x, y)) 
+			{
+				if (typeid(*entity) == typeid(Block))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+	}
+
+	ExplosionPtr Explosion::Create(int iCreationTime) {
 		auto explosion = std::make_shared<Explosion>();
-		explosion->_timeout = iTimeout;
+		explosion->_timeout = iCreationTime + kExplosionTimer;
 		explosion->_stage = 0;
-		explosion->zlevel = 2;
+		explosion->zlevel = 3;
+		explosion->_propagation = IsoTropic;
 		return explosion;
 	}
 
@@ -24,29 +52,58 @@ namespace arsenal {
 		_Explosion[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/explosion4.png"), SDL_DestroyTexture);
 	}
 
-	void Explosion::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &/*iFutureMap*/) const
+	void Explosion::Evolve(const InputState& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
-		/*// process explosions.
-		BOOST_FOREACH(ExplosionInfo& explosion, explosions)
+		if (iTimestamp < _timeout) 
 		{
-			if (now > explosion.timeout)
-			{
-				explosion.timeout = now + EXPLOSIONTIMER;
-				explosion.stage++;
-			}
-
-			auto ntt = map.GetEntity(explosion.x, explosion.y);
-			if (ntt)
-			{
-				// kill it!
-			}
-		};	
-
-		// remove expired explosions
-		RemoveWhere<ExplosionInfo>(&explosions, [&](ExplosionInfo explosion)->bool
+			auto explosion = std::make_shared<Explosion>(*this);
+			explosion->active = true;
+		  	iFutureMap->SetEntity(explosion);
+		}
+		else
 		{
-			return explosion.stage > EXPLOSIONSTAGES;
-		});*/
+		  if (_stage == 0)
+		  {
+		    Propagate(iTimestamp, iPresentMap, iFutureMap);
+		  }
+
+		  if (_stage < 4)
+		  {
+		    auto explosion = std::make_shared<Explosion>(*this);
+		    explosion->active = true;
+		    explosion->_timeout = iTimestamp + kExplosionTimer;
+		    explosion->_stage++;
+		    iFutureMap->SetEntity(explosion);		  
+		  }
+		}
+	}
+
+	void Explosion::Interact(const InputState& iInputs, uint32_t iTimestamp, const EntitySet &iOthers)
+	{	
+		using bomberman::arsenal::Bomb;
+		using bomberman::bestiary::Player;
+
+		for (auto other : iOthers)
+		{
+			if(typeid(*other) == typeid(Bomb))
+			{
+				auto bomb = std::dynamic_pointer_cast<Bomb>(other);
+				bomb->Detonate();
+			}
+			else if(typeid(*other) == typeid(Explosion))
+			{
+				auto explosion = std::dynamic_pointer_cast<Explosion>(other);
+				if (explosion->_stage > _stage)
+				{
+					explosion->active = false;
+				}
+			}
+			else if(typeid(*other) == typeid(Player))
+			{
+				auto player = std::dynamic_pointer_cast<Player>(other);
+				player->Kill();
+			}
+		}
 	}
 
 	void Explosion::Render(SDL_Renderer *iRenderer) const 
@@ -64,5 +121,111 @@ namespace arsenal {
 		
 		SDL_RenderCopy(iRenderer, _Explosion[_stage].get(), nullptr, &r);
 	}
+
+	 void Explosion::Propagate(uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	 {
+	 	switch(_propagation)
+	 	{
+	 		case IsoTropic:
+
+ 				if (CanPropagate(iPresentMap, x + 1, y))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->x = x + 1;
+				    explosion->_propagation = Right;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+ 				if (CanPropagate(iPresentMap, x - 1, y))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->x = x - 1;
+				    explosion->_propagation = Left;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+				if (CanPropagate(iPresentMap, x, y + 1))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->y = y + 1;
+				    explosion->_propagation = Down;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+ 				if (CanPropagate(iPresentMap, x, y - 1))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->y = y - 1;
+				    explosion->_propagation = Up;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+	 			return;
+
+	 		case Up:
+
+	 			if (CanPropagate(iPresentMap, x, y - 1))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->y = y - 1;
+				    explosion->_propagation = Up;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+ 				return;
+
+	 		case Down:
+
+	 			if (CanPropagate(iPresentMap, x, y + 1))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->y = y + 1;
+				    explosion->_propagation = Down;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+ 				return;
+
+	 		case Left:
+
+				if (CanPropagate(iPresentMap, x - 1, y))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->x = x - 1;
+				    explosion->_propagation = Left;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+				return;
+
+	 		case Right:
+
+	 			if (CanPropagate(iPresentMap, x + 1, y))
+ 				{
+ 					auto explosion = std::make_shared<Explosion>(*this);
+ 					explosion->active = true;
+				    explosion->_timeout = iTimestamp + kExplosionTimer;
+				    explosion->x = x + 1;
+				    explosion->_propagation = Right;
+				    iFutureMap->SetEntity(explosion);	  
+ 				}
+
+ 				return;
+	 	}
+	 }
 }
 }

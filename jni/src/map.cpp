@@ -24,7 +24,13 @@ const EntitySet &Map::GetEntities(int x, int y) const
 	return _map[x][y];
 }
 
-bool Map::SetEntity(const EntityConstPtr &ntt)
+EntitySet &Map::GetEntities(int x, int y)
+{
+	return _map[x][y];
+}
+
+
+bool Map::SetEntity(const EntityPtr &ntt)
 {
 	int x = ntt->x;
 	int y = ntt->y;
@@ -59,6 +65,17 @@ void Map::ForeachTile(std::function<void(int, int, const EntitySet &)> func) con
 }
 
 void Map::ForeachEntity(std::function<void(const EntityConstPtr &)> func) const
+{
+	ForeachTile([&](int, int, const EntitySet &entities)
+	{
+		for (auto entity : entities)
+		{
+			func(entity);
+		}
+	});
+}
+
+void Map::ForeachEntity(std::function<void(const EntityPtr &)> func)
 {
 	ForeachTile([&](int, int, const EntitySet &entities)
 	{
