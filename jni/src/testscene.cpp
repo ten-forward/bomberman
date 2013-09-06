@@ -1,29 +1,21 @@
-#include <SDL_image.h>
-
 #include "testscene.hpp"
 #include "player.hpp"
-#include "computer.hpp"
 #include "block.hpp"
 #include "floortile.hpp"
-#include "bomb.hpp"
-#include "explosion.hpp"
 #include "printlog.hpp"
 #include "utils.hpp"
 
-#include <algorithm>
+//SDL
+#include <SDL_image.h>
+
+//Boost
 #include <boost/foreach.hpp>
 
-#define EXLOSION 5
-
-#define EXPLOSIONTIMER 200
-#define EXPLOSIONSTAGES 4
-
 using bomberman::bestiary::Player;
-using bomberman::bestiary::Computer;
 using bomberman::architecture::Block;
 using bomberman::architecture::FloorTile;
-using bomberman::arsenal::Bomb;
-using bomberman::arsenal::Explosion;
+
+using namespace bomberman::constants;
 
 namespace bomberman {
 
@@ -31,15 +23,25 @@ TestScene::TestScene() :
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS))
 {
-	auto player = Player::Create("El Tuco");
-	player->x = 0;
-	player->y = 0;
-	_presentMap->SetEntity(player);
+	auto player1 = Player::Create("Athos", 0);
+	player1->x = 0;
+	player1->y = 0;
+	_presentMap->SetEntity(player1);
 
-	auto computer = Computer::Create();
-	computer->x = 14;
-	computer->y = 0;
-	_presentMap->SetEntity(computer);
+	auto player2 = Player::Create("Porthos", 1);
+	player2->x = MAP_COLUMNS -1 ;
+	player2->y = 0;
+	_presentMap->SetEntity(player2);
+	
+	auto player3 = Player::Create("Aramis", 2);
+	player3->x = 0;
+	player3->y = MAP_ROWS - 1;
+	_presentMap->SetEntity(player3);
+
+	auto player4 = Player::Create("D'Artagnan", 3);
+	player4->x = MAP_COLUMNS -1 ;
+	player4->y = MAP_ROWS - 1;
+	_presentMap->SetEntity(player4);
 
 	_presentMap->ForeachTile([&](int x, int y, const EntitySet &) {
 		bool placeObstacle = (x & 1) & (y & 1);		
@@ -62,7 +64,7 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 }
 
-void TestScene::Update(const InputState& inputs, uint32_t now)
+void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
 	_futurMap->Clear();
 
@@ -87,7 +89,7 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 
 	_futurMap->ForeachTile([&](int x, int y, const EntitySet &iEntities)
 	{	
-		BOOST_FOREACH (auto entity, entities) 
+		BOOST_FOREACH (auto entity, iEntities) 
 		{
 			entity->Interact(inputs, now, iEntities);
 		}
@@ -98,7 +100,7 @@ void TestScene::Update(const InputState& inputs, uint32_t now)
 
 void TestScene::Render(SDL_Renderer *renderer)
 {
-	SDL_Rect safeArea = GetSafeArea1920();
+	SDL_Rect safeArea = bomberman::utils::GetSafeArea1920();
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderDrawRect(renderer, &safeArea);
 

@@ -18,8 +18,8 @@ namespace architecture {
 		public:
 
 			static FloorTilePtr Create();
-			virtual void Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-			virtual void Interact(const InputState& , uint32_t , const EntitySet &) {}
+			virtual void Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			virtual void Interact(const std::vector<InputState>& , uint32_t , const EntitySet &) {}
 			virtual void Render(SDL_Renderer* iRenderer) const;
 		protected:
 			static void InitializeGraphicRessources(SDL_Renderer *iRenderer);

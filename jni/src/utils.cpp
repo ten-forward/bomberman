@@ -1,13 +1,20 @@
 #include "utils.hpp"
 
-SDL_Rect GetSafeArea1920()
-{
-	SDL_Rect rect;
+namespace bomberman {
+namespace utils {
+	SDL_Rect GetSafeArea1920()
+	{
+		using namespace bomberman::constants;
 
-	rect.w = SAFE_WIDTH;
-	rect.h = SAFE_HEIGHT;
-	rect.x = SAFE_X;
-	rect.y = SAFE_Y;
+		SDL_Rect rect;
 
-	return rect;
+		rect.w = SAFE_WIDTH;
+		rect.h = SAFE_HEIGHT;
+		rect.x = SAFE_X;
+		rect.y = SAFE_Y;
+
+		return rect;
+	}
 }
+}
+

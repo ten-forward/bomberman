@@ -54,7 +54,7 @@ namespace arsenal {
 		_Explosion[3] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/explosion4.png"), SDL_DestroyTexture);
 	}
 
-	void Explosion::Evolve(const InputState& /*iInputs*/, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	void Explosion::Evolve(const std::vector<InputState>& /*iInputs*/, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		if (iTimestamp < _timeout) 
 		{
@@ -80,7 +80,7 @@ namespace arsenal {
 		}
 	}
 
-	void Explosion::Interact(const InputState& iInputs, Uint32 iTimestamp, const EntitySet &iOthers)
+	void Explosion::Interact(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const EntitySet &iOthers)
 	{	
 		using bomberman::arsenal::Bomb;
 		using bomberman::bestiary::Player;
@@ -115,6 +115,8 @@ namespace arsenal {
 			InitializeGraphicRessources(iRenderer);
 		}
 
+		using namespace bomberman::constants;
+		
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;

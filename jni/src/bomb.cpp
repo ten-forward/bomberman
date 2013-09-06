@@ -24,7 +24,7 @@ namespace arsenal {
 		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
 	}
 
-	void Bomb::Evolve(const InputState& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
+	void Bomb::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
 		if (iTimestamp >= _timeout || _detonating) {	       
 			auto blast = Explosion::Create(iTimestamp);
@@ -43,6 +43,8 @@ namespace arsenal {
 			InitializeGraphicRessources(iRenderer);
 		}
 
+		using namespace bomberman::constants;
+		
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;

@@ -22,7 +22,7 @@ namespace architecture {
 		_Block = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/block.png"), SDL_DestroyTexture);
 	}
 
-	void Block::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
+	void Block::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
 		iFutureMap->SetEntity(std::make_shared<Block>(*this));		
 	}
@@ -34,6 +34,8 @@ namespace architecture {
 			InitializeGraphicRessources(iRenderer);
 		}
 
+		using namespace bomberman::constants;
+		
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;

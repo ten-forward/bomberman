@@ -22,7 +22,7 @@ namespace architecture {
 		_FloorTile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/floor.png"), SDL_DestroyTexture);
 	}
 
-	void FloorTile::Evolve(const InputState& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
+	void FloorTile::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
 		iFutureMap->SetEntity(std::make_shared<FloorTile>(*this));
 	}
@@ -34,6 +34,8 @@ namespace architecture {
 			InitializeGraphicRessources(iRenderer);
 		}
 
+		using namespace bomberman::constants;
+		
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
