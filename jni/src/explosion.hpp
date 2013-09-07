@@ -16,8 +16,8 @@ namespace arsenal {
 	class Explosion : public Entity {
 		public:
 			static ExplosionPtr Create(int iTimeout);
-			virtual void Evolve(const InputState& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-			virtual void Interact(const InputState& iInputs, Uint32 iTimestamp, const EntitySet &iOthers);
+			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			virtual void Interact(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const EntitySet &iOthers);
 			virtual void Render(SDL_Renderer*) const;
 		private:
 

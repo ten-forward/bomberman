@@ -43,15 +43,15 @@ namespace bestiary {
 		}
 	}
 
-	PlayerPtr Player::Create(const std::string &iName)
+	PlayerPtr Player::Create(const std::string &iName, int iInputStateIdx)
 	{
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
 		player->zlevel = 2;
-		player->_dying = false;
 		player->_frameId = 3;
 		player->_nextFrameDueTime =0;
 		player->_state = IdleDown;
+		player->_inputStateIdx = iInputStateIdx;
 		return player;
 	}
 
@@ -64,9 +64,9 @@ namespace bestiary {
 		_Bomberman = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(iRenderer, surface), SDL_DestroyTexture);	
 	}
 
-	void Player::Evolve(const InputState& iInputs, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
+	void Player::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
-		if (_dying)
+		if (_state == Dying)
 		{
 			//Adios amigos
 			return;
@@ -78,22 +78,24 @@ namespace bestiary {
 		
 		int dx = 0, dy = 0;
 
-		if (iInputs.GetLeftButtonState())
+		const auto &inputs = iInputs[_inputStateIdx];
+
+		if (inputs.GetLeftButtonState())
 		{
 			dx = -1;
 			player->_state = WalkingLeft;
 		}
-		else if (iInputs.GetRightButtonState())
+		else if (inputs.GetRightButtonState())
 		{
 			dx = 1;
 			player->_state = WalkingRight;
 		}
-		else if (iInputs.GetDownButtonState())
+		else if (inputs.GetDownButtonState())
 		{
 			dy = 1;
 			player->_state = WalkingDown;
 		}
-		else if (iInputs.GetUpButtonState())
+		else if (inputs.GetUpButtonState())
 		{
 			dy = -1;
 			player->_state = WalkingUp;
@@ -127,7 +129,7 @@ namespace bestiary {
 			player->_nextFrameDueTime = iTimestamp + 150;
 		}
 
-		if (iInputs.GetAButtonState())
+		if (inputs.GetAButtonState())
 		{
 			// make sure there isn't already a bomb there
 			bool alreadyBombed = false;
@@ -204,8 +206,6 @@ namespace bestiary {
 		iFutureMap->SetEntity(player);
 	}
 
-	
-
 	void Player::Render(SDL_Renderer *iRenderer) const 
 	{
 		if (!_Bomberman) 
@@ -222,6 +222,8 @@ namespace bestiary {
 			src[i].y = 1;
 		}
 
+		using namespace bomberman::constants;
+
 		SDL_Rect dst;
 		dst.w = PLAYER_WIDTH;
 		dst.h = PLAYER_HEIGHT;
@@ -235,7 +237,7 @@ namespace bestiary {
 
 	void Player::Kill()
 	{
-		_dying = true;
+		_state = Dying;
 	}
 
 	int Player::GetFrameIndex() const
@@ -258,7 +260,10 @@ namespace bestiary {
 				return 3 + 2;
 			case IdleRight:
 				return 9 + 2;
+			default:
+				return 3;
 		}
+		return 3;
 	}
 }
 }

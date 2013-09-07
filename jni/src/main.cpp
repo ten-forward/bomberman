@@ -8,21 +8,22 @@
 #include "printlog.hpp"
 #include "testscene.hpp"
 
+void PollEvents(std::vector<InputState> &oInputState);
+
 #ifdef ANDROID
 #include <jni.h>
 
-extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonDown(
+extern "C" void Java_net_astrobunny_aldebaran_BombermanSurface_onOuyaControllerKey(
                                                                JNIEnv* env, jclass jcls,
-                                                               jint button, jint which)
+                                                               jint player, jint keyCode, jint action)
 {
-    printlog("controllerButtonDown btn=%d which=%d¥n", button, which);
-}
-
-extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonUp(
-                                                                               JNIEnv* env, jclass jcls,
-                                                                               jint button, jint which)
-{
-    printlog("controllerButtonUp btn=%d which=%d¥n", button, which);
+    printlog("onOuyaControllerKey player=%d, keyCode=%d, action=%d", player, keyCode, action);
+    SDL_Event event;
+    memset(&event, sizeof(event), 0);
+    event.jdevice.which = player;
+    event.key.keysym.sym = keyCode;
+ 	event.key.type = action ? SDL_KEYUP : SDL_KEYDOWN;
+   	SDL_PushEvent(&event);
 }
 #endif
 
@@ -30,101 +31,15 @@ SDL_Window* window = NULL;
 
 void run(std::shared_ptr<SceneInterface> scene)
 {
-	InputState inputState;
+	std::vector<InputState> inputState(4);
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	Uint32 time = SDL_GetTicks();
 	scene->Init(window, renderer);
 	
 	while (scene->Running())
 	{
-		SDL_Event e;
-		if ( SDL_PollEvent(&e) )
-		{
-			if (e.type == SDL_QUIT)
-			{
-				break;
-			}
-			else if (e.type == SDL_FINGERUP)
-			{	
-				inputState.SetFingered(false);
-			}
-			else if (e.type == SDL_FINGERDOWN)
-			{
-				inputState.SetFingered(true);
-				inputState.SetFingerX(e.tfinger.x);
-				inputState.SetFingerY(e.tfinger.y);
-			}
-			else if (e.type == SDL_KEYDOWN)
-			{
-				if (e.key.keysym.sym == SDLK_UP)
-				{
-					inputState.SetUpButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_DOWN)
-				{
-					inputState.SetDownButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_LEFT)
-				{
-					inputState.SetLeftButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_RIGHT)
-				{
-					inputState.SetRightButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_a)
-				{
-					inputState.SetAButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_s)
-				{
-					inputState.SetBButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_z)
-				{
-					inputState.SetXButtonState(true);
-				}
-				else if (e.key.keysym.sym == SDLK_x)
-				{
-					inputState.SetYButtonState(true);
-				}
-			}
-			else if (e.type == SDL_KEYUP)
-			{
-				if (e.key.keysym.sym == SDLK_UP)
-				{
-					inputState.SetUpButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_DOWN)
-				{
-					inputState.SetDownButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_LEFT)
-				{
-					inputState.SetLeftButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_RIGHT)
-				{
-					inputState.SetRightButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_a)
-				{
-					inputState.SetAButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_s)
-				{
-					inputState.SetBButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_z)
-				{
-					inputState.SetXButtonState(false);
-				}
-				else if (e.key.keysym.sym == SDLK_x)
-				{
-					inputState.SetYButtonState(false);
-				}
-			}
-		}
+		
+	 	PollEvents(inputState);
 		
 		Uint32 now = SDL_GetTicks();
 
@@ -140,6 +55,153 @@ void run(std::shared_ptr<SceneInterface> scene)
 	}
 }
 
+void PollEvents(std::vector<InputState> &oInputState)
+{
+
+	
+
+	SDL_Event e;
+	if ( SDL_PollEvent(&e) )
+	{
+#ifdef ANDROID
+		auto &inputState = oInputState[e.jdevice.which];
+#else
+		auto &inputState = oInputState[0];
+#endif
+		
+		if (e.type == SDL_QUIT)
+		{
+			exit(0);
+		}
+		else if (e.type == SDL_FINGERUP)
+		{	
+			inputState.SetFingered(false);
+		}
+		else if (e.type == SDL_FINGERDOWN)
+		{
+			inputState.SetFingered(true);
+			inputState.SetFingerX(e.tfinger.x);
+			inputState.SetFingerY(e.tfinger.y);
+		}
+		else if (e.type == SDL_KEYDOWN)
+		{
+#ifdef ANDROID
+			if (e.key.keysym.sym == ouya::UP)
+			{
+				inputState.SetUpButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::DOWN)
+			{
+				inputState.SetDownButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::LEFT)
+			{
+				inputState.SetLeftButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::RIGHT)
+			{
+				inputState.SetRightButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::U)
+			{
+				inputState.SetAButtonState(true);
+			}
+#else
+			if (e.key.keysym.sym == SDLK_UP)
+			{
+				inputState.SetUpButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_DOWN)
+			{
+				inputState.SetDownButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_LEFT)
+			{
+				inputState.SetLeftButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_RIGHT)
+			{
+				inputState.SetRightButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_a)
+			{
+				inputState.SetAButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_s)
+			{
+				inputState.SetBButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_z)
+			{
+				inputState.SetXButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_x)
+			{
+				inputState.SetYButtonState(true);
+			}
+#endif
+		}
+		else if (e.type == SDL_KEYUP)
+		{
+#ifdef ANDROID
+			if (e.key.keysym.sym == ouya::UP)
+			{
+				inputState.SetUpButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::DOWN)
+			{
+				inputState.SetDownButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::LEFT)
+			{
+				inputState.SetLeftButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::RIGHT)
+			{
+				inputState.SetRightButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::U)
+			{
+				inputState.SetAButtonState(false);
+			}
+#else
+			if (e.key.keysym.sym == SDLK_UP)
+			{
+				inputState.SetUpButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_DOWN)
+			{
+				inputState.SetDownButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_LEFT)
+			{
+				inputState.SetLeftButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_RIGHT)
+			{
+				inputState.SetRightButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_a)
+			{
+				inputState.SetAButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_s)
+			{
+				inputState.SetBButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_z)
+			{
+				inputState.SetXButtonState(false);
+			}
+			else if (e.key.keysym.sym == SDLK_x)
+			{
+				inputState.SetYButtonState(false);
+			}
+#endif
+		}
+	}
+}
+
 void game()
 {
 	std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene());
@@ -151,6 +213,8 @@ int main(int argc, char** argv)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);   // Initialize SDL2
 	//TTF_Init();
+
+	using namespace bomberman::constants;
 
 	SDL_DisplayMode mode;
 	int WIDTH = SCREEN_WIDTH, HEIGHT = SCREEN_HEIGHT;
