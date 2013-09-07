@@ -72,7 +72,7 @@ namespace bestiary {
 			return;
 		}
 
-		const int kAmountPerTile = 8;
+		const int kAmountPerTile = SUBTILE_WIDTH;
 		
 		auto player = std::make_shared<Player>(*this);
 		
