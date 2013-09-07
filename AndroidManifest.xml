@@ -9,7 +9,7 @@
                  android:icon="@drawable/ic_launcher"
                  android:allowBackup="true"
                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:debuggable="true">
-        <activity android:name="Bomberman"
+        <activity android:name="BombermanActivity"
                   android:label="@string/app_name"
 				  android:screenOrientation="reverseLandscape">
             <intent-filter>

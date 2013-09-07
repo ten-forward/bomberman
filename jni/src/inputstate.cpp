@@ -1,16 +1,18 @@
 #include "inputstate.hpp"
 
 InputState::InputState()
-{
-	up = false;
-	down = false;
-	left = false;
-	right = false;
-
-	fingered = false;
-	fingerx = 0;
-	fingery = 0;
-}
+:	up(false),
+	down(false),
+	left(false),
+	right(false),
+	a(false),
+	b(false),
+	x(false),
+	y(false),
+	fingered(false),
+	fingerx(0),
+	fingery(0)
+{}
 
 
 bool InputState::GetUpButtonState() const

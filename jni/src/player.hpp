@@ -18,9 +18,9 @@ namespace bestiary {
 
 	class Player : public bomberman::Entity {
 		public:
-			static PlayerPtr Create(const std::string &iName);
-			virtual void Evolve(const InputState& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-			virtual void Interact(const InputState& , Uint32 , const EntitySet &) {}
+			static PlayerPtr Create(const std::string &iName, int iInputStateIdx);
+			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &) {}
 			virtual void Render(SDL_Renderer*) const;
 			void Kill();
 		protected:
@@ -33,14 +33,15 @@ namespace bestiary {
 				IdleUp,
 				IdleDown,
 				IdleLeft,
-				IdleRight
+				IdleRight,
+				Dying
 			};
 
 			std::string _name;
-			bool _dying;
 			int _frameId;
 			Uint32 _nextFrameDueTime;
 			State _state;
+			int _inputStateIdx;
 
 			int GetFrameIndex() const;
 
