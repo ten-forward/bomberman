@@ -4,6 +4,10 @@
 
 #ifdef ANDROID
 namespace ouya {
+	const int UP = 19;
+	const int DOWN = 20;
+	const int LEFT = 21;
+	const int RIGHT = 22;
 	const int O = 96;
 	const int U = 99;
 	const int Y = 100;

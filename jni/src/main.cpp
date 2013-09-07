@@ -13,18 +13,17 @@ void PollEvents(std::vector<InputState> &oInputState);
 #ifdef ANDROID
 #include <jni.h>
 
-extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonDown(
+extern "C" void Java_net_astrobunny_aldebaran_BombermanSurface_onOuyaControllerKey(
                                                                JNIEnv* env, jclass jcls,
-                                                               jint button, jint which)
+                                                               jint player, jint keyCode, jint action)
 {
-    printlog("controllerButtonDown btn=%d which=%d¥n", button, which);
-}
-
-extern "C" void Java_net_astrobunny_aldebaran_Bomberman_onControllerButtonUp(
-                                                                               JNIEnv* env, jclass jcls,
-                                                                               jint button, jint which)
-{
-    printlog("controllerButtonUp btn=%d which=%d¥n", button, which);
+    printlog("onOuyaControllerKey player=%d, keyCode=%d, action=%d", player, keyCode, action);
+    SDL_Event event;
+    memset(&event, sizeof(event), 0);
+    event.jdevice.which = player;
+    event.key.keysym.sym = keyCode;
+ 	event.key.type = action ? SDL_KEYUP : SDL_KEYDOWN;
+   	SDL_PushEvent(&event);
 }
 #endif
 
@@ -64,8 +63,11 @@ void PollEvents(std::vector<InputState> &oInputState)
 	SDL_Event e;
 	if ( SDL_PollEvent(&e) )
 	{
-		//auto &inputState = oInputState[e.jdevice.which];
+#ifdef ANDROID
+		auto &inputState = oInputState[e.jdevice.which];
+#else
 		auto &inputState = oInputState[0];
+#endif
 		
 		if (e.type == SDL_QUIT)
 		{
@@ -83,6 +85,28 @@ void PollEvents(std::vector<InputState> &oInputState)
 		}
 		else if (e.type == SDL_KEYDOWN)
 		{
+#ifdef ANDROID
+			if (e.key.keysym.sym == ouya::UP)
+			{
+				inputState.SetUpButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::DOWN)
+			{
+				inputState.SetDownButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::LEFT)
+			{
+				inputState.SetLeftButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::RIGHT)
+			{
+				inputState.SetRightButtonState(true);
+			}
+			else if (e.key.keysym.sym == ouya::U)
+			{
+				inputState.SetAButtonState(true);
+			}
+#else
 			if (e.key.keysym.sym == SDLK_UP)
 			{
 				inputState.SetUpButtonState(true);
@@ -115,15 +139,32 @@ void PollEvents(std::vector<InputState> &oInputState)
 			{
 				inputState.SetYButtonState(true);
 			}
-#ifdef ANDROID
-			else if (e.key.keysym.sym == ouya::U)
-			{
-				inputState.SetAButtonState(true);
-			}
 #endif
 		}
 		else if (e.type == SDL_KEYUP)
 		{
+#ifdef ANDROID
+			if (e.key.keysym.sym == ouya::UP)
+			{
+				inputState.SetUpButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::DOWN)
+			{
+				inputState.SetDownButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::LEFT)
+			{
+				inputState.SetLeftButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::RIGHT)
+			{
+				inputState.SetRightButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::U)
+			{
+				inputState.SetAButtonState(false);
+			}
+#else
 			if (e.key.keysym.sym == SDLK_UP)
 			{
 				inputState.SetUpButtonState(false);
@@ -155,11 +196,6 @@ void PollEvents(std::vector<InputState> &oInputState)
 			else if (e.key.keysym.sym == SDLK_x)
 			{
 				inputState.SetYButtonState(false);
-			}
-#ifdef ANDROID
-			else if (e.key.keysym.sym == ouya::U)
-			{
-				inputState.SetAButtonState(false);
 			}
 #endif
 		}
