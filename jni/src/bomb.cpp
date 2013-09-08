@@ -1,6 +1,6 @@
 #include "bomb.hpp"
 #include "explosion.hpp"
-#include "utils.hpp"
+#include "constants.hpp"
 
 // SDL
 #include <SDL_image.h>

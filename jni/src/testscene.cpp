@@ -3,6 +3,7 @@
 #include "block.hpp"
 #include "floortile.hpp"
 #include "printlog.hpp"
+#include "constants.hpp"
 #include "utils.hpp"
 
 //SDL
@@ -23,22 +24,26 @@ TestScene::TestScene() :
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS))
 {
-	auto player1 = Player::Create("Athos", 0);
+}
+
+void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
+{
+	auto player1 = Player::Create("Athos", "test/SaturnBomberman-BlackBomberman.PNG", 0, renderer);
 	player1->x = 0;
 	player1->y = 0;
 	_presentMap->SetEntity(player1);
 
-	auto player2 = Player::Create("Porthos", 1);
+	auto player2 = Player::Create("Porthos", "test/honey.png", 1, renderer);
 	player2->x = MAP_COLUMNS -1 ;
 	player2->y = 0;
 	_presentMap->SetEntity(player2);
 	
-	auto player3 = Player::Create("Aramis", 2);
+	auto player3 = Player::Create("Aramis", "test/manji.png", 2, renderer);
 	player3->x = 0;
 	player3->y = MAP_ROWS - 1;
 	_presentMap->SetEntity(player3);
 
-	auto player4 = Player::Create("D'Artagnan", 3);
+	auto player4 = Player::Create("D'Artagnan", "test/whitebbman.png", 3, renderer);
 	player4->x = MAP_COLUMNS -1 ;
 	player4->y = MAP_ROWS - 1;
 	_presentMap->SetEntity(player4);
@@ -58,10 +63,6 @@ TestScene::TestScene() :
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
 	});
-}
-
-void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
-{
 }
 
 void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)

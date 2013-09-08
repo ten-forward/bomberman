@@ -3,6 +3,8 @@
 namespace bomberman
 {
 	Entity::Entity() :
+		dx(0),
+		dy(0),
 		x(0),
 		y(0),
 		zlevel(0),

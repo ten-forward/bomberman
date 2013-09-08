@@ -2,7 +2,7 @@
 #include "inputstate.hpp"
 #include "bomb.hpp"
 #include "block.hpp"
-#include "utils.hpp"
+#include "constants.hpp"
 
 // SDL
 #include <SDL.h>
@@ -22,7 +22,7 @@ namespace bestiary {
 			return (x > 0) - (x < 0);
 		}
 		
-		bool CanStayAt(const MapPtr &iMap, int x, int y)
+		bool CanStayAt(const MapConstPtr &iMap, int x, int y)
 		{	
 			if (!iMap->IsPointWithin(x, y))
 			{
@@ -43,28 +43,53 @@ namespace bestiary {
 		}
 	}
 
-	PlayerPtr Player::Create(const std::string &iName, int iInputStateIdx)
+	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
+		player->_spriteName = iSpriteName;
 		player->zlevel = 2;
 		player->_frameId = 3;
-		player->_nextFrameDueTime =0;
+		player->_nextFrameDueTime = 0;
+		player->_nextUpdateDueTime = 0;
 		player->_state = IdleDown;
 		player->_inputStateIdx = iInputStateIdx;
+		player->InitializeGraphicRessources(iRenderer);
 		return player;
 	}
 
-	std::shared_ptr<SDL_Texture>  Player::_Bomberman;
-
 	void Player::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		auto surface = IMG_Load("test/SaturnBomberman-BlackBomberman.PNG");
+		auto surface = IMG_Load(_spriteName.c_str());
 		SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
 		_Bomberman = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(iRenderer, surface), SDL_DestroyTexture);	
 	}
+	
+	bool preventDiagonalMovement(std::shared_ptr<Entity> ntt) 
+	{
+		if (ntt->mx != 0 && ntt->dy != 0)
+		{
+			ntt->dy = 0;
+		}
+      
+		if (ntt->my != 0 && ntt->dx != 0)
+		{
+			ntt->dx = 0;
+		}
+      
+		if (ntt->mx == 0 && ntt->my == 0)
+		{
+			if (ntt->dx && ntt->dy)
+			{
+				ntt->dy = 0;
+				ntt->dx = 0;
+				return false;
+			}
+		}
+		return true;
+	}
 
-	void Player::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
+	void Player::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		if (_state == Dying)
 		{
@@ -72,35 +97,33 @@ namespace bestiary {
 			return;
 		}
 
-		const int kAmountPerTile = SUBTILE_WIDTH;
+		const int kAmountPerTile = constants::SUBTILE_WIDTH;
 		
 		auto player = std::make_shared<Player>(*this);
-		
-		int dx = 0, dy = 0;
 
 		const auto &inputs = iInputs[_inputStateIdx];
-
+		
 		if (inputs.GetLeftButtonState())
 		{
-			dx = -1;
+			player->dx = -constants::PLAYER_SPEED;
 			player->_state = WalkingLeft;
 		}
 		else if (inputs.GetRightButtonState())
 		{
-			dx = 1;
+			player->dx = constants::PLAYER_SPEED;
 			player->_state = WalkingRight;
 		}
 		else if (inputs.GetDownButtonState())
 		{
-			dy = 1;
+			player->dy = constants::PLAYER_SPEED;
 			player->_state = WalkingDown;
 		}
 		else if (inputs.GetUpButtonState())
 		{
-			dy = -1;
+			player->dy = -constants::PLAYER_SPEED;
 			player->_state = WalkingUp;
 		} 
-		else
+		else if (player->dx == 0 && player->dy == 0)
 		{
 			// To Idle states transitions ...
 			switch (_state)
@@ -121,85 +144,103 @@ namespace bestiary {
 					player->_state = _state;
 			}
 		}
-
+		
 		if (_nextFrameDueTime < iTimestamp)
 		{
 			player->_frameId++;
 			player->_frameId %= 3;
-			player->_nextFrameDueTime = iTimestamp + 150;
+			player->_nextFrameDueTime = iTimestamp + constants::PLAYER_FRAME_UPDATE_DELAY;
 		}
 
-		if (inputs.GetAButtonState())
+		if (_nextUpdateDueTime < iTimestamp)
 		{
-			// make sure there isn't already a bomb there
-			bool alreadyBombed = false;
+			player->_nextUpdateDueTime = iTimestamp + constants::PLAYER_UPDATE_DELAY;
+
+			if (inputs.GetAButtonState())
+			{
+				// make sure there isn't already a bomb there
+				bool alreadyBombed = false;
 			
-			BOOST_FOREACH(auto entity, iFutureMap->GetEntities(player->x, player->y))
-			{
-				if (typeid(*entity) == typeid(Bomb))
+				BOOST_FOREACH(auto entity, iFutureMap->GetEntities(player->x, player->y))
 				{
-					alreadyBombed = true;
-					break;
+					if (typeid(*entity) == typeid(Bomb))
+					{
+						alreadyBombed = true;
+						break;
+					}
+				}
+
+				if (!alreadyBombed)
+				{
+					const int kBombTimer = 3000;
+					auto newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
+					newBomb->x = player->x;
+					newBomb->y = player->y;
+
+					iFutureMap->SetEntity(newBomb);
 				}
 			}
+		
 
-			if (!alreadyBombed)
+			int dx = player->dx;
+			int dy = player->dy;
+
+			if (preventDiagonalMovement(player))
 			{
-				const int kBombTimer = 3000;
-				auto newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
-				newBomb->x = player->x;
-				newBomb->y = player->y;
-
-				iFutureMap->SetEntity(newBomb);
-			}
-		}
-
-		if (dx != 0 || dy != 0)
-		{
-			if (player->mx == 0 && player->my == 0)
-			{
-				// object moving from flush
-				int xprime = player->x + sign(dx);
-				int yprime = player->y + sign(dy);
-
-				if (CanStayAt(iFutureMap, xprime, yprime))
+				if (dx != 0 || dy != 0)
 				{
-					player->mx = sign(dx);
-					player->my = sign(dy);
-				}
-			}
-			else
-			{
-				// calculate where we will be
-				int mxprime = 0, myprime = 0;
+					if (player->mx == 0 && player->my == 0)
+					{
+						// object moving from flush
+						int xprime = player->x + sign(dx);
+						int yprime = player->y + sign(dy);
 
-				if (player->mx) 
-				{
-					mxprime = player->mx + sign(dx);
-				}
-				else if (player->my)
-				{	
-					myprime = player->my + sign(dy);
-				}
+						if (CanStayAt(iPresentMap, xprime, yprime))
+						{
+							player->mx = sign(dx);
+							player->my = sign(dy);
+						}
+					}
+					else
+					{
+						// calculate where we will be
+						int mxprime = 0, myprime = 0;
+
+						if (player->mx) 
+						{
+							mxprime = player->mx + sign(dx);
+						}
+						else if (player->my)
+						{	
+							myprime = player->my + sign(dy);
+						}
 				
-				if (abs(mxprime) >= kAmountPerTile || abs(myprime) >= kAmountPerTile)
-				{
-					// completing transition
-					int xprime = player->x + sign(player->mx);
-					int yprime = player->y + sign(player->my);
+						if (abs(mxprime) >= kAmountPerTile || abs(myprime) >= kAmountPerTile)
+						{
+							// completing transition
+							int xprime = player->x + sign(player->mx);
+							int yprime = player->y + sign(player->my);
 					
-					player->x = xprime;
-					player->y = yprime;
-					player->mx = 0;
-					player->my = 0;
-				}
-				else
-				{
-					// simple move
-					player->mx = mxprime;
-					player->my = myprime;
-				}
+							player->x = xprime;
+							player->y = yprime;
+							player->mx = 0;
+							player->my = 0;
 
+							if (player->brakes)
+							{
+								player->dx = 0;
+								player->dy = 0;
+							}
+
+						}
+						else
+						{
+							// simple move
+							player->mx = mxprime;
+							player->my = myprime;
+						}
+					}
+				}
 			}
 		}
 
@@ -208,10 +249,6 @@ namespace bestiary {
 
 	void Player::Render(SDL_Renderer *iRenderer) const 
 	{
-		if (!_Bomberman) 
-		{
-			InitializeGraphicRessources(iRenderer);
-		}
 
 		SDL_Rect src[12];
 		for (int i = 0; i < 12; ++i)

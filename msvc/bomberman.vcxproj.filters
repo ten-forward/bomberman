@@ -63,6 +63,9 @@
     <ClInclude Include="..\jni\src\utils.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\jni\src\constants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\src\inputstate.cpp">
@@ -105,6 +108,9 @@
       <Filter>Source Files\scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\src\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

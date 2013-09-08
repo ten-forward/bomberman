@@ -4,7 +4,7 @@
 #include <memory>
 #include "scene_interface.hpp"
 #include "inputstate.hpp"
-#include "utils.hpp"
+#include "constants.hpp"
 #include "printlog.hpp"
 #include "testscene.hpp"
 
@@ -38,14 +38,13 @@ void run(std::shared_ptr<SceneInterface> scene)
 	
 	while (scene->Running())
 	{
-		
 	 	PollEvents(inputState);
 		
 		Uint32 now = SDL_GetTicks();
-
-		if (now - time > 15)
+		
+		scene->Update(inputState, now);
+		if (now - time > 12)
 		{
-			scene->Update(inputState, now);
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 			SDL_RenderClear(renderer);
 			scene->Render(renderer);
@@ -57,9 +56,6 @@ void run(std::shared_ptr<SceneInterface> scene)
 
 void PollEvents(std::vector<InputState> &oInputState)
 {
-
-	
-
 	SDL_Event e;
 	if ( SDL_PollEvent(&e) )
 	{

@@ -1,3 +1,4 @@
+#include "constants.hpp"
 #include "utils.hpp"
 
 namespace bomberman {

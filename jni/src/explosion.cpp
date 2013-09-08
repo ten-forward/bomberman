@@ -2,7 +2,7 @@
 #include "block.hpp"
 #include "bomb.hpp"
 #include "player.hpp"
-#include "utils.hpp"
+#include "constants.hpp"
 
 // SDL
 #include <SDL_image.h>

@@ -22,6 +22,9 @@ namespace bomberman
 		int elevel;
 		int mx;	// sub-tile position
 		int my;
+		int dx;
+		int dy;
+
 		bool active; // is on the map?
 		bool brakes; // brake on tile?
 
