@@ -12,7 +12,7 @@ namespace arsenal {
 		auto bomb = std::make_shared<Bomb>();
 		bomb->_timeout = iTimeout;
 		bomb->_strength = iStrength;
-		bomb->zlevel = 1;
+		bomb->zlevel = 2;
 		bomb->_detonating = false;
 		return bomb;
 	}
@@ -49,7 +49,7 @@ namespace arsenal {
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
 		r.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
-		r.y = y * TILE_HEIGHT + my * SUBTILE_WIDTH + MAP_Y;
+		r.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y;
 
 		SDL_RenderCopy(iRenderer, _Bomb.get(), NULL, &r);
 	}

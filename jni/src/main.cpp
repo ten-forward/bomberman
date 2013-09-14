@@ -200,7 +200,9 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
-	std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene());
+	std::array<bomberman::PlayerConfig, 4> players;
+
+	std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene(players));
 	
 	run(ts);
 }

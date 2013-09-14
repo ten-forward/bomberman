@@ -2,6 +2,7 @@
 #include "inputstate.hpp"
 #include "bomb.hpp"
 #include "block.hpp"
+#include "softblock.hpp"
 #include "constants.hpp"
 
 // SDL
@@ -11,6 +12,7 @@
 
 using bomberman::arsenal::Bomb;
 using bomberman::architecture::Block;
+using bomberman::architecture::SoftBlock;
 
 namespace bomberman {
 namespace bestiary {
@@ -32,7 +34,9 @@ namespace bestiary {
 			BOOST_FOREACH(auto entity, iMap->GetEntities(x, y)) 
 			{
 				if (typeid(*entity) == typeid(Block) ||
-					typeid(*entity) == typeid(Player))
+					typeid(*entity) == typeid(Player) ||
+					typeid(*entity) == typeid(Bomb) ||
+					typeid(*entity) == typeid(SoftBlock))
 
 				{
 					return false;
@@ -265,7 +269,7 @@ namespace bestiary {
 		dst.w = PLAYER_WIDTH;
 		dst.h = PLAYER_HEIGHT;
 		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
-		dst.y = y * TILE_HEIGHT + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
+		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
 
 		int idx = GetFrameIndex();
 

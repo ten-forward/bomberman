@@ -34,13 +34,13 @@ namespace constants {
 
 	// Game parameters
 	const int MAP_X = (SAFE_X + 64);
-	const int MAP_Y = (SAFE_Y + 128);
+	const int MAP_Y = (SAFE_Y + 64);
 
 	const int MAP_COLUMNS = 25;
 	const int MAP_ROWS = 13;
 
 	const int TILE_WIDTH = 64;
-	const int TILE_HEIGHT = 64;
+	const int TILE_HEIGHT = 128;
 
 	const int PLAYER_WIDTH = 64;
 	const int PLAYER_HEIGHT = 128;

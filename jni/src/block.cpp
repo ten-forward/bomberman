@@ -10,7 +10,7 @@ namespace architecture {
 	BlockPtr Block::Create() 
 	{
 		auto block = std::make_shared<Block>();
-		block->zlevel = 0;
+		block->zlevel = 2;
 		block->elevel = -1;
 		return block;
 	}
@@ -40,7 +40,7 @@ namespace architecture {
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
 		r.x = x * TILE_WIDTH + MAP_X;	// <- just for overscan
-		r.y = y * TILE_HEIGHT + MAP_Y;
+		r.y = y * TILE_WIDTH + MAP_Y;
 		
 		SDL_RenderCopy(iRenderer, _Block.get(), nullptr, &r);
 	}

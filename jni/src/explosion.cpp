@@ -1,5 +1,6 @@
 #include "explosion.hpp"
 #include "block.hpp"
+#include "softblock.hpp"
 #include "bomb.hpp"
 #include "player.hpp"
 #include "constants.hpp"
@@ -7,6 +8,9 @@
 // SDL
 #include <SDL_image.h>
 #include <boost/foreach.hpp>
+
+using bomberman::architecture::Block;
+using bomberman::architecture::SoftBlock;
 
 namespace bomberman {
 namespace arsenal {
@@ -16,7 +20,6 @@ namespace arsenal {
 
 		bool CanPropagate(const MapConstPtr &iMap, int x, int y)
 		{	
-			using bomberman::architecture::Block;
 
 			if (!iMap->IsPointWithin(x, y))
 			{
@@ -41,6 +44,7 @@ namespace arsenal {
 		explosion->_stage = 0;
 		explosion->zlevel = 3;
 		explosion->_propagation = IsoTropic;
+		explosion->_willPropagate = true;
 		return explosion;
 	}
 
@@ -64,25 +68,30 @@ namespace arsenal {
 		}
 		else
 		{
-		  if (_stage == 0)
-		  {
-		    Propagate(iTimestamp, iPresentMap, iFutureMap);
-		  }
+			if (_stage == 0)
+			{
+				if (_willPropagate)
+				{
+					Propagate(iTimestamp, iPresentMap, iFutureMap);
+				}
+			}
+			
 
-		  if (_stage < 4)
-		  {
-		    auto explosion = std::make_shared<Explosion>(*this);
-		    explosion->active = true;
-		    explosion->_timeout = iTimestamp + kExplosionTimer;
-		    explosion->_stage++;
-		    iFutureMap->SetEntity(explosion);		  
-		  }
+			if (_stage < 4)
+			{
+				auto explosion = std::make_shared<Explosion>(*this);
+				explosion->active = true;
+				explosion->_timeout = iTimestamp + kExplosionTimer;
+				explosion->_stage++;
+				iFutureMap->SetEntity(explosion);
+			}
 		}
 	}
 
 	void Explosion::Interact(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const EntitySet &iOthers)
 	{	
 		using bomberman::arsenal::Bomb;
+		using bomberman::architecture::SoftBlock;
 		using bomberman::bestiary::Player;
 
 		BOOST_FOREACH (auto other, iOthers)
@@ -105,6 +114,12 @@ namespace arsenal {
 				auto player = std::dynamic_pointer_cast<Player>(other);
 				player->Kill();
 			}
+			else if (typeid(*other) == typeid(SoftBlock))
+			{
+				auto softblock = std::dynamic_pointer_cast<SoftBlock>(other);
+				_willPropagate = false;
+				softblock->Kill();
+			}
 		}
 	}
 
@@ -121,7 +136,7 @@ namespace arsenal {
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
 		r.x = x * TILE_WIDTH + MAP_X;
-		r.y = y * TILE_HEIGHT + MAP_Y;
+		r.y = y * TILE_WIDTH + MAP_Y;
 		
 		SDL_RenderCopy(iRenderer, _Explosion[_stage].get(), nullptr, &r);
 	}

@@ -32,6 +32,7 @@ namespace arsenal {
 
 			void Propagate(Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 
+			bool _willPropagate;
 			int _timeout;
 			int _stage;
 			Propagation _propagation;

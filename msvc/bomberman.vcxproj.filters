@@ -66,6 +66,9 @@
     <ClInclude Include="..\jni\src\constants.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\jni\src\softblock.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\src\inputstate.cpp">
@@ -111,6 +114,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\src\constants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\softblock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

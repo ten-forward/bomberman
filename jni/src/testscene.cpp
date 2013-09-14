@@ -1,6 +1,8 @@
 #include "testscene.hpp"
 #include "player.hpp"
 #include "block.hpp"
+#include "bomb.hpp"
+#include "softblock.hpp"
 #include "floortile.hpp"
 #include "printlog.hpp"
 #include "constants.hpp"
@@ -13,6 +15,8 @@
 #include <boost/foreach.hpp>
 
 using bomberman::bestiary::Player;
+using bomberman::architecture::SoftBlock;
+using bomberman::arsenal::Bomb;
 using bomberman::architecture::Block;
 using bomberman::architecture::FloorTile;
 
@@ -20,9 +24,10 @@ using namespace bomberman::constants;
 
 namespace bomberman {
 
-TestScene::TestScene() : 
+TestScene::TestScene(PlayerConfigArray playerConfig) : 
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
-	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS))
+	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS)),
+	_playerConfig(playerConfig)
 {
 }
 
@@ -48,7 +53,8 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	player4->y = MAP_ROWS - 1;
 	_presentMap->SetEntity(player4);
 
-	_presentMap->ForeachTile([&](int x, int y, const EntitySet &) {
+	_presentMap->ForeachTile([&](int x, int y, const EntitySet &)
+	{
 		bool placeObstacle = (x & 1) & (y & 1);		
 		EntityPtr blockEntity;
 		if (placeObstacle)
@@ -63,6 +69,32 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
 	});
+
+	srand(1);
+
+	for (int i=0;i<100;i++)
+	{
+		int x = rand() % MAP_COLUMNS;
+		int y = rand() % MAP_ROWS;
+
+		bool place = true;
+		auto ntts = _presentMap->GetEntities(x,y);
+		BOOST_FOREACH(auto ntt, ntts)
+		{
+			if (typeid(*ntt) != typeid(FloorTile))
+			{
+				place = false;
+				break;
+			}
+		}
+		if (place)
+		{
+			auto softblock = SoftBlock::Create();
+			softblock->x = x;
+			softblock->y = y;
+			_presentMap->SetEntity(softblock);
+		}
+	}
 }
 
 void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
@@ -114,7 +146,12 @@ void TestScene::Render(SDL_Renderer *renderer)
 
 	entities.sort([](const EntityConstPtr &left, const EntityConstPtr &right) -> bool
 	{
-		return left->zlevel < right->zlevel;
+		return left->zlevel == right->zlevel ? 
+
+			left->y == right->y ? (typeid(*left) == typeid(Bomb) && typeid(*right) == typeid(Player)) : left->y < right->y  
+			
+			
+			: left->zlevel < right->zlevel;
 	});
 
 	BOOST_FOREACH (auto entity, entities) 
