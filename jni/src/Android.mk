@@ -33,6 +33,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	bomb.cpp \
 	explosion.cpp \
 	utils.cpp \
+	softblock.cpp \
 	constants.cpp
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
