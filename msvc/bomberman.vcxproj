@@ -80,6 +80,7 @@
     <ClInclude Include="..\jni\src\bomb.hpp" />
     <ClInclude Include="..\jni\src\computer.hpp" />
     <ClInclude Include="..\jni\src\constants.hpp" />
+    <ClInclude Include="..\jni\src\corpse.hpp" />
     <ClInclude Include="..\jni\src\entity.hpp" />
     <ClInclude Include="..\jni\src\entityptr.hpp" />
     <ClInclude Include="..\jni\src\explosion.hpp" />
@@ -99,6 +100,7 @@
     <ClCompile Include="..\jni\src\bomb.cpp" />
     <ClCompile Include="..\jni\src\computer.cpp" />
     <ClCompile Include="..\jni\src\constants.cpp" />
+    <ClCompile Include="..\jni\src\corpse.cpp" />
     <ClCompile Include="..\jni\src\entity.cpp" />
     <ClCompile Include="..\jni\src\explosion.cpp" />
     <ClCompile Include="..\jni\src\floortile.cpp" />

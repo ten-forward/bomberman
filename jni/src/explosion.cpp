@@ -19,8 +19,7 @@ namespace arsenal {
 		const int kExplosionTimer = 200;
 
 		bool CanPropagate(const MapConstPtr &iMap, int x, int y)
-		{	
-
+		{
 			if (!iMap->IsPointWithin(x, y))
 			{
 				return false;
@@ -42,7 +41,7 @@ namespace arsenal {
 		auto explosion = std::make_shared<Explosion>();
 		explosion->_timeout = iCreationTime + kExplosionTimer;
 		explosion->_stage = 0;
-		explosion->zlevel = 3;
+		explosion->zlevel = 2;
 		explosion->_propagation = IsoTropic;
 		explosion->_willPropagate = true;
 		return explosion;

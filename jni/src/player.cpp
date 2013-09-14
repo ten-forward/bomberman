@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include "corpse.hpp"
 #include "inputstate.hpp"
 #include "bomb.hpp"
 #include "block.hpp"
@@ -97,7 +98,10 @@ namespace bestiary {
 	{
 		if (_state == Dying)
 		{
-			//Adios amigos
+			auto corpse = Corpse::Create(this->_Bomberman);
+			corpse->x = this->x;
+			corpse->y = this->y;
+			iFutureMap->SetEntity(corpse);
 			return;
 		}
 

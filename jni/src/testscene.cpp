@@ -148,8 +148,7 @@ void TestScene::Render(SDL_Renderer *renderer)
 	{
 		return left->zlevel == right->zlevel ? 
 
-			left->y == right->y ? (typeid(*left) == typeid(Bomb) && typeid(*right) == typeid(Player)) : left->y < right->y  
-			
+			(left->y == right->y ? (typeid(*left) == typeid(Bomb) && typeid(*right) == typeid(Player)) : left->y < right->y)
 			
 			: left->zlevel < right->zlevel;
 	});
