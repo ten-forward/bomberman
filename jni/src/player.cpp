@@ -169,7 +169,7 @@ namespace bestiary {
 				// make sure there isn't already a bomb there
 				bool alreadyBombed = false;
 			
-				BOOST_FOREACH(auto entity, iFutureMap->GetEntities(player->x, player->y))
+				BOOST_FOREACH(auto entity, iPresentMap->GetEntities(player->x, player->y))
 				{
 					if (typeid(*entity) == typeid(Bomb))
 					{
