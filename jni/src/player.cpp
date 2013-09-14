@@ -153,41 +153,43 @@ namespace bestiary {
 			}
 		}
 		
+		if (inputs.GetAButtonJustPressed())
+		{
+			// make sure there isn't already a bomb there
+			bool alreadyBombed = false;
+			
+			BOOST_FOREACH(auto entity, iPresentMap->GetEntities(player->x, player->y))
+			{
+				if (typeid(*entity) == typeid(Bomb))
+				{
+					alreadyBombed = true;
+					break;
+				}
+			}
+
+			if (!alreadyBombed)
+			{
+				const int kBombTimer = 3000;
+				auto newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
+				newBomb->x = player->x;
+				newBomb->y = player->y;
+
+				iFutureMap->SetEntity(newBomb);
+			}
+		}
+
 		if (_nextFrameDueTime < iTimestamp)
 		{
 			player->_frameId++;
 			player->_frameId %= 3;
 			player->_nextFrameDueTime = iTimestamp + constants::PLAYER_FRAME_UPDATE_DELAY;
 		}
+		
 
 		if (_nextUpdateDueTime < iTimestamp)
 		{
 			player->_nextUpdateDueTime = iTimestamp + constants::PLAYER_UPDATE_DELAY;
 
-			if (inputs.GetAButtonState())
-			{
-				// make sure there isn't already a bomb there
-				bool alreadyBombed = false;
-			
-				BOOST_FOREACH(auto entity, iPresentMap->GetEntities(player->x, player->y))
-				{
-					if (typeid(*entity) == typeid(Bomb))
-					{
-						alreadyBombed = true;
-						break;
-					}
-				}
-
-				if (!alreadyBombed)
-				{
-					const int kBombTimer = 3000;
-					auto newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
-					newBomb->x = player->x;
-					newBomb->y = player->y;
-
-					iFutureMap->SetEntity(newBomb);
-				}
-			}
 		
 
 			int dx = player->dx;

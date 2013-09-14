@@ -2,6 +2,8 @@
 #include <SDL_image.h>
 
 #include <memory>
+#include <boost/foreach.hpp>
+
 #include "scene_interface.hpp"
 #include "inputstate.hpp"
 #include "constants.hpp"
@@ -43,6 +45,7 @@ void run(std::shared_ptr<SceneInterface> scene)
 		Uint32 now = SDL_GetTicks();
 		
 		scene->Update(inputState, now);
+
 		if (now - time > 12)
 		{
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
@@ -57,6 +60,8 @@ void run(std::shared_ptr<SceneInterface> scene)
 void PollEvents(std::vector<InputState> &oInputState)
 {
 	SDL_Event e;
+
+
 	if ( SDL_PollEvent(&e) )
 	{
 #ifdef ANDROID
@@ -65,6 +70,26 @@ void PollEvents(std::vector<InputState> &oInputState)
 		auto &inputState = oInputState[0];
 #endif
 		
+		inputState.SetAButtonJustPressed(false);
+		inputState.SetBButtonJustPressed(false);
+		inputState.SetXButtonJustPressed(false);
+		inputState.SetYButtonJustPressed(false);
+
+		inputState.SetAButtonJustReleased(false);
+		inputState.SetBButtonJustReleased(false);
+		inputState.SetXButtonJustReleased(false);
+		inputState.SetYButtonJustReleased(false);
+
+		inputState.SetUpButtonJustPressed(false);
+		inputState.SetDownButtonJustPressed(false);
+		inputState.SetLeftButtonJustPressed(false);
+		inputState.SetRightButtonJustPressed(false);
+
+		inputState.SetUpButtonJustReleased(false);
+		inputState.SetDownButtonJustReleased(false);
+		inputState.SetLeftButtonJustReleased(false);
+		inputState.SetRightButtonJustReleased(false);
+
 		if (e.type == SDL_QUIT)
 		{
 			exit(0);
@@ -84,55 +109,68 @@ void PollEvents(std::vector<InputState> &oInputState)
 #ifdef ANDROID
 			if (e.key.keysym.sym == ouya::UP)
 			{
+				inputState.SetUpButtonJustPressed(true);
 				inputState.SetUpButtonState(true);
 			}
 			else if (e.key.keysym.sym == ouya::DOWN)
 			{
+				inputState.SetDownButtonJustPressed(true);
 				inputState.SetDownButtonState(true);
 			}
 			else if (e.key.keysym.sym == ouya::LEFT)
 			{
+				inputState.SetLeftButtonJustPressed(true);
 				inputState.SetLeftButtonState(true);
 			}
 			else if (e.key.keysym.sym == ouya::RIGHT)
 			{
+				inputState.SetRightButtonJustPressed(true);
 				inputState.SetRightButtonState(true);
 			}
 			else if (e.key.keysym.sym == ouya::U)
 			{
+				inputState.SetAButtonJustPressed(true);
 				inputState.SetAButtonState(true);
 			}
 #else
 			if (e.key.keysym.sym == SDLK_UP)
 			{
+				inputState.SetUpButtonJustPressed(true);
 				inputState.SetUpButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_DOWN)
 			{
+				inputState.SetDownButtonJustPressed(true);
 				inputState.SetDownButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_LEFT)
 			{
+				inputState.SetLeftButtonJustPressed(true);
 				inputState.SetLeftButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT)
 			{
+				inputState.SetRightButtonJustPressed(true);
 				inputState.SetRightButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_a)
 			{
+				inputState.SetAButtonJustPressed(true);
 				inputState.SetAButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_s)
 			{
+				inputState.SetBButtonJustPressed(true);
 				inputState.SetBButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_z)
 			{
+				inputState.SetXButtonJustPressed(true);
 				inputState.SetXButtonState(true);
 			}
 			else if (e.key.keysym.sym == SDLK_x)
 			{
+				inputState.SetYButtonJustPressed(true);
 				inputState.SetYButtonState(true);
 			}
 #endif
@@ -142,55 +180,68 @@ void PollEvents(std::vector<InputState> &oInputState)
 #ifdef ANDROID
 			if (e.key.keysym.sym == ouya::UP)
 			{
+				inputState.SetUpButtonJustReleased(true);
 				inputState.SetUpButtonState(false);
 			}
 			else if (e.key.keysym.sym == ouya::DOWN)
 			{
+				inputState.SetDownButtonJustReleased(true);
 				inputState.SetDownButtonState(false);
 			}
 			else if (e.key.keysym.sym == ouya::LEFT)
 			{
+				inputState.SetLeftButtonJustReleased(true);
 				inputState.SetLeftButtonState(false);
 			}
 			else if (e.key.keysym.sym == ouya::RIGHT)
 			{
+				inputState.SetRightButtonJustReleased(true);
 				inputState.SetRightButtonState(false);
 			}
 			else if (e.key.keysym.sym == ouya::U)
 			{
+				inputState.SetAButtonJustReleased(true);
 				inputState.SetAButtonState(false);
 			}
 #else
 			if (e.key.keysym.sym == SDLK_UP)
 			{
+				inputState.SetUpButtonJustReleased(true);
 				inputState.SetUpButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_DOWN)
 			{
+				inputState.SetDownButtonJustReleased(true);
 				inputState.SetDownButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_LEFT)
 			{
+				inputState.SetLeftButtonJustReleased(true);
 				inputState.SetLeftButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT)
 			{
+				inputState.SetRightButtonJustReleased(true);
 				inputState.SetRightButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_a)
 			{
+				inputState.SetAButtonJustReleased(true);
 				inputState.SetAButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_s)
 			{
+				inputState.SetBButtonJustReleased(true);
 				inputState.SetBButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_z)
 			{
+				inputState.SetXButtonJustReleased(true);
 				inputState.SetXButtonState(false);
 			}
 			else if (e.key.keysym.sym == SDLK_x)
 			{
+				inputState.SetYButtonJustReleased(true);
 				inputState.SetYButtonState(false);
 			}
 #endif
