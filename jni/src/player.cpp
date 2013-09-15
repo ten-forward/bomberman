@@ -133,24 +133,7 @@ namespace bestiary {
 		} 
 		else if (player->dx == 0 && player->dy == 0)
 		{
-			// To Idle states transitions ...
-			switch (_state)
-			{
-				case WalkingDown:
-					player->_state = IdleDown;
-					break;
-				case WalkingUp:
-					player->_state = IdleUp;
-					break;
-				case WalkingRight:
-					player->_state = IdleRight;
-					break;
-				case WalkingLeft:
-					player->_state = IdleLeft;
-					break;
-				default:
-					player->_state = _state;
-			}
+		  player->_state = DynamicToStaticState(_state);
 		}
 		
 		if (inputs.GetAButtonJustPressed())
@@ -189,9 +172,7 @@ namespace bestiary {
 		if (_nextUpdateDueTime < iTimestamp)
 		{
 			player->_nextUpdateDueTime = iTimestamp + constants::PLAYER_UPDATE_DELAY;
-
-		
-
+	       
 			int dx = player->dx;
 			int dy = player->dy;
 
@@ -209,6 +190,10 @@ namespace bestiary {
 						{
 							player->mx = sign(dx);
 							player->my = sign(dy);
+						}
+						else
+						{
+						    player->_state = DynamicToStaticState(_state);
 						}
 					}
 					else
@@ -235,12 +220,8 @@ namespace bestiary {
 							player->y = yprime;
 							player->mx = 0;
 							player->my = 0;
-
-							if (player->brakes)
-							{
-								player->dx = 0;
-								player->dy = 0;
-							}
+							player->dx = 0;
+							player->dy = 0;
 
 						}
 						else
@@ -312,5 +293,23 @@ namespace bestiary {
 		}
 		return 3;
 	}
+
+	Player::State Player::DynamicToStaticState(Player::State iState) 
+			  {
+			    switch (iState)
+			      {
+			      case WalkingDown:
+					return IdleDown;
+			      case WalkingUp:
+					return IdleUp;
+			      case WalkingRight:
+					return IdleRight;
+			      case WalkingLeft:
+					return IdleLeft;
+			      default:
+					;
+			      }	 
+			    return iState;
+			  }
 }
 }
