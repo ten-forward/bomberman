@@ -89,6 +89,8 @@
     <ClInclude Include="..\jni\src\map.hpp" />
     <ClInclude Include="..\jni\src\player.hpp" />
     <ClInclude Include="..\jni\src\printlog.hpp" />
+    <ClInclude Include="..\jni\src\propbomb.hpp" />
+    <ClInclude Include="..\jni\src\propexplosion.hpp" />
     <ClInclude Include="..\jni\src\scene_interface.hpp" />
     <ClInclude Include="..\jni\src\softblock.hpp" />
     <ClInclude Include="..\jni\src\testscene.hpp" />
@@ -109,6 +111,8 @@
     <ClCompile Include="..\jni\src\map.cpp" />
     <ClCompile Include="..\jni\src\player.cpp" />
     <ClCompile Include="..\jni\src\printlog.cpp" />
+    <ClCompile Include="..\jni\src\propbomb.cpp" />
+    <ClCompile Include="..\jni\src\propexplosion.cpp" />
     <ClCompile Include="..\jni\src\softblock.cpp" />
     <ClCompile Include="..\jni\src\testscene.cpp" />
     <ClCompile Include="..\jni\src\touchscreenkeyscene.cpp" />

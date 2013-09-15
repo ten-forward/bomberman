@@ -50,5 +50,7 @@ namespace constants {
 	const int PLAYER_SPEED = 1;
 	const int PLAYER_UPDATE_DELAY = 20;
 	const int PLAYER_FRAME_UPDATE_DELAY = 150;
+
+	const int BOMB_FRAME_UPDATE_DELAY = 200;
 }
 }

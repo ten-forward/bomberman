@@ -51,6 +51,8 @@ namespace constants {
 	extern const int PLAYER_SPEED;
 	extern const int PLAYER_UPDATE_DELAY;
 	extern const int PLAYER_FRAME_UPDATE_DELAY;
+
+	extern const int BOMB_FRAME_UPDATE_DELAY;
 }
 }
 

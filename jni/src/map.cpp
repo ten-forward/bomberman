@@ -2,6 +2,9 @@
 #include "map.hpp"
 #include "entity.hpp"
 #include "printlog.hpp"
+#include "floortile.hpp"
+#include "block.hpp"
+#include "softblock.hpp"
 
 #include <iostream>
 #include <boost/foreach.hpp>
@@ -15,9 +18,33 @@ Map::Map(int w, int h) :
 {
 }
 
-bool Map::IsPointWithin(int x, int y) const
+Map::PositionCheck Map::CheckPosition(int x, int y) const
 {
-	return x >= 0 && x < _width && y >= 0 && y < _height;
+	if (x >= 0 && x < _width && y >= 0 && y < _height)
+	{
+		BOOST_FOREACH(auto ntt, GetEntities(x, y))
+		{
+			if (typeid(*ntt) != typeid(architecture::FloorTile))
+			{
+				if (typeid(*ntt) == typeid(architecture::Block))
+				{
+					return HARD_OCCUPIED;
+				}
+				else if (typeid(*ntt) == typeid(architecture::SoftBlock))
+				{
+					return SOFT_OCCUPIED;
+				}
+				else
+				{
+					return KILLABLE_OCCUPIED;
+				}
+			}
+		}
+
+		return FREE;
+	}
+	
+	return BOUNDARY;
 }
 
 const EntitySet &Map::GetEntities(int x, int y) const
@@ -36,7 +63,7 @@ bool Map::SetEntity(const EntityPtr &ntt)
 	int x = ntt->x;
 	int y = ntt->y;
 
-	if (!IsPointWithin(x, y))
+	if (CheckPosition(x, y) == BOUNDARY)
 	{
 		return false;
 	}

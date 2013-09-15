@@ -27,21 +27,9 @@ namespace bestiary {
 		
 		bool CanStayAt(const MapConstPtr &iMap, int x, int y)
 		{	
-			if (!iMap->IsPointWithin(x, y))
+			if (iMap->CheckPosition(x, y) != Map::FREE)
 			{
 				return false;
-			}
-
-			BOOST_FOREACH(auto entity, iMap->GetEntities(x, y)) 
-			{
-				if (typeid(*entity) == typeid(Block) ||
-					typeid(*entity) == typeid(Player) ||
-					typeid(*entity) == typeid(Bomb) ||
-					typeid(*entity) == typeid(SoftBlock))
-
-				{
-					return false;
-				}
 			}
 
 			return true;
@@ -209,6 +197,11 @@ namespace bestiary {
 						{
 							player->mx = sign(dx);
 							player->my = sign(dy);
+						}
+						else
+						{
+							player->dx = 0;
+							player->dy = 0;
 						}
 					}
 					else
