@@ -49,6 +49,8 @@ namespace bestiary {
 
 			void InitializeGraphicRessources(SDL_Renderer *iRenderer);
 			std::shared_ptr<SDL_Texture> _Bomberman;
+
+			static State DynamicToStaticState(State iState);
 	};
 }
 }
