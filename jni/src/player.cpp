@@ -181,8 +181,7 @@ namespace bestiary {
 						}
 						else
 						{
-							player->dx = 0;
-							player->dy = 0;
+						    player->_state = DynamicToStaticState(_state);
 						}
 					}
 					else
@@ -283,5 +282,22 @@ namespace bestiary {
 		return 3;
 	}
 
+	Player::State Player::DynamicToStaticState(Player::State iState) 
+			  {
+			    switch (iState)
+			      {
+			      case WalkingDown:
+					return IdleDown;
+			      case WalkingUp:
+					return IdleUp;
+			      case WalkingRight:
+					return IdleRight;
+			      case WalkingLeft:
+					return IdleLeft;
+			      default:
+					;
+			      }	 
+			    return iState;
+			  }
 }
 }
