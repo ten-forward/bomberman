@@ -1,22 +1,21 @@
-#ifndef CONSTANTS_HPP
-#define CONSTANTS_HPP
+#pragma once
 
 #ifdef ANDROID
 namespace ouya {
-	extern const int UP;
-	extern const int DOWN;
-	extern const int LEFT;
-	extern const int RIGHT;
-	extern const int O;
-	extern const int U;
-	extern const int Y;
-	extern const int A;
-	extern const int L1;
-	extern const int R1;
-	extern const int L2;
-	extern const int R2;
-	extern const int L3;
-	extern const int R3;
+	const int UP = 19;
+	const int DOWN = 20;
+	const int LEFT = 21;
+	const int RIGHT = 22;
+	const int O = 96;
+	const int U = 99;
+	const int Y = 100;
+	const int A = 97;
+	const int L1 = 102;
+	const int R1 = 103;
+	const int L2 = 104;
+	const int R2 = 105;
+	const int L3 = 106;
+	const int R3 = 107;
 }
 #endif
 
@@ -24,36 +23,35 @@ namespace bomberman {
 namespace constants {
 
 	// Resolution
-	extern const int SCREEN_WIDTH;
-	extern const int SCREEN_HEIGHT;
+	const int SCREEN_WIDTH = 1920;
+	const int SCREEN_HEIGHT = 1080;
 
 	// Overscan compensation
-	extern const int SAFE_WIDTH;
-	extern const int SAFE_HEIGHT;
-	extern const int SAFE_X;
-	extern const int SAFE_Y;
+	const int SAFE_WIDTH  = 1728;
+	const int SAFE_HEIGHT  = 972;
+	const int SAFE_X = ((SCREEN_WIDTH-SAFE_WIDTH)/2);
+	const int SAFE_Y = ((SCREEN_HEIGHT-SAFE_HEIGHT)/2);
 
 	// Game parameters
-	extern const int MAP_X;
-	extern const int MAP_Y;
+	const int MAP_X = (SAFE_X + 64);
+	const int MAP_Y = (SAFE_Y + 64);
 
-	extern const int MAP_COLUMNS;
-	extern const int MAP_ROWS;
+	const int MAP_COLUMNS = 25;
+	const int MAP_ROWS = 13;
 
-	extern const int TILE_WIDTH;
-	extern const int TILE_HEIGHT;
+	const int TILE_WIDTH = 64;
+	const int TILE_HEIGHT = 128;
 
-	extern const int PLAYER_WIDTH;
-	extern const int PLAYER_HEIGHT;
+	const int PLAYER_WIDTH = 64;
+	const int PLAYER_HEIGHT = 128;
 
-	extern const int SUBTILE_WIDTH;
+	const int SUBTILE_WIDTH = 8;
 
-	extern const int PLAYER_SPEED;
-	extern const int PLAYER_UPDATE_DELAY;
-	extern const int PLAYER_FRAME_UPDATE_DELAY;
+	const int PLAYER_SPEED = 1;
+	const int PLAYER_UPDATE_DELAY = 20;
+	const int PLAYER_FRAME_UPDATE_DELAY = 150;
 
-	extern const int BOMB_FRAME_UPDATE_DELAY;
+	const int BOMB_FRAME_UPDATE_DELAY = 200;
 }
 }
 
-#endif // CONSTANTS_HPP
