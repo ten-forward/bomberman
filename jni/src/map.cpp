@@ -30,7 +30,6 @@ EntitySet &Map::GetEntities(int x, int y)
 	return _map[x][y];
 }
 
-
 bool Map::SetEntity(const EntityPtr &ntt)
 {
 	int x = ntt->x;
