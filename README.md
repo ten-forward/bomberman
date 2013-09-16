@@ -3,7 +3,7 @@ bomberman
 
 Bomberman!
 
-[![Build Status](https://travis-ci.org/davidsiaw/bomberman.png)](https://travis-ci.org/davidsiaw/bomberman)
+[![Build Status](https://travis-ci.org/ten-forward/bomberman.png)](https://travis-ci.org/ten-forward/bomberman)
 
 Building
 ========

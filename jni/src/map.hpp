@@ -34,8 +34,10 @@ class Map
 		enum PositionCheck
 		{
 			FREE,
-			OCCUPIED,
-			BOUNDARY
+			BOUNDARY,
+			HARD_OCCUPIED,		// hard block (termination exclusive)
+			SOFT_OCCUPIED,		// soft block (termination inclusive)
+			KILLABLE_OCCUPIED	// of no consequence to explosions
 		};
 		
 		Map(int w, int h);
@@ -44,7 +46,7 @@ class Map
 		EntitySet &GetEntities(int x, int y);
 		
 		bool SetEntity(const EntityPtr &ntt);
-		bool IsPointWithin(int x, int y) const;
+		PositionCheck CheckPosition(int x, int y) const;
 		void Clear();
 		
 		void ForeachTile(std::function<void(int, int, const EntitySet &)> func) const;
