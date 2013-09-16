@@ -34,8 +34,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	explosion.cpp \
 	utils.cpp \
 	softblock.cpp \
-	corpse.cpp \
-	constants.cpp \
+	corpse.cpp
 	propbomb.cpp \
 	propexplosion.cpp
 
