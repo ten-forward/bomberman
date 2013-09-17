@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 #include <memory>
 #include <boost/foreach.hpp>
@@ -272,8 +273,13 @@ void game()
 int main(int argc, char** argv)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);   // Initialize SDL2
+	Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG);
 	//TTF_Init();
 
+	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1) 
+	{
+		printlog("Mix_OpenAudio: %s\n", Mix_GetError());
+	}
 	using namespace bomberman::constants;
 
 	SDL_DisplayMode mode;
@@ -320,6 +326,10 @@ int main(int argc, char** argv)
 	{
 		printlog("Caught an unknown exception!\n");
 	}
+
+	Mix_CloseAudio();
+
+	Mix_Quit();
 
 	SDL_DestroyWindow(window);
 

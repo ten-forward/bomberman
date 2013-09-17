@@ -5,6 +5,7 @@
 #include "block.hpp"
 #include "softblock.hpp"
 #include "constants.hpp"
+#include "printlog.hpp"
 
 // SDL
 #include <SDL.h>
@@ -36,6 +37,8 @@ namespace bestiary {
 		}
 	}
 
+	std::shared_ptr<Mix_Chunk> Player::_bombPlaceSound;
+
 	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		auto player = std::make_shared<Player>();
@@ -55,7 +58,16 @@ namespace bestiary {
 	{
 		auto surface = IMG_Load(_spriteName.c_str());
 		SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
-		_Bomberman = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(iRenderer, surface), SDL_DestroyTexture);	
+		_Bomberman = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(iRenderer, surface), SDL_DestroyTexture);
+
+		if (!_bombPlaceSound)
+		{
+			_bombPlaceSound = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV("sound/bombplace.wav"), Mix_FreeChunk);
+			if (!_bombPlaceSound)
+			{
+				printlog("Mix_LoadWAV: %s\n", Mix_GetError());
+			}
+		}
 	}
 	
 	bool preventDiagonalMovement(std::shared_ptr<Entity> ntt) 
@@ -89,6 +101,8 @@ namespace bestiary {
 			auto corpse = Corpse::Create(this->_Bomberman);
 			corpse->x = this->x;
 			corpse->y = this->y;
+			corpse->mx = this->mx;
+			corpse->my = this->my;
 			iFutureMap->SetEntity(corpse);
 			return;
 		}
@@ -146,6 +160,11 @@ namespace bestiary {
 				newBomb->y = player->y;
 
 				iFutureMap->SetEntity(newBomb);
+				
+				if (Mix_PlayChannel(-1, _bombPlaceSound.get(), 0) == -1)
+				{
+					printlog("Mix_PlayChannel: %s\n",Mix_GetError());
+				}
 			}
 		}
 

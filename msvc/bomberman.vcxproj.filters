@@ -122,9 +122,6 @@
     <ClCompile Include="..\jni\src\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\src\constants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\src\softblock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
