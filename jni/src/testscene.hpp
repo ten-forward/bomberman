@@ -29,7 +29,7 @@ class TestScene : public SceneInterface
 	typedef std::array<PlayerConfig, 4> PlayerConfigArray;
 
 	public:
-		TestScene(PlayerConfigArray playerConfig);
+		TestScene(const PlayerConfigArray &playerConfig);
 		virtual ~TestScene() {}
 		virtual void Init(SDL_Window* window, SDL_Renderer* renderer);
 		virtual void Update(const std::vector<InputState>& inputs, uint32_t timestamp);
@@ -39,8 +39,8 @@ class TestScene : public SceneInterface
 		void BackThroughTime(SDL_Renderer *renderer, uint32_t now);
 
 	private:
-		std::shared_ptr<Mix_Music> music;
-		std::shared_ptr<SDL_Texture> texture;
+		std::shared_ptr<Mix_Music> _music;
+		std::shared_ptr<SDL_Texture> _texture;
 		MapPtr _presentMap;
 
 		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
