@@ -25,8 +25,8 @@ using namespace bomberman::constants;
 
 namespace bomberman {
 
-TestScene::TestScene(PlayerConfigArray playerConfig) : 
-	music(std::shared_ptr<Mix_Music>(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic)),
+TestScene::TestScene(const PlayerConfigArray &playerConfig) : 
+	_music(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_pastMaps(1024),
 	_playerConfig(playerConfig)
@@ -55,7 +55,7 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	player4->y = MAP_ROWS - 1;
 	_presentMap->SetEntity(player4);
 
-	if(Mix_PlayMusic(music.get(), -1)==-1)
+	if(Mix_PlayMusic(_music.get(), -1) == -1)
 	{
 		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
@@ -79,7 +79,7 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	
 	auto surface = IMG_Load("test/gameback.png");
 	SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
-	texture = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, surface), SDL_DestroyTexture);
+	_texture = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, surface), SDL_DestroyTexture);
 
 	srand(1);
 
@@ -155,7 +155,7 @@ void TestScene::Render(SDL_Renderer *renderer)
 	r.x = 0;
 	r.y = 0;
 
-	SDL_RenderCopy(renderer, texture.get(), NULL, &r);
+	SDL_RenderCopy(renderer, _texture.get(), NULL, &r);
 
 	std::list<EntityConstPtr> entities;
 
