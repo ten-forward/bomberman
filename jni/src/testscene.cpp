@@ -7,6 +7,7 @@
 #include "printlog.hpp"
 #include "constants.hpp"
 #include "utils.hpp"
+#include "printlog.hpp"
 
 //SDL
 #include <SDL_image.h>
@@ -25,6 +26,7 @@ using namespace bomberman::constants;
 namespace bomberman {
 
 TestScene::TestScene(PlayerConfigArray playerConfig) : 
+	music(std::shared_ptr<Mix_Music>(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic)),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_playerConfig(playerConfig)
@@ -53,6 +55,11 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	player4->y = MAP_ROWS - 1;
 	_presentMap->SetEntity(player4);
 
+	if(Mix_PlayMusic(music.get(), -1)==-1)
+	{
+		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
+	}
+
 	_presentMap->ForeachTile([&](int x, int y, const EntitySet &)
 	{
 		bool placeObstacle = (x & 1) & (y & 1);		
@@ -69,6 +76,10 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
 	});
+	
+	auto surface = IMG_Load("test/gameback.png");
+	SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
+	texture = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, surface), SDL_DestroyTexture);
 
 	srand(1);
 
@@ -136,6 +147,14 @@ void TestScene::Render(SDL_Renderer *renderer)
 	SDL_Rect safeArea = bomberman::utils::GetSafeArea1920();
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderDrawRect(renderer, &safeArea);
+	
+	SDL_Rect r;
+	r.w = SCREEN_WIDTH;
+	r.h = SCREEN_HEIGHT;
+	r.x = 0;
+	r.y = 0;
+
+	SDL_RenderCopy(renderer, texture.get(), NULL, &r);
 
 	std::list<EntityConstPtr> entities;
 
@@ -164,6 +183,13 @@ void TestScene::Render(SDL_Renderer *renderer)
 
 bool TestScene::Running()
 {
+	if (false)
+	{
+		// Scene has finished! We should stop the music.
+		Mix_HaltMusic();
+		return false;
+	}
+
 	return true;
 }
 	

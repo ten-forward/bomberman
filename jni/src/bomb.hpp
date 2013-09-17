@@ -3,6 +3,7 @@
 #include "entity.hpp"
 
 #include <SDL.h>
+#include <SDL_mixer.h>
 // STL - libstdc++
 #include <memory>
 
@@ -29,6 +30,7 @@ namespace arsenal {
 			int _strength; // In megaton
 			static void InitializeGraphicRessources(SDL_Renderer *iRenderer);
 			static std::shared_ptr<SDL_Texture> _Bomb;
+			static std::shared_ptr<Mix_Chunk> _explosionSound;
 	};
 }
 }

@@ -3,6 +3,7 @@
 #include "constants.hpp"
 #include "softblock.hpp"
 #include "block.hpp"
+#include "printlog.hpp"
 
 #include <boost/foreach.hpp>
 #include <SDL_image.h>
@@ -26,10 +27,25 @@ namespace arsenal {
 	}
 
 	std::shared_ptr<SDL_Texture>  Bomb::_Bomb;
+	std::shared_ptr<Mix_Chunk> Bomb::_explosionSound;
 
 	void Bomb::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
+		if (!_Bomb)
+		{
+			_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
+		}
+
+		
+		if (!_explosionSound)
+		{
+			_explosionSound = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV("sound/explosion.wav"), Mix_FreeChunk);
+			if (!_explosionSound)
+			{
+				printlog("Mix_LoadWAV: %s\n", Mix_GetError());
+			}
+		}
+
 	}
 
 	void SetBlast(int iStrength, 
@@ -83,6 +99,10 @@ namespace arsenal {
 			SetBlast(_strength, x, y, Explosion::Vertical, iTimestamp, iPresentMap, iFutureMap,
 				[](int i, int* x, int* y) { *y += i; });
 
+			if (Mix_PlayChannel(-1, _explosionSound.get(), 0) == -1)
+			{
+				printlog("Mix_PlayChannel: %s\n",Mix_GetError());
+			}
 		}
 		else
 		{

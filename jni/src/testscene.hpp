@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 #include <string>
 #include <memory>
@@ -23,6 +24,7 @@ struct PlayerConfig
 class TestScene : public SceneInterface
 {
 	typedef std::array<PlayerConfig, 4> PlayerConfigArray;
+
 	public:
 		TestScene(PlayerConfigArray playerConfig);
 		virtual ~TestScene() {}
@@ -30,7 +32,10 @@ class TestScene : public SceneInterface
 		virtual void Update(const std::vector<InputState>& inputs, uint32_t timestamp);
 		virtual void Render(SDL_Renderer *renderer);
 		virtual bool Running();
+
 	private:
+		std::shared_ptr<Mix_Music> music;
+		std::shared_ptr<SDL_Texture> texture;
 		MapPtr _presentMap, _futurMap;
 		PlayerConfigArray _playerConfig;
 };

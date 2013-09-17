@@ -2,6 +2,7 @@
 
 #include "entity.hpp"
 #include <SDL.h>
+#include <SDL_mixer.h>
 
 // STL- libstdc++
 #include <memory>
@@ -50,6 +51,7 @@ namespace bestiary {
 			void InitializeGraphicRessources(SDL_Renderer *iRenderer);
 			std::shared_ptr<SDL_Texture> _Bomberman;
 
+			static std::shared_ptr<Mix_Chunk> _bombPlaceSound;
 			static State DynamicToStaticState(State iState);
 	};
 }
