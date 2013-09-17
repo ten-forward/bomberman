@@ -101,6 +101,8 @@ namespace bestiary {
 			auto corpse = Corpse::Create(this->_Bomberman);
 			corpse->x = this->x;
 			corpse->y = this->y;
+			corpse->mx = this->mx;
+			corpse->my = this->my;
 			iFutureMap->SetEntity(corpse);
 			return;
 		}
