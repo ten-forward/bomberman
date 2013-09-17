@@ -24,7 +24,7 @@ using namespace bomberman::constants;
 
 namespace bomberman {
 
-TestScene::TestScene(PlayerConfigArray playerConfig) : 
+TestScene::TestScene(const PlayerConfigArray &playerConfig) : 
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_pastMaps(1024),
 	_playerConfig(playerConfig)

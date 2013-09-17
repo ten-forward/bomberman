@@ -13,6 +13,39 @@ using bomberman::architecture::SoftBlock;
 namespace bomberman {
 namespace arsenal {
 
+	namespace {
+		void SetBlast(int iStrength, 
+			int initX, 
+			int initY,
+			Explosion::Orientation orientation,
+			uint32_t iTimestamp, 
+			const MapConstPtr &iPresentMap,
+			const MapPtr &iFutureMap, 
+			std::function<void(int amount, int* x, int* y)> propagator)
+		{
+			for (int i=1; i<=iStrength; i++)
+			{
+				int x = initX;
+				int y = initY;
+				propagator(i, &x, &y);
+				if(iPresentMap->CheckPosition(x,y) == Map::BOUNDARY 
+					|| iPresentMap->CheckPosition(x,y) == Map::HARD_OCCUPIED)
+				{
+					break;
+				}
+					
+				auto blast = Explosion::Create(iTimestamp, orientation);
+				blast->x = x;
+				blast->y = y;
+				iFutureMap->SetEntity(blast);
+				if (iPresentMap->CheckPosition(x,y) == Map::SOFT_OCCUPIED)
+				{
+					break;
+				}
+			}
+		}	
+	}
+
 	BombPtr Bomb::Create(int iTimeout, int iStrength) 
 	{
 		auto bomb = std::make_shared<Bomb>();
@@ -30,37 +63,6 @@ namespace arsenal {
 	void Bomb::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
 		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
-	}
-
-	void SetBlast(int iStrength, 
-		int initX, 
-		int initY,
-		Explosion::Orientation orientation,
-		uint32_t iTimestamp, 
-		const MapConstPtr &iPresentMap,
-		const MapPtr &iFutureMap, 
-		std::function<void(int amount, int* x, int* y)> propagator)
-	{
-		for (int i=1; i<=iStrength; i++)
-		{
-			int x = initX;
-			int y = initY;
-			propagator(i, &x, &y);
-			if(iPresentMap->CheckPosition(x,y) == Map::BOUNDARY 
-				|| iPresentMap->CheckPosition(x,y) == Map::HARD_OCCUPIED)
-			{
-				break;
-			}
-				
-			auto blast = Explosion::Create(iTimestamp, orientation);
-			blast->x = x;
-			blast->y = y;
-			iFutureMap->SetEntity(blast);
-			if (iPresentMap->CheckPosition(x,y) == Map::SOFT_OCCUPIED)
-			{
-				break;
-			}
-		}
 	}
 
 	void Bomb::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
