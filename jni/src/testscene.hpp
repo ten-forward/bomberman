@@ -1,5 +1,8 @@
 #pragma once
 
+#include "scene_interface.hpp"
+#include "map.hpp"
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
@@ -8,9 +11,9 @@
 #include <memory>
 #include <list>
 #include <array>
+#include <map>
 
-#include "scene_interface.hpp"
-#include "map.hpp"
+#include <boost/circular_buffer.hpp>
 
 namespace bomberman {
 
@@ -32,11 +35,15 @@ class TestScene : public SceneInterface
 		virtual void Update(const std::vector<InputState>& inputs, uint32_t timestamp);
 		virtual void Render(SDL_Renderer *renderer);
 		virtual bool Running();
+		
+		void BackThroughTime(SDL_Renderer *renderer, uint32_t now);
 
 	private:
 		std::shared_ptr<Mix_Music> music;
 		std::shared_ptr<SDL_Texture> texture;
-		MapPtr _presentMap, _futurMap;
+		MapPtr _presentMap;
+
+		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
 		PlayerConfigArray _playerConfig;
 };
 

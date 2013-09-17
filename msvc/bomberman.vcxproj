@@ -101,7 +101,6 @@
     <ClCompile Include="..\jni\src\block.cpp" />
     <ClCompile Include="..\jni\src\bomb.cpp" />
     <ClCompile Include="..\jni\src\computer.cpp" />
-    <ClCompile Include="..\jni\src\constants.cpp" />
     <ClCompile Include="..\jni\src\corpse.cpp" />
     <ClCompile Include="..\jni\src\entity.cpp" />
     <ClCompile Include="..\jni\src\explosion.cpp" />

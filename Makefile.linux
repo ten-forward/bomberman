@@ -1,0 +1,12 @@
+CXXFLAGS=-std=c++0x -pipe $(shell sdl2-config --cflags)
+LDFLAGS=$(shell sdl2-config --libs) -lSDL2_image
+
+SRCDIR=jni/src
+SRC= $(wildcard $(SRCDIR)/*.cpp) 
+OBJ=$(SRC:%.cpp=%.o)
+LD=g++
+
+all: assets/bomberman
+
+assets/bomberman: $(OBJ)
+	$(LD) $^ $(LDFLAGS) -o $@

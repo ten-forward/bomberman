@@ -28,7 +28,7 @@ namespace bomberman {
 TestScene::TestScene(PlayerConfigArray playerConfig) : 
 	music(std::shared_ptr<Mix_Music>(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic)),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
-	_futurMap(new Map(MAP_COLUMNS, MAP_ROWS)),
+	_pastMaps(1024),
 	_playerConfig(playerConfig)
 {
 }
@@ -110,7 +110,7 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
-	_futurMap->Clear();
+	MapPtr futurMap(new Map(MAP_COLUMNS, MAP_ROWS));
 
 	std::list<EntityConstPtr> entities;
 
@@ -126,12 +126,12 @@ void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 
 	BOOST_FOREACH (auto entity, entities) 
 	{
-		entity->Evolve(inputs, now, _presentMap, _futurMap);
+		entity->Evolve(inputs, now, _presentMap, futurMap);
 	}
 
 	entities.clear();
 
-	_futurMap->ForeachTile([&](int x, int y, const EntitySet &iEntities)
+	futurMap->ForeachTile([&](int x, int y, const EntitySet &iEntities)
 	{	
 		BOOST_FOREACH (auto entity, iEntities) 
 		{
@@ -139,7 +139,8 @@ void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 		}
 	});
 
-	std::swap(_presentMap, _futurMap);
+	_pastMaps.push_front(std::make_pair(now, _presentMap));
+	_presentMap = futurMap;
 }
 
 void TestScene::Render(SDL_Renderer *renderer)
@@ -193,4 +194,27 @@ bool TestScene::Running()
 	return true;
 }
 	
+
+void TestScene::BackThroughTime(SDL_Renderer *renderer, uint32_t now)
+{
+	while (!_pastMaps.empty())
+	{
+		auto gameState = _pastMaps.front();
+		_pastMaps.pop_front();
+
+		uint32_t duration = now - gameState.first;
+
+		_presentMap = gameState.second;
+
+		if (duration > 12)
+		{
+			now = gameState.first;
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+			SDL_RenderClear(renderer);
+			Render(renderer);
+			SDL_RenderPresent(renderer);
+		}
+	}
+}
+
 }

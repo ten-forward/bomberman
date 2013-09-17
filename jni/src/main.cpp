@@ -13,6 +13,8 @@
 
 void PollEvents(std::vector<InputState> &oInputState);
 
+static bool backThroughTime = false;
+
 #ifdef ANDROID
 #include <jni.h>
 
@@ -42,9 +44,13 @@ void run(std::shared_ptr<SceneInterface> scene)
 	while (scene->Running())
 	{
 	 	PollEvents(inputState);
-		
+
 		Uint32 now = SDL_GetTicks();
 		
+		if (backThroughTime) {
+	 		std::dynamic_pointer_cast<bomberman::TestScene>(scene)->BackThroughTime(renderer, now);
+	 	}
+
 		scene->Update(inputState, now);
 
 		if (now - time > 12)
@@ -62,6 +68,7 @@ void PollEvents(std::vector<InputState> &oInputState)
 {
 	SDL_Event e;
 
+	backThroughTime = false;
 
 	if ( SDL_PollEvent(&e) )
 	{
@@ -173,6 +180,10 @@ void PollEvents(std::vector<InputState> &oInputState)
 			{
 				inputState.SetYButtonJustPressed(true);
 				inputState.SetYButtonState(true);
+			}
+			else if (e.key.keysym.sym == SDLK_r)
+			{
+				backThroughTime = true;	
 			}
 #endif
 		}
