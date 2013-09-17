@@ -26,7 +26,6 @@ struct hasher {
 
 typedef std::unordered_set<EntityPtr, hasher> EntitySet;
 
-
 class Map
 {	
 	public:

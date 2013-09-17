@@ -1,12 +1,43 @@
+CXX=g++
 CXXFLAGS=-std=c++0x -pipe $(shell sdl2-config --cflags)
 LDFLAGS=$(shell sdl2-config --libs) -lSDL2_image -lSDL2_mixer
 
+TARGET=assets/bomberman
 SRCDIR=jni/src
-SRC= $(wildcard $(SRCDIR)/*.cpp) 
-OBJ=$(SRC:%.cpp=%.o)
-LD=g++
+SRC=$(shell find $(SRCDIR) -name "*.cpp")
+OUT=obj
+OBJS=$(SRC:%.cpp=$(OUT)/%.o)
+DEPS=$(SRC:%.cpp=$(OUT)/%.d)
+NODEPS=clean
 
-all: assets/bomberman
+.PHONY = all clean
 
-assets/bomberman: $(OBJ)
-	$(LD) $^ $(LDFLAGS) -o $@
+.SECONDEXPANSION:
+
+all: $(TARGET)
+
+clean:
+	-rm -rf $(TARGET) $(OUT)
+
+ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
+    -include $(DEPS)
+endif
+
+$(TARGET): $(OBJS)
+	@echo [LINK] $@
+	@$(CXX) $^ $(LDFLAGS) -o $@
+	
+$(OUT)/%.o:%.cpp $(OUT)/%.d
+	@echo [C++] $<
+	@$(CXX) $< $(CXXFLAGS) -c -o $@
+
+$(OUT)/%.d:%.cpp $$(@D)/.f
+	@echo [DEP] $<
+	@$(CXX) $(CXXFLAGS) -MM -MT '$(patsubst %.d,%.o,$@)' $< -MF $@
+
+%/.f:
+	@echo [MKDIR] $(dir $@)
+	@mkdir -p $(dir $@) 
+	@touch $@
+
+.PRECIOUS: %/.f
