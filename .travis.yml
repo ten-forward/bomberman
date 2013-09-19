@@ -1,4 +1,4 @@
-language: java
+language: java cpp
 before_install:
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
@@ -13,4 +13,5 @@ before_script:
   - $ANDROID_HOME/tools/android list targets
   - $ANDROID_HOME/tools/android -s update project --path . --target "android-10"
 script:
-  - make -f Makefile.android all
+  - make -j -f Makefile.android all
+  - make -j -f Makefile.linux all
