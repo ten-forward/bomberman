@@ -27,12 +27,12 @@ struct PlayerConfig
 
 typedef std::array<PlayerConfig, 4> PlayerConfigArray;
 
-class TestScene : public SceneInterface
+class GameScene : public SceneInterface
 {
 
 	public:
-		TestScene(const PlayerConfigArray &playerConfig);
-		virtual ~TestScene() {}
+		GameScene(const PlayerConfigArray &playerConfig);
+		virtual ~GameScene() {}
 		virtual void Init(SDL_Window* window, SDL_Renderer* renderer);
 		virtual void Update(const std::vector<InputState>& inputs, uint32_t timestamp);
 		virtual void Render(SDL_Renderer *renderer);
@@ -49,8 +49,6 @@ class TestScene : public SceneInterface
 
 		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
 		PlayerConfigArray _playerConfig;
-
-		std::array<std::shared_ptr<bestiary::Player>, 4> _players;
 
 		bool _running;
 		int _victor;

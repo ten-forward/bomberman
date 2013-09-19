@@ -1,9 +1,13 @@
 #pragma once
 
-#include <SDL.h>
 #include "inputstate.hpp"
+#include "sceneresult.hpp"
+
+#include <SDL.h>
 
 #include <vector>
+
+namespace bomberman {
 
 class SceneInterface
 {
@@ -16,3 +20,4 @@ public:
 	virtual void Render(SDL_Renderer *renderer) = 0;
 	virtual bool Running() = 0;
 };
+}

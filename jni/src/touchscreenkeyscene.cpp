@@ -3,6 +3,7 @@
 
 #include "printlog.hpp"
 
+namespace bomberman {
 TouchScreenKeyScene::TouchScreenKeyScene()
 {
 }
@@ -70,4 +71,5 @@ void TouchScreenKeyScene::Render(SDL_Renderer *renderer)
 bool TouchScreenKeyScene::Running()
 {
 	return true;
+}
 }

@@ -5,6 +5,7 @@
 
 #include "scene_interface.hpp"
 
+namespace bomberman {
 class TouchScreenKeyScene : public SceneInterface
 {
 	std::shared_ptr<SDL_Texture> up;
@@ -26,3 +27,4 @@ public:
 	virtual void Render(SDL_Renderer *renderer);
 	virtual bool Running();
 };
+}

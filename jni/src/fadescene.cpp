@@ -1,5 +1,7 @@
 #include "fadescene.hpp"
 
+namespace bomberman {
+
 FadeScene::FadeScene(std::shared_ptr<SceneInterface> scene)
 	: scene(scene), speed(10)
 {
@@ -73,4 +75,6 @@ void FadeScene::SetSpeed(double speed)
 double FadeScene::GetSpeed() const
 {
 	return speed;
+}
+
 }

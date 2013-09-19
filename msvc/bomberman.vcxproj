@@ -86,6 +86,7 @@
     <ClInclude Include="..\jni\src\explosion.hpp" />
     <ClInclude Include="..\jni\src\fadescene.hpp" />
     <ClInclude Include="..\jni\src\floortile.hpp" />
+    <ClInclude Include="..\jni\src\gamescene.hpp" />
     <ClInclude Include="..\jni\src\inputstate.hpp" />
     <ClInclude Include="..\jni\src\map.hpp" />
     <ClInclude Include="..\jni\src\menuscene.hpp" />
@@ -96,7 +97,6 @@
     <ClInclude Include="..\jni\src\scene_interface.hpp" />
     <ClInclude Include="..\jni\src\setupscene.hpp" />
     <ClInclude Include="..\jni\src\softblock.hpp" />
-    <ClInclude Include="..\jni\src\testscene.hpp" />
     <ClInclude Include="..\jni\src\touchscreenkeyscene.hpp" />
     <ClInclude Include="..\jni\src\utils.hpp" />
     <ClInclude Include="..\jni\src\victoryscene.hpp" />
@@ -110,6 +110,7 @@
     <ClCompile Include="..\jni\src\explosion.cpp" />
     <ClCompile Include="..\jni\src\fadescene.cpp" />
     <ClCompile Include="..\jni\src\floortile.cpp" />
+    <ClCompile Include="..\jni\src\gamescene.cpp" />
     <ClCompile Include="..\jni\src\inputstate.cpp" />
     <ClCompile Include="..\jni\src\main.cpp" />
     <ClCompile Include="..\jni\src\map.cpp" />
@@ -120,7 +121,6 @@
     <ClCompile Include="..\jni\src\propexplosion.cpp" />
     <ClCompile Include="..\jni\src\setupscene.cpp" />
     <ClCompile Include="..\jni\src\softblock.cpp" />
-    <ClCompile Include="..\jni\src\testscene.cpp" />
     <ClCompile Include="..\jni\src\touchscreenkeyscene.cpp" />
     <ClCompile Include="..\jni\src\utils.cpp" />
     <ClCompile Include="..\jni\src\victoryscene.cpp" />

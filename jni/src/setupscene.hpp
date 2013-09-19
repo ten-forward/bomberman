@@ -7,7 +7,7 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 
-#include "testscene.hpp"
+#include "gamescene.hpp"
 
 namespace bomberman {
 

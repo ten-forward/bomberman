@@ -5,11 +5,10 @@
 #include <memory>
 #include <boost/foreach.hpp>
 
-#include "scene_interface.hpp"
 #include "inputstate.hpp"
 #include "constants.hpp"
 #include "printlog.hpp"
-#include "testscene.hpp"
+#include "gamescene.hpp"
 #include "menuscene.hpp"
 #include "setupscene.hpp"
 #include "fadescene.hpp"
@@ -38,7 +37,7 @@ extern "C" void Java_net_astrobunny_aldebaran_BombermanSurface_onOuyaControllerK
 
 SDL_Window* window = NULL;
 
-void run(std::shared_ptr<SceneInterface> scene)
+void run(std::shared_ptr<bomberman::SceneInterface> scene)
 {
 	std::vector<InputState> inputState(4);
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -52,7 +51,7 @@ void run(std::shared_ptr<SceneInterface> scene)
 		Uint32 now = SDL_GetTicks();
 		
 		if (backThroughTime) {
-	 		std::dynamic_pointer_cast<bomberman::TestScene>(scene)->BackThroughTime(renderer, now);
+	 		std::dynamic_pointer_cast<bomberman::GameScene>(scene)->BackThroughTime(renderer, now);
 	 	}
 
 		scene->Update(inputState, now);
@@ -290,7 +289,6 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
-
 	while (true)
 	{
 		std::shared_ptr<bomberman::MenuScene> menuScene(new bomberman::MenuScene());
@@ -302,12 +300,12 @@ void game()
 			std::shared_ptr<bomberman::SetupScene> setupScene(new bomberman::SetupScene());
 			run(setupScene);
 			
-			std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene(setupScene->GetConfig()));
-			std::shared_ptr<FadeScene> cover(new FadeScene(ts));
+			std::shared_ptr<bomberman::GameScene> ts(new bomberman::GameScene(setupScene->GetConfig()));
+			std::shared_ptr<bomberman::FadeScene> cover(new bomberman::FadeScene(ts));
 			run(cover);
 
 			std::shared_ptr<bomberman::VictoryScene> vs(new bomberman::VictoryScene(ts->GetVictor()));
-			std::shared_ptr<FadeScene> fs(new FadeScene(vs));
+			std::shared_ptr<bomberman::FadeScene> fs(new bomberman::FadeScene(vs));
 			run(fs);
 		}
 		else
