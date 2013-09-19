@@ -6,7 +6,7 @@ SDL2TTF=$(SDL2PREFIX)/lib/libSDL2_ttf.so
 SDL2CONFIG=$(SDL2PREFIX)/bin/sdl2-config
 
 CXX=g++
-CXXFLAGS=-std=c++0x -pipe $(shell $(SDL2CONFIG) --cflags)
+CXXFLAGS=-std=c++0x -pipe $(shell $(SDL2CONFIG) --cflags) -I$(PWD)/jni/boost
 LDFLAGS=$(shell $(SDL2CONFIG) --libs) -lSDL2_image -lSDL2_mixer
 
 TARGET=assets/bomberman
