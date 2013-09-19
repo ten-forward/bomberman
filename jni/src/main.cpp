@@ -5,10 +5,11 @@
 #include <memory>
 #include <boost/foreach.hpp>
 
-#include "scene_interface.hpp"
 #include "inputstate.hpp"
 #include "constants.hpp"
 #include "printlog.hpp"
+
+#include "battlesetupscene.hpp"
 #include "gamescene.hpp"
 
 void PollEvents(std::vector<InputState> &oInputState);
@@ -34,7 +35,7 @@ extern "C" void Java_net_astrobunny_aldebaran_BombermanSurface_onOuyaControllerK
 
 SDL_Window* window = NULL;
 
-void run(std::shared_ptr<SceneInterface> scene)
+void run(std::shared_ptr<bomberman::SceneInterface> scene)
 {
 	std::vector<InputState> inputState(4);
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);

@@ -20,23 +20,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
-	main.cpp \
-	testscene.cpp \
-	inputstate.cpp \
-	printlog.cpp \
-	map.cpp \
-	entity.cpp \
-	block.cpp \
-	floortile.cpp \
-	player.cpp \
-	computer.cpp \
-	bomb.cpp \
-	explosion.cpp \
-	utils.cpp \
-	softblock.cpp \
-	corpse.cpp \
-	propbomb.cpp \
-	propexplosion.cpp
+	$(shell find . -name "*.cpp")
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 

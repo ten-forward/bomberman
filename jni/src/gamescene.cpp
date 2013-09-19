@@ -108,7 +108,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	}
 }
 
-void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
+SceneResultPtr GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
 	MapPtr futurMap(new Map(MAP_COLUMNS, MAP_ROWS));
 
@@ -141,6 +141,8 @@ void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 
 	_pastMaps.push_front(std::make_pair(now, _presentMap));
 	_presentMap = futurMap;
+
+	return SceneResultPtr();
 }
 
 void GameScene::Render(SDL_Renderer *renderer)
