@@ -21,16 +21,19 @@ class InputState
     bool b : 1;
     bool x : 1;
     bool y : 1;
+    bool start : 1;
 	
     bool a_pressed : 1;
     bool b_pressed : 1;
     bool x_pressed : 1;
     bool y_pressed : 1;
+    bool start_pressed : 1;
 	
     bool a_released : 1;
     bool b_released : 1;
     bool x_released : 1;
     bool y_released : 1;
+    bool start_released : 1;
 
 	bool fingered;
 	float fingerx;
@@ -47,6 +50,7 @@ public:
 	bool GetBButtonState() const;
 	bool GetXButtonState() const;
 	bool GetYButtonState() const;
+	bool GetStartButtonState() const;
 	
 	bool GetUpButtonJustPressed() const;
 	bool GetDownButtonJustPressed() const;
@@ -57,11 +61,13 @@ public:
 	bool GetBButtonJustPressed() const;
 	bool GetXButtonJustPressed() const;
 	bool GetYButtonJustPressed() const;
+	bool GetStartButtonJustPressed() const;
 
 	bool GetAButtonJustReleased() const;
 	bool GetBButtonJustReleased() const;
 	bool GetXButtonJustReleased() const;
 	bool GetYButtonJustReleased() const;
+	bool GetStartButtonJustReleased() const;
 
 	bool GetUpButtonJustReleased() const;
 	bool GetDownButtonJustReleased() const;
@@ -85,6 +91,7 @@ public:
 	void SetBButtonState(bool state);
 	void SetXButtonState(bool state);
 	void SetYButtonState(bool state);
+	void SetStartButtonState(bool state);
 	
 
 	void SetUpButtonJustPressed(bool state);
@@ -96,11 +103,13 @@ public:
 	void SetBButtonJustPressed(bool state);
 	void SetXButtonJustPressed(bool state);
 	void SetYButtonJustPressed(bool state);
+	void SetStartButtonJustPressed(bool state);
 
 	void SetAButtonJustReleased(bool state);
 	void SetBButtonJustReleased(bool state);
 	void SetXButtonJustReleased(bool state);
 	void SetYButtonJustReleased(bool state);
+	void SetStartButtonJustReleased(bool state);
 
 	void SetUpButtonJustReleased(bool state);
 	void SetDownButtonJustReleased(bool state);

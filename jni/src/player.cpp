@@ -39,7 +39,7 @@ namespace bestiary {
 
 	std::shared_ptr<Mix_Chunk> Player::_bombPlaceSound;
 
-	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer)
+	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
 	{
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
@@ -51,6 +51,7 @@ namespace bestiary {
 		player->_state = IdleDown;
 		player->_inputStateIdx = iInputStateIdx;
 		player->InitializeGraphicRessources(iRenderer);
+		player->_alive = alive;
 		return player;
 	}
 
@@ -59,6 +60,7 @@ namespace bestiary {
 		auto surface = IMG_Load(_spriteName.c_str());
 		SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
 		_Bomberman = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(iRenderer, surface), SDL_DestroyTexture);
+		SDL_FreeSurface(surface);
 
 		if (!_bombPlaceSound)
 		{
@@ -104,6 +106,7 @@ namespace bestiary {
 			corpse->mx = this->mx;
 			corpse->my = this->my;
 			iFutureMap->SetEntity(corpse);
+			*_alive = false;
 			return;
 		}
 

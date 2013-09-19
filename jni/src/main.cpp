@@ -10,6 +10,10 @@
 #include "constants.hpp"
 #include "printlog.hpp"
 #include "testscene.hpp"
+#include "menuscene.hpp"
+#include "setupscene.hpp"
+#include "fadescene.hpp"
+#include "victoryscene.hpp"
 
 void PollEvents(std::vector<InputState> &oInputState);
 
@@ -62,6 +66,7 @@ void run(std::shared_ptr<SceneInterface> scene)
 			time = SDL_GetTicks();
 		}
 	}
+	SDL_DestroyRenderer(renderer);
 }
 
 void PollEvents(std::vector<InputState> &oInputState)
@@ -82,11 +87,13 @@ void PollEvents(std::vector<InputState> &oInputState)
 		inputState.SetBButtonJustPressed(false);
 		inputState.SetXButtonJustPressed(false);
 		inputState.SetYButtonJustPressed(false);
+		inputState.SetStartButtonJustPressed(false);
 
 		inputState.SetAButtonJustReleased(false);
 		inputState.SetBButtonJustReleased(false);
 		inputState.SetXButtonJustReleased(false);
 		inputState.SetYButtonJustReleased(false);
+		inputState.SetStartButtonJustReleased(false);
 
 		inputState.SetUpButtonJustPressed(false);
 		inputState.SetDownButtonJustPressed(false);
@@ -140,6 +147,11 @@ void PollEvents(std::vector<InputState> &oInputState)
 				inputState.SetAButtonJustPressed(true);
 				inputState.SetAButtonState(true);
 			}
+			else if (e.key.keysym.sym == ouya::OUYABUTTON)
+			{
+				inputState.SetStartButtonJustPressed(true);
+				inputState.SetStartButtonState(true);
+			}
 #else
 			if (e.key.keysym.sym == SDLK_UP)
 			{
@@ -181,6 +193,11 @@ void PollEvents(std::vector<InputState> &oInputState)
 				inputState.SetYButtonJustPressed(true);
 				inputState.SetYButtonState(true);
 			}
+			else if (e.key.keysym.sym == SDLK_SPACE)
+			{
+				inputState.SetStartButtonJustPressed(true);
+				inputState.SetStartButtonState(true);
+			}
 			else if (e.key.keysym.sym == SDLK_r)
 			{
 				backThroughTime = true;	
@@ -214,6 +231,11 @@ void PollEvents(std::vector<InputState> &oInputState)
 			{
 				inputState.SetAButtonJustReleased(true);
 				inputState.SetAButtonState(false);
+			}
+			else if (e.key.keysym.sym == ouya::OUYABUTTON)
+			{
+				inputState.SetStartButtonJustReleased(true);
+				inputState.SetStartButtonState(false);
 			}
 #else
 			if (e.key.keysym.sym == SDLK_UP)
@@ -256,6 +278,11 @@ void PollEvents(std::vector<InputState> &oInputState)
 				inputState.SetYButtonJustReleased(true);
 				inputState.SetYButtonState(false);
 			}
+			else if (e.key.keysym.sym == SDLK_SPACE)
+			{
+				inputState.SetStartButtonJustReleased(true);
+				inputState.SetStartButtonState(false);
+			}
 #endif
 		}
 	}
@@ -263,18 +290,38 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
-	std::array<bomberman::PlayerConfig, 4> players;
 
-	std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene(players));
-	
-	run(ts);
+	while (true)
+	{
+		std::shared_ptr<bomberman::MenuScene> menuScene(new bomberman::MenuScene());
+		run(menuScene);
+
+		if (menuScene->GetSelection() == bomberman::MenuScene::NEWGAME)
+		{
+
+			std::shared_ptr<bomberman::SetupScene> setupScene(new bomberman::SetupScene());
+			run(setupScene);
+			
+			std::shared_ptr<bomberman::TestScene> ts(new bomberman::TestScene(setupScene->GetConfig()));
+			std::shared_ptr<FadeScene> cover(new FadeScene(ts));
+			run(cover);
+
+			std::shared_ptr<bomberman::VictoryScene> vs(new bomberman::VictoryScene(ts->GetVictor()));
+			std::shared_ptr<FadeScene> fs(new FadeScene(vs));
+			run(fs);
+		}
+		else
+		{
+		}
+
+	}
 }
 
 int main(int argc, char** argv)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);   // Initialize SDL2
 	Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG);
-	//TTF_Init();
+	TTF_Init();
 
 	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1) 
 	{
@@ -326,6 +373,8 @@ int main(int argc, char** argv)
 	{
 		printlog("Caught an unknown exception!\n");
 	}
+
+	TTF_Quit();
 
 	Mix_CloseAudio();
 

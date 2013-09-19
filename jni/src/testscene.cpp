@@ -1,5 +1,4 @@
 #include "testscene.hpp"
-#include "player.hpp"
 #include "block.hpp"
 #include "bomb.hpp"
 #include "softblock.hpp"
@@ -35,25 +34,33 @@ TestScene::TestScene(const PlayerConfigArray &playerConfig) :
 
 void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	auto player1 = Player::Create("Athos", "test/SaturnBomberman-BlackBomberman.PNG", 0, renderer);
-	player1->x = 0;
-	player1->y = 0;
-	_presentMap->SetEntity(player1);
+	_running = true;
 
-	auto player2 = Player::Create("Porthos", "test/honey.png", 1, renderer);
-	player2->x = MAP_COLUMNS -1 ;
-	player2->y = 0;
-	_presentMap->SetEntity(player2);
-	
-	auto player3 = Player::Create("Aramis", "test/manji.png", 2, renderer);
-	player3->x = 0;
-	player3->y = MAP_ROWS - 1;
-	_presentMap->SetEntity(player3);
+	struct PlayerPositions
+	{
+		int x,y;
+	};
 
-	auto player4 = Player::Create("D'Artagnan", "test/whitebbman.png", 3, renderer);
-	player4->x = MAP_COLUMNS -1 ;
-	player4->y = MAP_ROWS - 1;
-	_presentMap->SetEntity(player4);
+	PlayerPositions pos[] =
+	{
+		{0,0},
+		{MAP_COLUMNS -1,0},
+		{0,MAP_ROWS - 1},
+		{MAP_COLUMNS - 1,MAP_ROWS - 1},
+	};
+
+	for (int i=0;i<4;i++)
+	{
+		if (_playerConfig[i].present)
+		{
+			auto player = Player::Create(_playerConfig[i].name, _playerConfig[i].spriteName, i, renderer, &_playerConfig[i].present);
+			player->x = pos[i].x;
+			player->y = pos[i].y;
+			_presentMap->SetEntity(player);
+
+			_players[i] = player;
+		}
+	}
 
 	if(Mix_PlayMusic(_music.get(), -1) == -1)
 	{
@@ -77,9 +84,7 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		_presentMap->SetEntity(blockEntity);
 	});
 	
-	auto surface = IMG_Load("test/gameback.png");
-	SDL_SetColorKey(surface, SDL_TRUE, 0x00ff00);
-	_texture = std::shared_ptr<SDL_Texture>(SDL_CreateTextureFromSurface(renderer, surface), SDL_DestroyTexture);
+	_texture = utils::LoadTexture(renderer, "test/gameback.png");
 
 	srand(1);
 
@@ -88,17 +93,17 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		int x = rand() % MAP_COLUMNS;
 		int y = rand() % MAP_ROWS;
 
-		bool place = true;
-		auto ntts = _presentMap->GetEntities(x,y);
-		BOOST_FOREACH(auto ntt, ntts)
+		// avoid locking a player in
+		if ((x < PLAYER_SPACE && y < PLAYER_SPACE) || 
+			(x < PLAYER_SPACE && y >= MAP_ROWS - PLAYER_SPACE) ||
+			(x >= MAP_COLUMNS - PLAYER_SPACE && y >= MAP_ROWS-PLAYER_SPACE) ||
+			(x >= MAP_COLUMNS - PLAYER_SPACE && y < PLAYER_SPACE)
+			)
 		{
-			if (typeid(*ntt) != typeid(FloorTile))
-			{
-				place = false;
-				break;
-			}
+			continue;
 		}
-		if (place)
+
+		if (_presentMap->CheckPosition(x,y) == Map::FREE)
 		{
 			auto softblock = SoftBlock::Create();
 			softblock->x = x;
@@ -141,6 +146,24 @@ void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 
 	_pastMaps.push_front(std::make_pair(now, _presentMap));
 	_presentMap = futurMap;
+
+	int lastPlayer = -1;
+	int count = 0;
+	for (int i=0;i<4;i++)
+	{
+		if ( _playerConfig[i].present )
+		{
+			lastPlayer = i;
+			count++;
+		}
+	}
+
+	if (count < 2)
+	{
+		_running = false;
+	}
+
+	_victor = lastPlayer;
 }
 
 void TestScene::Render(SDL_Renderer *renderer)
@@ -184,7 +207,7 @@ void TestScene::Render(SDL_Renderer *renderer)
 
 bool TestScene::Running()
 {
-	if (false)
+	if (!_running)
 	{
 		// Scene has finished! We should stop the music.
 		Mix_HaltMusic();
