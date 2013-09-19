@@ -7,7 +7,7 @@ SDL2CONFIG=$(SDL2PREFIX)/bin/sdl2-config
 
 CXX=g++
 CXXFLAGS=-std=c++0x -pipe $(shell $(SDL2CONFIG) --cflags) -I$(PWD)/jni/boost
-LDFLAGS=$(shell $(SDL2CONFIG) --libs) -lSDL2_image -lSDL2_mixer
+LDFLAGS=$(shell $(SDL2CONFIG) --libs) -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 TARGET=assets/bomberman
 SRCDIR=jni/src
