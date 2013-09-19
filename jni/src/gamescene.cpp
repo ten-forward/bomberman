@@ -1,4 +1,4 @@
-#include "testscene.hpp"
+#include "gamescene.hpp"
 #include "player.hpp"
 #include "block.hpp"
 #include "bomb.hpp"
@@ -25,7 +25,7 @@ using namespace bomberman::constants;
 
 namespace bomberman {
 
-TestScene::TestScene(const PlayerConfigArray &playerConfig) : 
+GameScene::GameScene(const PlayerConfigArray &playerConfig) : 
 	_music(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_pastMaps(1024),
@@ -33,7 +33,7 @@ TestScene::TestScene(const PlayerConfigArray &playerConfig) :
 {
 }
 
-void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
+void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	auto player1 = Player::Create("Athos", "test/SaturnBomberman-BlackBomberman.PNG", 0, renderer);
 	player1->x = 0;
@@ -108,7 +108,7 @@ void TestScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	}
 }
 
-void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
+SceneResultPtr GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
 	MapPtr futurMap(new Map(MAP_COLUMNS, MAP_ROWS));
 
@@ -141,9 +141,11 @@ void TestScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 
 	_pastMaps.push_front(std::make_pair(now, _presentMap));
 	_presentMap = futurMap;
+
+	return SceneResultPtr();
 }
 
-void TestScene::Render(SDL_Renderer *renderer)
+void GameScene::Render(SDL_Renderer *renderer)
 {
 	SDL_Rect safeArea = bomberman::utils::GetSafeArea1920();
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
@@ -182,7 +184,7 @@ void TestScene::Render(SDL_Renderer *renderer)
 	}
 }
 
-bool TestScene::Running()
+bool GameScene::Running()
 {
 	if (false)
 	{
@@ -195,7 +197,7 @@ bool TestScene::Running()
 }
 	
 
-void TestScene::BackThroughTime(SDL_Renderer *renderer, uint32_t now)
+void GameScene::BackThroughTime(SDL_Renderer *renderer, uint32_t now)
 {
 	while (!_pastMaps.empty())
 	{
