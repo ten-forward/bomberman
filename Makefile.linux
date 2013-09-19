@@ -47,28 +47,28 @@ $(SDL2MAIN):
 	@chmod +x jni/SDL/autogen.sh
 	@cd jni/SDL && ./autogen.sh > /dev/null
 	@cd jni/SDL && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL all install > /dev/null
+	@make -C jni/SDL -j all install > /dev/null
 
 $(SDL2IMAGE): $(SDL2MAIN)
 	@echo [BLD] $@
 	@chmod +x jni/SDL_image/autogen.sh
 	@cd jni/SDL_image && ./autogen.sh > /dev/null
 	@cd jni/SDL_image && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL_image all install > /dev/null
+	@make -C jni/SDL_image -j all install > /dev/null
 
 $(SDL2MIXER): $(SDL2MAIN)
 	@echo [BLD] $@
 	@chmod +x jni/SDL_mixer/autogen.sh
 	@cd jni/SDL_mixer && ./autogen.sh > /dev/null
 	@cd jni/SDL_mixer && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL_mixer all install > /dev/null
+	@make -C jni/SDL_mixer -j all install > /dev/null
 
 $(SDL2TTF): $(SDL2MAIN)
 	@echo [BLD] $@
 	@chmod +x jni/SDL_ttf/autogen.sh
 	@cd jni/SDL_ttf && ./autogen.sh > /dev/null
 	@cd jni/SDL_ttf && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL_ttf all install > /dev/null
+	@make -C jni/SDL_ttf -j all install > /dev/null
 
 %/.f:
 	@echo [MKDIR] $(dir $@)

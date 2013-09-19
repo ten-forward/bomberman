@@ -13,5 +13,5 @@ before_script:
   - $ANDROID_HOME/tools/android list targets
   - $ANDROID_HOME/tools/android -s update project --path . --target "android-10"
 script:
-  - make -f Makefile.android all
-  - make -f Makefile.linux all
+  - make -j -f Makefile.android all
+  - make -j -f Makefile.linux all
