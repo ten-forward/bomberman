@@ -57,9 +57,6 @@
     <ClInclude Include="..\jni\src\player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\src\testscene.hpp">
-      <Filter>Source Files\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\jni\src\utils.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -77,6 +74,21 @@
     </ClInclude>
     <ClInclude Include="..\jni\src\propexplosion.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\src\menuscene.hpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\src\setupscene.hpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\src\fadescene.hpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\src\victoryscene.hpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\src\gamescene.hpp">
+      <Filter>Source Files\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +128,6 @@
     <ClCompile Include="..\jni\src\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\src\testscene.cpp">
-      <Filter>Source Files\scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\src\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -133,6 +142,21 @@
     </ClCompile>
     <ClCompile Include="..\jni\src\propexplosion.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\menuscene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\setupscene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\fadescene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\victoryscene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\gamescene.cpp">
+      <Filter>Source Files\scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

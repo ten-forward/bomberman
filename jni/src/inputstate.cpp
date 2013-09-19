@@ -20,16 +20,19 @@ InputState::InputState()
 	b(false),
 	x(false),
 	y(false),
+	start(false),
 	
 	a_pressed(false),
 	b_pressed(false),
 	x_pressed(false),
 	y_pressed(false),
+	start_pressed(false),
 	
 	a_released(false),
 	b_released(false),
 	x_released(false),
 	y_released(false),
+	start_released(false),
 
 	fingered(false),
 	fingerx(0),
@@ -99,6 +102,11 @@ bool InputState::GetYButtonJustPressed() const
 	return y_pressed;
 }
 
+bool InputState::GetStartButtonJustPressed() const
+{
+	return start_pressed;
+}
+
 
 bool InputState::GetAButtonJustReleased() const
 {
@@ -118,6 +126,11 @@ bool InputState::GetXButtonJustReleased() const
 bool InputState::GetYButtonJustReleased() const
 {
 	return y_released;
+}
+
+bool InputState::GetStartButtonJustReleased() const
+{
+	return start_released;
 }
 
 
@@ -213,6 +226,11 @@ bool InputState::GetYButtonState() const
 	return y;
 }
 
+bool InputState::GetStartButtonState() const
+{
+	return start;
+}
+
 void InputState::SetAButtonState(bool state)
 {
 	a = state;
@@ -231,6 +249,11 @@ void InputState::SetXButtonState(bool state)
 void InputState::SetYButtonState(bool state)
 {
 	y = state;
+}
+
+void InputState::SetStartButtonState(bool state)
+{
+	start = state;
 }
 
 
@@ -275,6 +298,11 @@ void InputState::SetYButtonJustPressed(bool state)
 	y_pressed = state;
 }
 
+void InputState::SetStartButtonJustPressed(bool state)
+{
+	start_pressed = state;
+}
+
 
 void InputState::SetAButtonJustReleased(bool state)
 {
@@ -294,6 +322,11 @@ void InputState::SetXButtonJustReleased(bool state)
 void InputState::SetYButtonJustReleased(bool state)
 {
 	y_released = state;
+}
+
+void InputState::SetStartButtonJustReleased(bool state)
+{
+	start_released = state;
 }
 
 

@@ -16,6 +16,7 @@ namespace ouya {
 	const int R2 = 105;
 	const int L3 = 106;
 	const int R3 = 107;
+	const int OUYABUTTON = 82;
 }
 #endif
 
@@ -52,6 +53,8 @@ namespace constants {
 	const int PLAYER_FRAME_UPDATE_DELAY = 150;
 
 	const int BOMB_FRAME_UPDATE_DELAY = 200;
+
+	const int PLAYER_SPACE = 2;
 }
 }
 
