@@ -19,8 +19,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 	$(LOCAL_PATH)/$(SDL_ttf_PATH)
 
 # Add your application source files here...
-LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
-	$(shell find . -name "*.cpp")
+LOCAL_SRC_FILES := $(shell cd jni/src && find . -name "*.cpp") \
+	$(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 
