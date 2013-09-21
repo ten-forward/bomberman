@@ -40,10 +40,10 @@ void TouchScreenKeyScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 void TouchScreenKeyScene::Update(const InputState& inputs, Uint32 timestamp)
 {
 	InputState& is = (InputState&)inputs;
-	is.SetUpButtonState(false);
-	is.SetDownButtonState(false);
-	is.SetLeftButtonState(false);
-	is.SetRightButtonState(false);
+	is.SetButtonState(InputState::UP, false);
+	is.SetButtonState(InputState::DOWN, false);
+	is.SetButtonState(InputState::LEFT, false);
+	is.SetButtonState(InputState::RIGHT, false);
 	
 	if (inputs.GetFingered())
 	{
@@ -53,10 +53,10 @@ void TouchScreenKeyScene::Update(const InputState& inputs, Uint32 timestamp)
 
 		//printlog("finger: %f %f", finger->x, finger->y);
 
-		is.SetUpButtonState(SDL_EnclosePoints(&p, 1, &uprect, NULL) != 0);
-		is.SetDownButtonState(SDL_EnclosePoints(&p, 1, &downrect, NULL) != 0);
-		is.SetLeftButtonState(SDL_EnclosePoints(&p, 1, &leftrect, NULL) != 0);
-		is.SetRightButtonState(SDL_EnclosePoints(&p, 1, &rightrect, NULL) != 0);
+		is.SetButtonState(InputState::UP, SDL_EnclosePoints(&p, 1, &uprect, NULL) != 0);
+		is.SetButtonState(InputState::DOWN, SDL_EnclosePoints(&p, 1, &downrect, NULL) != 0);
+		is.SetButtonState(InputState::LEFT, SDL_EnclosePoints(&p, 1, &leftrect, NULL) != 0);
+		is.SetButtonState(InputState::RIGHT, SDL_EnclosePoints(&p, 1, &rightrect, NULL) != 0);
 	}
 }
 

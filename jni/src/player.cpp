@@ -116,22 +116,22 @@ namespace bestiary {
 
 		const auto &inputs = iInputs[_inputStateIdx];
 		
-		if (inputs.GetLeftButtonState())
+		if (inputs.GetButtonState(InputState::LEFT))
 		{
 			player->dx = -constants::PLAYER_SPEED;
 			player->_state = WalkingLeft;
 		}
-		else if (inputs.GetRightButtonState())
+		else if (inputs.GetButtonState(InputState::RIGHT))
 		{
 			player->dx = constants::PLAYER_SPEED;
 			player->_state = WalkingRight;
 		}
-		else if (inputs.GetDownButtonState())
+		else if (inputs.GetButtonState(InputState::DOWN))
 		{
 			player->dy = constants::PLAYER_SPEED;
 			player->_state = WalkingDown;
 		}
-		else if (inputs.GetUpButtonState())
+		else if (inputs.GetButtonState(InputState::UP))
 		{
 			player->dy = -constants::PLAYER_SPEED;
 			player->_state = WalkingUp;
@@ -141,7 +141,7 @@ namespace bestiary {
 		  player->_state = DynamicToStaticState(_state);
 		}
 		
-		if (inputs.GetAButtonJustPressed())
+		if (inputs.GetButtonPressed(InputState::A))
 		{
 			// make sure there isn't already a bomb there
 			bool alreadyBombed = false;

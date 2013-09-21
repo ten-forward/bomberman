@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 
+#include <map>
 #include <memory>
 #include <boost/foreach.hpp>
 
@@ -35,12 +36,13 @@ extern "C" void Java_net_astrobunny_aldebaran_BombermanSurface_onOuyaControllerK
 }
 #endif
 
-SDL_Window* window = NULL;
+static SDL_Window* window = NULL;
+static SDL_Renderer* renderer = NULL;
+static std::map<int, InputState::Key> keyMap;
 
 void run(std::shared_ptr<bomberman::SceneInterface> scene)
 {
 	std::vector<InputState> inputState(4);
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	Uint32 time = SDL_GetTicks();
 	scene->Init(window, renderer);
 	
@@ -65,7 +67,6 @@ void run(std::shared_ptr<bomberman::SceneInterface> scene)
 			time = SDL_GetTicks();
 		}
 	}
-	SDL_DestroyRenderer(renderer);
 }
 
 void PollEvents(std::vector<InputState> &oInputState)
@@ -82,27 +83,11 @@ void PollEvents(std::vector<InputState> &oInputState)
 		auto &inputState = oInputState[0];
 #endif
 		
-		inputState.SetAButtonJustPressed(false);
-		inputState.SetBButtonJustPressed(false);
-		inputState.SetXButtonJustPressed(false);
-		inputState.SetYButtonJustPressed(false);
-		inputState.SetStartButtonJustPressed(false);
-
-		inputState.SetAButtonJustReleased(false);
-		inputState.SetBButtonJustReleased(false);
-		inputState.SetXButtonJustReleased(false);
-		inputState.SetYButtonJustReleased(false);
-		inputState.SetStartButtonJustReleased(false);
-
-		inputState.SetUpButtonJustPressed(false);
-		inputState.SetDownButtonJustPressed(false);
-		inputState.SetLeftButtonJustPressed(false);
-		inputState.SetRightButtonJustPressed(false);
-
-		inputState.SetUpButtonJustReleased(false);
-		inputState.SetDownButtonJustReleased(false);
-		inputState.SetLeftButtonJustReleased(false);
-		inputState.SetRightButtonJustReleased(false);
+		for (auto keyIter = keyMap.begin(); keyIter != keyMap.end(); keyIter++)
+		{
+			inputState.SetButtonPressed(keyIter->second, false);
+			inputState.SetButtonReleased(keyIter->second, false);
+		}
 
 		if (e.type == SDL_QUIT)
 		{
@@ -120,169 +105,29 @@ void PollEvents(std::vector<InputState> &oInputState)
 		}
 		else if (e.type == SDL_KEYDOWN)
 		{
-#ifdef ANDROID
-			if (e.key.keysym.sym == ouya::UP)
+			auto keyIter = keyMap.find(e.key.keysym.sym);
+			if ( keyIter != keyMap.end() )
 			{
-				inputState.SetUpButtonJustPressed(true);
-				inputState.SetUpButtonState(true);
-			}
-			else if (e.key.keysym.sym == ouya::DOWN)
-			{
-				inputState.SetDownButtonJustPressed(true);
-				inputState.SetDownButtonState(true);
-			}
-			else if (e.key.keysym.sym == ouya::LEFT)
-			{
-				inputState.SetLeftButtonJustPressed(true);
-				inputState.SetLeftButtonState(true);
-			}
-			else if (e.key.keysym.sym == ouya::RIGHT)
-			{
-				inputState.SetRightButtonJustPressed(true);
-				inputState.SetRightButtonState(true);
-			}
-			else if (e.key.keysym.sym == ouya::U)
-			{
-				inputState.SetAButtonJustPressed(true);
-				inputState.SetAButtonState(true);
-			}
-			else if (e.key.keysym.sym == ouya::OUYABUTTON)
-			{
-				inputState.SetStartButtonJustPressed(true);
-				inputState.SetStartButtonState(true);
-			}
-#else
-			if (e.key.keysym.sym == SDLK_UP)
-			{
-				inputState.SetUpButtonJustPressed(true);
-				inputState.SetUpButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_DOWN)
-			{
-				inputState.SetDownButtonJustPressed(true);
-				inputState.SetDownButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_LEFT)
-			{
-				inputState.SetLeftButtonJustPressed(true);
-				inputState.SetLeftButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_RIGHT)
-			{
-				inputState.SetRightButtonJustPressed(true);
-				inputState.SetRightButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_a)
-			{
-				inputState.SetAButtonJustPressed(true);
-				inputState.SetAButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_s)
-			{
-				inputState.SetBButtonJustPressed(true);
-				inputState.SetBButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_z)
-			{
-				inputState.SetXButtonJustPressed(true);
-				inputState.SetXButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_x)
-			{
-				inputState.SetYButtonJustPressed(true);
-				inputState.SetYButtonState(true);
-			}
-			else if (e.key.keysym.sym == SDLK_SPACE)
-			{
-				inputState.SetStartButtonJustPressed(true);
-				inputState.SetStartButtonState(true);
+				inputState.SetButtonPressed(keyIter->second, true);
+				inputState.SetButtonState(keyIter->second, true);
 			}
 			else if (e.key.keysym.sym == SDLK_r)
 			{
 				backThroughTime = true;	
 			}
-#endif
 		}
 		else if (e.type == SDL_KEYUP)
 		{
-#ifdef ANDROID
-			if (e.key.keysym.sym == ouya::UP)
+			auto keyIter = keyMap.find(e.key.keysym.sym);
+			if ( keyIter != keyMap.end() )
 			{
-				inputState.SetUpButtonJustReleased(true);
-				inputState.SetUpButtonState(false);
+				inputState.SetButtonReleased(keyIter->second, true);
+				inputState.SetButtonState(keyIter->second, false);
 			}
-			else if (e.key.keysym.sym == ouya::DOWN)
+			else if (e.key.keysym.sym == SDLK_r)
 			{
-				inputState.SetDownButtonJustReleased(true);
-				inputState.SetDownButtonState(false);
+				backThroughTime = true;	
 			}
-			else if (e.key.keysym.sym == ouya::LEFT)
-			{
-				inputState.SetLeftButtonJustReleased(true);
-				inputState.SetLeftButtonState(false);
-			}
-			else if (e.key.keysym.sym == ouya::RIGHT)
-			{
-				inputState.SetRightButtonJustReleased(true);
-				inputState.SetRightButtonState(false);
-			}
-			else if (e.key.keysym.sym == ouya::U)
-			{
-				inputState.SetAButtonJustReleased(true);
-				inputState.SetAButtonState(false);
-			}
-			else if (e.key.keysym.sym == ouya::OUYABUTTON)
-			{
-				inputState.SetStartButtonJustReleased(true);
-				inputState.SetStartButtonState(false);
-			}
-#else
-			if (e.key.keysym.sym == SDLK_UP)
-			{
-				inputState.SetUpButtonJustReleased(true);
-				inputState.SetUpButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_DOWN)
-			{
-				inputState.SetDownButtonJustReleased(true);
-				inputState.SetDownButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_LEFT)
-			{
-				inputState.SetLeftButtonJustReleased(true);
-				inputState.SetLeftButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_RIGHT)
-			{
-				inputState.SetRightButtonJustReleased(true);
-				inputState.SetRightButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_a)
-			{
-				inputState.SetAButtonJustReleased(true);
-				inputState.SetAButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_s)
-			{
-				inputState.SetBButtonJustReleased(true);
-				inputState.SetBButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_z)
-			{
-				inputState.SetXButtonJustReleased(true);
-				inputState.SetXButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_x)
-			{
-				inputState.SetYButtonJustReleased(true);
-				inputState.SetYButtonState(false);
-			}
-			else if (e.key.keysym.sym == SDLK_SPACE)
-			{
-				inputState.SetStartButtonJustReleased(true);
-				inputState.SetStartButtonState(false);
-			}
-#endif
 		}
 	}
 }
@@ -317,6 +162,37 @@ void game()
 
 int main(int argc, char** argv)
 {
+	
+#ifdef ANDROID
+	keyMap[ouya::UP] = InputState::UP;
+	keyMap[ouya::DOWN] = InputState::DOWN;
+	keyMap[ouya::LEFT] = InputState::LEFT;
+	keyMap[ouya::RIGHT] = InputState::RIGHT;
+	keyMap[ouya::A] = InputState::A;
+	keyMap[ouya::O] = InputState::B;
+	keyMap[ouya::U] = InputState::X;
+	keyMap[ouya::Y] = InputState::Y;
+	keyMap[ouya::L1] = InputState::L1;
+	keyMap[ouya::L2] = InputState::L2;
+	keyMap[ouya::R1] = InputState::R1;
+	keyMap[ouya::R2] = InputState::R2;
+	keyMap[ouya::OUYABUTTON] = InputState::START;
+#else
+	keyMap[SDLK_UP] = InputState::UP;
+	keyMap[SDLK_DOWN] = InputState::DOWN;
+	keyMap[SDLK_LEFT] = InputState::LEFT;
+	keyMap[SDLK_RIGHT] = InputState::RIGHT;
+	keyMap[SDLK_a] = InputState::A;
+	keyMap[SDLK_s] = InputState::B;
+	keyMap[SDLK_z] = InputState::X;
+	keyMap[SDLK_x] = InputState::Y;
+	keyMap[SDLK_1] = InputState::L1;
+	keyMap[SDLK_3] = InputState::L2;
+	keyMap[SDLK_2] = InputState::R1;
+	keyMap[SDLK_4] = InputState::R2;
+	keyMap[SDLK_SPACE] = InputState::START;
+#endif
+
 	SDL_Init(SDL_INIT_EVERYTHING);   // Initialize SDL2
 	Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG);
 	TTF_Init();
@@ -359,8 +235,11 @@ int main(int argc, char** argv)
 	}
 	
 	printlog("Beginning game with window=%p\n", window);
+
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
 	try
-	{
+	{	
 		game();
 	}
 	catch(std::exception e)
@@ -371,6 +250,8 @@ int main(int argc, char** argv)
 	{
 		printlog("Caught an unknown exception!\n");
 	}
+
+	SDL_DestroyRenderer(renderer);
 
 	TTF_Quit();
 

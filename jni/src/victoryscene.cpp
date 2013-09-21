@@ -20,7 +20,7 @@ void VictoryScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	ss << "Player " << (_victor + 1) << " wins!";
 	_theVictorIs = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));
 	
-	if(Mix_PlayMusic(_music.get(), -1) == -1)
+	if(Mix_PlayMusic(_music.get(), 0) == -1)
 	{
 		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
@@ -32,7 +32,7 @@ void VictoryScene::Update(const std::vector<InputState>& inputs, uint32_t timest
 {
 	for (int i=0;i<4;i++)
 	{	
-		if (inputs[i].GetAButtonJustPressed())
+		if (inputs[i].GetButtonPressed(InputState::A))
 		{
 			_running = false;
 		}

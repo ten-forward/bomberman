@@ -21,6 +21,7 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	for (int i=0;i<4;i++)
 	{
 		players[i].present = false;
+		players[i].isComputer = false;
 	}
 
 	players[0].name = "Athos";
@@ -45,7 +46,7 @@ void SetupScene::Update(const std::vector<InputState>& inputs, uint32_t timestam
 	
 	for (int i=0;i<4;i++)
 	{
-		if (inputs[i].GetAButtonJustPressed())
+		if (inputs[i].GetButtonPressed(InputState::A))
 		{
 			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
 			players[i].present = !players[i].present;
@@ -59,11 +60,13 @@ void SetupScene::Update(const std::vector<InputState>& inputs, uint32_t timestam
 			}
 		}
 		
-		if (inputs[i].GetStartButtonJustPressed())
+		if (inputs[i].GetButtonPressed(InputState::START))
 		{
 			_running = false;
 		}
+
 	}
+
 }
 
 struct Positions
@@ -89,7 +92,7 @@ void SetupScene::Render(SDL_Renderer *renderer)
 		sourceRect.w = 205;
 		sourceRect.h = 60;
 		sourceRect.x = 0;
-		sourceRect.y = 0 + 60 * players[i].present;
+		sourceRect.y = 0 + 60 * (players[i].present << players[i].isComputer);
 
 		SDL_Rect r;
 		r.w = 205 * 4;

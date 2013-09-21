@@ -17,10 +17,11 @@
 #include "player.hpp"
 
 namespace bomberman {
-	
+
 struct PlayerConfig
 {
 	bool present;
+	bool isComputer;
 	std::string spriteName;
 	std::string name;
 };
