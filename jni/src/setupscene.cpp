@@ -36,8 +36,6 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	players[3].name = "D'Artagnan";
 	players[3].spriteName = "test/whitebbman.png";
 	
-	_playerCount = 0;
-
 	_running = true;
 }
 
@@ -50,23 +48,54 @@ void SetupScene::Update(const std::vector<InputState>& inputs, uint32_t timestam
 		{
 			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
 			players[i].present = !players[i].present;
-			if (players[i].present)
-			{
-				_playerCount++;
-			}
-			else
-			{
-				_playerCount--;
-			}
+			players[i].isComputer = false;
 		}
+
+		if (inputs[i].GetButtonPressed(InputState::L1))
+		{
+			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
+			players[0].isComputer = !players[0].isComputer;
+			players[0].present = players[0].isComputer;
+		}
+
+		if (inputs[i].GetButtonPressed(InputState::L2))
+		{
+			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
+			players[2].isComputer = !players[2].isComputer;
+			players[2].present = players[2].isComputer;
+		}
+
+		if (inputs[i].GetButtonPressed(InputState::R1))
+		{
+			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
+			players[1].isComputer = !players[1].isComputer;
+			players[1].present = players[1].isComputer;
+		}
+
+		if (inputs[i].GetButtonPressed(InputState::R2))
+		{
+			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
+			players[3].isComputer = !players[3].isComputer;
+			players[3].present = players[3].isComputer;
+		}
+	}
+	
+	int playerCount = 0;
+	for (int i=0;i<4;i++)
+	{
+		if (players[i].present)
+		{
+			playerCount++;
+		}
+	}
 		
-		if (inputs[i].GetButtonPressed(InputState::START))
+	for (int i=0;i<4;i++)
+	{
+		if (inputs[i].GetButtonPressed(InputState::START) && playerCount > 1)
 		{
 			_running = false;
 		}
-
 	}
-
 }
 
 struct Positions

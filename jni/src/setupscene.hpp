@@ -33,8 +33,6 @@ class SetupScene : public SceneInterface
 		std::shared_ptr<Mix_Chunk> _selectionTwink;
 
 		PlayerConfigArray players;
-
-		int _playerCount;
 };
 
 }

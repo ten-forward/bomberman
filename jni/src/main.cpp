@@ -156,7 +156,6 @@ void game()
 		else
 		{
 		}
-
 	}
 }
 
