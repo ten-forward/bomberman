@@ -2,11 +2,8 @@
 
 # prepare the computer for building bomberman
 
-if [ $THE_MAKEFILE == "Makefile.linux" ]
-then 
-    sudo apt-get update -qq
-    if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
-fi
+sudo apt-get update -qq
+if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
   
 if [ $THE_MAKEFILE == "Makefile.android" ]
 then 
