@@ -9,9 +9,7 @@ before_install:
   
 install:
   - export ANDROID_HOME=$(pwd)/android-sdk-linux 
-  - bash provision.sh
-
-before_script: 
+  - ./provision.sh
   
 script:
   - make -j -f $THE_MAKEFILE all
