@@ -27,6 +27,8 @@ namespace bestiary {
 		player->InitializeGraphicRessources(iRenderer);
 		player->_alive = alive;
 
+		// set API global
+
 		coroutine.RunScript(script);
 		delete[] script;
 
@@ -38,6 +40,9 @@ namespace bestiary {
 
 	void Computer::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
+		// evaluate conditions and perform action
+		// _coroutine.Resume();
+
 		Player::Evolve(iInputs, iTimestamp, iPresentMap, iFutureMap);
 	}
 
