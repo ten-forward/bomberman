@@ -8,6 +8,7 @@ before_install:
   - git submodule update --init --recursive
   
 install:
+  - export ANDROID_HOME=$(pwd)/android-sdk-linux 
   - bash provision.sh
 
 before_script: 
