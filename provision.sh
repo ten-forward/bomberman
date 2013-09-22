@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # prepare the computer for building bomberman
 
