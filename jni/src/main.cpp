@@ -134,6 +134,8 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
+	// This is where the game's storyboard is encoded
+
 	while (true)
 	{
 		std::shared_ptr<bomberman::MenuScene> menuScene(new bomberman::MenuScene());
