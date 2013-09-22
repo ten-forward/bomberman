@@ -1,6 +1,7 @@
 #include "victoryscene.hpp"
 #include "utils.hpp"
 #include "printlog.hpp"
+#include "constants.hpp"
 
 #include <sstream>
 
@@ -41,6 +42,15 @@ void VictoryScene::Update(const std::vector<InputState>& inputs, uint32_t timest
 
 void VictoryScene::Render(SDL_Renderer *renderer)
 {
+	SDL_Rect r;
+	r.w = constants::SCREEN_WIDTH;
+	r.h = constants::SCREEN_HEIGHT;
+	r.x = 0;
+	r.y = 0;
+	
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &r);
+
 	utils::DrawImageAtCenter(renderer, _theVictorIs);
 }
 
