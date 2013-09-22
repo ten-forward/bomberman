@@ -1,11 +1,23 @@
 language: java cpp
+
+env:
+  - THE_MAKEFILE=Makefile.android
+  - THE_MAKEFILE=Makefile.linux
+
 before_install:
   - git submodule update --init --recursive
-  - sudo apt-get update -qq
-  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
-  - wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r9-linux-x86.tar.bz2 -O ndk.tar.bz2
-  - tar -xf ndk.tar.bz2
-  - export ANDROID_HOME=$(pwd)/android-sdk-linux
+  
+  - if [ $THE_MAKEFILE == "Makefile.linux" ] then \
+    sudo apt-get update -qq && \
+    if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi \
+    fi
+  
+  - if [ $THE_MAKEFILE == "Makefile.android" ] then \
+    wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r9-linux-x86.tar.bz2 -O ndk.tar.bz2 && \
+    tar -xf ndk.tar.bz2 && \
+    export ANDROID_HOME=$(pwd)/android-sdk-linux \
+    fi
+  
 before_script: 
   - wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
   - tar xzvf android-sdk_r22.0.1-linux.tgz > /dev/null
@@ -14,5 +26,5 @@ before_script:
   - $ANDROID_HOME/tools/android list targets
   - $ANDROID_HOME/tools/android -s update project --path . --target "android-10"
 script:
-  - make -j -f Makefile.android all
-  - make -j -f Makefile.linux all
+  - make -j -f $THE_MAKEFILE all
+  
