@@ -1,5 +1,6 @@
 language: java cpp
 before_install:
+  - git submodule update --init --recursive
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
   - wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r9-linux-x86.tar.bz2 -O ndk.tar.bz2
