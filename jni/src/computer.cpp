@@ -9,13 +9,12 @@ namespace bestiary {
 		auto size = rw->size(rw);
 		char* script = new char[size];
 		rw->read(rw, script, sizeof(char), size);
-
-		Lua lua;
-		auto coroutine = lua.CreateCoroutine();
-
+		
 		SDL_FreeRW(rw);
 
-		auto player = std::make_shared<Computer>(coroutine);
+		ScriptAPI sa(script);
+
+		auto player = std::make_shared<Computer>(sa);
 		player->_name = iName;
 		player->_spriteName = iSpriteName;
 		player->zlevel = 2;
@@ -27,23 +26,22 @@ namespace bestiary {
 		player->InitializeGraphicRessources(iRenderer);
 		player->_alive = alive;
 
-		// set API global
-
-		coroutine.RunScript(script);
 		delete[] script;
 
 		return player;
 	}
 
-	Computer::Computer(LuaCoroutine coroutine) : _coroutine(coroutine)
-	{ }
-
-	void Computer::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	Computer::Computer(ScriptAPI script) : 
+		_script(script)
 	{
-		// evaluate conditions and perform action
-		// _coroutine.Resume();
+	}
 
-		Player::Evolve(iInputs, iTimestamp, iPresentMap, iFutureMap);
+	void Computer::Evolve(const std::vector<InputState>& /* iInputs */, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	{
+		std::vector<InputState> inputs(4);
+		inputs[_inputStateIdx] = _script.Resume(x, y, iPresentMap);
+
+		Player::Evolve(inputs, iTimestamp, iPresentMap, iFutureMap);
 	}
 
 	void Computer::Interact(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const EntitySet &iEntities)
