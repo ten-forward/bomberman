@@ -13,3 +13,6 @@
 [submodule "jni/boost"]
 	path = jni/boost
 	url = https://github.com/davidsiaw/boost
+[submodule "jni/luacppinterface"]
+	path = jni/luacppinterface
+	url = https://github.com/davidsiaw/luacppinterface

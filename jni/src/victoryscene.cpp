@@ -1,6 +1,7 @@
 #include "victoryscene.hpp"
 #include "utils.hpp"
 #include "printlog.hpp"
+#include "constants.hpp"
 
 #include <sstream>
 
@@ -20,7 +21,7 @@ void VictoryScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	ss << "Player " << (_victor + 1) << " wins!";
 	_theVictorIs = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));
 	
-	if(Mix_PlayMusic(_music.get(), -1) == -1)
+	if(Mix_PlayMusic(_music.get(), 0) == -1)
 	{
 		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
@@ -32,7 +33,7 @@ void VictoryScene::Update(const std::vector<InputState>& inputs, uint32_t timest
 {
 	for (int i=0;i<4;i++)
 	{	
-		if (inputs[i].GetAButtonJustPressed())
+		if (inputs[i].GetButtonPressed(InputState::A))
 		{
 			_running = false;
 		}
@@ -41,6 +42,15 @@ void VictoryScene::Update(const std::vector<InputState>& inputs, uint32_t timest
 
 void VictoryScene::Render(SDL_Renderer *renderer)
 {
+	SDL_Rect r;
+	r.w = constants::SCREEN_WIDTH;
+	r.h = constants::SCREEN_HEIGHT;
+	r.x = 0;
+	r.y = 0;
+	
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &r);
+
 	utils::DrawImageAtCenter(renderer, _theVictorIs);
 }
 
