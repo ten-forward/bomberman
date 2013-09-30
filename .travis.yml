@@ -1,11 +1,18 @@
 language: java cpp
+env:
+  global:
+  - "ARTIFACTS_AWS_REGION=us-east-1"
+  - "ARTIFACTS_S3_BUCKET=bomberman.ten-forward"
+  - secure: "e+lkwagu20aNVU86Rlwf4aJ7nZf1b0WT1s+HHdeWpyqM+O7Zu67z36q1BhgUunv56szVK2xXMU6K2I3KsXemCMO4/KA7usx/HM9uQ65tL6WwuppQYWqPzSiusljas15EpWQsIseNJ2Rjm8lBQY7MP3whurdXtqR8z5N6IxifEMU="
+  - secure: "mhr46ugNFBF/8Vlu8NgPHw5WFV97QzpFzFTOGiaHzp2daYgnAvSKrqmlZ3dCb9fMjPsFFev+XIgybJhpPKSl5yIPu8HvlNPCtyIM8fdAo0Fb00O8dEdWX/ijUTQvLKs9U8dSGPpx98PHzxepSLmEkaUqHtvqCyZE9CA6kPdkq8A="
 before_install:
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
   - wget --timeout=30 http://dl.google.com/android/ndk/android-ndk-r9-linux-x86.tar.bz2 -O ndk.tar.bz2
   - tar -xf ndk.tar.bz2
   - export ANDROID_HOME=$(pwd)/android-sdk-linux
-before_script: 
+before_script:
+  - gem install travis-artifacts
   - wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
   - tar xzvf android-sdk_r22.0.1-linux.tgz > /dev/null
   - $ANDROID_HOME/tools/android list sdk
@@ -15,3 +22,5 @@ before_script:
 script:
   - make -j -f Makefile.android all
   - make -j -f Makefile.linux all
+after_success: # and this only on success
+  - travis-artifacts upload --path Makefile.linux
