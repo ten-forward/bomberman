@@ -21,4 +21,4 @@ before_script:
 script:
   - make -j -f $THE_MAKEFILE all
 after_success:
-  - if [$TRAVIS_REPO_SLUG = ssrb/bomberman] && [$THE_MAKEFILE = Makefile.android]; then travis-artifacts upload --path bin/Bomberman-debug.apk; fi
+  - if [$TRAVIS_REPO_SLUG = "ssrb/bomberman"] && [$THE_MAKEFILE = "Makefile.android"]; then travis-artifacts upload --path bin/Bomberman-debug.apk; fi
