@@ -4,9 +4,9 @@
 #include "inputstate.hpp"
 #include "printlog.hpp"
 
-#include <luacppinterface.h>
 #include <memory>
 
+#include <luacppinterface.h>
 
 namespace bomberman {
 namespace bestiary {
@@ -21,7 +21,7 @@ namespace bestiary {
 		{
 			Lua _lua;
 		public:
-			ScriptAPI(std::string script)
+			ScriptAPI(const std::string &script)
 			{
 				LuaTable global = _lua.GetGlobalEnvironment();
 
@@ -49,7 +49,7 @@ namespace bestiary {
 				printlog("ScriptResult: %s\n", result.c_str());
 			}
 
-			const InputState& Resume(int x, int y, const MapConstPtr &iPresentMap) const
+			InputState Resume(int x, int y, const MapConstPtr &iPresentMap) const
 			{
 				auto global = _lua.GetGlobalEnvironment();
 				LuaCoroutine coroutine = global.Get<LuaCoroutine>("__coroutine");
