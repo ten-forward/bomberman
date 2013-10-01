@@ -35,9 +35,9 @@ ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
     -include $(DEPS)
 endif
 
-$(TARGET): $(OBJS) $(LUAINTERFACE)
+$(TARGET): $(OBJS) $(LUAINTERFACE) $(LUA)
 	@echo [LINK] $@
-	@$(CXX) $^ $(LUA) $(LDFLAGS) -o $@
+	@$(CXX) $^ $(LDFLAGS) -o $@
 	
 $(OUT)/%.o:%.cpp $(OUT)/%.d
 	@echo [C++] $<
@@ -78,6 +78,8 @@ $(SDL2TTF): $(SDL2MAIN)
 $(LUAINTERFACE):
 	@echo [BLD] $@
 	@cd jni/luacppinterface && ./build.sh > /dev/null
+
+$(LUA): $(LUAINTERFACE)
 
 %/.f:
 	@echo [MKDIR] $(dir $@)
