@@ -4,9 +4,14 @@ SDL2IMAGE=$(SDL2PREFIX)/lib/libSDL2_image.so
 SDL2MIXER=$(SDL2PREFIX)/lib/libSDL2_mixer.so
 SDL2TTF=$(SDL2PREFIX)/lib/libSDL2_ttf.so
 SDL2CONFIG=$(SDL2PREFIX)/bin/sdl2-config
+LUAINTERFACE=jni/luacppinterface/LuaCppInterface/libluacppinterface.a
+LUA=jni/luacppinterface/lua/src/liblua.a
 
 CXX=g++
-CXXFLAGS=-std=c++0x -pipe $(shell $(SDL2CONFIG) --cflags) -I$(PWD)/jni/boost
+CXXFLAGS=-std=c++0x -pipe $(shell $(SDL2CONFIG) --cflags) \
+	-I$(PWD)/jni/luacppinterface/LuaCppInterface \
+	-I$(PWD)/jni/luacppinterface/lua/src \
+	-I$(PWD)/jni/boost
 LDFLAGS=$(shell $(SDL2CONFIG) --libs) -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 TARGET=assets/bomberman
@@ -30,7 +35,7 @@ ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
     -include $(DEPS)
 endif
 
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) $(LUAINTERFACE) $(LUA)
 	@echo [LINK] $@
 	@$(CXX) $^ $(LDFLAGS) -o $@
 	
@@ -69,6 +74,10 @@ $(SDL2TTF): $(SDL2MAIN)
 	@cd jni/SDL_ttf && ./autogen.sh > /dev/null
 	@cd jni/SDL_ttf && ./configure --prefix $(SDL2PREFIX) > /dev/null
 	@make -C jni/SDL_ttf -j all install > /dev/null
+
+$(LUAINTERFACE):
+	@echo [BLD] $@
+	@cd jni/luacppinterface && ./build.sh > /dev/null
 
 %/.f:
 	@echo [MKDIR] $(dir $@)
