@@ -18,6 +18,7 @@ enum EntityFlags
 	PROPBOMB = 0x10,
 	EXPLOSION = 0x20,
 	PROPEXPLOSION = 0x40,
+	OUTSIDE = 0x80,
 
 	PLAYER1 = 0x1002,
 	PLAYER2 = 0x2002,
@@ -59,6 +60,7 @@ ScriptAPI::ScriptAPI(const std::string &script)
 	map.Set<int>("PROPBOMB", PROPBOMB);
 	map.Set<int>("EXPLOSION", EXPLOSION);
 	map.Set<int>("PROPEXPLOSION", PROPEXPLOSION);
+	map.Set<int>("OUTSIDE", OUTSIDE);
 
 	map.Set<int>("PLAYER1", PLAYER1);
 	map.Set<int>("PLAYER2", PLAYER2);
@@ -66,7 +68,8 @@ ScriptAPI::ScriptAPI(const std::string &script)
 	map.Set<int>("PLAYER4", PLAYER4);
 				
 	std::string a = "actions.initialize()\n" + script;
-	coroutine.RunScript(a);
+	auto result = coroutine.RunScript(a);
+	printlog("Script result: %s\n", result.c_str());
 }
 
 InputState ScriptAPI::Resume(int x, int y, int mx, int my, const MapConstPtr &iPresentMap) const
@@ -87,6 +90,16 @@ InputState ScriptAPI::Resume(int x, int y, int mx, int my, const MapConstPtr &iP
 	auto getY = lua.CreateFunction<int()>([&]() -> int
 	{
 		return y;
+	});
+	
+	auto getWidth = lua.CreateFunction<int()>([&]() -> int
+	{
+		return iPresentMap->GetWidth();
+	});
+
+	auto getHeight = lua.CreateFunction<int()>([&]() -> int
+	{
+		return iPresentMap->GetHeight();
 	});
 
 	auto moveUp = lua.CreateYieldingFunction<void()>([&]()
@@ -128,6 +141,11 @@ InputState ScriptAPI::Resume(int x, int y, int mx, int my, const MapConstPtr &iP
 	[&](int x, int y) -> int
 	{
 		int result = 0;
+		if (iPresentMap->CheckPosition(x,y) == Map::BOUNDARY)
+		{
+			return OUTSIDE;
+		}
+
 		iPresentMap->ForeachEntity(
 		[&](const EntityPtr& ntt)
 		{
@@ -177,19 +195,17 @@ InputState ScriptAPI::Resume(int x, int y, int mx, int my, const MapConstPtr &iP
 	map.Set("getX", getX);
 	map.Set("getY", getY);
 
+	map.Set("getWidth", getWidth);
+	map.Set("getHeight", getHeight);
+
+	map.Set("lookAt", lookAt);
+
 	actions.Set("moveUp", moveUp);
 	actions.Set("moveDown", moveDown);
 	actions.Set("moveLeft", moveLeft);
 	actions.Set("moveRight", moveRight);
 	actions.Set("placeBomb", placeBomb);
 	actions.Set("waitUntilFlush", waitUntilFlush);
-				
-	// make it more convenient in lua
-	lua.RunScript(
-		"map.getPosition = function()\n"
-		"	return map.getX(), map.getY()\n"
-		"end\n"
-		);
 
 	bool canResume = true;
 
