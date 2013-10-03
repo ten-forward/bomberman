@@ -24,6 +24,7 @@ namespace bestiary {
 			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &) {}
 			virtual void Render(SDL_Renderer*) const;
 			void Kill();
+			int GetPlayerIndex() const { return _inputStateIdx; }
 		protected:
 
 			enum State {
@@ -55,6 +56,8 @@ namespace bestiary {
 
 			static std::shared_ptr<Mix_Chunk> _bombPlaceSound;
 			static State DynamicToStaticState(State iState);
+
+			void EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 	};
 }
 }
