@@ -1,24 +1,8 @@
-language: java cpp
+language: objective-c
 
-env:
-  matrix:
-    - THE_MAKEFILE=Makefile.android
-    - THE_MAKEFILE=Makefile.linux
-  global:
-    - ARTIFACTS_AWS_REGION=us-east-1
-    - ARTIFACTS_S3_BUCKET=bomberman.ten-forward
-#  - secure: "e+lkwagu20aNVU86Rlwf4aJ7nZf1b0WT1s+HHdeWpyqM+O7Zu67z36q1BhgUunv56szVK2xXMU6K2I3KsXemCMO4/KA7usx/HM9uQ65tL6WwuppQYWqPzSiusljas15EpWQsIseNJ2Rjm8lBQY7MP3whurdXtqR8z5N6IxifEMU="
-#  - secure: "mhr46ugNFBF/8Vlu8NgPHw5WFV97QzpFzFTOGiaHzp2daYgnAvSKrqmlZ3dCb9fMjPsFFev+XIgybJhpPKSl5yIPu8HvlNPCtyIM8fdAo0Fb00O8dEdWX/ijUTQvLKs9U8dSGPpx98PHzxepSLmEkaUqHtvqCyZE9CA6kPdkq8A="
 before_install:
   - git submodule update --init --recursive
 
-install:
-  - export ANDROID_HOME=$(pwd)/android-sdk-linux 
-  - ./provision.sh
-
-before_script:
-  - gem install travis-artifacts
 script:
-  - make -j -f $THE_MAKEFILE all
-#after_success:
-#  - if [ $TRAVIS_REPO_SLUG = ssrb/bomberman ] && [ $THE_MAKEFILE = Makefile.android ]; then travis-artifacts upload --path bin/Bomberman-debug.apk; fi
+  - CXX=clang++ PLATFORM=MACOSX make -f Makefile.linux
+
