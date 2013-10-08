@@ -6,9 +6,9 @@
 #include <memory>
 #include <boost/foreach.hpp>
 
-#ifndef ANDROID
+#ifdef PROGRAM_OPTIONS
 #include <boost/program_options.hpp>
-#endif // ANDROID
+#endif // PROGRAM_OPTIONS
 
 #include "inputstate.hpp"
 #include "constants.hpp"
@@ -44,9 +44,9 @@ static SDL_Window* window = NULL;
 static SDL_Renderer* renderer = NULL;
 static std::map<int, InputState::Key> keyMap;
 
-#ifndef ANDROID
+#ifdef PROGRAM_OPTIONS
 static boost::program_options::variables_map vm;
-#endif // ANDROID
+#endif // PROGRAM_OPTIONS
 
 void run(std::shared_ptr<bomberman::SceneInterface> scene)
 {
@@ -142,7 +142,7 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
-#ifndef ANDROID
+#ifdef PROGRAM_OPTIONS
 	// This is the game's options harness. We perform game testing here without having to go through
 	// the menus which are tedious
 	if (vm.size() != 0)
@@ -200,7 +200,7 @@ void game()
 		run(fs);
 		return;
 	}
-#endif // ANDROID
+#endif // PROGRAM_OPTIONS
 
 	// This is where the game's storyboard is encoded
 	while (true)
@@ -230,7 +230,7 @@ void game()
 
 int main(int argc, char** argv)
 {
-#ifndef ANDROID
+#ifdef PROGRAM_OPTIONS
 	namespace po = boost::program_options;
 
 	po::options_description desc("Allowed options");
@@ -252,7 +252,7 @@ int main(int argc, char** argv)
 		printlog("%s\n", ss.str().c_str());
 		return 0;
 	}
-#endif // ANDROID
+#endif // PROGRAM_OPTIONS
 
 #ifdef ANDROID
 	keyMap[ouya::UP] = InputState::UP;
