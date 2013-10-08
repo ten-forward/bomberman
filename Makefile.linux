@@ -6,7 +6,7 @@ SDL2IMAGE=$(SDL2PREFIX)/lib/libSDL2_image.$(EXTENSION)
 SDL2MIXER=$(SDL2PREFIX)/lib/libSDL2_mixer.$(EXTENSION)
 SDL2TTF=$(SDL2PREFIX)/lib/libSDL2_ttf.$(EXTENSION)
 SDL2CONFIG=$(SDL2PREFIX)/bin/sdl2-config
-LUAINTERFACESRC=jni/luacppinterface/LuaCppInterface/
+LUAINTERFACESRC=jni/luacppinterface/LuaCppInterface
 LUA=jni/luacppinterface/lua/src/liblua.a
 
 CXXFLAGS=-std=c++11 -stdlib=libc++ -pipe $(shell $(SDL2CONFIG) --cflags) \
@@ -28,7 +28,6 @@ NODEPS=clean
 .SECONDEXPANSION:
 
 all: $(TARGET)
-	echo $(SDL2MAIN)
 
 clean:
 	-rm -rf $(TARGET) $(OUT) $(SDL2PREFIX)
