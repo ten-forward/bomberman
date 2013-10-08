@@ -13,11 +13,12 @@ CXXFLAGS=-std=c++11 -stdlib=libc++ -pipe $(shell $(SDL2CONFIG) --cflags) \
 	-I$(PWD)/jni/luacppinterface/LuaCppInterface \
 	-I$(PWD)/jni/luacppinterface/lua/src \
 	-I$(PWD)/jni/boost
+	
 LDFLAGS=$(shell $(SDL2CONFIG) --libs) -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 TARGET=assets/bomberman
 SRCDIR=jni/src
-SRC=$(shell find $(SRCDIR) -name "*.cpp") $(shell find $(LUAINTERFACESRC) -name "*.cpp")
+SRC=$(shell find $(LUAINTERFACESRC) -name "*.cpp") $(shell find $(SRCDIR) -name "*.cpp") 
 OUT=obj
 OBJS=$(SRC:%.cpp=$(OUT)/%.o)
 DEPS=$(SRC:%.cpp=$(OUT)/%.d)

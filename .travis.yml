@@ -2,6 +2,7 @@ language: objective-c
 
 before_install:
   - git submodule update --init --recursive
+  - make -v
 
 script:
   - CXX=clang++ PLATFORM=MACOSX make -f Makefile.linux
