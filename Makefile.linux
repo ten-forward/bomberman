@@ -53,7 +53,7 @@ $(OUT)/%.d:%.cpp $$(@D)/.f $(SDL2MAIN) $(SDL2IMAGE) $(SDL2MIXER) $(SDL2TTF)
 $(OUT)/%.o:%.cpp $(OUT)/%.d
 	echo [C++] $<
 	$(CXX) $< $(CXXFLAGS) -c -o $@
-	
+
 $(SDL2MAIN):
 	echo [BLD] $@
 	chmod +x jni/SDL/autogen.sh
