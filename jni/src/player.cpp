@@ -109,9 +109,7 @@ namespace bestiary {
 			*_alive = false;
 			return;
 		}
-
-		const int kAmountPerTile = constants::SUBTILE_WIDTH;
-		
+				
 		auto player = thePlayer;
 
 		const auto &inputs = iInputs[_inputStateIdx];
@@ -219,7 +217,7 @@ namespace bestiary {
 							myprime = player->my + sign(dy);
 						}
 				
-						if (abs(mxprime) >= kAmountPerTile || abs(myprime) >= kAmountPerTile)
+						if (abs(mxprime) >= constants::AMOUNT_PER_TILE || abs(myprime) >= constants::AMOUNT_PER_TILE)
 						{
 							// completing transition
 							int xprime = player->x + sign(player->mx);

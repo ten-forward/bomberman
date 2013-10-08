@@ -24,6 +24,7 @@ struct PlayerConfig
 	bool isComputer;
 	std::string spriteName;
 	std::string name;
+	std::string aiScript;
 };
 
 typedef std::array<PlayerConfig, 4> PlayerConfigArray;
