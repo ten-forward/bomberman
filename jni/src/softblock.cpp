@@ -1,18 +1,22 @@
 #include "softblock.hpp"
 #include "constants.hpp"
+#include "bonus.hpp"
 
 // SDL
 #include <SDL_image.h>
 
+using bomberman::bonus::Bonus;
+
 namespace bomberman {
 namespace architecture {
 
-	SoftBlockPtr SoftBlock::Create() 
+	SoftBlockPtr SoftBlock::Create(double iBonusProbability) 
 	{
 		auto block = std::make_shared<SoftBlock>();
 		block->zlevel = 2;
 		block->elevel = -1;
 		block->isAlive = true;
+		block->_bonusProbability = iBonusProbability;
 		return block;
 	}
 
@@ -27,6 +31,10 @@ namespace architecture {
 	{
 		if (!isAlive)
 		{
+			if (random() < RAND_MAX * _bonusProbability) 
+			{
+				iFutureMap->SetEntity(Bonus::Create());
+			}
 			return;
 		}
 

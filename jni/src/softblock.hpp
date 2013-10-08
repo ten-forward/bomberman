@@ -18,7 +18,7 @@ namespace architecture {
 	class SoftBlock : public Entity {
 		bool isAlive;
 		public:
-			static SoftBlockPtr Create();
+			static SoftBlockPtr Create(double iBonusProbability);
 			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &) {}
 			virtual void Render(SDL_Renderer* iRenderer) const;
@@ -27,6 +27,7 @@ namespace architecture {
 		protected:
 			static void InitializeGraphicRessources(SDL_Renderer *iRenderer);
 			static std::shared_ptr<SDL_Texture> _SoftBlock;
+			double _bonusProbability;
 	};
 }
 }
