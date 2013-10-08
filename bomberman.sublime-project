@@ -1,11 +1,11 @@
 {
-	"folders":
-	[
+   "folders":
+   	[
 		{
-			"path": "/home/sb/Hacking/OUYA-ODK/bomberman/jni"
+			"path": "jni"
 		}
 	],
-
+	
    "settings":
     {
           "sublimeclang_options":
