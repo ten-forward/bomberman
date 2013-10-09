@@ -96,7 +96,7 @@ namespace bestiary {
 		return true;
 	}
 
-	void Player::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	void Player::EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		if (_state == Dying)
 		{
@@ -109,10 +109,8 @@ namespace bestiary {
 			*_alive = false;
 			return;
 		}
-
-		const int kAmountPerTile = constants::SUBTILE_WIDTH;
-		
-		auto player = std::make_shared<Player>(*this);
+				
+		auto player = thePlayer;
 
 		const auto &inputs = iInputs[_inputStateIdx];
 		
@@ -178,7 +176,6 @@ namespace bestiary {
 			player->_nextFrameDueTime = iTimestamp + constants::PLAYER_FRAME_UPDATE_DELAY;
 		}
 		
-
 		if (_nextUpdateDueTime < iTimestamp)
 		{
 			player->_nextUpdateDueTime = iTimestamp + constants::PLAYER_UPDATE_DELAY;
@@ -220,7 +217,7 @@ namespace bestiary {
 							myprime = player->my + sign(dy);
 						}
 				
-						if (abs(mxprime) >= kAmountPerTile || abs(myprime) >= kAmountPerTile)
+						if (abs(mxprime) >= constants::AMOUNT_PER_TILE || abs(myprime) >= constants::AMOUNT_PER_TILE)
 						{
 							// completing transition
 							int xprime = player->x + sign(player->mx);
@@ -246,6 +243,11 @@ namespace bestiary {
 		}
 
 		iFutureMap->SetEntity(player);
+	}
+
+	void Player::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	{
+		EvolutionRoutine(std::make_shared<Player>(*this), iInputs, iTimestamp, iPresentMap, iFutureMap);
 	}
 
 	void Player::Render(SDL_Renderer *iRenderer) const 

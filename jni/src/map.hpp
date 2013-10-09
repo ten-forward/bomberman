@@ -52,6 +52,9 @@ class Map
 		void ForeachEntity(std::function<void(const EntityConstPtr &)> func) const;
 		void ForeachEntity(std::function<void(const EntityPtr &)> func);
 
+		int GetWidth() const { return _width; }
+		int GetHeight() const { return _height; }
+
 	private:
 		int _width, _height;
 		typedef boost::multi_array<EntitySet, 2> map_type;

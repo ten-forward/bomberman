@@ -22,6 +22,7 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	{
 		players[i].present = false;
 		players[i].isComputer = false;
+		players[i].aiScript = "aiscripts/example.lua";
 	}
 
 	players[0].name = "Athos";

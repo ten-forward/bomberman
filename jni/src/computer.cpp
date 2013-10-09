@@ -2,12 +2,13 @@
 
 namespace bomberman {
 namespace bestiary {
-	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, const std::string &iAiScript, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
 	{
-		SDL_RWops *rw = SDL_RWFromFile("aiscripts/example.lua", "r");
+		SDL_RWops *rw = SDL_RWFromFile(iAiScript.c_str(), "r");
 
 		auto size = rw->size(rw);
-		char* script = new char[size];
+		char* script = new char[size + 1];
+		memset(script, 0, size + 1);
 		rw->read(rw, script, sizeof(char), size);
 		
 		SDL_FreeRW(rw);
@@ -39,9 +40,13 @@ namespace bestiary {
 	void Computer::Evolve(const std::vector<InputState>& /* iInputs */, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		std::vector<InputState> inputs(4);
-		inputs[_inputStateIdx] = _script.Resume(x, y, iPresentMap);
 
-		Player::Evolve(inputs, iTimestamp, iPresentMap, iFutureMap);
+		if (_nextUpdateDueTime < iTimestamp)
+		{
+			inputs[_inputStateIdx] = _script.Resume(x, y, mx, my, iPresentMap);
+		}
+	
+		EvolutionRoutine(std::make_shared<Computer>(*this), inputs, iTimestamp, iPresentMap, iFutureMap);
 	}
 
 	void Computer::Interact(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const EntitySet &iEntities)

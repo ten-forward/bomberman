@@ -45,6 +45,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	fadescene.cpp \
 	menuscene.cpp \
 	setupscene.cpp \
+	scriptapi.cpp \
 	victoryscene.cpp
 	
 

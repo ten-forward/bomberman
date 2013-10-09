@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)jni\SDL\include;$(SolutionDir)jni\SDL_image;$(SolutionDir)jni\SDL_mixer;$(SolutionDir)jni\SDL_ttf;$(SolutionDir)jni\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)jni\SDL\include;$(SolutionDir)jni\SDL_image;$(SolutionDir)jni\SDL_mixer;$(SolutionDir)jni\SDL_ttf;$(SolutionDir)jni\boost;$(SolutionDir)jni\luacppinterface\luacppinterface;$(SolutionDir)jni\luacppinterface\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -65,7 +65,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;SMALL_SCREEN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)jni\SDL\include;$(SolutionDir)jni\SDL_image;$(SolutionDir)jni\SDL_mixer;$(SolutionDir)jni\SDL_ttf;$(SolutionDir)jni\boost;$(SolutionDir)jni\luacppinterface\luacppinterface;$(SolutionDir)jni\luacppinterface\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -73,7 +73,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)jni\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>cd $(ProjectDir)..\jni\boost\ 
+bootstrap.bat 
+cd $(ProjectDir)..\jni\boost\ 
+bjam.exe --toolset=msvc --with-program_options
+</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\src\block.hpp" />
@@ -95,6 +103,7 @@
     <ClInclude Include="..\jni\src\propbomb.hpp" />
     <ClInclude Include="..\jni\src\propexplosion.hpp" />
     <ClInclude Include="..\jni\src\scene_interface.hpp" />
+    <ClInclude Include="..\jni\src\scriptapi.hpp" />
     <ClInclude Include="..\jni\src\setupscene.hpp" />
     <ClInclude Include="..\jni\src\softblock.hpp" />
     <ClInclude Include="..\jni\src\touchscreenkeyscene.hpp" />
@@ -119,6 +128,7 @@
     <ClCompile Include="..\jni\src\printlog.cpp" />
     <ClCompile Include="..\jni\src\propbomb.cpp" />
     <ClCompile Include="..\jni\src\propexplosion.cpp" />
+    <ClCompile Include="..\jni\src\scriptapi.cpp" />
     <ClCompile Include="..\jni\src\setupscene.cpp" />
     <ClCompile Include="..\jni\src\softblock.cpp" />
     <ClCompile Include="..\jni\src\touchscreenkeyscene.cpp" />
