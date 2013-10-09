@@ -78,7 +78,6 @@ namespace arsenal {
 				printlog("Mix_LoadWAV: %s\n", Mix_GetError());
 			}
 		}
-
 	}
 
 	void Bomb::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const

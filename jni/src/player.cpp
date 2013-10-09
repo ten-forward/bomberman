@@ -2,7 +2,9 @@
 #include "corpse.hpp"
 #include "inputstate.hpp"
 #include "bomb.hpp"
+#include "propbomb.hpp"
 #include "block.hpp"
+#include "bonus.hpp"
 #include "softblock.hpp"
 #include "constants.hpp"
 #include "printlog.hpp"
@@ -13,6 +15,7 @@
 #include <boost/foreach.hpp>
 
 using bomberman::arsenal::Bomb;
+using bomberman::arsenal::PropBomb;
 using bomberman::architecture::Block;
 using bomberman::architecture::SoftBlock;
 
@@ -51,6 +54,7 @@ namespace bestiary {
 		player->_state = IdleDown;
 		player->_inputStateIdx = iInputStateIdx;
 		player->InitializeGraphicRessources(iRenderer);
+		player->_nbProBomb = 0;
 		player->_alive = alive;
 		return player;
 	}
@@ -156,7 +160,16 @@ namespace bestiary {
 			if (!alreadyBombed)
 			{
 				const int kBombTimer = 3000;
-				auto newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
+				EntityPtr newBomb;
+				if(_nbProBomb)
+				{
+					player->_nbProBomb = _nbProBomb - 1;
+					newBomb = PropBomb::Create(iTimestamp + kBombTimer, 2);
+				}
+				else
+				{
+					newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
+				}
 				newBomb->x = player->x;
 				newBomb->y = player->y;
 
@@ -250,6 +263,21 @@ namespace bestiary {
 		EvolutionRoutine(std::make_shared<Player>(*this), iInputs, iTimestamp, iPresentMap, iFutureMap);
 	}
 
+	void Player::Interact(const std::vector<InputState>& , Uint32 , const EntitySet &iOthers)
+	{
+		using bomberman::bonus::Bonus;
+
+		BOOST_FOREACH (auto other, iOthers)
+		{
+			if(typeid(*other) == typeid(Bonus))
+			{
+				_nbProBomb += 3;
+				auto bonus = std::dynamic_pointer_cast<Bonus>(other);
+				bonus->NotifyConsumed();
+			}
+		}
+	}
+
 	void Player::Render(SDL_Renderer *iRenderer) const 
 	{
 
@@ -307,21 +335,21 @@ namespace bestiary {
 	}
 
 	Player::State Player::DynamicToStaticState(Player::State iState) 
-			  {
-			    switch (iState)
-			      {
-			      case WalkingDown:
-					return IdleDown;
-			      case WalkingUp:
-					return IdleUp;
-			      case WalkingRight:
-					return IdleRight;
-			      case WalkingLeft:
-					return IdleLeft;
-			      default:
-					;
-			      }	 
-			    return iState;
-			  }
+	  {
+	    switch (iState)
+	      {
+	      case WalkingDown:
+			return IdleDown;
+	      case WalkingUp:
+			return IdleUp;
+	      case WalkingRight:
+			return IdleRight;
+	      case WalkingLeft:
+			return IdleLeft;
+	      default:
+			;
+	      }	 
+	    return iState;
+	  }
 }
 }
