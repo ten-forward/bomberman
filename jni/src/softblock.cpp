@@ -33,7 +33,10 @@ namespace architecture {
 		{
 			if (random() < RAND_MAX * _bonusProbability) 
 			{
-				iFutureMap->SetEntity(Bonus::Create());
+				auto bonus = Bonus::Create();
+				bonus->x = x;
+				bonus->y = y;
+				iFutureMap->SetEntity(bonus);
 			}
 			return;
 		}
