@@ -1,0 +1,597 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Entity",
+				"EntityPtr"
+			],
+			[
+				"_receive",
+				"_receiveBuffer"
+			],
+			[
+				"b",
+				"beginend	$1.begin(), $1.end()"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "bomberman.sublime-project",
+			"settings":
+			{
+				"buffer_size": 398,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 369.0,
+		"selected_items":
+		[
+			[
+				"Bro",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Pro",
+				"Project: Save As"
+			],
+			[
+				"pro",
+				"Project: Add Folder"
+			],
+			[
+				"bro",
+				"Preferences: Browse Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Bros",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Pa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"PA",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pa",
+				"Package Control: Discover Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"paa",
+				"Package Control: Enable Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 171.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/doccarcass/Hacking/bomberman.android/jni/bomberman.sublime-project",
+		"/home/doccarcass/Hacking/bomberman.android/jni/bomberman.sublime-workspace",
+		"/home/doccarcass/Hacking/bomberman.linux/jni/luacppinterface/configure.ac",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/computer.cpp",
+		"/home/doccarcass/Hacking/bomberman.android/.travis.yml",
+		"/home/doccarcass/Hacking/bomberman.linux/Makefile.linux",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/computer.hpp",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/player.cpp",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/entity.hpp",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/map.hpp",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/player.hpp",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/entity.cpp",
+		"/home/doccarcass/Hacking/bomberman.android/jni/src/main.cpp",
+		"/home/sb/.config/sublime-text-2/Packages/CTags/CTags.sublime-settings",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/inputstate.cpp",
+		"/home/sb/.config/sublime-text-2/Packages/CTags/Default.sublime-commands",
+		"/home/sb/.config/sublime-text-2/Packages/CTags/Context.sublime-menu",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/bomberman.sublime-project",
+		"/usr/local/include/SDL2/SDL_render.h",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/player.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/map.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/block.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/block.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/bomb.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/bomb.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/computer.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/computer.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entity.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entityptr.hpp",
+		"/usr/include/c++/4.7/bits/c++0x_warning.h",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/explosion.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/explosion.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/inputstate.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/main.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/player.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/printlog.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/printlog.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/scene_interface.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/testscene.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/testscene.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/touchscreenkeyscene.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/touchscreenkeyscene.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entity.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/map.cpp",
+		"/home/sb/.config/sublime-text-2/Packages/SublimeClang/SublimeClang.sublime-settings",
+		"/home/sb/.config/sublime-text-2/Packages/SublimeClang/sublimeclang.py",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/a.out",
+		"/home/sb/Hacking/completion-master/build/Makefile",
+		"/home/sb/Hacking/powerboard.py",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/Android.mk",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/SDL_ttf/configure",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/android_boost_fix.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/Application.mk",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/.travis.yml",
+		"/home/sb/netvibes.opml",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/android_boost_fix.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entity.h",
+		"/home/sb/Hacking/OUYA-ODK/SDL_ttf-2.0.11/showfont.c",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/build.prop",
+		"/home/sb/Hacking/OUYA-ODK/SDL_ttf-2.0.11/glfont.c",
+		"/home/sb/Hacking/OUYA-ODK/SDL_ttf-2.0.11/SDL_ttf.c",
+		"/home/sb/.bashrc",
+		"/home/sb/Hacking/GeoBase/svacs_service.new/test.cs",
+		"/home/sb/build.prop",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/Android.mk",
+		"/home/sb/Hacking/OUYA-ODK/SDL2_image-2.0.0/Android.mk",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/SDL_mixer/Android.mk",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/SDL_ttf/Android.mk",
+		"/home/sb/.android/adb_usb.ini",
+		"/home/sb/Hacking/GeoBase/svacs_service.new/client.cs",
+		"/home/sb/Hacking/GeoBase/svacs_service.new/clinet.cs",
+		"/home/sb/Hacking/sketchbook/qikRC/Makefile",
+		"/home/sb/Hacking/sketchbook/qikRC/slip.h",
+		"/home/sb/Hacking/sketchbook/qikRC/slip.cpp",
+		"/home/sb/Hacking/sketchbook/sliptest/slipclient.py",
+		"/home/sb/Hacking/sketchbook/qikRC/robot.cpp",
+		"/home/sb/Hacking/sketchbook/qikRC/ppmrx.cpp",
+		"/home/sb/Hacking/sketchbook/qikRC/ppmrx.h",
+		"/home/sb/Hacking/arduino-1.0.5/hardware/arduino/cores/arduino/wiring.c",
+		"/home/sb/cp210x_gpio_example.c",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/structs.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/ColumnDataReader.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/stringutils.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/ddgc.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/LabelHitTester.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/GBInterop_gen.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/GBInterop_inc.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/navigation/navigation.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/multirepository.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/png_cache/png_cache.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/map.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/map.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/navigation/navigation.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/OSFile.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/OSFile.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/premain.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/LinuxBuild/Artifacts/rapaki_x86_64_Debug/test.cs",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/mapstyle.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/MdlVm.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/multi_gbfs.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/PostcodeReader.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/startup.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/vmobj.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/VMInterface.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/repository.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/table.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/tableptr.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/polygontable.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/polygontable.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/igraphics.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/GdiPlusGraphics.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/VMInterface.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/GdiPlusGraphics.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/GdiPlusSafeInclude.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/memorystream.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/MdlVm.h",
+		"/home/sb/Hacking/GeoBase/Devel/LinuxBuild/buildMakefile.sh",
+		"/home/sb/Hacking/GeoBase/Devel/LinuxBuild/slntomake.cs",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/gbmap.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/gbmap.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/lambertprojection.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/lambertprojection.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/stdafx.h",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/png_cache/png_cache.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/ReachableAreaInterop_gen.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/RepositoryInterop_gen.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/RoutingInterop_gen.cpp",
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/TrafficInterop_gen.cpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Evolve",
+			"get_setting",
+			"load_settings",
+			"options",
+			"}\n",
+			"\n#include \"map.hpp\"\n#include \"entity.hpp\"\n#include \"printlog.hpp\"\n\n#include <iostream>\n\nnamespace bomberman {\n\nMap::Map(int w, int h) : \n	_width(w),\n	_height(h),\n	_map(boost::extents[_width][_height])\n{\n}\n\nbool Map::IsPointWithin(int x, int y) const\n{\n	return x >= 0 && x < _width && y >= 0 && y < _height;\n}\n\nconst EntitySet &Map::GetEntities(int x, int y) const\n{\n	return _map[x][y];\n}\n\nbool Map::SetEntity(const EntityConstPtr &ntt)\n{\n	int x = ntt->x;\n	int y = ntt->y;\n\n	if (!IsPointWithin(x, y))\n	{\n		return false;\n	}\n	\n	_map[x][y].insert(ntt);\n\n	return true;\n}\n\nvoid Map::Clear()\n{\n	ForeachTile([&](int, int, const EntitySet &tile)\n	{\n		const_cast<EntitySet &>(tile).clear();\n	});\n}\n\nvoid Map::ForeachTile(std::function<void(int, int, const EntitySet &)> func) const\n{\n	for (int x = 0; x < _width; x++)\n	{\n		for (int y = 0; y < _height; y++)\n		{\n			func(x, y, _map[x][y]);\n		}\n	}\n}\n\nvoid Map::ForeachEntity(std::function<void(const EntityConstPtr &)> func) const\n{\n	ForeachTile([&](int, int, const EntitySet &entities)\n	{\n		for (auto entity : entities)\n		{\n			func(entity);\n		}\n	});\n}\n\n}\n",
+			"UInt32",
+			"Bombinfo",
+			"player",
+			"BLOCKID",
+			"Map::entity_type",
+			"Remove",
+			"Scene",
+			"tr1::",
+			"st/tr1/",
+			"tr1::",
+			"entity.hpp",
+			"SDL_AllocSurface",
+			"game",
+			"_serial",
+			"CXXSRC",
+			"TARGET",
+			"robot",
+			"5",
+			"GBLa",
+			"PT_OCEANS",
+			"RemoveSpaces",
+			"RemoveSapces",
+			"bitmap",
+			"LineCapRound",
+			"g_gdipBitmap",
+			"GpBitmap",
+			"Gdi",
+			"Auxila",
+			"gdi",
+			"GetPolygonTable",
+			"GetTable\nGetTable",
+			"GetTable",
+			"POLYGONS_0",
+			"GetPolygonTable",
+			"GetTable",
+			"GetPolygonTableImpl",
+			"GetPolygonTable",
+			"QueryPolys",
+			"GeoBasePreMain\n",
+			"GeoBasePreMain\nGeoBasePreMain",
+			"(@\"\");"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"EntityPtr",
+			"",
+			"SDL_CreateRGBSurface",
+			" undefined reference to `SDL_AllocSurface'\nSDL_CreateRGBSurface",
+			"_stream"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "bomberman.sublime-project",
+					"settings":
+					{
+						"buffer_size": 398,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								30,
+								30
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 88.0
+	},
+	"output.clang_static_analyzer":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"multirepo",
+				"multirepository.cpp"
+			],
+			[
+				"navigation",
+				"navigation/navigation.cpp"
+			],
+			[
+				"ddgc",
+				"ddgc.cpp"
+			],
+			[
+				"gbinter",
+				"GBInterop_inc.h"
+			],
+			[
+				"struct",
+				"structs.h"
+			],
+			[
+				"label",
+				"LabelHitTester.cpp"
+			],
+			[
+				"vmobj",
+				"vmobj.cpp"
+			],
+			[
+				"vmin",
+				"VMInterface.cpp"
+			],
+			[
+				"vmi",
+				"VMInterface.cpp"
+			],
+			[
+				"mdlv",
+				"MdlVm.cpp"
+			],
+			[
+				"linde",
+				"lindef.cpp"
+			],
+			[
+				"letter",
+				"LetterCache.h"
+			],
+			[
+				"gbgd",
+				"gbgdi.cpp"
+			],
+			[
+				"gbgdi",
+				"gbgdi.h"
+			],
+			[
+				"png_cache",
+				"png_cache/png_cache.cpp"
+			],
+			[
+				"mdlvm",
+				"MdlVm.h"
+			],
+			[
+				"png_cac",
+				"png_cache/png_cache.cpp"
+			],
+			[
+				"map",
+				"mapping/map.cpp"
+			],
+			[
+				"stda",
+				"stdafx.h"
+			],
+			[
+				"map.c",
+				"mapping/map.cpp"
+			],
+			[
+				"lamberpro",
+				"mapping/lambertprojection.h"
+			],
+			[
+				"lam",
+				"mapping/lambertprojection.cpp"
+			],
+			[
+				"gbmap",
+				"gbmap.cpp"
+			],
+			[
+				"buildma",
+				"/home/sb/Hacking/GeoBase/Devel/LinuxBuild/buildMakefile.sh"
+			],
+			[
+				"gbmap.c",
+				"gbmap.cpp"
+			],
+			[
+				"memorys",
+				"memorystream.h"
+			],
+			[
+				"gdipl",
+				"GdiPlusSafeInclude.h"
+			],
+			[
+				"gdipls",
+				"GdiPlusGraphics.h"
+			],
+			[
+				"vminter",
+				"VMInterface.h"
+			],
+			[
+				"igra",
+				"GdiPlusGraphics.cpp"
+			],
+			[
+				"naviga",
+				"navigation/navigation.cpp"
+			],
+			[
+				"pre",
+				"premain.cpp"
+			],
+			[
+				"navigat",
+				"navigation/navigation.cpp"
+			],
+			[
+				"navigatio",
+				"navigation/navigation.cpp"
+			],
+			[
+				"premain",
+				"premain.cpp"
+			],
+			[
+				"multi",
+				"multirepository.cpp"
+			],
+			[
+				"repository",
+				"repository.cpp"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 118.0,
+	"status_bar_visible": true
+}

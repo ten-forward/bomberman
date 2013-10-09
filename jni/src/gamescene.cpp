@@ -2,6 +2,7 @@
 #include "player.hpp"
 #include "block.hpp"
 #include "bomb.hpp"
+#include "propbomb.hpp"
 #include "softblock.hpp"
 #include "floortile.hpp"
 #include "printlog.hpp"
@@ -20,6 +21,7 @@ using bomberman::bestiary::Player;
 using bomberman::bestiary::Computer;
 using bomberman::architecture::SoftBlock;
 using bomberman::arsenal::Bomb;
+using bomberman::arsenal::PropBomb;
 using bomberman::architecture::Block;
 using bomberman::architecture::FloorTile;
 
@@ -116,7 +118,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 		if (_presentMap->CheckPosition(x,y) == Map::FREE)
 		{
-			auto softblock = SoftBlock::Create();
+			auto softblock = SoftBlock::Create(0.2);
 			softblock->x = x;
 			softblock->y = y;
 			_presentMap->SetEntity(softblock);
@@ -200,11 +202,12 @@ void GameScene::Render(SDL_Renderer *renderer)
 
 	entities.sort([](const EntityConstPtr &left, const EntityConstPtr &right) -> bool
 	{
+		bool bomb = typeid(*left) == typeid(Bomb) || typeid(*left) == typeid(PropBomb);
 		return left->zlevel == right->zlevel ? 
-
-			(left->y == right->y ? (typeid(*left) == typeid(Bomb) && typeid(*right) == typeid(Player)) : left->y < right->y)
-			
-			: left->zlevel < right->zlevel;
+					(left->y == right->y ? 	
+						bomb && typeid(*right) == typeid(Player) 
+					: 	left->y < right->y)
+				: 	left->zlevel < right->zlevel;
 	});
 
 	BOOST_FOREACH (auto entity, entities) 

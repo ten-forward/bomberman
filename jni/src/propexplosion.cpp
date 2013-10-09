@@ -4,6 +4,7 @@
 #include "bomb.hpp"
 #include "propbomb.hpp"
 #include "player.hpp"
+#include "computer.hpp"
 #include "constants.hpp"
 
 // SDL
@@ -21,7 +22,7 @@ namespace arsenal {
 
 		bool CanPropagate(const MapConstPtr &iMap, int x, int y)
 		{
-			if (iMap->CheckPosition(x, y) != Map::BOUNDARY)
+			if (iMap->CheckPosition(x, y) == Map::BOUNDARY)
 			{
 				return false;
 			}
@@ -94,6 +95,7 @@ namespace arsenal {
 		using bomberman::arsenal::PropBomb;
 		using bomberman::architecture::SoftBlock;
 		using bomberman::bestiary::Player;
+		using bomberman::bestiary::Computer;
 
 		BOOST_FOREACH (auto other, iOthers)
 		{
@@ -118,6 +120,11 @@ namespace arsenal {
 			else if(typeid(*other) == typeid(Player))
 			{
 				auto player = std::dynamic_pointer_cast<Player>(other);
+				player->Kill();
+			}
+			else if(typeid(*other) == typeid(Computer))
+			{
+				auto player = std::dynamic_pointer_cast<Computer>(other);
 				player->Kill();
 			}
 			else if (typeid(*other) == typeid(SoftBlock))
