@@ -2,9 +2,9 @@
 
 namespace bomberman {
 namespace bestiary {
-	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, const std::string &iAiScript, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
 	{
-		SDL_RWops *rw = SDL_RWFromFile("aiscripts/example.lua", "r");
+		SDL_RWops *rw = SDL_RWFromFile(iAiScript.c_str(), "r");
 
 		auto size = rw->size(rw);
 		char* script = new char[size + 1];

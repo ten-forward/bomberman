@@ -5,6 +5,7 @@
 #include "floortile.hpp"
 #include "block.hpp"
 #include "softblock.hpp"
+#include "bonus.hpp"
 
 #include <iostream>
 #include <boost/foreach.hpp>
@@ -33,6 +34,10 @@ Map::PositionCheck Map::CheckPosition(int x, int y) const
 				else if (typeid(*ntt) == typeid(architecture::SoftBlock))
 				{
 					return SOFT_OCCUPIED;
+				}
+				else if (typeid(*ntt) == typeid(bonus::Bonus))
+				{
+					return FREE;
 				}
 				else
 				{

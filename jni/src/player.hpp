@@ -8,8 +8,6 @@
 #include <memory>
 #include <string>
 
-// Forward declarations
-
 namespace bomberman {
 namespace bestiary {
 
@@ -21,7 +19,7 @@ namespace bestiary {
 		public:
 			static PlayerPtr Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive);
 			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &) {}
+			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &);
 			virtual void Render(SDL_Renderer*) const;
 			void Kill();
 			int GetPlayerIndex() const { return _inputStateIdx; }
@@ -46,6 +44,8 @@ namespace bestiary {
 			Uint32 _nextUpdateDueTime;
 			State _state;
 			int _inputStateIdx;
+
+			int _nbProBomb;				
 
 			bool* _alive;
 

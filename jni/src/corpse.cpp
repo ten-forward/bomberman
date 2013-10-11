@@ -75,9 +75,9 @@ namespace bestiary {
 		using namespace bomberman::constants;
 
 		SDL_Rect dst;
-		dst.w = src[_frameId].w * 4;
-		dst.h = src[_frameId].h * 4;
-		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X - (src[_frameId].w * 4 - TILE_WIDTH) / 2;
+		dst.w = src[_frameId].w * SPRITE_MAGNIFICATION;
+		dst.h = src[_frameId].h * SPRITE_MAGNIFICATION;
+		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X - (src[_frameId].w * SPRITE_MAGNIFICATION - TILE_WIDTH) / 2;
 		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
 
 		SDL_RenderCopy(iRenderer, _BombermanCorpse.get(), &src[_frameId], &dst);
