@@ -59,6 +59,7 @@ namespace constants {
 	const int BOMB_FRAME_UPDATE_DELAY = 200;
 
 	const int PLAYER_SPACE = 2;
+
 }
 }
 
@@ -101,6 +102,7 @@ namespace constants {
 	const int BOMB_FRAME_UPDATE_DELAY = 200;
 
 	const int PLAYER_SPACE = 2;
+	
 }
 }
 

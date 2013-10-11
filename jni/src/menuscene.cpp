@@ -12,7 +12,7 @@ MenuScene::MenuScene()
 
 void MenuScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	auto font = utils::LoadFont("test/Gamegirl.ttf", 64);
+	auto font = utils::LoadFont("test/Gamegirl.ttf", 16 * constants::SPRITE_MAGNIFICATION);
 
 	_selectionTwink = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV("sound/select.wav"), Mix_FreeChunk);
 
@@ -62,10 +62,8 @@ void MenuScene::Render(SDL_Renderer *renderer)
 {	
 	utils::DrawImage(renderer, _background, 0, 0, constants::SCREEN_WIDTH, constants::SCREEN_HEIGHT);
 
-	utils::DrawImage(renderer, _newGame, 1200, 600);
-	utils::DrawImage(renderer, _credits, 1200, 670);
-
-	//utils::DrawImage(renderer, _bombcursor, 1136, 600, 64, 64);
+	utils::DrawImage(renderer, _newGame, 300 * constants::SPRITE_MAGNIFICATION, 150 * constants::SPRITE_MAGNIFICATION);
+	utils::DrawImage(renderer, _credits, 300 * constants::SPRITE_MAGNIFICATION, 165 * constants::SPRITE_MAGNIFICATION);
 
 	SDL_Rect sourceRect;
 	sourceRect.w = 16;
@@ -74,10 +72,10 @@ void MenuScene::Render(SDL_Renderer *renderer)
 	sourceRect.y = 0;
 
 	SDL_Rect r;
-	r.w = 64;
-	r.h = 64;
-	r.x = 1136;
-	r.y = 600 + selection * 70;
+	r.w = 16 * constants::SPRITE_MAGNIFICATION;
+	r.h = 16 * constants::SPRITE_MAGNIFICATION;
+	r.x = 284 * constants::SPRITE_MAGNIFICATION;
+	r.y = 150 * constants::SPRITE_MAGNIFICATION + selection * 15 * constants::SPRITE_MAGNIFICATION;
 
 	SDL_RenderCopy(renderer, _bombcursor.get(), &sourceRect, &r);
 }
