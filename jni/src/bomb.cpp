@@ -4,6 +4,7 @@
 #include "softblock.hpp"
 #include "block.hpp"
 #include "printlog.hpp"
+#include "umpire.hpp"
 
 #include <boost/foreach.hpp>
 #include <SDL_image.h>
@@ -47,7 +48,7 @@ namespace arsenal {
 		}	
 	}
 
-	BombPtr Bomb::Create(int iTimeout, int iStrength) 
+	BombPtr Bomb::Create(int iTimeout, int iStrength, int iPlayerId) 
 	{
 		auto bomb = std::make_shared<Bomb>();
 		bomb->_timeout = iTimeout;
@@ -56,6 +57,7 @@ namespace arsenal {
 		bomb->_detonating = false;
 		bomb->_frameId = 0;
 		bomb->_nextFrameDueTime = 0;
+		bomb->_playerId = iPlayerId;
 		return bomb;
 	}
 
@@ -84,6 +86,9 @@ namespace arsenal {
 	{
 		if (iTimestamp >= _timeout || _detonating) 
 		{
+			auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
+			umpire->DecrementBombCount(_playerId);
+
 			// center
 			auto blast = Explosion::Create(iTimestamp, Explosion::IsoTropic);
 			blast->x = x;

@@ -11,11 +11,9 @@ class InputState;
 
 namespace bomberman
 {
-
 	struct Entity
 	{
-
-		int id;
+		EntityID id;
 		int x;	// tile position
 		int y;
 		int zlevel;
