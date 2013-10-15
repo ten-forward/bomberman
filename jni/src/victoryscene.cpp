@@ -18,7 +18,14 @@ void VictoryScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	auto font = utils::LoadFont("test/Gamegirl.ttf", 64);
 
 	std::stringstream ss;
-	ss << "Player " << (_victor + 1) << " wins!";
+	if (_victor == constants::NO_PLAYER)
+	{
+		ss << "Draw";
+	}
+	else
+	{
+		ss << "Player " << (_victor + 1) << " wins!";
+	}
 	_theVictorIs = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));
 	
 	if(Mix_PlayMusic(_music.get(), 0) == -1)

@@ -11,7 +11,7 @@ namespace architecture {
 	{
 		auto block = std::make_shared<Block>();
 		block->zlevel = 2;
-		block->elevel = -1;
+		block->elevel = constants::BLOCK_ELEVEL;
 		return block;
 	}
 

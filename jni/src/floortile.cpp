@@ -11,7 +11,7 @@ namespace architecture {
 	{
 		auto floorTile = std::make_shared<FloorTile>();
 		floorTile->zlevel = 0;
-		floorTile->elevel = -1;
+		floorTile->elevel = constants::FLOOR_ELEVEL;
 		return floorTile;
 	}
 
