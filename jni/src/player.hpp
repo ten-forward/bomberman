@@ -44,10 +44,9 @@ namespace bestiary {
 			Uint32 _nextUpdateDueTime;
 			State _state;
 			int _inputStateIdx;
+			int _availableBombs;
 
-			int _nbProBomb;				
-
-			bool* _alive;
+			int _nbProBomb;
 
 			int GetFrameIndex() const;
 

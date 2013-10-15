@@ -15,7 +15,7 @@ namespace arsenal {
 
 	class Bomb : public Entity {
 		public:
-			static BombPtr Create(int iTimeout, int iStrength);
+			static BombPtr Create(int iTimeout, int iStrength, int playerId);
 			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &) {}
 			virtual void Render(SDL_Renderer*) const;
@@ -26,6 +26,7 @@ namespace arsenal {
 			Uint32 _nextFrameDueTime;
 			int _frameId;
 			int _timeout;
+			PlayerId _playerId;
 			bool _detonating;
 			int _strength; // In megaton
 			static void InitializeGraphicRessources(SDL_Renderer *iRenderer);

@@ -8,6 +8,7 @@
 #include "softblock.hpp"
 #include "constants.hpp"
 #include "printlog.hpp"
+#include "umpire.hpp"
 
 // SDL
 #include <SDL.h>
@@ -55,7 +56,7 @@ namespace bestiary {
 		player->_inputStateIdx = iInputStateIdx;
 		player->InitializeGraphicRessources(iRenderer);
 		player->_nbProBomb = 0;
-		player->_alive = alive;
+		player->_availableBombs = 1;
 		return player;
 	}
 
@@ -102,6 +103,7 @@ namespace bestiary {
 
 	void Player::EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
+		auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
 		if (_state == Dying)
 		{
 			auto corpse = Corpse::Create(this->_Bomberman);
@@ -110,7 +112,7 @@ namespace bestiary {
 			corpse->mx = this->mx;
 			corpse->my = this->my;
 			iFutureMap->SetEntity(corpse);
-			*_alive = false;
+			umpire->NotifyPlayerDied(_inputStateIdx);
 			return;
 		}
 				
@@ -157,7 +159,7 @@ namespace bestiary {
 				}
 			}
 
-			if (!alreadyBombed)
+			if (!alreadyBombed && umpire->GetBombCount(_inputStateIdx) < _availableBombs)
 			{
 				const int kBombTimer = 3000;
 				EntityPtr newBomb;
@@ -168,8 +170,10 @@ namespace bestiary {
 				}
 				else
 				{
-					newBomb = Bomb::Create(iTimestamp + kBombTimer, 2);
+					newBomb = Bomb::Create(iTimestamp + kBombTimer, 2, _inputStateIdx);
 				}
+				umpire->IncrementBombCount(_inputStateIdx);
+
 				newBomb->x = player->x;
 				newBomb->y = player->y;
 

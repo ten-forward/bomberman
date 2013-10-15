@@ -14,7 +14,7 @@ namespace architecture {
 	{
 		auto block = std::make_shared<SoftBlock>();
 		block->zlevel = 2;
-		block->elevel = -1;
+		block->elevel = constants::SOFTBLOCK_ELEVEL;
 		block->isAlive = true;
 		block->_bonusProbability = iBonusProbability;
 		return block;

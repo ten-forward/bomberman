@@ -10,6 +10,7 @@
 #include "utils.hpp"
 #include "printlog.hpp"
 #include "computer.hpp"
+#include "umpire.hpp"
 
 //SDL
 #include <SDL_image.h>
@@ -40,6 +41,9 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	_running = true;
+
+	auto umpire = Umpire::Create();
+	_presentMap->SetEntity(umpire);
 
 	struct PlayerPositions
 	{
@@ -72,6 +76,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 				player->y = pos[i].y;
 				_presentMap->SetEntity(player);
 			}
+			umpire->NotifyPlayerBorn(i);
 		}
 	}
 
@@ -96,7 +101,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
 	});
-	
+
 	_texture = utils::LoadTexture(renderer, "test/gameback.png");
 
 	srand(1);
@@ -124,6 +129,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 			_presentMap->SetEntity(softblock);
 		}
 	}
+	
 }
 
 void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
@@ -160,23 +166,20 @@ void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 	_pastMaps.push_front(std::make_pair(now, _presentMap));
 	_presentMap = futurMap;
 
-	int lastPlayer = -1;
-	int count = 0;
-	for (int i=0;i<4;i++)
+	auto umpire = std::static_pointer_cast<Umpire>(_presentMap->GetEntity(constants::UMPIRE));
+	if (umpire->HasGameEnded())
 	{
-		if ( _playerConfig[i].present )
+		if (umpire->GetPlayersRemaining() == 1)
 		{
-			lastPlayer = i;
-			count++;
+			_victor = umpire->GetRemainingPlayer();
 		}
-	}
+		else if (umpire->GetPlayersRemaining() == 0)
+		{
+			_victor = constants::NO_PLAYER;
+		}
 
-	if (count < 2)
-	{
 		_running = false;
 	}
-
-	_victor = lastPlayer;
 }
 
 void GameScene::Render(SDL_Renderer *renderer)

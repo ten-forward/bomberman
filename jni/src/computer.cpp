@@ -25,7 +25,6 @@ namespace bestiary {
 		player->_state = IdleDown;
 		player->_inputStateIdx = iInputStateIdx;
 		player->InitializeGraphicRessources(iRenderer);
-		player->_alive = alive;
 
 		delete[] script;
 

@@ -5,6 +5,11 @@ Bomberman!
 
 [![Build Status](https://travis-ci.org/ten-forward/bomberman.png)](https://travis-ci.org/ten-forward/bomberman)
 
+Screenshots
+===========
+
+![Screenshot of game 1](https://raw.github.com/ten-forward/bomberman/macosx/screenshots/screenshot-1.png)
+
 Building
 ========
 
@@ -17,7 +22,7 @@ You will need to install the Build Tools, Platform Tools and Android API Level 1
 
 With the Android SDK and NDK installed, clone this repository (making sure to include submodules):
 
-    git clone --recursive https://github.com/davidsiaw/bomberman.git
+    git clone --recursive https://github.com/ten-forward/bomberman.git
 
 Linux
 -----

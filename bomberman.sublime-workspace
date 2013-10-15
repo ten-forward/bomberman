@@ -23,7 +23,7 @@
 			"file": "bomberman.sublime-project",
 			"settings":
 			{
-				"buffer_size": 398,
+				"buffer_size": 665,
 				"line_ending": "Unix"
 			}
 		}
@@ -352,15 +352,15 @@
 					"file": "bomberman.sublime-project",
 					"settings":
 					{
-						"buffer_size": 398,
+						"buffer_size": 665,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								30,
-								30
+								115,
+								115
 							]
 						],
 						"settings":
