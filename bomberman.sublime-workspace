@@ -20,20 +20,144 @@
 	"buffers":
 	[
 		{
-			"file": "bomberman.sublime-project",
+			"file": "jni/src/bonus.hpp",
 			"settings":
 			{
-				"buffer_size": 398,
+				"buffer_size": 826,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/bonus.cpp",
+			"settings":
+			{
+				"buffer_size": 1141,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/constants.hpp",
+			"settings":
+			{
+				"buffer_size": 2186,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/softblock.cpp",
+			"settings":
+			{
+				"buffer_size": 1538,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/entity.hpp",
+			"settings":
+			{
+				"buffer_size": 758,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/player.cpp",
+			"settings":
+			{
+				"buffer_size": 7836,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/player.hpp",
+			"settings":
+			{
+				"buffer_size": 1593,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/propbomb.hpp",
+			"settings":
+			{
+				"buffer_size": 857,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/propexplosion.cpp",
+			"settings":
+			{
+				"buffer_size": 6997,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/scriptapi.hpp",
+			"settings":
+			{
+				"buffer_size": 307,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/gamescene.cpp",
+			"settings":
+			{
+				"buffer_size": 5352,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/explosion.cpp",
+			"settings":
+			{
+				"buffer_size": 3139,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/computer.cpp",
+			"settings":
+			{
+				"buffer_size": 1567,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/computer.hpp",
+			"settings":
+			{
+				"buffer_size": 734,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/scriptapi.cpp",
+			"settings":
+			{
+				"buffer_size": 5396,
 				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "bld bbman linux",
 	"command_palette":
 	{
-		"height": 369.0,
+		"height": 138.0,
 		"selected_items":
 		[
+			[
+				"brose",
+				"Preferences: Browse Packages"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
 			[
 				"Bro",
 				"Preferences: Browse Packages"
@@ -128,6 +252,19 @@
 	},
 	"file_history":
 	[
+		"/home/sb/Hacking/OUYA-ODK/bomberman/bomberman.sublime-project",
+		"/home/sb/.config/sublime-text-2/Packages/User/bomberman.sublime-build",
+		"/home/sb/passpass",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/Makefile.android",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/Android.mk",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/player.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/map.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/map.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/Makefile.linux",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/explosion.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/bomb.cpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/constants.hpp",
+		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/luacppinterface/LuaCppInterface/luafunction.h",
 		"/home/doccarcass/Hacking/bomberman.android/jni/bomberman.sublime-project",
 		"/home/doccarcass/Hacking/bomberman.android/jni/bomberman.sublime-workspace",
 		"/home/doccarcass/Hacking/bomberman.linux/jni/luacppinterface/configure.ac",
@@ -148,21 +285,17 @@
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/bomberman.sublime-project",
 		"/usr/local/include/SDL2/SDL_render.h",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/player.cpp",
-		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/map.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/block.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/block.hpp",
-		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/bomb.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/bomb.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/computer.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/computer.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entity.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entityptr.hpp",
 		"/usr/include/c++/4.7/bits/c++0x_warning.h",
-		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/explosion.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/explosion.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/inputstate.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/main.cpp",
-		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/player.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/printlog.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/printlog.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/scene_interface.hpp",
@@ -171,13 +304,11 @@
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/touchscreenkeyscene.cpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/touchscreenkeyscene.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/entity.hpp",
-		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/map.cpp",
 		"/home/sb/.config/sublime-text-2/Packages/SublimeClang/SublimeClang.sublime-settings",
 		"/home/sb/.config/sublime-text-2/Packages/SublimeClang/sublimeclang.py",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/a.out",
 		"/home/sb/Hacking/completion-master/build/Makefile",
 		"/home/sb/Hacking/powerboard.py",
-		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/Android.mk",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/SDL_ttf/configure",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src/android_boost_fix.hpp",
 		"/home/sb/Hacking/OUYA-ODK/bomberman/jni/Application.mk",
@@ -248,14 +379,7 @@
 		"/home/sb/Hacking/GeoBase/Devel/LinuxBuild/slntomake.cs",
 		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/gbmap.cpp",
 		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/gbmap.h",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/lambertprojection.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/lambertprojection.h",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/stdafx.h",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/png_cache/png_cache.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/ReachableAreaInterop_gen.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/RepositoryInterop_gen.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/RoutingInterop_gen.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/TrafficInterop_gen.cpp"
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/lambertprojection.cpp"
 	],
 	"find":
 	{
@@ -344,31 +468,1069 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "bomberman.sublime-project",
+					"file": "jni/src/bonus.hpp",
 					"settings":
 					{
-						"buffer_size": 398,
+						"buffer_size": 826,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								30,
-								30
+								661,
+								661
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "jni/src/bonus.cpp",
+					"settings":
+					{
+						"buffer_size": 1141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								497,
+								497
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "jni/src/constants.hpp",
+					"settings":
+					{
+						"buffer_size": 2186,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1791,
+								1791
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1099.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "jni/src/softblock.cpp",
+					"settings":
+					{
+						"buffer_size": 1538,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								979,
+								979
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "jni/src/entity.hpp",
+					"settings":
+					{
+						"buffer_size": 758,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								223,
+								223
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "jni/src/player.cpp",
+					"settings":
+					{
+						"buffer_size": 7836,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								413,
+								413
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "jni/src/player.hpp",
+					"settings":
+					{
+						"buffer_size": 1593,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1139,
+								1139
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 18.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "jni/src/propbomb.hpp",
+					"settings":
+					{
+						"buffer_size": 857,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "jni/src/propexplosion.cpp",
+					"settings":
+					{
+						"buffer_size": 6997,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2685,
+								2685
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "jni/src/scriptapi.hpp",
+					"settings":
+					{
+						"buffer_size": 307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								231,
+								231
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "jni/src/gamescene.cpp",
+					"settings":
+					{
+						"buffer_size": 5352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								797,
+								797
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "jni/src/explosion.cpp",
+					"settings":
+					{
+						"buffer_size": 3139,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								216,
+								216
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "jni/src/computer.cpp",
+					"settings":
+					{
+						"buffer_size": 1567,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1245,
+								1245
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "jni/src/computer.hpp",
+					"settings":
+					{
+						"buffer_size": 734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "jni/src/scriptapi.cpp",
+					"settings":
+					{
+						"buffer_size": 5396,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1843,
+								1854
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 189.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -409,7 +1571,7 @@
 	"menu_visible": true,
 	"output.clang":
 	{
-		"height": 88.0
+		"height": 91.0
 	},
 	"output.clang_static_analyzer":
 	{
@@ -417,7 +1579,7 @@
 	},
 	"output.exec":
 	{
-		"height": 112.0
+		"height": 349.0
 	},
 	"replace":
 	{
@@ -429,6 +1591,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"softbl",
+				"src/softblock.cpp"
+			],
+			[
+				"expl",
+				"src/explosion.cpp"
+			],
 			[
 				"multirepo",
 				"multirepository.cpp"
@@ -592,6 +1762,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 118.0,
+	"side_bar_width": 387.0,
 	"status_bar_visible": true
 }
