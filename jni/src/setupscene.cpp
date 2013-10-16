@@ -125,10 +125,10 @@ void SetupScene::Render(SDL_Renderer *renderer)
 		sourceRect.y = 0 + 60 * (players[i].present << players[i].isComputer);
 
 		SDL_Rect r;
-		r.w = 205 * 4;
-		r.h = 60 * 4;
-		r.x = pos[i].x * 4;
-		r.y = pos[i].y * 4;
+		r.w = 205 * constants::SPRITE_MAGNIFICATION;
+		r.h = 60 * constants::SPRITE_MAGNIFICATION;
+		r.x = pos[i].x * constants::SPRITE_MAGNIFICATION;
+		r.y = pos[i].y * constants::SPRITE_MAGNIFICATION;
 		SDL_RenderCopy(renderer, _playerReady.get(), &sourceRect, &r);
 	}
 }

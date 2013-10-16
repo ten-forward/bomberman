@@ -25,6 +25,7 @@ struct hasher {
 };
 
 typedef std::unordered_set<EntityPtr, hasher> EntitySet;
+typedef short PlayerId;
 
 class Map
 {	
@@ -45,6 +46,8 @@ class Map
 		EntitySet &GetEntities(int x, int y);
 		
 		bool SetEntity(const EntityPtr &ntt);
+		EntityConstPtr GetEntity(EntityID id) const;
+
 		PositionCheck CheckPosition(int x, int y) const;
 		void Clear();
 		
@@ -56,6 +59,7 @@ class Map
 		int GetHeight() const { return _height; }
 
 	private:
+		std::map<EntityID, EntityConstPtr> _entityIndex;
 		int _width, _height;
 		typedef boost::multi_array<EntitySet, 2> map_type;
 		map_type _map;

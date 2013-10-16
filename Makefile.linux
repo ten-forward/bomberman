@@ -1,22 +1,26 @@
+-include Makefile.utils
+
 SDL2PREFIX=$(PWD)/SDL2Framework
-SDL2MAIN=$(SDL2PREFIX)/lib/libSDL2.so
-SDL2IMAGE=$(SDL2PREFIX)/lib/libSDL2_image.so
-SDL2MIXER=$(SDL2PREFIX)/lib/libSDL2_mixer.so
-SDL2TTF=$(SDL2PREFIX)/lib/libSDL2_ttf.so
+SDL2MAIN=$(SDL2PREFIX)/lib/libSDL2.$(EXTENSION)
+SDL2IMAGE=$(SDL2PREFIX)/lib/libSDL2_image.$(EXTENSION)
+SDL2MIXER=$(SDL2PREFIX)/lib/libSDL2_mixer.$(EXTENSION)
+SDL2TTF=$(SDL2PREFIX)/lib/libSDL2_ttf.$(EXTENSION)
 SDL2CONFIG=$(SDL2PREFIX)/bin/sdl2-config
-LUAINTERFACE=jni/luacppinterface/LuaCppInterface/libluacppinterface.a
+LUAINTERFACESRC=jni/luacppinterface/LuaCppInterface
 LUA=jni/luacppinterface/lua/src/liblua.a
 
-CXX=g++
-CXXFLAGS=-std=c++0x -pipe $(shell $(SDL2CONFIG) --cflags) \
+CXXFLAGS=-std=c++11 -stdlib=libc++ \
+	-DSMALL_SCREEN \
+	-pipe $(shell $(SDL2CONFIG) --cflags) \
 	-I$(PWD)/jni/luacppinterface/LuaCppInterface \
 	-I$(PWD)/jni/luacppinterface/lua/src \
 	-I$(PWD)/jni/boost
+	
 LDFLAGS=$(shell $(SDL2CONFIG) --libs) -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 TARGET=assets/bomberman
 SRCDIR=jni/src
-SRC=$(shell find $(SRCDIR) -name "*.cpp")
+SRC=$(shell find $(LUAINTERFACESRC) -name "*.cpp") $(shell find $(SRCDIR) -name "*.cpp") 
 OUT=obj
 OBJS=$(SRC:%.cpp=$(OUT)/%.o)
 DEPS=$(SRC:%.cpp=$(OUT)/%.d)
@@ -26,7 +30,7 @@ NODEPS=clean
 
 .SECONDEXPANSION:
 
-all: $(TARGET) 
+all: $(TARGET)
 
 clean:
 	-rm -rf $(TARGET) $(OUT) $(SDL2PREFIX)
@@ -35,55 +39,52 @@ ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
     -include $(DEPS)
 endif
 
-$(TARGET): $(OBJS) $(LUAINTERFACE) $(LUA)
-	@echo [LINK] $@
-	@$(CXX) $^ $(LDFLAGS) -o $@
-	
-$(OUT)/%.o:%.cpp $(OUT)/%.d
-	@echo [C++] $<
-	@$(CXX) $< $(CXXFLAGS) -c -o $@
-
-$(OUT)/%.d:%.cpp $$(@D)/.f $(SDL2MAIN) $(SDL2IMAGE) $(SDL2MIXER) $(SDL2TTF)
-	@echo [DEP] $<
-	@$(CXX) $(CXXFLAGS) -MM -MT '$(patsubst %.d,%.o,$@)' $< -MF $@
-
-$(SDL2MAIN):
-	@echo [BLD] $@
-	@chmod +x jni/SDL/autogen.sh
-	@cd jni/SDL && ./autogen.sh > /dev/null
-	@cd jni/SDL && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL -j all install > /dev/null
-
-$(SDL2IMAGE): $(SDL2MAIN)
-	@echo [BLD] $@
-	@chmod +x jni/SDL_image/autogen.sh
-	@cd jni/SDL_image && ./autogen.sh > /dev/null
-	@cd jni/SDL_image && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL_image -j all install > /dev/null
-
-$(SDL2MIXER): $(SDL2MAIN)
-	@echo [BLD] $@
-	@chmod +x jni/SDL_mixer/autogen.sh
-	@cd jni/SDL_mixer && ./autogen.sh > /dev/null
-	@cd jni/SDL_mixer && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL_mixer -j all install > /dev/null
-
-$(SDL2TTF): $(SDL2MAIN)
-	@echo [BLD] $@
-	@chmod +x jni/SDL_ttf/autogen.sh
-	@cd jni/SDL_ttf && ./autogen.sh > /dev/null
-	@cd jni/SDL_ttf && ./configure --prefix $(SDL2PREFIX) > /dev/null
-	@make -C jni/SDL_ttf -j all install > /dev/null
-
-$(LUAINTERFACE):
-	@echo [BLD] $@
-	@cd jni/luacppinterface && ./build.sh > /dev/null
-
-$(LUA): $(LUAINTERFACE)
+$(TARGET): $(OBJS) $(LUA)
+	echo [LINK] $@
+	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
 
 %/.f:
-	@echo [MKDIR] $(dir $@)
-	@mkdir -p $(dir $@) 
-	@touch $@
+	echo [MKDIR] $(dir $@)
+	mkdir -p $(dir $@) 
+	touch $@
+
+$(OUT)/%.d:%.cpp $$(@D)/.f $(SDL2MAIN) $(SDL2IMAGE) $(SDL2MIXER) $(SDL2TTF)
+	echo [DEP] $<
+	$(CXX) $(CXXFLAGS) -MM -MT '$(patsubst %.d,%.o,$@)' $< -MF $@
+
+$(OUT)/%.o:%.cpp $(OUT)/%.d
+	echo [C++] $<
+	$(CXX) $< $(CXXFLAGS) -c -o $@
+
+$(SDL2MAIN):
+	echo [BLD] $@
+	chmod +x jni/SDL/autogen.sh
+	cd jni/SDL && ./autogen.sh
+	cd jni/SDL && ./configure --prefix $(SDL2PREFIX)
+	make -C jni/SDL all install
+
+$(SDL2IMAGE): $(SDL2MAIN)
+	echo [BLD] $@
+	chmod +x jni/SDL_image/autogen.sh
+	cd jni/SDL_image && ./autogen.sh
+	cd jni/SDL_image && ./configure --prefix $(SDL2PREFIX)
+	make -C jni/SDL_image all install
+
+$(SDL2MIXER): $(SDL2MAIN)
+	echo [BLD] $@
+	chmod +x jni/SDL_mixer/autogen.sh
+	cd jni/SDL_mixer && ./autogen.sh
+	cd jni/SDL_mixer && ./configure --prefix $(SDL2PREFIX)
+	make -C jni/SDL_mixer all install
+
+$(SDL2TTF): $(SDL2MAIN)
+	echo [BLD] $@
+	chmod +x jni/SDL_ttf/autogen.sh
+	cd jni/SDL_ttf && ./autogen.sh
+	cd jni/SDL_ttf && ./configure --prefix $(SDL2PREFIX)
+	make -C jni/SDL_ttf all install
+
+$(LUA):
+	cd jni/luacppinterface/lua && make generic
 
 .PRECIOUS: %/.f

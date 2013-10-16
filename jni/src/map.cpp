@@ -12,6 +12,7 @@
 
 namespace bomberman {
 
+
 Map::Map(int w, int h) : 
 	_width(w),
 	_height(h),
@@ -74,7 +75,19 @@ bool Map::SetEntity(const EntityPtr &ntt)
 	
 	_map[x][y].insert(ntt);
 
+	_entityIndex[ntt->id] = ntt;
+
 	return true;
+}
+
+EntityConstPtr Map::GetEntity(EntityID id) const
+{
+	auto entityIter = _entityIndex.find(id);
+	if (entityIter == _entityIndex.end())
+	{
+		return EntityConstPtr();
+	}
+	return entityIter->second;
 }
 
 void Map::Clear()
@@ -117,5 +130,6 @@ void Map::ForeachEntity(std::function<void(const EntityPtr &)> func)
 		}
 	});
 }
+
 
 }

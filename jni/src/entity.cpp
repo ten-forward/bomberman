@@ -1,4 +1,5 @@
 #include "entity.hpp"
+#include "constants.hpp"
 
 namespace bomberman
 {
@@ -8,7 +9,7 @@ namespace bomberman
 		x(0),
 		y(0),
 		zlevel(0),
-		elevel(0),
+		elevel(constants::DEFAULT_ELEVEL),
 		mx(0),
 		my(0),
 		active(true),
@@ -19,5 +20,4 @@ namespace bomberman
 	Entity::~Entity() 
 	{
 	}
-
 }
