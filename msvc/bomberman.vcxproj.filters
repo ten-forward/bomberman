@@ -96,6 +96,12 @@
     <ClInclude Include="..\jni\src\scriptapi.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\jni\src\umpire.hpp">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\src\bonus.hpp">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\src\inputstate.cpp">
@@ -166,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="..\jni\src\scriptapi.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\umpire.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\src\bonus.cpp">
+      <Filter>Source Files\entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

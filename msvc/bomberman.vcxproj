@@ -86,6 +86,7 @@ bjam.exe --toolset=msvc --with-program_options
   <ItemGroup>
     <ClInclude Include="..\jni\src\block.hpp" />
     <ClInclude Include="..\jni\src\bomb.hpp" />
+    <ClInclude Include="..\jni\src\bonus.hpp" />
     <ClInclude Include="..\jni\src\computer.hpp" />
     <ClInclude Include="..\jni\src\constants.hpp" />
     <ClInclude Include="..\jni\src\corpse.hpp" />
@@ -107,12 +108,14 @@ bjam.exe --toolset=msvc --with-program_options
     <ClInclude Include="..\jni\src\setupscene.hpp" />
     <ClInclude Include="..\jni\src\softblock.hpp" />
     <ClInclude Include="..\jni\src\touchscreenkeyscene.hpp" />
+    <ClInclude Include="..\jni\src\umpire.hpp" />
     <ClInclude Include="..\jni\src\utils.hpp" />
     <ClInclude Include="..\jni\src\victoryscene.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\src\block.cpp" />
     <ClCompile Include="..\jni\src\bomb.cpp" />
+    <ClCompile Include="..\jni\src\bonus.cpp" />
     <ClCompile Include="..\jni\src\computer.cpp" />
     <ClCompile Include="..\jni\src\corpse.cpp" />
     <ClCompile Include="..\jni\src\entity.cpp" />
@@ -132,6 +135,7 @@ bjam.exe --toolset=msvc --with-program_options
     <ClCompile Include="..\jni\src\setupscene.cpp" />
     <ClCompile Include="..\jni\src\softblock.cpp" />
     <ClCompile Include="..\jni\src\touchscreenkeyscene.cpp" />
+    <ClCompile Include="..\jni\src\umpire.cpp" />
     <ClCompile Include="..\jni\src\utils.cpp" />
     <ClCompile Include="..\jni\src\victoryscene.cpp" />
   </ItemGroup>

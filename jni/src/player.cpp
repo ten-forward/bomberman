@@ -57,6 +57,7 @@ namespace bestiary {
 		player->InitializeGraphicRessources(iRenderer);
 		player->_nbProBomb = 0;
 		player->_availableBombs = 1;
+		player->_bombStrength = 2;
 		return player;
 	}
 
@@ -166,11 +167,11 @@ namespace bestiary {
 				if(_nbProBomb)
 				{
 					player->_nbProBomb = _nbProBomb - 1;
-					newBomb = PropBomb::Create(iTimestamp + kBombTimer, 2);
+					newBomb = PropBomb::Create(iTimestamp + kBombTimer, _bombStrength, _inputStateIdx);
 				}
 				else
 				{
-					newBomb = Bomb::Create(iTimestamp + kBombTimer, 2, _inputStateIdx);
+					newBomb = Bomb::Create(iTimestamp + kBombTimer, _bombStrength, _inputStateIdx);
 				}
 				umpire->IncrementBombCount(_inputStateIdx);
 
@@ -275,8 +276,23 @@ namespace bestiary {
 		{
 			if(typeid(*other) == typeid(Bonus))
 			{
-				_nbProBomb += 3;
 				auto bonus = std::dynamic_pointer_cast<Bonus>(other);
+
+				switch(bonus->GetType())
+				{
+				case Bonus::BOMBSTRENGTH:
+					_bombStrength++;
+					break;
+
+				case Bonus::BOMBCOUNT:
+					_availableBombs++;
+					break;
+
+				case Bonus::PROPBOMB:
+					_nbProBomb++;
+					break;
+				}
+
 				bonus->NotifyConsumed();
 			}
 		}

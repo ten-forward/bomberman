@@ -31,7 +31,7 @@ namespace architecture {
 	{
 		if (!isAlive)
 		{
-			if (random() < RAND_MAX * _bonusProbability) 
+			if (rand() < RAND_MAX * _bonusProbability) 
 			{
 				auto bonus = Bonus::Create();
 				bonus->x = x;
