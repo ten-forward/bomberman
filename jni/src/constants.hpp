@@ -72,6 +72,14 @@ namespace constants {
 
 	const int PLAYER_SPACE = 2;
 
+	const int PLAYER_DASHBOARD_WIDTH = 200;
+	const int PLAYER_DASHBOARD_HEIGHT = 60;
+	const int PLAYER_DASHBOARD_X = 62;
+	const int PLAYER_DASHBOARD_Y = 27;
+	const int PLAYER_DASHBOARD_PADDING = 12;
+	const int PLAYER_DASHBOARD_AVATAR_X = 8;
+	const int PLAYER_DASHBOARD_AVATAR_Y = 8;
+
 #else // SMALL_SCREEN
 
 	// Resolution
@@ -108,6 +116,14 @@ namespace constants {
 	const int BOMB_FRAME_UPDATE_DELAY = 200;
 
 	const int PLAYER_SPACE = 2;
+
+	const int PLAYER_DASHBOARD_WIDTH = 414;
+	const int PLAYER_DASHBOARD_HEIGHT = 115;
+	const int PLAYER_DASHBOARD_X = 108 ;
+	const int PLAYER_DASHBOARD_Y = 56;
+	const int PLAYER_DASHBOARD_PADDING = 16;
+	const int PLAYER_DASHBOARD_AVATAR_X = 8;
+	const int PLAYER_DASHBOARD_AVATAR_Y = 16;
 	
 #endif // SMALL SCREEN
 }

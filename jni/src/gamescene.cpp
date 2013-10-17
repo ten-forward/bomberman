@@ -19,6 +19,7 @@
 #include <boost/foreach.hpp>
 
 using bomberman::bestiary::Player;
+using bomberman::bestiary::PlayerPtr;
 using bomberman::bestiary::Computer;
 using bomberman::architecture::SoftBlock;
 using bomberman::arsenal::Bomb;
@@ -42,6 +43,19 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	_running = true;
 
+	if(Mix_PlayMusic(_music.get(), -1) == -1)
+	{
+		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
+	}
+	_background = utils::LoadTexture(renderer, "test/gameback.png");
+
+	InitPlayers(renderer);
+	InitBlocks(renderer);
+}
+
+void GameScene::InitPlayers(SDL_Renderer* renderer)
+{
+
 	auto umpire = Umpire::Create();
 	_presentMap->SetEntity(umpire);
 
@@ -58,32 +72,39 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		{MAP_COLUMNS - 1,MAP_ROWS - 1},
 	};
 
+	PlayerId firstPlayerId = 132;
+
 	for (int i=0;i<4;i++)
 	{
+		PlayerId id = firstPlayerId + i;
 		if (_playerConfig[i].present)
 		{
 			if (_playerConfig[i].isComputer)
 			{
-				auto player = Computer::Create(_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer);
+				auto player = Computer::Create(id,_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer);
 				player->x = pos[i].x;
-				player->y = pos[i].y;
+				player->y = pos[i].y;		
 				_presentMap->SetEntity(player);
 			}
 			else
 			{
-				auto player = Player::Create(_playerConfig[i].name, _playerConfig[i].spriteName, i, renderer);
+				auto player = Player::Create(id, _playerConfig[i].name, _playerConfig[i].spriteName, i, renderer);
 				player->x = pos[i].x;
 				player->y = pos[i].y;
 				_presentMap->SetEntity(player);
 			}
 			umpire->NotifyPlayerBorn(i);
+			_playerIds[i] = id;
+		}
+		else
+		{
+			_playerIds[i] = 0;
 		}
 	}
+}
 
-	if(Mix_PlayMusic(_music.get(), -1) == -1)
-	{
-		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
-	}
+void GameScene::InitBlocks(SDL_Renderer* renderer)
+{
 
 	_presentMap->ForeachTile([&](int x, int y, const EntitySet &)
 	{
@@ -101,9 +122,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
 	});
-
-	_texture = utils::LoadTexture(renderer, "test/gameback.png");
-
+	
 	srand(1);
 
 	for (int i=0; i < 100; i++)
@@ -129,7 +148,6 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 			_presentMap->SetEntity(softblock);
 		}
 	}
-	
 }
 
 void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
@@ -200,7 +218,16 @@ void GameScene::Render(SDL_Renderer *renderer)
 	r.x = 0;
 	r.y = 0;
 
-	SDL_RenderCopy(renderer, _texture.get(), NULL, &r);
+	SDL_RenderCopy(renderer, _background.get(), NULL, &r);
+
+	for (int i = 0; i < 4; ++i)
+	{
+		auto player = std::dynamic_pointer_cast<Player>(_presentMap->GetEntity(_playerIds[i]));
+		if (player)
+		{
+			RenderPlayerDashBoard(player, i, renderer);
+		}
+	} 
 
 	std::list<EntityConstPtr> entities;
 
@@ -226,6 +253,26 @@ void GameScene::Render(SDL_Renderer *renderer)
 			entity->Render(renderer);
 		}
 	}
+}
+
+void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Renderer* renderer)
+{
+	SDL_Rect dashboard;
+	dashboard.w = PLAYER_DASHBOARD_WIDTH;
+	dashboard.h = PLAYER_DASHBOARD_HEIGHT;
+	dashboard.x = PLAYER_DASHBOARD_X + pos * (dashboard.w + PLAYER_DASHBOARD_PADDING);
+	dashboard.y = PLAYER_DASHBOARD_Y;
+
+	SDL_Rect avatar;
+	avatar.w = PLAYER_WIDTH;
+	avatar.h = PLAYER_HEIGHT;
+	avatar.x = dashboard.x + PLAYER_DASHBOARD_AVATAR_X;
+	avatar.y = dashboard.y - PLAYER_DASHBOARD_AVATAR_Y;
+
+	iPlayer->Render(renderer, avatar);
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderDrawRect(renderer, &dashboard);
 }
 
 bool GameScene::Running()

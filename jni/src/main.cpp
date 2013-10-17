@@ -284,7 +284,7 @@ int main(int argc, char** argv)
 
 	// Create an application window with the following settings:
 	window = SDL_CreateWindow(
-		"Aldebaran",                 
+		"Bomberman",                 
 		SDL_WINDOWPOS_UNDEFINED,           
 		SDL_WINDOWPOS_UNDEFINED,           
 		WIDTH,

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "entity.hpp"
-#include <array>
+#include <map>
+#include <set>
 
 namespace bomberman
 {
@@ -9,29 +10,31 @@ namespace bomberman
 	typedef std::shared_ptr<Umpire> UmpirePtr;
 	class Umpire : public Entity
 	{
-		std::array<int, 4> _bombCount;
-		std::array<bool, 4> _playersAlive;
+		public:
 
-	public:
+			virtual ~Umpire();
 
-		Umpire();
-		virtual ~Umpire();
+			static UmpirePtr Create();
 
-		static UmpirePtr Create();
+			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			virtual void Interact(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const EntitySet &iOthers);
+			virtual void Render(SDL_Renderer* iRenderer) const;
 
-		virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
-		virtual void Interact(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const EntitySet &iOthers);
-		virtual void Render(SDL_Renderer* iRenderer) const;
+			void NotifyPlayerBorn(PlayerId id);
+			void NotifyPlayerDied(PlayerId id);
 
-		void NotifyPlayerBorn(PlayerId id);
-		void NotifyPlayerDied(PlayerId id);
+			bool HasGameEnded() const;
+			int GetPlayersRemaining() const;
+			
+			PlayerId GetRemainingPlayer() const;
 
-		bool HasGameEnded() const;
-		int GetPlayersRemaining() const;
-		PlayerId GetRemainingPlayer() const;
+			int GetBombCount(PlayerId id) const;
+			void IncrementBombCount(PlayerId id);
 
-		int GetBombCount(PlayerId id) const;
-		void IncrementBombCount(PlayerId id);
-		void DecrementBombCount(PlayerId id);
+			void DecrementBombCount(PlayerId id);
+
+		private:
+			std::map<PlayerId, int> _bombCount;
+			std::set<PlayerId> _playersAlive;
 	};
 }
