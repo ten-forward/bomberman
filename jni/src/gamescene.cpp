@@ -93,7 +93,7 @@ void GameScene::InitPlayers(SDL_Renderer* renderer)
 				player->y = pos[i].y;
 				_presentMap->SetEntity(player);
 			}
-			umpire->NotifyPlayerBorn(i);
+			umpire->NotifyPlayerBorn(id);
 			_playerIds[i] = id;
 		}
 		else
@@ -195,7 +195,7 @@ void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 	{
 		if (umpire->GetPlayersRemaining() == 1)
 		{
-			_victor = umpire->GetRemainingPlayer();
+			_victor = std::static_pointer_cast<Player>(_presentMap->GetEntity(umpire->GetRemainingPlayer()))->GetPlayerIndex();
 		}
 		else if (umpire->GetPlayersRemaining() == 0)
 		{
