@@ -41,11 +41,11 @@ namespace bonus {
 
 	void Bonus::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		if (_BonusTexture.size() == 0)
+		if (_BonusTexture.empty())
 		{
-			_BonusTexture[Bonus::PROPBOMB] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/propbombbonus.png"), SDL_DestroyTexture);
-			_BonusTexture[Bonus::BOMBCOUNT] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bombbonus.png"), SDL_DestroyTexture);
-			_BonusTexture[Bonus::BOMBSTRENGTH] = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/firebonus.png"), SDL_DestroyTexture);
+			_BonusTexture.insert(std::make_pair(Bonus::PROPBOMB, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/propbombbonus.png"), SDL_DestroyTexture)));
+			_BonusTexture.insert(std::make_pair(Bonus::BOMBCOUNT, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bombbonus.png"), SDL_DestroyTexture)));
+			_BonusTexture.insert(std::make_pair(Bonus::BOMBSTRENGTH, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/firebonus.png"), SDL_DestroyTexture)));
 		}
 	}
 

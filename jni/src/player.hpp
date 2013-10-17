@@ -1,6 +1,9 @@
 #pragma once
 
 #include "entity.hpp"
+#include "bonus.hpp"
+
+// SDL
 #include <SDL.h>
 #include <SDL_mixer.h>
 
@@ -24,7 +27,6 @@ namespace bestiary {
 			void Kill();
 			int GetPlayerIndex() const { return _inputStateIdx; }
 		protected:
-
 			enum State {
 				WalkingUp,
 				WalkingDown,
@@ -58,6 +60,7 @@ namespace bestiary {
 			static State DynamicToStaticState(State iState);
 
 			void EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			void ConsumeBonus(const bonus::BonusPtr &iBonus);
 	};
 }
 }
