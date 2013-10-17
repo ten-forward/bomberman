@@ -28,7 +28,9 @@ namespace bestiary {
 			void Render(SDL_Renderer *iRenderer, SDL_Rect &dst) const;
 
 			void Kill();
+			
 			int GetPlayerIndex() const { return _inputStateIdx; }
+			int GetAllowedNumberOfBombs() const { return _availableBombs; }
 
 		protected:
 			enum State {

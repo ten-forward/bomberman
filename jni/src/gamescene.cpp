@@ -263,6 +263,9 @@ void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Ren
 	dashboard.x = PLAYER_DASHBOARD_X + pos * (dashboard.w + PLAYER_DASHBOARD_PADDING);
 	dashboard.y = PLAYER_DASHBOARD_Y;
 
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderDrawRect(renderer, &dashboard);
+
 	SDL_Rect avatar;
 	avatar.w = PLAYER_WIDTH;
 	avatar.h = PLAYER_HEIGHT;
@@ -271,8 +274,20 @@ void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Ren
 
 	iPlayer->Render(renderer, avatar);
 
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderDrawRect(renderer, &dashboard);
+	auto umpire = std::static_pointer_cast<Umpire>(_presentMap->GetEntity(constants::UMPIRE));
+
+	auto font = utils::LoadFont("test/Gamegirl.ttf", 64);
+	std::stringstream ss;
+	ss << "Bx" << (iPlayer->GetAllowedNumberOfBombs() - umpire->GetBombCount(iPlayer->id));
+	auto nbBombsImg = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));
+
+	SDL_Rect nbBombsRect;
+	nbBombsRect.w = 100;
+	nbBombsRect.h = PLAYER_DASHBOARD_HEIGHT;
+	nbBombsRect.x = avatar.x + avatar.w + PLAYER_DASHBOARD_PADDING;
+	nbBombsRect.y = dashboard.y + PLAYER_DASHBOARD_PADDING;
+
+	SDL_RenderCopy(renderer, nbBombsImg.get(), NULL, &nbBombsRect);
 }
 
 bool GameScene::Running()

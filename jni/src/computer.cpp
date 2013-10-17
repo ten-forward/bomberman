@@ -25,6 +25,9 @@ namespace bestiary {
 		player->_nextUpdateDueTime = 0;
 		player->_state = IdleDown;
 		player->_inputStateIdx = iInputStateIdx;
+		player->_nbProBomb = 0;
+		player->_availableBombs = 1;
+		player->_bombStrength = 2;
 		player->InitializeGraphicRessources(iRenderer);
 
 		delete[] script;

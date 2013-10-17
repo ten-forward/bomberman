@@ -154,20 +154,20 @@ namespace bestiary {
 				}
 			}
 
-			if (!alreadyBombed && umpire->GetBombCount(_inputStateIdx) < _availableBombs)
+			if (!alreadyBombed && umpire->GetBombCount(id) < _availableBombs)
 			{
 				const int kBombTimer = 3000;
 				EntityPtr newBomb;
 				if(_nbProBomb)
 				{
 					player->_nbProBomb = _nbProBomb - 1;
-					newBomb = PropBomb::Create(iTimestamp + kBombTimer, _bombStrength, _inputStateIdx);
+					newBomb = PropBomb::Create(iTimestamp + kBombTimer, _bombStrength, id);
 				}
 				else
 				{
-					newBomb = Bomb::Create(iTimestamp + kBombTimer, _bombStrength, _inputStateIdx);
+					newBomb = Bomb::Create(iTimestamp + kBombTimer, _bombStrength, id);
 				}
-				umpire->IncrementBombCount(_inputStateIdx);
+				umpire->IncrementBombCount(id);
 
 				newBomb->x = player->x;
 				newBomb->y = player->y;
