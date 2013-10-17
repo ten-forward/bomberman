@@ -45,6 +45,7 @@ namespace bestiary {
 			State _state;
 			int _inputStateIdx;
 			int _availableBombs;
+			int _bombStrength;
 
 			int _nbProBomb;
 

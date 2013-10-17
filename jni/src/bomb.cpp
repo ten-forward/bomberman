@@ -70,7 +70,6 @@ namespace arsenal {
 		{
 			_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bomb.png"), SDL_DestroyTexture);
 		}
-
 		
 		if (!_explosionSound)
 		{

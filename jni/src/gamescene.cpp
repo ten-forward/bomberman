@@ -123,7 +123,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 		if (_presentMap->CheckPosition(x,y) == Map::FREE)
 		{
-			auto softblock = SoftBlock::Create(0.2);
+			auto softblock = SoftBlock::Create(0.8);
 			softblock->x = x;
 			softblock->y = y;
 			_presentMap->SetEntity(softblock);
