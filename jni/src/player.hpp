@@ -20,7 +20,7 @@ namespace bestiary {
 
 	class Player : public bomberman::Entity {
 		public:
-			static PlayerPtr Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive);
+			static PlayerPtr Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer);
 			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &);
 			virtual void Render(SDL_Renderer*) const;

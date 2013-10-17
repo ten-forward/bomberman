@@ -64,14 +64,14 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		{
 			if (_playerConfig[i].isComputer)
 			{
-				auto player = Computer::Create(_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer, &_playerConfig[i].present);
+				auto player = Computer::Create(_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer);
 				player->x = pos[i].x;
 				player->y = pos[i].y;
 				_presentMap->SetEntity(player);
 			}
 			else
 			{
-				auto player = Player::Create(_playerConfig[i].name, _playerConfig[i].spriteName, i, renderer, &_playerConfig[i].present);
+				auto player = Player::Create(_playerConfig[i].name, _playerConfig[i].spriteName, i, renderer);
 				player->x = pos[i].x;
 				player->y = pos[i].y;
 				_presentMap->SetEntity(player);

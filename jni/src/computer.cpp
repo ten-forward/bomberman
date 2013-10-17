@@ -2,7 +2,7 @@
 
 namespace bomberman {
 namespace bestiary {
-	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, const std::string &iAiScript, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, const std::string &iAiScript, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		SDL_RWops *rw = SDL_RWFromFile(iAiScript.c_str(), "r");
 

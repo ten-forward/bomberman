@@ -30,17 +30,12 @@ namespace bestiary {
 			return (x > 0) - (x < 0);
 		}
 		
-		bool CanStayAt(const MapConstPtr &iMap, int x, int y)
+		inline bool CanStayAt(const MapConstPtr &iMap, int x, int y)
 		{	
-			if (iMap->CheckPosition(x, y) != Map::FREE)
-			{
-				return false;
-			}
-
-			return true;
+			return iMap->CheckPosition(x, y) == Map::FREE;
 		}
 
-		bool PreventDiagonalMovement(std::shared_ptr<Entity> ntt) 
+		inline bool PreventDiagonalMovement(std::shared_ptr<Entity> ntt) 
 		{
 			if (ntt->mx != 0 && ntt->dy != 0)
 			{
@@ -67,7 +62,7 @@ namespace bestiary {
 
 	std::shared_ptr<Mix_Chunk> Player::_bombPlaceSound;
 
-	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		auto player = std::make_shared<Player>();
 		player->_name = iName;
