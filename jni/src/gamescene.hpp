@@ -32,7 +32,6 @@ typedef std::array<PlayerConfig, 4> PlayerConfigArray;
 
 class GameScene : public SceneInterface
 {
-
 	public:
 		GameScene(const PlayerConfigArray &playerConfig);
 		virtual ~GameScene() {}
