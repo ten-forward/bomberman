@@ -5,12 +5,6 @@
 
 namespace bomberman
 {
-	Umpire::Umpire()
-	{
-		std::fill(_bombCount.begin(), _bombCount.end(), 0);
-		std::fill(_playersAlive.begin(), _playersAlive.end(), false);
-	}
-
 	Umpire::~Umpire()
 	{
 	}
@@ -23,7 +17,6 @@ namespace bomberman
 	
 	void Umpire::Interact(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const EntitySet &iOthers)
 	{
-
 	}
 	
 	void Umpire::Render(SDL_Renderer* iRenderer) const
@@ -42,17 +35,19 @@ namespace bomberman
 
 	void Umpire::NotifyPlayerBorn(PlayerId id)
 	{
-		_playersAlive[id] = true;
+		_playersAlive.insert(id);
+		_bombCount.insert(std::make_pair(id, 0));
 	}
 
 	void Umpire::NotifyPlayerDied(PlayerId id)
 	{
-		_playersAlive[id] = false;
+		_playersAlive.erase(id);
+		_bombCount.erase(id);
 	}
 
 	bool Umpire::HasGameEnded() const
 	{
-		if (GetPlayersRemaining() < 2)
+		if ( GetPlayersRemaining() < 2)
 		{
 			return true;
 		}
@@ -60,35 +55,20 @@ namespace bomberman
 		return false;
 	}
 
-	int Umpire::GetPlayersRemaining() const
-	{
-		int count = 0;
-		for (int i=0;i<4;i++)
-		{
-			if ( _playersAlive[i] )
-			{
-				count++;
-			}
-		}
-		return count;
-	}
-
 	PlayerId Umpire::GetRemainingPlayer() const
 	{
-		PlayerId player = constants::NO_PLAYER;
-		for (int i=0;i<4;i++)
-		{
-			if ( _playersAlive[i] )
-			{
-				player = i;
-			}
-		}
-		return player;
+		return _playersAlive.empty() ? constants::NO_PLAYER : *_playersAlive.begin();
+	}
+
+	int Umpire::GetPlayersRemaining() const
+	{
+		return _playersAlive.size();
 	}
 
 	int Umpire::GetBombCount(PlayerId id) const
 	{
-		return _bombCount[id];
+		auto iter =  _bombCount.find(id);
+		return iter == _bombCount.end() ? -1 : iter->second;
 	}
 
 	void Umpire::IncrementBombCount(PlayerId id)

@@ -75,7 +75,10 @@ bool Map::SetEntity(const EntityPtr &ntt)
 	
 	_map[x][y].insert(ntt);
 
-	_entityIndex[ntt->id] = ntt;
+	if (ntt->id)
+	{
+		_entityIndex[ntt->id] = ntt;
+	}
 
 	return true;
 }

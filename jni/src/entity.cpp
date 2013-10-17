@@ -4,6 +4,7 @@
 namespace bomberman
 {
 	Entity::Entity() :
+		id(0),
 		dx(0),
 		dy(0),
 		x(0),

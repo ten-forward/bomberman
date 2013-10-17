@@ -2,6 +2,7 @@
 
 #include "scene_interface.hpp"
 #include "map.hpp"
+#include "player.hpp"
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -42,9 +43,9 @@ class GameScene : public SceneInterface
 		
 		int GetVictor() const { return _victor; }
 
-	private:
+	protected:
 		std::shared_ptr<Mix_Music> _music;
-		std::shared_ptr<SDL_Texture> _texture;
+		std::shared_ptr<SDL_Texture> _background;
 		MapPtr _presentMap;
 
 		PlayerConfigArray _playerConfig;
@@ -52,6 +53,13 @@ class GameScene : public SceneInterface
 
 		bool _running;
 		int _victor;
+
+		PlayerId _playerIds[4];
+
+		void InitPlayers(SDL_Renderer* renderer);
+		void InitBlocks(SDL_Renderer* renderer);
+
+		void RenderPlayerDashBoard(const bestiary::PlayerPtr &iPlayer, int pos, SDL_Renderer* renderer);
 
 		void BackThroughTime();
 };

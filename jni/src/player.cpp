@@ -30,17 +30,12 @@ namespace bestiary {
 			return (x > 0) - (x < 0);
 		}
 		
-		bool CanStayAt(const MapConstPtr &iMap, int x, int y)
+		inline bool CanStayAt(const MapConstPtr &iMap, int x, int y)
 		{	
-			if (iMap->CheckPosition(x, y) != Map::FREE)
-			{
-				return false;
-			}
-
-			return true;
+			return iMap->CheckPosition(x, y) == Map::FREE;
 		}
 
-		bool PreventDiagonalMovement(std::shared_ptr<Entity> ntt) 
+		inline bool PreventDiagonalMovement(std::shared_ptr<Entity> ntt) 
 		{
 			if (ntt->mx != 0 && ntt->dy != 0)
 			{
@@ -67,9 +62,10 @@ namespace bestiary {
 
 	std::shared_ptr<Mix_Chunk> Player::_bombPlaceSound;
 
-	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	PlayerPtr Player::Create(PlayerId id, const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		auto player = std::make_shared<Player>();
+		player->id = id;
 		player->_name = iName;
 		player->_spriteName = iSpriteName;
 		player->zlevel = 2;
@@ -102,7 +98,7 @@ namespace bestiary {
 		}
 	}
 	
-	void Player::EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	void Player::EvolutionRoutine(const PlayerPtr &player, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
 		if (_state == Dying)
@@ -113,11 +109,9 @@ namespace bestiary {
 			corpse->mx = this->mx;
 			corpse->my = this->my;
 			iFutureMap->SetEntity(corpse);
-			umpire->NotifyPlayerDied(_inputStateIdx);
+			umpire->NotifyPlayerDied(id);
 			return;
 		}
-				
-		auto player = thePlayer;
 
 		const auto &inputs = iInputs[_inputStateIdx];
 		
@@ -282,6 +276,20 @@ namespace bestiary {
 
 	void Player::Render(SDL_Renderer *iRenderer) const 
 	{
+		using namespace bomberman::constants;
+
+		SDL_Rect dst;
+		dst.w = PLAYER_WIDTH;
+		dst.h = PLAYER_HEIGHT;
+		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
+		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
+
+		Render(iRenderer, dst);
+	}
+
+	void Player::Render(SDL_Renderer *iRenderer, SDL_Rect &dst) const 
+	{
+		int idx = GetFrameIndex();
 
 		SDL_Rect src[12];
 		for (int i = 0; i < 12; ++i)
@@ -291,16 +299,6 @@ namespace bestiary {
 			src[i].x = 1 + i * 17;
 			src[i].y = 1;
 		}
-
-		using namespace bomberman::constants;
-
-		SDL_Rect dst;
-		dst.w = PLAYER_WIDTH;
-		dst.h = PLAYER_HEIGHT;
-		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
-		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
-
-		int idx = GetFrameIndex();
 
 		SDL_RenderCopy(iRenderer, _Bomberman.get(), &src[idx], &dst);
 	}
