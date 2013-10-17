@@ -4,12 +4,11 @@
 #include "bomb.hpp"
 #include "propbomb.hpp"
 #include "block.hpp"
-#include "bonus.hpp"
 #include "softblock.hpp"
 #include "constants.hpp"
-#include "printlog.hpp"
 #include "umpire.hpp"
-
+#include "printlog.hpp"
+	
 // SDL
 #include <SDL.h>
 #include <SDL_image.h>
@@ -19,6 +18,7 @@ using bomberman::arsenal::Bomb;
 using bomberman::arsenal::PropBomb;
 using bomberman::architecture::Block;
 using bomberman::architecture::SoftBlock;
+using bomberman::bonus::Bonus;
 
 namespace bomberman {
 namespace bestiary {
@@ -37,6 +37,30 @@ namespace bestiary {
 				return false;
 			}
 
+			return true;
+		}
+
+		bool PreventDiagonalMovement(std::shared_ptr<Entity> ntt) 
+		{
+			if (ntt->mx != 0 && ntt->dy != 0)
+			{
+				ntt->dy = 0;
+			}
+	      
+			if (ntt->my != 0 && ntt->dx != 0)
+			{
+				ntt->dx = 0;
+			}
+	      
+			if (ntt->mx == 0 && ntt->my == 0)
+			{
+				if (ntt->dx && ntt->dy)
+				{
+					ntt->dy = 0;
+					ntt->dx = 0;
+					return false;
+				}
+			}
 			return true;
 		}
 	}
@@ -78,30 +102,6 @@ namespace bestiary {
 		}
 	}
 	
-	bool preventDiagonalMovement(std::shared_ptr<Entity> ntt) 
-	{
-		if (ntt->mx != 0 && ntt->dy != 0)
-		{
-			ntt->dy = 0;
-		}
-      
-		if (ntt->my != 0 && ntt->dx != 0)
-		{
-			ntt->dx = 0;
-		}
-      
-		if (ntt->mx == 0 && ntt->my == 0)
-		{
-			if (ntt->dx && ntt->dy)
-			{
-				ntt->dy = 0;
-				ntt->dx = 0;
-				return false;
-			}
-		}
-		return true;
-	}
-
 	void Player::EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
@@ -201,7 +201,7 @@ namespace bestiary {
 			int dx = player->dx;
 			int dy = player->dy;
 
-			if (preventDiagonalMovement(player))
+			if (PreventDiagonalMovement(player))
 			{
 				if (dx != 0 || dy != 0)
 				{
@@ -270,30 +270,12 @@ namespace bestiary {
 
 	void Player::Interact(const std::vector<InputState>& , Uint32 , const EntitySet &iOthers)
 	{
-		using bomberman::bonus::Bonus;
-
 		BOOST_FOREACH (auto other, iOthers)
 		{
 			if(typeid(*other) == typeid(Bonus))
 			{
 				auto bonus = std::dynamic_pointer_cast<Bonus>(other);
-
-				switch(bonus->GetType())
-				{
-				case Bonus::BOMBSTRENGTH:
-					_bombStrength++;
-					break;
-
-				case Bonus::BOMBCOUNT:
-					_availableBombs++;
-					break;
-
-				case Bonus::PROPBOMB:
-					_nbProBomb++;
-					break;
-				}
-
-				bonus->NotifyConsumed();
+				ConsumeBonus(bonus);
 			}
 		}
 	}
@@ -370,6 +352,26 @@ namespace bestiary {
 			;
 	      }	 
 	    return iState;
+	  }
+
+	  void Player::ConsumeBonus(const bonus::BonusPtr &iBonus)
+	  {
+	  	using bomberman::bonus::Bonus;
+		switch(iBonus->GetType())
+		{
+		case Bonus::BOMBSTRENGTH:
+			_bombStrength++;
+			break;
+
+		case Bonus::BOMBCOUNT:
+			_availableBombs++;
+			break;
+
+		case Bonus::PROPBOMB:
+			_nbProBomb++;
+			break;
+		}
+		iBonus->NotifyConsumed();
 	  }
 }
 }

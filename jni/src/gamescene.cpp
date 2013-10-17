@@ -33,8 +33,8 @@ namespace bomberman {
 GameScene::GameScene(const PlayerConfigArray &playerConfig) : 
 	_music(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
-	_pastMaps(1024),
-	_playerConfig(playerConfig)
+	_playerConfig(playerConfig),
+	_pastMaps(1024)
 {
 }
 
@@ -106,7 +106,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 	srand(1);
 
-	for (int i=0;i<100;i++)
+	for (int i=0; i < 100; i++)
 	{
 		int x = rand() % MAP_COLUMNS;
 		int y = rand() % MAP_ROWS;
@@ -134,6 +134,12 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
+
+	if (inputs[0].GetButtonState(InputState::START)) 
+	{
+		return BackThroughTime();
+	}
+
 	MapPtr futurMap(new Map(MAP_COLUMNS, MAP_ROWS));
 
 	std::list<EntityConstPtr> entities;
@@ -235,25 +241,13 @@ bool GameScene::Running()
 }
 	
 
-void GameScene::BackThroughTime(SDL_Renderer *renderer, uint32_t now)
+void GameScene::BackThroughTime()
 {
-	while (!_pastMaps.empty())
+	if (!_pastMaps.empty())
 	{
 		auto gameState = _pastMaps.front();
 		_pastMaps.pop_front();
-
-		uint32_t duration = now - gameState.first;
-
-		_presentMap = gameState.second;
-
-		if (duration > 12)
-		{
-			now = gameState.first;
-			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-			SDL_RenderClear(renderer);
-			Render(renderer);
-			SDL_RenderPresent(renderer);
-		}
+		_presentMap = gameState.second;	
 	}
 }
 
