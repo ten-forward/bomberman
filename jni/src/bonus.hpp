@@ -17,7 +17,6 @@ namespace bonus {
 	class Bonus : public Entity {
 
 		public:
-		
 			enum BonusType
 			{
 				BOMBCOUNT,
@@ -31,6 +30,7 @@ namespace bonus {
 			virtual void Render(SDL_Renderer*) const;
 			virtual void NotifyConsumed() { _state = Consumed; }
 			BonusType GetType() const { return _bonusType; }
+			
 		private:
 
 			enum State {

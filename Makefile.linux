@@ -9,7 +9,7 @@ SDL2CONFIG=$(SDL2PREFIX)/bin/sdl2-config
 LUAINTERFACESRC=jni/luacppinterface/LuaCppInterface
 LUA=jni/luacppinterface/lua/src/liblua.a
 
-CXXFLAGS=-DSMALL_SCREEN \
+CXXFLAGS=-DSMALL_SCREEN -std=c++0x\
 	-pipe $(shell $(SDL2CONFIG) --cflags) \
 	-I$(PWD)/jni/luacppinterface/LuaCppInterface \
 	-I$(PWD)/jni/luacppinterface/lua/src \

@@ -40,8 +40,6 @@ class GameScene : public SceneInterface
 		virtual void Render(SDL_Renderer *renderer);
 		virtual bool Running();
 		
-		void BackThroughTime(SDL_Renderer *renderer, uint32_t now);
-
 		int GetVictor() const { return _victor; }
 
 	private:
@@ -49,11 +47,13 @@ class GameScene : public SceneInterface
 		std::shared_ptr<SDL_Texture> _texture;
 		MapPtr _presentMap;
 
-		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
 		PlayerConfigArray _playerConfig;
+		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
 
 		bool _running;
 		int _victor;
+
+		void BackThroughTime();
 };
 
 }
