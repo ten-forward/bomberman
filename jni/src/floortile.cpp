@@ -19,7 +19,7 @@ namespace architecture {
 
 	void FloorTile::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		_FloorTile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/floor.png"), SDL_DestroyTexture);
+		_FloorTile = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/floor.png"), SDL_DestroyTexture);
 	}
 
 	void FloorTile::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const

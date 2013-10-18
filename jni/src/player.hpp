@@ -1,6 +1,9 @@
 #pragma once
 
 #include "entity.hpp"
+#include "bonus.hpp"
+
+// SDL
 #include <SDL.h>
 #include <SDL_mixer.h>
 
@@ -17,14 +20,19 @@ namespace bestiary {
 
 	class Player : public bomberman::Entity {
 		public:
-			static PlayerPtr Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive);
+			static PlayerPtr Create(PlayerId id, const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer);
 			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			virtual void Interact(const std::vector<InputState>& , Uint32 , const EntitySet &);
-			virtual void Render(SDL_Renderer*) const;
-			void Kill();
-			int GetPlayerIndex() const { return _inputStateIdx; }
-		protected:
 
+			virtual void Render(SDL_Renderer*) const;
+			void Render(SDL_Renderer *iRenderer, SDL_Rect &dst) const;
+
+			void Kill();
+			
+			int GetPlayerIndex() const { return _inputStateIdx; }
+			int GetAllowedNumberOfBombs() const { return _availableBombs; }
+
+		protected:
 			enum State {
 				WalkingUp,
 				WalkingDown,
@@ -45,6 +53,7 @@ namespace bestiary {
 			State _state;
 			int _inputStateIdx;
 			int _availableBombs;
+			int _bombStrength;
 
 			int _nbProBomb;
 
@@ -56,7 +65,8 @@ namespace bestiary {
 			static std::shared_ptr<Mix_Chunk> _bombPlaceSound;
 			static State DynamicToStaticState(State iState);
 
-			void EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			void EvolutionRoutine(const PlayerPtr &player, const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
+			void ConsumeBonus(const bonus::BonusPtr &iBonus);
 	};
 }
 }

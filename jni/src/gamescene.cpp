@@ -19,6 +19,7 @@
 #include <boost/foreach.hpp>
 
 using bomberman::bestiary::Player;
+using bomberman::bestiary::PlayerPtr;
 using bomberman::bestiary::Computer;
 using bomberman::architecture::SoftBlock;
 using bomberman::arsenal::Bomb;
@@ -33,14 +34,27 @@ namespace bomberman {
 GameScene::GameScene(const PlayerConfigArray &playerConfig) : 
 	_music(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
-	_pastMaps(1024),
-	_playerConfig(playerConfig)
+	_playerConfig(playerConfig),
+	_pastMaps(1024)
 {
 }
 
 void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	_running = true;
+
+	if(Mix_PlayMusic(_music.get(), -1) == -1)
+	{
+		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
+	}
+	_background = utils::LoadTexture(renderer, "drawable/gameback.png");
+
+	InitPlayers(renderer);
+	InitBlocks(renderer);
+}
+
+void GameScene::InitPlayers(SDL_Renderer* renderer)
+{
 
 	auto umpire = Umpire::Create();
 	_presentMap->SetEntity(umpire);
@@ -58,32 +72,39 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		{MAP_COLUMNS - 1,MAP_ROWS - 1},
 	};
 
+	PlayerId firstPlayerId = 132;
+
 	for (int i=0;i<4;i++)
 	{
+		PlayerId id = firstPlayerId + i;
 		if (_playerConfig[i].present)
 		{
 			if (_playerConfig[i].isComputer)
 			{
-				auto player = Computer::Create(_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer, &_playerConfig[i].present);
+				auto player = Computer::Create(id,_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer);
 				player->x = pos[i].x;
-				player->y = pos[i].y;
+				player->y = pos[i].y;		
 				_presentMap->SetEntity(player);
 			}
 			else
 			{
-				auto player = Player::Create(_playerConfig[i].name, _playerConfig[i].spriteName, i, renderer, &_playerConfig[i].present);
+				auto player = Player::Create(id, _playerConfig[i].name, _playerConfig[i].spriteName, i, renderer);
 				player->x = pos[i].x;
 				player->y = pos[i].y;
 				_presentMap->SetEntity(player);
 			}
-			umpire->NotifyPlayerBorn(i);
+			umpire->NotifyPlayerBorn(id);
+			_playerIds[i] = id;
+		}
+		else
+		{
+			_playerIds[i] = 0;
 		}
 	}
+}
 
-	if(Mix_PlayMusic(_music.get(), -1) == -1)
-	{
-		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
-	}
+void GameScene::InitBlocks(SDL_Renderer* renderer)
+{
 
 	_presentMap->ForeachTile([&](int x, int y, const EntitySet &)
 	{
@@ -101,12 +122,10 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 		blockEntity->y = y;
 		_presentMap->SetEntity(blockEntity);
 	});
-
-	_texture = utils::LoadTexture(renderer, "test/gameback.png");
-
+	
 	srand(1);
 
-	for (int i=0;i<100;i++)
+	for (int i=0; i < 100; i++)
 	{
 		int x = rand() % MAP_COLUMNS;
 		int y = rand() % MAP_ROWS;
@@ -123,17 +142,22 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 		if (_presentMap->CheckPosition(x,y) == Map::FREE)
 		{
-			auto softblock = SoftBlock::Create(0.2);
+			auto softblock = SoftBlock::Create(0.8);
 			softblock->x = x;
 			softblock->y = y;
 			_presentMap->SetEntity(softblock);
 		}
 	}
-	
 }
 
 void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
+
+	if (inputs[0].GetButtonState(InputState::START)) 
+	{
+		return BackThroughTime();
+	}
+
 	MapPtr futurMap(new Map(MAP_COLUMNS, MAP_ROWS));
 
 	std::list<EntityConstPtr> entities;
@@ -171,7 +195,7 @@ void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 	{
 		if (umpire->GetPlayersRemaining() == 1)
 		{
-			_victor = umpire->GetRemainingPlayer();
+			_victor = std::static_pointer_cast<Player>(_presentMap->GetEntity(umpire->GetRemainingPlayer()))->GetPlayerIndex();
 		}
 		else if (umpire->GetPlayersRemaining() == 0)
 		{
@@ -194,7 +218,16 @@ void GameScene::Render(SDL_Renderer *renderer)
 	r.x = 0;
 	r.y = 0;
 
-	SDL_RenderCopy(renderer, _texture.get(), NULL, &r);
+	SDL_RenderCopy(renderer, _background.get(), NULL, &r);
+
+	for (int i = 0; i < 4; ++i)
+	{
+		auto player = std::dynamic_pointer_cast<Player>(_presentMap->GetEntity(_playerIds[i]));
+		if (player)
+		{
+			RenderPlayerDashBoard(player, i, renderer);
+		}
+	} 
 
 	std::list<EntityConstPtr> entities;
 
@@ -222,6 +255,41 @@ void GameScene::Render(SDL_Renderer *renderer)
 	}
 }
 
+void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Renderer* renderer)
+{
+	SDL_Rect dashboard;
+	dashboard.w = PLAYER_DASHBOARD_WIDTH;
+	dashboard.h = PLAYER_DASHBOARD_HEIGHT;
+	dashboard.x = PLAYER_DASHBOARD_X + pos * (dashboard.w + PLAYER_DASHBOARD_PADDING);
+	dashboard.y = PLAYER_DASHBOARD_Y;
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderDrawRect(renderer, &dashboard);
+
+	SDL_Rect avatar;
+	avatar.w = PLAYER_WIDTH;
+	avatar.h = PLAYER_HEIGHT;
+	avatar.x = dashboard.x + PLAYER_DASHBOARD_AVATAR_X;
+	avatar.y = dashboard.y - PLAYER_DASHBOARD_AVATAR_Y;
+
+	iPlayer->Render(renderer, avatar);
+
+	auto umpire = std::static_pointer_cast<Umpire>(_presentMap->GetEntity(constants::UMPIRE));
+
+	auto font = utils::LoadFont("drawable/Gamegirl.ttf", 64);
+	std::stringstream ss;
+	ss << "Bx" << (iPlayer->GetAllowedNumberOfBombs() - umpire->GetBombCount(iPlayer->id));
+	auto nbBombsImg = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));
+
+	SDL_Rect nbBombsRect;
+	nbBombsRect.w = 100;
+	nbBombsRect.h = PLAYER_DASHBOARD_HEIGHT;
+	nbBombsRect.x = avatar.x + avatar.w + PLAYER_DASHBOARD_PADDING;
+	nbBombsRect.y = dashboard.y + PLAYER_DASHBOARD_PADDING;
+
+	SDL_RenderCopy(renderer, nbBombsImg.get(), NULL, &nbBombsRect);
+}
+
 bool GameScene::Running()
 {
 	if (!_running)
@@ -235,25 +303,13 @@ bool GameScene::Running()
 }
 	
 
-void GameScene::BackThroughTime(SDL_Renderer *renderer, uint32_t now)
+void GameScene::BackThroughTime()
 {
-	while (!_pastMaps.empty())
+	if (!_pastMaps.empty())
 	{
 		auto gameState = _pastMaps.front();
 		_pastMaps.pop_front();
-
-		uint32_t duration = now - gameState.first;
-
-		_presentMap = gameState.second;
-
-		if (duration > 12)
-		{
-			now = gameState.first;
-			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-			SDL_RenderClear(renderer);
-			Render(renderer);
-			SDL_RenderPresent(renderer);
-		}
+		_presentMap = gameState.second;	
 	}
 }
 

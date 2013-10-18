@@ -2,6 +2,7 @@
 
 #include "scene_interface.hpp"
 #include "map.hpp"
+#include "player.hpp"
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -31,7 +32,6 @@ typedef std::array<PlayerConfig, 4> PlayerConfigArray;
 
 class GameScene : public SceneInterface
 {
-
 	public:
 		GameScene(const PlayerConfigArray &playerConfig);
 		virtual ~GameScene() {}
@@ -40,20 +40,27 @@ class GameScene : public SceneInterface
 		virtual void Render(SDL_Renderer *renderer);
 		virtual bool Running();
 		
-		void BackThroughTime(SDL_Renderer *renderer, uint32_t now);
-
 		int GetVictor() const { return _victor; }
 
-	private:
+	protected:
 		std::shared_ptr<Mix_Music> _music;
-		std::shared_ptr<SDL_Texture> _texture;
+		std::shared_ptr<SDL_Texture> _background;
 		MapPtr _presentMap;
 
-		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
 		PlayerConfigArray _playerConfig;
+		boost::circular_buffer<std::pair<uint32_t, MapPtr>> _pastMaps;
 
 		bool _running;
 		int _victor;
+
+		PlayerId _playerIds[4];
+
+		void InitPlayers(SDL_Renderer* renderer);
+		void InitBlocks(SDL_Renderer* renderer);
+
+		void RenderPlayerDashBoard(const bestiary::PlayerPtr &iPlayer, int pos, SDL_Renderer* renderer);
+
+		void BackThroughTime();
 };
 
 }

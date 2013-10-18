@@ -21,8 +21,6 @@
 
 void PollEvents(std::vector<InputState> &oInputState);
 
-static bool backThroughTime = false;
-
 #ifdef ANDROID
 #include <jni.h>
 
@@ -60,10 +58,6 @@ void run(std::shared_ptr<bomberman::SceneInterface> scene)
 
 		Uint32 now = SDL_GetTicks();
 		
-		if (backThroughTime) {
-	 		std::dynamic_pointer_cast<bomberman::GameScene>(scene)->BackThroughTime(renderer, now);
-	 	}
-
 		scene->Update(inputState, now);
 
 		if (now - time > 12)
@@ -80,8 +74,6 @@ void run(std::shared_ptr<bomberman::SceneInterface> scene)
 void PollEvents(std::vector<InputState> &oInputState)
 {
 	SDL_Event e;
-
-	backThroughTime = false;
 
 	if ( SDL_PollEvent(&e) )
 	{
@@ -119,10 +111,6 @@ void PollEvents(std::vector<InputState> &oInputState)
 				inputState.SetButtonPressed(keyIter->second, true);
 				inputState.SetButtonState(keyIter->second, true);
 			}
-			else if (e.key.keysym.sym == SDLK_r)
-			{
-				backThroughTime = true;	
-			}
 		}
 		else if (e.type == SDL_KEYUP)
 		{
@@ -131,10 +119,6 @@ void PollEvents(std::vector<InputState> &oInputState)
 			{
 				inputState.SetButtonReleased(keyIter->second, true);
 				inputState.SetButtonState(keyIter->second, false);
-			}
-			else if (e.key.keysym.sym == SDLK_r)
-			{
-				backThroughTime = true;	
 			}
 		}
 	}
@@ -145,7 +129,7 @@ void game()
 #ifdef PROGRAM_OPTIONS
 	// This is the game's options harness. We perform game testing here without having to go through
 	// the menus which are tedious
-	if (vm.size() != 0)
+	if (!vm.empty())
 	{
 		bomberman::PlayerConfigArray players;
 
@@ -300,7 +284,7 @@ int main(int argc, char** argv)
 
 	// Create an application window with the following settings:
 	window = SDL_CreateWindow(
-		"Aldebaran",                 
+		"Bomberman",                 
 		SDL_WINDOWPOS_UNDEFINED,           
 		SDL_WINDOWPOS_UNDEFINED,           
 		WIDTH,

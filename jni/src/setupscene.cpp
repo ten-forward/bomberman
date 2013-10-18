@@ -15,8 +15,8 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 
 	_selectionTwink = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV("sound/select.wav"), Mix_FreeChunk);
 
-	_background = utils::LoadTexture(renderer, "test/setupback.png");
-	_playerReady =  utils::LoadTexture(renderer, "test/playerstatus.png");
+	_background = utils::LoadTexture(renderer, "drawable/setupback.png");
+	_playerReady =  utils::LoadTexture(renderer, "drawable/playerstatus.png");
 	
 	for (int i=0;i<4;i++)
 	{
@@ -26,16 +26,16 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	}
 
 	players[0].name = "Athos";
-	players[0].spriteName = "test/SaturnBomberman-BlackBomberman.PNG";
+	players[0].spriteName = "drawable/SaturnBomberman-BlackBomberman.PNG";
 
 	players[1].name = "Porthos";
-	players[1].spriteName = "test/honey.png";
+	players[1].spriteName = "drawable/honey.png";
 
 	players[2].name = "Aramis";
-	players[2].spriteName = "test/manji.png";
+	players[2].spriteName = "drawable/manji.png";
 
 	players[3].name = "D'Artagnan";
-	players[3].spriteName = "test/whitebbman.png";
+	players[3].spriteName = "drawable/whitebbman.png";
 	
 	_running = true;
 }

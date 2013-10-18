@@ -4,12 +4,11 @@
 #include "bomb.hpp"
 #include "propbomb.hpp"
 #include "block.hpp"
-#include "bonus.hpp"
 #include "softblock.hpp"
 #include "constants.hpp"
-#include "printlog.hpp"
 #include "umpire.hpp"
-
+#include "printlog.hpp"
+	
 // SDL
 #include <SDL.h>
 #include <SDL_image.h>
@@ -19,6 +18,7 @@ using bomberman::arsenal::Bomb;
 using bomberman::arsenal::PropBomb;
 using bomberman::architecture::Block;
 using bomberman::architecture::SoftBlock;
+using bomberman::bonus::Bonus;
 
 namespace bomberman {
 namespace bestiary {
@@ -30,22 +30,42 @@ namespace bestiary {
 			return (x > 0) - (x < 0);
 		}
 		
-		bool CanStayAt(const MapConstPtr &iMap, int x, int y)
+		inline bool CanStayAt(const MapConstPtr &iMap, int x, int y)
 		{	
-			if (iMap->CheckPosition(x, y) != Map::FREE)
-			{
-				return false;
-			}
+			return iMap->CheckPosition(x, y) == Map::FREE;
+		}
 
+		inline bool PreventDiagonalMovement(std::shared_ptr<Entity> ntt) 
+		{
+			if (ntt->mx != 0 && ntt->dy != 0)
+			{
+				ntt->dy = 0;
+			}
+	      
+			if (ntt->my != 0 && ntt->dx != 0)
+			{
+				ntt->dx = 0;
+			}
+	      
+			if (ntt->mx == 0 && ntt->my == 0)
+			{
+				if (ntt->dx && ntt->dy)
+				{
+					ntt->dy = 0;
+					ntt->dx = 0;
+					return false;
+				}
+			}
 			return true;
 		}
 	}
 
 	std::shared_ptr<Mix_Chunk> Player::_bombPlaceSound;
 
-	PlayerPtr Player::Create(const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	PlayerPtr Player::Create(PlayerId id, const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		auto player = std::make_shared<Player>();
+		player->id = id;
 		player->_name = iName;
 		player->_spriteName = iSpriteName;
 		player->zlevel = 2;
@@ -57,6 +77,7 @@ namespace bestiary {
 		player->InitializeGraphicRessources(iRenderer);
 		player->_nbProBomb = 0;
 		player->_availableBombs = 1;
+		player->_bombStrength = 2;
 		return player;
 	}
 
@@ -77,31 +98,7 @@ namespace bestiary {
 		}
 	}
 	
-	bool preventDiagonalMovement(std::shared_ptr<Entity> ntt) 
-	{
-		if (ntt->mx != 0 && ntt->dy != 0)
-		{
-			ntt->dy = 0;
-		}
-      
-		if (ntt->my != 0 && ntt->dx != 0)
-		{
-			ntt->dx = 0;
-		}
-      
-		if (ntt->mx == 0 && ntt->my == 0)
-		{
-			if (ntt->dx && ntt->dy)
-			{
-				ntt->dy = 0;
-				ntt->dx = 0;
-				return false;
-			}
-		}
-		return true;
-	}
-
-	void Player::EvolutionRoutine(const PlayerPtr thePlayer, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
+	void Player::EvolutionRoutine(const PlayerPtr &player, const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
 		if (_state == Dying)
@@ -112,11 +109,9 @@ namespace bestiary {
 			corpse->mx = this->mx;
 			corpse->my = this->my;
 			iFutureMap->SetEntity(corpse);
-			umpire->NotifyPlayerDied(_inputStateIdx);
+			umpire->NotifyPlayerDied(id);
 			return;
 		}
-				
-		auto player = thePlayer;
 
 		const auto &inputs = iInputs[_inputStateIdx];
 		
@@ -159,20 +154,20 @@ namespace bestiary {
 				}
 			}
 
-			if (!alreadyBombed && umpire->GetBombCount(_inputStateIdx) < _availableBombs)
+			if (!alreadyBombed && umpire->GetBombCount(id) < _availableBombs)
 			{
 				const int kBombTimer = 3000;
 				EntityPtr newBomb;
 				if(_nbProBomb)
 				{
 					player->_nbProBomb = _nbProBomb - 1;
-					newBomb = PropBomb::Create(iTimestamp + kBombTimer, 2);
+					newBomb = PropBomb::Create(iTimestamp + kBombTimer, _bombStrength, id);
 				}
 				else
 				{
-					newBomb = Bomb::Create(iTimestamp + kBombTimer, 2, _inputStateIdx);
+					newBomb = Bomb::Create(iTimestamp + kBombTimer, _bombStrength, id);
 				}
-				umpire->IncrementBombCount(_inputStateIdx);
+				umpire->IncrementBombCount(id);
 
 				newBomb->x = player->x;
 				newBomb->y = player->y;
@@ -200,7 +195,7 @@ namespace bestiary {
 			int dx = player->dx;
 			int dy = player->dy;
 
-			if (preventDiagonalMovement(player))
+			if (PreventDiagonalMovement(player))
 			{
 				if (dx != 0 || dy != 0)
 				{
@@ -269,21 +264,32 @@ namespace bestiary {
 
 	void Player::Interact(const std::vector<InputState>& , Uint32 , const EntitySet &iOthers)
 	{
-		using bomberman::bonus::Bonus;
-
 		BOOST_FOREACH (auto other, iOthers)
 		{
 			if(typeid(*other) == typeid(Bonus))
 			{
-				_nbProBomb += 3;
 				auto bonus = std::dynamic_pointer_cast<Bonus>(other);
-				bonus->NotifyConsumed();
+				ConsumeBonus(bonus);
 			}
 		}
 	}
 
 	void Player::Render(SDL_Renderer *iRenderer) const 
 	{
+		using namespace bomberman::constants;
+
+		SDL_Rect dst;
+		dst.w = PLAYER_WIDTH;
+		dst.h = PLAYER_HEIGHT;
+		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
+		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
+
+		Render(iRenderer, dst);
+	}
+
+	void Player::Render(SDL_Renderer *iRenderer, SDL_Rect &dst) const 
+	{
+		int idx = GetFrameIndex();
 
 		SDL_Rect src[12];
 		for (int i = 0; i < 12; ++i)
@@ -293,16 +299,6 @@ namespace bestiary {
 			src[i].x = 1 + i * 17;
 			src[i].y = 1;
 		}
-
-		using namespace bomberman::constants;
-
-		SDL_Rect dst;
-		dst.w = PLAYER_WIDTH;
-		dst.h = PLAYER_HEIGHT;
-		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
-		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
-
-		int idx = GetFrameIndex();
 
 		SDL_RenderCopy(iRenderer, _Bomberman.get(), &src[idx], &dst);
 	}
@@ -354,6 +350,26 @@ namespace bestiary {
 			;
 	      }	 
 	    return iState;
+	  }
+
+	  void Player::ConsumeBonus(const bonus::BonusPtr &iBonus)
+	  {
+	  	using bomberman::bonus::Bonus;
+		switch(iBonus->GetType())
+		{
+		case Bonus::BOMBSTRENGTH:
+			_bombStrength++;
+			break;
+
+		case Bonus::BOMBCOUNT:
+			_availableBombs++;
+			break;
+
+		case Bonus::PROPBOMB:
+			_nbProBomb++;
+			break;
+		}
+		iBonus->NotifyConsumed();
 	  }
 }
 }

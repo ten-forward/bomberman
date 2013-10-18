@@ -2,7 +2,7 @@
 
 namespace bomberman {
 namespace bestiary {
-	ComputerPtr Computer::Create(const std::string &iName, const std::string &iSpriteName, const std::string &iAiScript, int iInputStateIdx, SDL_Renderer* iRenderer, bool* alive)
+	ComputerPtr Computer::Create(PlayerId id, const std::string &iName, const std::string &iSpriteName, const std::string &iAiScript, int iInputStateIdx, SDL_Renderer* iRenderer)
 	{
 		SDL_RWops *rw = SDL_RWFromFile(iAiScript.c_str(), "r");
 
@@ -16,6 +16,7 @@ namespace bestiary {
 		ScriptAPI sa(script);
 
 		auto player = std::make_shared<Computer>(sa);
+		player->id = id;
 		player->_name = iName;
 		player->_spriteName = iSpriteName;
 		player->zlevel = 2;
@@ -24,6 +25,9 @@ namespace bestiary {
 		player->_nextUpdateDueTime = 0;
 		player->_state = IdleDown;
 		player->_inputStateIdx = iInputStateIdx;
+		player->_nbProBomb = 0;
+		player->_availableBombs = 1;
+		player->_bombStrength = 2;
 		player->InitializeGraphicRessources(iRenderer);
 
 		delete[] script;

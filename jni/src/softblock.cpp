@@ -24,14 +24,14 @@ namespace architecture {
 
 	void SoftBlock::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		_SoftBlock = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/softblock.png"), SDL_DestroyTexture);
+		_SoftBlock = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/softblock.png"), SDL_DestroyTexture);
 	}
 
 	void SoftBlock::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t /*iTimestamp*/, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
 		if (!isAlive)
 		{
-			if (random() < RAND_MAX * _bonusProbability) 
+			if (rand() < RAND_MAX * _bonusProbability) 
 			{
 				auto bonus = Bonus::Create();
 				bonus->x = x;
