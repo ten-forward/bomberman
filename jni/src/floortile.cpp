@@ -1,5 +1,6 @@
 #include "floortile.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -10,7 +11,7 @@ namespace architecture {
 	FloorTilePtr FloorTile::Create() 
 	{
 		auto floorTile = std::make_shared<FloorTile>();
-		floorTile->zlevel = 0;
+		floorTile->zlevel = constants::FLOOR_ZLEVEL;
 		floorTile->elevel = constants::FLOOR_ELEVEL;
 		return floorTile;
 	}

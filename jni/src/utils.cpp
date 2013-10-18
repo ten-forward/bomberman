@@ -1,4 +1,5 @@
-#include "constants.hpp"
+
+#include "constants_resolution.hpp"
 #include "utils.hpp"
 
 namespace bomberman {

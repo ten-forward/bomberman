@@ -5,7 +5,8 @@
 #include "propbomb.hpp"
 #include "block.hpp"
 #include "softblock.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 #include "umpire.hpp"
 #include "printlog.hpp"
 	
@@ -68,7 +69,7 @@ namespace bestiary {
 		player->id = id;
 		player->_name = iName;
 		player->_spriteName = iSpriteName;
-		player->zlevel = 2;
+		player->zlevel = constants::PLAYER_ZLEVEL;
 		player->_frameId = 3;
 		player->_nextFrameDueTime = 0;
 		player->_nextUpdateDueTime = 0;

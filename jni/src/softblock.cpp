@@ -1,5 +1,6 @@
 #include "softblock.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 #include "bonus.hpp"
 
 // SDL
@@ -13,7 +14,7 @@ namespace architecture {
 	SoftBlockPtr SoftBlock::Create(double iBonusProbability) 
 	{
 		auto block = std::make_shared<SoftBlock>();
-		block->zlevel = 2;
+		block->zlevel = constants::BLOCK_ZLEVEL;
 		block->elevel = constants::SOFTBLOCK_ELEVEL;
 		block->isAlive = true;
 		block->_bonusProbability = iBonusProbability;

@@ -1,5 +1,6 @@
 #include "bonus.hpp"
-#include "constants.hpp"
+#include "constants_game.hpp"
+#include "constants_resolution.hpp"
 #include "printlog.hpp"
 #include <array>
 
@@ -12,14 +13,14 @@ namespace bonus {
 	BonusPtr Bonus::Create() 
 	{
 		auto bonus = std::make_shared<Bonus>();
-		bonus->zlevel = 2;
+		bonus->zlevel = constants::BONUS_ZLEVEL;
 		bonus->elevel = -1;
 		bonus->_state = Available;
 
 		std::array<double, 3> probabilities;
-		probabilities[PROPBOMB] = 0.02;
-		probabilities[BOMBCOUNT] = 0.49;
-		probabilities[BOMBSTRENGTH] = 0.49;
+		probabilities[PROPBOMB] = 0.50;
+		probabilities[BOMBCOUNT] = 0.25;
+		probabilities[BOMBSTRENGTH] = 0.25;
 		
 		double number = (double)rand() / (double)RAND_MAX;
 		double soFar = 0;

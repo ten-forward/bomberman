@@ -3,7 +3,8 @@
 #include "bomb.hpp"
 #include "block.hpp"
 #include "softblock.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 // SDL
 #include <SDL.h>
@@ -24,7 +25,7 @@ namespace bestiary {
 		corpse->_frameId = 0;
 		corpse->_BombermanCorpse = corpseSprite;
 
-		corpse->zlevel = 3;
+		corpse->zlevel = constants::CORPSE_ZLEVEL;
 		corpse->_frameId = 0;
 		corpse->_nextFrameDueTime = 0;
 		corpse->_nextUpdateDueTime = 0;

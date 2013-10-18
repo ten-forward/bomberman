@@ -6,7 +6,8 @@
 #include "softblock.hpp"
 #include "floortile.hpp"
 #include "printlog.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 #include "utils.hpp"
 #include "printlog.hpp"
 #include "computer.hpp"
@@ -140,7 +141,7 @@ void GameScene::InitBlocks(SDL_Renderer* renderer)
 			continue;
 		}
 
-		if (_presentMap->CheckPosition(x,y) == Map::FREE)
+		if (_presentMap->CheckPosition(x,y) == Map::FREE && false)
 		{
 			auto softblock = SoftBlock::Create(0.8);
 			softblock->x = x;

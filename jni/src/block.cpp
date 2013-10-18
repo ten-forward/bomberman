@@ -1,5 +1,6 @@
 #include "block.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -10,7 +11,7 @@ namespace architecture {
 	BlockPtr Block::Create() 
 	{
 		auto block = std::make_shared<Block>();
-		block->zlevel = 2;
+		block->zlevel = constants::BLOCK_ZLEVEL;
 		block->elevel = constants::BLOCK_ELEVEL;
 		return block;
 	}

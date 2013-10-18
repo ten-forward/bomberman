@@ -5,7 +5,8 @@
 #include "propbomb.hpp"
 #include "player.hpp"
 #include "computer.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -25,7 +26,7 @@ namespace arsenal {
 		auto explosion = std::make_shared<Explosion>();
 		explosion->_timeout = iCreationTime + kExplosionTimer;
 		explosion->_stage = 0;
-		explosion->zlevel = 2;
+		explosion->zlevel = constants::EXPLOSION_ZLEVEL;
 		explosion->_orientation = orientation;
 		return explosion;
 	}
