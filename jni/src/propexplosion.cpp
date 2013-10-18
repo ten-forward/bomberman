@@ -78,13 +78,12 @@ namespace arsenal {
 				}
 			}
 			
-
 			if (_stage < 4)
 			{
 				auto explosion = std::make_shared<PropExplosion>(*this);
 				explosion->active = true;
 				explosion->_timeout = iTimestamp + kExplosionTimer;
-				explosion->_stage++;
+				explosion->_stage = explosion->_stage + 1;
 				iFutureMap->SetEntity(explosion);
 			}
 		}
@@ -139,6 +138,11 @@ namespace arsenal {
 
 	void PropExplosion::Render(SDL_Renderer *iRenderer) const 
 	{
+		if (_stage >= 4)
+		{
+			return;
+		}
+
 		if (!_Explosion[0]) 
 		{
 			InitializeGraphicRessources(iRenderer);

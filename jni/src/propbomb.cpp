@@ -31,8 +31,8 @@ namespace arsenal {
 
 	void PropBomb::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
-		if (iTimestamp >= _timeout || _detonating) {
-
+		if (iTimestamp >= _timeout || _detonating)
+		{
 			auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
 			umpire->DecrementBombCount(_playerId);
 
@@ -40,8 +40,9 @@ namespace arsenal {
 			blast->x = x;
 			blast->y = y;
 			iFutureMap->SetEntity(blast);
-		} else {
-
+		}
+		else
+		{
 			auto bomb = std::make_shared<PropBomb>(*this);
 
 			if (_nextFrameDueTime < iTimestamp)

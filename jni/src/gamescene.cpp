@@ -141,7 +141,7 @@ void GameScene::InitBlocks(SDL_Renderer* renderer)
 			continue;
 		}
 
-		if (_presentMap->CheckPosition(x,y) == Map::FREE && false)
+		if (_presentMap->CheckPosition(x,y) == Map::FREE)
 		{
 			auto softblock = SoftBlock::Create(0.8);
 			softblock->x = x;
