@@ -43,9 +43,9 @@ namespace bonus {
 	{
 		if (_BonusTexture.empty())
 		{
-			_BonusTexture.insert(std::make_pair(Bonus::PROPBOMB, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/propbombbonus.png"), SDL_DestroyTexture)));
-			_BonusTexture.insert(std::make_pair(Bonus::BOMBCOUNT, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/bombbonus.png"), SDL_DestroyTexture)));
-			_BonusTexture.insert(std::make_pair(Bonus::BOMBSTRENGTH, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/firebonus.png"), SDL_DestroyTexture)));
+			_BonusTexture.insert(std::make_pair(Bonus::PROPBOMB, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/propbombbonus.png"), SDL_DestroyTexture)));
+			_BonusTexture.insert(std::make_pair(Bonus::BOMBCOUNT, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/bombbonus.png"), SDL_DestroyTexture)));
+			_BonusTexture.insert(std::make_pair(Bonus::BOMBSTRENGTH, std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/firebonus.png"), SDL_DestroyTexture)));
 		}
 	}
 

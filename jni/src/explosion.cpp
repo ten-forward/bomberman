@@ -34,7 +34,7 @@ namespace arsenal {
 
 	void Explosion::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		_Explosion = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/flare.png"), SDL_DestroyTexture);
+		_Explosion = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/flare.png"), SDL_DestroyTexture);
 	}
 
 	void Explosion::Evolve(const std::vector<InputState>& /*iInputs*/, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const

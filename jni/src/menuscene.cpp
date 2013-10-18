@@ -12,13 +12,13 @@ MenuScene::MenuScene()
 
 void MenuScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	auto font = utils::LoadFont("test/Gamegirl.ttf", 16 * constants::SPRITE_MAGNIFICATION);
+	auto font = utils::LoadFont("drawable/Gamegirl.ttf", 16 * constants::SPRITE_MAGNIFICATION);
 
 	_selectionTwink = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV("sound/select.wav"), Mix_FreeChunk);
 
-	_background = utils::LoadTexture(renderer, "test/mainback.png");
+	_background = utils::LoadTexture(renderer, "drawable/mainback.png");
 	
-	_bombcursor = utils::LoadTexture(renderer, "test/bombcursor.png");
+	_bombcursor = utils::LoadTexture(renderer, "drawable/bombcursor.png");
 
 	_newGame = utils::DrawString(renderer, font, "New Game", utils::MakeColor(0xffffffff));
 	_credits = utils::DrawString(renderer, font, "Credits", utils::MakeColor(0xffffffff));
