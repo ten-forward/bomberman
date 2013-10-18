@@ -15,7 +15,7 @@ VictoryScene::VictoryScene(int victor) :
 
 void VictoryScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	auto font = utils::LoadFont("test/Gamegirl.ttf", 64);
+	auto font = utils::LoadFont("drawable/Gamegirl.ttf", 64);
 
 	std::stringstream ss;
 	if (_victor == constants::NO_PLAYER)

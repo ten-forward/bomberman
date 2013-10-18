@@ -47,7 +47,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	{
 		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
-	_background = utils::LoadTexture(renderer, "test/gameback.png");
+	_background = utils::LoadTexture(renderer, "drawable/gameback.png");
 
 	InitPlayers(renderer);
 	InitBlocks(renderer);
@@ -276,7 +276,7 @@ void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Ren
 
 	auto umpire = std::static_pointer_cast<Umpire>(_presentMap->GetEntity(constants::UMPIRE));
 
-	auto font = utils::LoadFont("test/Gamegirl.ttf", 64);
+	auto font = utils::LoadFont("drawable/Gamegirl.ttf", 64);
 	std::stringstream ss;
 	ss << "Bx" << (iPlayer->GetAllowedNumberOfBombs() - umpire->GetBombCount(iPlayer->id));
 	auto nbBombsImg = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));

@@ -25,7 +25,7 @@ namespace arsenal {
 
 	void PropBomb::InitializeGraphicRessources(SDL_Renderer *iRenderer) 
 	{
-		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "test/propbomb.png"), SDL_DestroyTexture);
+		_Bomb = std::shared_ptr<SDL_Texture>(IMG_LoadTexture(iRenderer, "drawable/propbomb.png"), SDL_DestroyTexture);
 	}
 
 	void PropBomb::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
