@@ -60,7 +60,7 @@ void run(std::shared_ptr<bomberman::SceneInterface> scene)
 		
 		scene->Update(inputState, now);
 
-		if (SDL_GetTicks - time > 12)
+		if (SDL_GetTicks() - time > 12)
 		{
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 			SDL_RenderClear(renderer);
