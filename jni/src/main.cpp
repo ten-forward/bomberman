@@ -60,7 +60,7 @@ void run(std::shared_ptr<bomberman::SceneInterface> scene)
 		
 		scene->Update(inputState, now);
 
-		if (now - time > 12)
+		if (SDL_GetTicks() - time > 12)
 		{
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 			SDL_RenderClear(renderer);
@@ -75,7 +75,7 @@ void PollEvents(std::vector<InputState> &oInputState)
 {
 	SDL_Event e;
 
-	if ( SDL_PollEvent(&e) )
+	while ( SDL_PollEvent(&e) )
 	{
 #ifdef ANDROID
 		auto &inputState = oInputState[e.jdevice.which];
