@@ -184,7 +184,7 @@ namespace bestiary {
 		if (_nextFrameDueTime < iTimestamp)
 		{
 			player->_frameId++;
-			player->_frameId %= 3;
+			player->_frameId %= 4;
 			player->_nextFrameDueTime = iTimestamp + constants::PLAYER_FRAME_UPDATE_DELAY;
 		}
 		
@@ -291,16 +291,13 @@ namespace bestiary {
 	{
 		int idx = GetFrameIndex();
 
-		SDL_Rect src[12];
-		for (int i = 0; i < 12; ++i)
-		{
-			src[i].w = 16;
-			src[i].h = 32;
-			src[i].x = 1 + i * 17;
-			src[i].y = 1;
-		}
+		SDL_Rect src;
+		src.w = 16;
+		src.h = 32;
+		src.x = _state > 3 ? 0 : _frameId * 16;
+		src.y = idx * 32;
 
-		SDL_RenderCopy(iRenderer, _Bomberman.get(), &src[idx], &dst);
+		SDL_RenderCopy(iRenderer, _Bomberman.get(), &src, &dst);
 	}
 
 	void Player::Kill()
@@ -313,25 +310,23 @@ namespace bestiary {
 		switch(_state)
 		{
 			case WalkingUp:
-				return _frameId;
+				return 2;
 			case WalkingDown:
-				return 6 + _frameId;
+				return 0;
 			case WalkingLeft:
-				return 3 + _frameId;
-			case WalkingRight:
-				return 9 + _frameId;
-			case IdleUp:
-				return 0 + 2;
-			case IdleDown:
-				return 6 + 2;
-			case IdleLeft:
-				return 3 + 2;
-			case IdleRight:
-				return 9 + 2;
-			default:
 				return 3;
+			case WalkingRight:
+				return 1;
+			case IdleUp:
+				return 2;
+			case IdleDown:
+				return 0;
+			case IdleLeft:
+				return 3;
+			case IdleRight:
+				return 1;
 		}
-		return 3;
+		return 0;
 	}
 
 	Player::State Player::DynamicToStaticState(Player::State iState) 

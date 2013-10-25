@@ -103,6 +103,7 @@ bjam.exe --toolset=msvc --with-program_options
     <ClInclude Include="..\jni\src\printlog.hpp" />
     <ClInclude Include="..\jni\src\propbomb.hpp" />
     <ClInclude Include="..\jni\src\propexplosion.hpp" />
+    <ClInclude Include="..\jni\src\sceneresult.hpp" />
     <ClInclude Include="..\jni\src\scene_interface.hpp" />
     <ClInclude Include="..\jni\src\scriptapi.hpp" />
     <ClInclude Include="..\jni\src\setupscene.hpp" />

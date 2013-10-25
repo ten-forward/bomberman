@@ -26,10 +26,10 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	}
 
 	players[0].name = "Athos";
-	players[0].spriteName = "drawable/SaturnBomberman-BlackBomberman.PNG";
+	players[0].spriteName = "drawable/miku2.png";
 
 	players[1].name = "Porthos";
-	players[1].spriteName = "drawable/honey.png";
+	players[1].spriteName = "drawable/duckie.png";
 
 	players[2].name = "Aramis";
 	players[2].spriteName = "drawable/manji.png";
