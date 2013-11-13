@@ -1,2 +1,2 @@
-CXX=GCC
+CXX=gcc
 -include Makefile.common
