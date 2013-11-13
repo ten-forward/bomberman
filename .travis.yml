@@ -3,7 +3,7 @@ language: java cpp
 env:
   matrix:
     - THE_MAKEFILE=Makefile.android
-    - THE_MAKEFILE=Makefile.linux
+    - THE_MAKEFILE=Makefile
   global:
     - ARTIFACTS_AWS_REGION=us-east-1
     - ARTIFACTS_S3_BUCKET=bomberman.ten-forward
