@@ -1,5 +1,6 @@
 #include "umpire.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 #include <algorithm>
 

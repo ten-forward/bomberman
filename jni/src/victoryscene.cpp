@@ -1,7 +1,8 @@
 #include "victoryscene.hpp"
 #include "utils.hpp"
 #include "printlog.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 #include <sstream>
 

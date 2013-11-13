@@ -11,7 +11,8 @@
 #endif // PROGRAM_OPTIONS
 
 #include "inputstate.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_input.hpp"
 #include "printlog.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"

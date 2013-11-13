@@ -1,5 +1,5 @@
 #include "entity.hpp"
-#include "constants.hpp"
+#include "constants_game.hpp"
 
 namespace bomberman
 {

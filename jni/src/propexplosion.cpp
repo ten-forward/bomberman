@@ -5,7 +5,8 @@
 #include "propbomb.hpp"
 #include "player.hpp"
 #include "computer.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 
 // SDL
 #include <SDL_image.h>
@@ -43,7 +44,7 @@ namespace arsenal {
 		auto explosion = std::make_shared<PropExplosion>();
 		explosion->_timeout = iCreationTime + kExplosionTimer;
 		explosion->_stage = 0;
-		explosion->zlevel = 2;
+		explosion->zlevel = constants::EXPLOSION_ZLEVEL;
 		explosion->_propagation = IsoTropic;
 		explosion->_willPropagate = true;
 		return explosion;
@@ -77,13 +78,12 @@ namespace arsenal {
 				}
 			}
 			
-
 			if (_stage < 4)
 			{
 				auto explosion = std::make_shared<PropExplosion>(*this);
 				explosion->active = true;
 				explosion->_timeout = iTimestamp + kExplosionTimer;
-				explosion->_stage++;
+				explosion->_stage = explosion->_stage + 1;
 				iFutureMap->SetEntity(explosion);
 			}
 		}
@@ -138,6 +138,11 @@ namespace arsenal {
 
 	void PropExplosion::Render(SDL_Renderer *iRenderer) const 
 	{
+		if (_stage >= 4)
+		{
+			return;
+		}
+
 		if (!_Explosion[0]) 
 		{
 			InitializeGraphicRessources(iRenderer);

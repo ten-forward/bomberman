@@ -1,6 +1,7 @@
 #include "propbomb.hpp"
 #include "propexplosion.hpp"
-#include "constants.hpp"
+#include "constants_resolution.hpp"
+#include "constants_game.hpp"
 #include "umpire.hpp"
 
 // SDL
@@ -13,7 +14,7 @@ namespace arsenal {
 		auto bomb = std::make_shared<PropBomb>();
 		bomb->_timeout = iTimeout;
 		bomb->_strength = iStrength;
-		bomb->zlevel = 2;
+		bomb->zlevel = constants::BOMB_ZLEVEL;
 		bomb->_detonating = false;
 		bomb->_frameId = 0;
 		bomb->_nextFrameDueTime = 0;
@@ -30,8 +31,8 @@ namespace arsenal {
 
 	void PropBomb::Evolve(const std::vector<InputState>& /*iInputs*/, uint32_t iTimestamp, const MapConstPtr &/*iPresentMap*/, const MapPtr &iFutureMap) const
 	{
-		if (iTimestamp >= _timeout || _detonating) {
-
+		if (iTimestamp >= _timeout || _detonating)
+		{
 			auto umpire = std::static_pointer_cast<Umpire>(iFutureMap->GetEntity(constants::UMPIRE));
 			umpire->DecrementBombCount(_playerId);
 
@@ -39,8 +40,9 @@ namespace arsenal {
 			blast->x = x;
 			blast->y = y;
 			iFutureMap->SetEntity(blast);
-		} else {
-
+		}
+		else
+		{
 			auto bomb = std::make_shared<PropBomb>(*this);
 
 			if (_nextFrameDueTime < iTimestamp)

@@ -6,6 +6,7 @@
 #include "block.hpp"
 #include "softblock.hpp"
 #include "bonus.hpp"
+#include "umpire.hpp"
 
 #include <iostream>
 #include <boost/foreach.hpp>
@@ -26,7 +27,10 @@ Map::PositionCheck Map::CheckPosition(int x, int y) const
 	{
 		BOOST_FOREACH(auto ntt, GetEntities(x, y))
 		{
-			if (typeid(*ntt) != typeid(architecture::FloorTile))
+			if (
+				typeid(*ntt) != typeid(architecture::FloorTile) &&
+				typeid(*ntt) != typeid(Umpire)
+				)
 			{
 				if (typeid(*ntt) == typeid(architecture::Block))
 				{

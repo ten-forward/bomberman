@@ -10,7 +10,6 @@ namespace bestiary {
 		char* script = new char[size + 1];
 		memset(script, 0, size + 1);
 		rw->read(rw, script, sizeof(char), size);
-		
 		SDL_FreeRW(rw);
 
 		ScriptAPI sa(script);
