@@ -38,12 +38,13 @@ NODEPS=clean
 
 .SECONDEXPANSION:
 
-run: all
-	cd assets && ./bomberman
 
 all: $(TARGET)
 	$(AT)echo "Building for $(OS)"
 
+run: all
+	cd assets && ./bomberman
+	
 clean:
 	-rm -rf $(TARGET) $(OUT) $(SDL2PREFIX)
 
