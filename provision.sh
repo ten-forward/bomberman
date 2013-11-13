@@ -12,7 +12,7 @@ then
     wget -q http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
     tar xzvf android-sdk_r22.0.1-linux.tgz > /dev/null
     $ANDROID_HOME/tools/android list sdk
-    echo "y" | $ANDROID_HOME/tools/android -s update sdk --filter 13,1,2,3 --no-ui
+    echo "y" | $ANDROID_HOME/tools/android -s update sdk --filter 14,1,2,3 --no-ui
     $ANDROID_HOME/tools/android list targets
     $ANDROID_HOME/tools/android -s update project --path . --target "android-10"
 fi
