@@ -8,5 +8,4 @@ install:
   - brew install freetype
 
 script:
-  - CXX=clang++ PLATFORM=MACOSX make -f Makefile.linux
-
+  - make

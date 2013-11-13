@@ -1,0 +1,4 @@
+CXX=CLANG
+PLATFORM=MACOSX
+
+-include Makefile.common
