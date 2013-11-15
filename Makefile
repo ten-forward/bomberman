@@ -5,3 +5,10 @@ ifeq ($(OS),Darwin)
 else
 -include Makefile.linux
 endif
+
+run: all
+	cd assets && ./bomberman
+	
+android:
+	ndk-build
+	ant debug
