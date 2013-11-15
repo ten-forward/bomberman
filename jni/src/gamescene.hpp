@@ -45,6 +45,7 @@ class GameScene : public SceneInterface
 	protected:
 		std::shared_ptr<Mix_Music> _music;
 		std::shared_ptr<SDL_Texture> _background;
+		std::shared_ptr<TTF_Font> _font;
 		MapPtr _presentMap;
 
 		PlayerConfigArray _playerConfig;

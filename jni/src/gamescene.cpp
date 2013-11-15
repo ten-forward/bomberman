@@ -36,7 +36,8 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 	_music(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_playerConfig(playerConfig),
-	_pastMaps(1024)
+	_pastMaps(1024),
+	_font(utils::LoadFont("drawable/Gamegirl.ttf", 64))
 {
 }
 
@@ -277,10 +278,9 @@ void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Ren
 
 	auto umpire = std::static_pointer_cast<Umpire>(_presentMap->GetEntity(constants::UMPIRE));
 
-	auto font = utils::LoadFont("drawable/Gamegirl.ttf", 64);
 	std::stringstream ss;
 	ss << "Bx" << (iPlayer->GetAllowedNumberOfBombs() - umpire->GetBombCount(iPlayer->id));
-	auto nbBombsImg = utils::DrawString(renderer, font, ss.str(), utils::MakeColor(0xffffffff));
+	auto nbBombsImg = utils::DrawString(renderer, _font, ss.str(), utils::MakeColor(0xffffffff));
 
 	SDL_Rect nbBombsRect;
 	nbBombsRect.w = 100;

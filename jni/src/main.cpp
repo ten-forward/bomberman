@@ -76,19 +76,20 @@ void PollEvents(std::vector<InputState> &oInputState)
 {
 	SDL_Event e;
 
-	while ( SDL_PollEvent(&e) )
-	{
 #ifdef ANDROID
-		auto &inputState = oInputState[e.jdevice.which];
+		auto inputState = &oInputState[e.jdevice.which];
 #else
-		auto &inputState = oInputState[0];
+		auto inputState = &oInputState[0];
 #endif
 		
-		for (auto keyIter = keyMap.begin(); keyIter != keyMap.end(); keyIter++)
-		{
-			inputState.SetButtonPressed(keyIter->second, false);
-			inputState.SetButtonReleased(keyIter->second, false);
-		}
+	for (auto keyIter = keyMap.begin(); keyIter != keyMap.end(); keyIter++)
+	{
+		inputState->SetButtonPressed(keyIter->second, false);
+		inputState->SetButtonReleased(keyIter->second, false);
+	}
+
+	if ( SDL_PollEvent(&e) )
+	{
 
 		if (e.type == SDL_QUIT)
 		{
@@ -96,21 +97,21 @@ void PollEvents(std::vector<InputState> &oInputState)
 		}
 		else if (e.type == SDL_FINGERUP)
 		{	
-			inputState.SetFingered(false);
+			inputState->SetFingered(false);
 		}
 		else if (e.type == SDL_FINGERDOWN)
 		{
-			inputState.SetFingered(true);
-			inputState.SetFingerX(e.tfinger.x);
-			inputState.SetFingerY(e.tfinger.y);
+			inputState->SetFingered(true);
+			inputState->SetFingerX(e.tfinger.x);
+			inputState->SetFingerY(e.tfinger.y);
 		}
 		else if (e.type == SDL_KEYDOWN)
 		{
 			auto keyIter = keyMap.find(e.key.keysym.sym);
 			if ( keyIter != keyMap.end() )
 			{
-				inputState.SetButtonPressed(keyIter->second, true);
-				inputState.SetButtonState(keyIter->second, true);
+				inputState->SetButtonPressed(keyIter->second, true);
+				inputState->SetButtonState(keyIter->second, true);
 			}
 		}
 		else if (e.type == SDL_KEYUP)
@@ -118,8 +119,8 @@ void PollEvents(std::vector<InputState> &oInputState)
 			auto keyIter = keyMap.find(e.key.keysym.sym);
 			if ( keyIter != keyMap.end() )
 			{
-				inputState.SetButtonReleased(keyIter->second, true);
-				inputState.SetButtonState(keyIter->second, false);
+				inputState->SetButtonReleased(keyIter->second, true);
+				inputState->SetButtonState(keyIter->second, false);
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "printlog.hpp"
+
 class InputState
 {	
 	char down[32];
@@ -22,6 +24,7 @@ class InputState
 		char set = ( state << (bitIndex & 0x7) );
 		*block &= clear;
 		*block |= set;
+		//printlog("%d %d\n", bitIndex, array[bitIndex >> 3]);
 	}
 
 public:
