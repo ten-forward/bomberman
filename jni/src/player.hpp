@@ -18,7 +18,9 @@ namespace bestiary {
 
 	typedef std::shared_ptr<Player> PlayerPtr;
 
-	class Player : public bomberman::Entity {
+	class Player : public bomberman::Entity
+    {
+        
 		public:
 			static PlayerPtr Create(PlayerId id, const std::string &iName, const std::string &iSpriteName, int iInputStateIdx, SDL_Renderer* iRenderer);
 			virtual void Evolve(const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
@@ -54,6 +56,8 @@ namespace bestiary {
 			int _inputStateIdx;
 			int _availableBombs;
 			int _bombStrength;
+            int _bombPosX;
+            int _bombPosY;
 
 			int _nbProBomb;
 
@@ -67,6 +71,9 @@ namespace bestiary {
 
 			void EvolutionRoutine(const PlayerPtr &player, const std::vector<InputState>& iInputs, Uint32 iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const;
 			void ConsumeBonus(const bonus::BonusPtr &iBonus);
+        
+            bool CanMoveTo(int mx, int my, const MapConstPtr &iPresentMap, PlayerPtr player) const;
+
 	};
 }
 }

@@ -38,7 +38,7 @@ void MenuScene::Update(const std::vector<InputState>& inputs, uint32_t timestamp
 	{
 		_frameId++;
 		_frameId %= 3;
-		_nextFrameDueTime = timestamp + 50;
+		_nextFrameDueTime = timestamp + 150;
 	}
 
 	for(int i = 0; i < inputs.size(); i++)

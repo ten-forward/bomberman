@@ -11,6 +11,7 @@ namespace architecture {
 	BlockPtr Block::Create() 
 	{
 		auto block = std::make_shared<Block>();
+        block->id = constants::HARDBLOCKID;
 		block->zlevel = constants::BLOCK_ZLEVEL;
 		block->elevel = constants::BLOCK_ELEVEL;
 		return block;

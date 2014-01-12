@@ -12,6 +12,7 @@ namespace arsenal {
 
 	PropBombPtr PropBomb::Create(int iTimeout, int iStrength, int iPlayerId) {
 		auto bomb = std::make_shared<PropBomb>();
+        bomb->id = constants::BOMBID;
 		bomb->_timeout = iTimeout;
 		bomb->_strength = iStrength;
 		bomb->zlevel = constants::BOMB_ZLEVEL;

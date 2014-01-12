@@ -31,7 +31,7 @@ namespace arsenal {
 				int x = initX;
 				int y = initY;
 				propagator(i, &x, &y);
-				if(iPresentMap->CheckPosition(x,y) == Map::BOUNDARY 
+				if(iPresentMap->CheckPosition(x,y) == Map::BOUNDARY
 					|| iPresentMap->CheckPosition(x,y) == Map::HARD_OCCUPIED)
 				{
 					break;
@@ -52,6 +52,7 @@ namespace arsenal {
 	BombPtr Bomb::Create(int iTimeout, int iStrength, int iPlayerId) 
 	{
 		auto bomb = std::make_shared<Bomb>();
+        bomb->id = constants::BOMBID;
 		bomb->_timeout = iTimeout;
 		bomb->_strength = iStrength;
 		bomb->zlevel = constants::BOMB_ZLEVEL;

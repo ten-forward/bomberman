@@ -11,6 +11,7 @@ namespace architecture {
 	FloorTilePtr FloorTile::Create() 
 	{
 		auto floorTile = std::make_shared<FloorTile>();
+        floorTile->id = constants::FLOORID;
 		floorTile->zlevel = constants::FLOOR_ZLEVEL;
 		floorTile->elevel = constants::FLOOR_ELEVEL;
 		return floorTile;

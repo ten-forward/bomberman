@@ -24,6 +24,7 @@ namespace arsenal {
 
 	ExplosionPtr Explosion::Create(int iCreationTime, Orientation orientation) {
 		auto explosion = std::make_shared<Explosion>();
+        explosion->id = constants::EXPLOSIONID;
 		explosion->_timeout = iCreationTime + kExplosionTimer;
 		explosion->_stage = 0;
 		explosion->zlevel = constants::EXPLOSION_ZLEVEL;

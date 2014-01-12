@@ -42,6 +42,7 @@ namespace arsenal {
 
 	PropExplosionPtr PropExplosion::Create(int iCreationTime) {
 		auto explosion = std::make_shared<PropExplosion>();
+        explosion->id = constants::EXPLOSIONID;
 		explosion->_timeout = iCreationTime + kExplosionTimer;
 		explosion->_stage = 0;
 		explosion->zlevel = constants::EXPLOSION_ZLEVEL;

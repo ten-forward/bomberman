@@ -13,6 +13,7 @@ namespace bonus {
 	BonusPtr Bonus::Create() 
 	{
 		auto bonus = std::make_shared<Bonus>();
+        bonus->id = constants::BONUSID;
 		bonus->zlevel = constants::BONUS_ZLEVEL;
 		bonus->elevel = -1;
 		bonus->_state = Available;

@@ -14,6 +14,7 @@ namespace architecture {
 	SoftBlockPtr SoftBlock::Create(double iBonusProbability) 
 	{
 		auto block = std::make_shared<SoftBlock>();
+        block->id = constants::SOFTBLOCKID;
 		block->zlevel = constants::BLOCK_ZLEVEL;
 		block->elevel = constants::SOFTBLOCK_ELEVEL;
 		block->isAlive = true;

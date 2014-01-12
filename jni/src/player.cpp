@@ -9,6 +9,7 @@
 #include "constants_game.hpp"
 #include "umpire.hpp"
 #include "printlog.hpp"
+#include "floortile.hpp"
 	
 // SDL
 #include <SDL.h>
@@ -50,6 +51,8 @@ namespace bestiary {
 		player->_nbProBomb = 0;
 		player->_availableBombs = 1;
 		player->_bombStrength = 2;
+        player->_bombPosX = -1;
+        player->_bombPosY = -1;
 		return player;
 	}
 
@@ -128,8 +131,20 @@ namespace bestiary {
 					break;
 				}
 			}
+            
+            bool climbedOff = false;
+            // make sure we already climbed off another bomb
+            if (
+                player->mx >= player->_bombPosX + constants::AMOUNT_PER_TILE ||
+                player->mx + constants::AMOUNT_PER_TILE <= player->_bombPosX ||
+                player->my >= player->_bombPosY + constants::AMOUNT_PER_TILE ||
+                player->my + constants::AMOUNT_PER_TILE <= player->_bombPosY
+                )
+            {
+                climbedOff = true;
+            }
 
-			if (!alreadyBombed && umpire->GetBombCount(id) < _availableBombs)
+			if (!alreadyBombed && climbedOff && umpire->GetBombCount(id) < _availableBombs)
 			{
 				const int kBombTimer = 3000;
 				EntityPtr newBomb;
@@ -146,7 +161,10 @@ namespace bestiary {
 
 				newBomb->SetX(player->GetX());
 				newBomb->SetY(player->GetY());
-
+                
+                player->_bombPosX = newBomb->mx;
+                player->_bombPosY = newBomb->my;
+                
 				iFutureMap->SetEntity(newBomb);
 				
 				if (Mix_PlayChannel(-1, _bombPlaceSound.get(), 0) == -1)
@@ -170,12 +188,12 @@ namespace bestiary {
             int nx = player->mx + player->dx;
             int ny = player->my + player->dy;
             
-            if (iFutureMap->CheckFinePosition(nx, player->my) == Map::FREE)
+            if (CanMoveTo(nx, player->my, iPresentMap, player))
             {
                 player->mx = nx;
             }
             
-            if (iFutureMap->CheckFinePosition(player->mx, ny) == Map::FREE)
+            if (CanMoveTo(player->mx, ny, iPresentMap, player))
             {
                 player->my = ny;
             }
@@ -190,7 +208,19 @@ namespace bestiary {
             {
                 player->dy = 0;
             }
-        
+            
+            // reset bomb position (climbed off a bomb)
+            if (
+                player->mx >= player->_bombPosX + constants::AMOUNT_PER_TILE ||
+                player->mx + constants::AMOUNT_PER_TILE <= player->_bombPosX ||
+                player->my >= player->_bombPosY + constants::AMOUNT_PER_TILE ||
+                player->my + constants::AMOUNT_PER_TILE <= player->_bombPosY
+                )
+            {
+                player->_bombPosX = -1;
+                player->_bombPosY = -1;
+            }
+            
             if (player->dx < 0) { player->_state = WalkingLeft; }
             if (player->dx > 0) { player->_state = WalkingRight; }
             if (player->dy < 0) { player->_state = WalkingUp; }
@@ -200,6 +230,74 @@ namespace bestiary {
 		iFutureMap->SetEntity(player);
 	}
 
+    bool Player::CanMoveTo(int mx, int my, const MapConstPtr &iPresentMap, PlayerPtr player) const
+    {
+        int w = 1;
+        int h = 1;
+        if ((mx + 8) % constants::AMOUNT_PER_TILE)
+        {
+            w = 2;
+        }
+        if ((my + 8) % constants::AMOUNT_PER_TILE)
+        {
+            h = 2;
+        }
+        
+        int x = (mx+8) / constants::AMOUNT_PER_TILE - 1;
+        int y = (my+8) / constants::AMOUNT_PER_TILE - 1;
+        
+        for (int xpos = 0; xpos < w; xpos++)
+        {
+            for (int ypos = 0; ypos < h; ypos++)
+            {
+                int xx = xpos + x;
+                int yy = ypos + y;
+                
+                if (xx < 0 || xx >= iPresentMap->GetWidth() || yy < 0 || yy >= iPresentMap->GetHeight())
+                {
+                    return false;
+                }
+                
+                BOOST_FOREACH(auto ntt, iPresentMap->GetEntities(xx, yy))
+                {
+                    if (
+                        typeid(*ntt) != typeid(architecture::FloorTile) &&
+                        typeid(*ntt) != typeid(Umpire) &&
+                        typeid(*ntt) != typeid(bomberman::bonus::Bonus) &&
+                        ntt->id != player->id
+                        )
+                    {
+                        // ignore the bomb we are on
+                        if (typeid(*ntt) == typeid(arsenal::PropBomb) ||
+                            typeid(*ntt) == typeid(arsenal::Bomb))
+                        {
+                            if (ntt->mx == player->_bombPosX &&
+                                ntt->my == player->_bombPosY)
+                            {
+                                continue;
+                            }
+                        }
+                        
+                        // collision
+                        if (
+                            player->mx >= ntt->mx + constants::AMOUNT_PER_TILE &&
+                            player->mx + constants::AMOUNT_PER_TILE <= ntt->mx &&
+                            player->my >= ntt->my + constants::AMOUNT_PER_TILE &&
+                            player->my + constants::AMOUNT_PER_TILE <= ntt->my
+                            )
+                        {}
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return true;
+    }
+    
 	void Player::Evolve(const std::vector<InputState>& iInputs, uint32_t iTimestamp, const MapConstPtr &iPresentMap, const MapPtr &iFutureMap) const
 	{
 		EvolutionRoutine(std::make_shared<Player>(*this), iInputs, iTimestamp, iPresentMap, iFutureMap);
