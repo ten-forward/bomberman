@@ -22,7 +22,11 @@ void SetupScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 	{
 		players[i].present = false;
 		players[i].isComputer = false;
+#ifdef ANDROID_TEST_SCRIPT
+		players[i].aiScript = "/sdcard/ai.lua";
+#else
 		players[i].aiScript = "aiscripts/example.lua";
+#endif // ANDROID_TEST_SCRIPT
 	}
 
 	players[0].name = "Athos";
@@ -45,7 +49,7 @@ void SetupScene::Update(const std::vector<InputState>& inputs, uint32_t timestam
 	
 	for (int i=0;i<4;i++)
 	{
-		if (inputs[i].GetButtonPressed(InputState::A))
+		if (inputs[i].GetButtonPressed(InputState::B))
 		{
 			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
 			players[i].present = !players[i].present;

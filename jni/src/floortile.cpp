@@ -40,8 +40,8 @@ namespace architecture {
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
-		r.x = x * TILE_WIDTH + MAP_X;	// <- just for overscan
-		r.y = y * TILE_WIDTH + MAP_Y;
+		r.x = GetX() * TILE_WIDTH + MAP_X;	// <- just for overscan
+		r.y = GetY() * TILE_WIDTH + MAP_Y;
 
 		SDL_RenderCopy(iRenderer, _FloorTile.get(), nullptr, &r);
 	}

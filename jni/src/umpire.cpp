@@ -28,8 +28,8 @@ namespace bomberman
 	{
 		auto umpire = std::make_shared<Umpire>();
 		umpire->id = constants::UMPIRE;
-		umpire->x = 1;
-		umpire->y = 1;
+		umpire->SetX(1);
+		umpire->SetY(1);
 		umpire->elevel = -1;
 		return umpire;
 	}

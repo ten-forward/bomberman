@@ -37,8 +37,8 @@ namespace arsenal {
 			umpire->DecrementBombCount(_playerId);
 
 			auto blast = PropExplosion::Create(iTimestamp);
-			blast->x = x;
-			blast->y = y;
+			blast->SetX(this->GetX());
+			blast->SetY(this->GetY());
 			iFutureMap->SetEntity(blast);
 		}
 		else
@@ -74,8 +74,8 @@ namespace arsenal {
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
-		r.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
-		r.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y;
+		r.x = mx * SUBTILE_WIDTH + MAP_X;
+		r.y = my * SUBTILE_WIDTH + MAP_Y;
 
 		SDL_RenderCopy(iRenderer, _Bomb.get(), &sourceRect, &r);
 	}

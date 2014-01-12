@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"whi",
+				"while"
+			],
+			[
+				"key",
+				"keyIter"
+			],
+			[
+				"print",
+				"printlog"
+			],
+			[
+				"pr",
+				"printlog"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
 				"Entity",
 				"EntityPtr"
 			],
@@ -26,14 +46,162 @@
 				"buffer_size": 665,
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"file": "jni/src/main.cpp",
+			"settings":
+			{
+				"buffer_size": 8776,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/printlog.cpp",
+			"settings":
+			{
+				"buffer_size": 509,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/gamescene.cpp",
+			"settings":
+			{
+				"buffer_size": 7277,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/Android.mk",
+			"settings":
+			{
+				"buffer_size": 977,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/constants_resolution.hpp",
+			"settings":
+			{
+				"buffer_size": 2370,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/Application.mk",
+			"settings":
+			{
+				"buffer_size": 227,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/gamescene.hpp",
+			"settings":
+			{
+				"buffer_size": 1428,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/menuscene.cpp",
+			"settings":
+			{
+				"buffer_size": 2334,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/inputstate.hpp",
+			"settings":
+			{
+				"buffer_size": 1354,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/bonus.cpp",
+			"settings":
+			{
+				"buffer_size": 2128,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/player.cpp",
+			"settings":
+			{
+				"buffer_size": 8789,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/aiscripts/example.lua",
+			"settings":
+			{
+				"buffer_size": 64,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/setupscene.cpp",
+			"settings":
+			{
+				"buffer_size": 3202,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/victoryscene.cpp",
+			"settings":
+			{
+				"buffer_size": 1331,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/entity.hpp",
+			"settings":
+			{
+				"buffer_size": 782,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/entity.cpp",
+			"settings":
+			{
+				"buffer_size": 293,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/src/computer.cpp",
+			"settings":
+			{
+				"buffer_size": 2009,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "jni/src/scriptapi.hpp",
+			"settings":
+			{
+				"buffer_size": 307,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 369.0,
+		"height": 347.0,
 		"selected_items":
 		[
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
 			[
 				"Bro",
 				"Preferences: Browse Packages"
@@ -111,7 +279,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 593.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -128,6 +296,9 @@
 	},
 	"file_history":
 	[
+		"/Users/davidsiaw/bomberman/Makefile.common",
+		"/Users/davidsiaw/bomberman/Makefile",
+		"/Users/davidsiaw/bomberman/Makefile.android",
 		"/home/doccarcass/Hacking/bomberman.android/jni/bomberman.sublime-project",
 		"/home/doccarcass/Hacking/bomberman.android/jni/bomberman.sublime-workspace",
 		"/home/doccarcass/Hacking/bomberman.linux/jni/luacppinterface/configure.ac",
@@ -252,10 +423,7 @@
 		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/mapping/lambertprojection.h",
 		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/stdafx.h",
 		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/png_cache/png_cache.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/ReachableAreaInterop_gen.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/RepositoryInterop_gen.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/RoutingInterop_gen.cpp",
-		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/TrafficInterop_gen.cpp"
+		"/home/sb/Hacking/GeoBase/Devel/geobase.dll/ReachableAreaInterop_gen.cpp"
 	],
 	"find":
 	{
@@ -275,6 +443,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"rwop",
+			"example",
+			"lua",
+			"aiscript",
+			"input",
+			"update",
+			"flac",
+			"foreache",
 			"Evolve",
 			"get_setting",
 			"load_settings",
@@ -344,7 +520,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 11,
 			"sheets":
 			[
 				{
@@ -366,6 +542,488 @@
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "jni/src/main.cpp",
+					"settings":
+					{
+						"buffer_size": 8776,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8458,
+								8460
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3424.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "jni/src/printlog.cpp",
+					"settings":
+					{
+						"buffer_size": 509,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								495,
+								495
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "jni/src/gamescene.cpp",
+					"settings":
+					{
+						"buffer_size": 7277,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2754,
+								2754
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 882.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "jni/src/Android.mk",
+					"settings":
+					{
+						"buffer_size": 977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								374,
+								374
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "jni/src/constants_resolution.hpp",
+					"settings":
+					{
+						"buffer_size": 2370,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								805,
+								807
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 297.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "jni/Application.mk",
+					"settings":
+					{
+						"buffer_size": 227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "jni/src/gamescene.hpp",
+					"settings":
+					{
+						"buffer_size": 1428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1023,
+								1023
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "jni/src/menuscene.cpp",
+					"settings":
+					{
+						"buffer_size": 2334,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1285,
+								1285
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 511.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "jni/src/inputstate.hpp",
+					"settings":
+					{
+						"buffer_size": 1354,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								526,
+								526
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "jni/src/bonus.cpp",
+					"settings":
+					{
+						"buffer_size": 2128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								511,
+								511
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 11.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "jni/src/player.cpp",
+					"settings":
+					{
+						"buffer_size": 8789,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5316,
+								5316
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3556.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "assets/aiscripts/example.lua",
+					"settings":
+					{
+						"buffer_size": 64,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "jni/src/setupscene.cpp",
+					"settings":
+					{
+						"buffer_size": 3202,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								715,
+								715
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "jni/src/victoryscene.cpp",
+					"settings":
+					{
+						"buffer_size": 1331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								979,
+								979
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 414.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "jni/src/entity.hpp",
+					"settings":
+					{
+						"buffer_size": 782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								338,
+								338
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "jni/src/entity.cpp",
+					"settings":
+					{
+						"buffer_size": 293,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "jni/src/computer.cpp",
+					"settings":
+					{
+						"buffer_size": 2009,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1276,
+								1276
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 520.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "jni/src/scriptapi.hpp",
+					"settings":
+					{
+						"buffer_size": 307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -592,6 +1250,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 118.0,
+	"side_bar_width": 203.0,
 	"status_bar_visible": true
 }

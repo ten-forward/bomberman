@@ -54,6 +54,8 @@ class Map
 		void ForeachTile(std::function<void(int, int, const EntitySet &)> func) const;
 		void ForeachEntity(std::function<void(const EntityConstPtr &)> func) const;
 		void ForeachEntity(std::function<void(const EntityPtr &)> func);
+    
+        PositionCheck CheckFinePosition(int mx, int my);
 
 		int GetWidth() const { return _width; }
 		int GetHeight() const { return _height; }

@@ -13,7 +13,7 @@ BOOST_PATH := ../boost
 LUACPPINTERFACE_PATH := ../luacppinterface/LuaCppInterface
 LUA_PATH := ../luacppinterface/lua/src
 
-LOCAL_CFLAGS := -std=c++11 -fexceptions -frtti
+LOCAL_CFLAGS := -std=c++11 -fexceptions -frtti -DANDROID_TEST_SCRIPT
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 	$(LOCAL_PATH)/$(BOOST_PATH) \

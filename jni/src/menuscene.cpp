@@ -41,22 +41,25 @@ void MenuScene::Update(const std::vector<InputState>& inputs, uint32_t timestamp
 		_nextFrameDueTime = timestamp + 50;
 	}
 
-	if (inputs[0].GetButtonPressed(InputState::UP))
-	{	
-		Mix_PlayChannel(-1, _selectionTwink.get(), 0);
-		selection = std::max(0, selection - 1);
-	}
-
-	if (inputs[0].GetButtonPressed(InputState::DOWN))
+	for(int i = 0; i < inputs.size(); i++)
 	{
-		Mix_PlayChannel(-1, _selectionTwink.get(), 0);
-		selection = std::min(1, selection + 1);
-	}
+		if (inputs[i].GetButtonPressed(InputState::UP))
+		{	
+			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
+			selection = std::max(0, selection - 1);
+		}
 
-	if (inputs[0].GetButtonPressed(InputState::A))
-	{
-		_running = false;
+		if (inputs[i].GetButtonPressed(InputState::DOWN))
+		{
+			Mix_PlayChannel(-1, _selectionTwink.get(), 0);
+			selection = std::min(1, selection + 1);
+		}
 
+		if (inputs[i].GetButtonPressed(InputState::B))
+		{
+			_running = false;
+
+		}
 	}
 }
 

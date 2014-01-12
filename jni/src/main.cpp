@@ -25,7 +25,7 @@ void PollEvents(std::vector<InputState> &oInputState);
 #ifdef ANDROID
 #include <jni.h>
 
-extern "C" void Java_net_astrobunny_aldebaran_BombermanSurface_onOuyaControllerKey(
+extern "C" void Java_net_tenforward_bomberman_BombermanSurface_onOuyaControllerKey(
                                                                JNIEnv* env, jclass jcls,
                                                                jint player, jint keyCode, jint action)
 {
@@ -76,21 +76,21 @@ void PollEvents(std::vector<InputState> &oInputState)
 {
 	SDL_Event e;
 
+	for (int i=0; i<4; i++)
+	for (auto keyIter = keyMap.begin(); keyIter != keyMap.end(); keyIter++)
+	{
+		oInputState[i].SetButtonPressed(keyIter->second, false);
+		oInputState[i].SetButtonReleased(keyIter->second, false);
+	}
+
+	while ( SDL_PollEvent(&e) )
+	{
 #ifdef ANDROID
 		auto inputState = &oInputState[e.jdevice.which];
 #else
 		auto inputState = &oInputState[0];
 #endif
 		
-	for (auto keyIter = keyMap.begin(); keyIter != keyMap.end(); keyIter++)
-	{
-		inputState->SetButtonPressed(keyIter->second, false);
-		inputState->SetButtonReleased(keyIter->second, false);
-	}
-
-	if ( SDL_PollEvent(&e) )
-	{
-
 		if (e.type == SDL_QUIT)
 		{
 			exit(0);

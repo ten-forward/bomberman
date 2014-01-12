@@ -4,7 +4,9 @@
 
 namespace bomberman {
 namespace constants {
-
+    
+	const int AMOUNT_PER_TILE = 8;
+    
 #ifdef SMALL_SCREEN
 
 	// Resolution
@@ -31,7 +33,6 @@ namespace constants {
 	const int PLAYER_HEIGHT = 64;
 	
 	const int SPRITE_MAGNIFICATION = 2;
-	const int AMOUNT_PER_TILE = 8;
 	const int SUBTILE_WIDTH = 4;
 
 	const int PLAYER_SPEED = 1;
@@ -76,7 +77,6 @@ namespace constants {
 	const int PLAYER_HEIGHT = 128;
 	
 	const int SPRITE_MAGNIFICATION = 4;
-	const int AMOUNT_PER_TILE = 8;
 	const int SUBTILE_WIDTH = 8;
 
 	const int PLAYER_SPEED = 1;

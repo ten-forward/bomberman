@@ -12,3 +12,4 @@ run: all
 android:
 	ndk-build
 	ant debug
+	

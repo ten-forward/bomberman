@@ -38,8 +38,8 @@ namespace arsenal {
 				}
 					
 				auto blast = Explosion::Create(iTimestamp, orientation);
-				blast->x = x;
-				blast->y = y;
+                blast->SetX(x);
+                blast->SetY(y);
 				iFutureMap->SetEntity(blast);
 				if (iPresentMap->CheckPosition(x,y) == Map::SOFT_OCCUPIED)
 				{
@@ -91,18 +91,18 @@ namespace arsenal {
 
 			// center
 			auto blast = Explosion::Create(iTimestamp, Explosion::IsoTropic);
-			blast->x = x;
-			blast->y = y;
+			blast->SetX(GetX());
+			blast->SetY(GetY());
 			iFutureMap->SetEntity(blast);
 
 			// outwards
-			SetBlast(_strength, x, y, Explosion::Horizontal, iTimestamp, iPresentMap, iFutureMap,
+			SetBlast(_strength, GetX(), GetY(), Explosion::Horizontal, iTimestamp, iPresentMap, iFutureMap,
 				[](int i, int* x, int* y) { *x -= i; });
-			SetBlast(_strength, x, y, Explosion::Vertical, iTimestamp, iPresentMap, iFutureMap,
+			SetBlast(_strength, GetX(), GetY(), Explosion::Vertical, iTimestamp, iPresentMap, iFutureMap,
 				[](int i, int* x, int* y) { *y -= i; });
-			SetBlast(_strength, x, y, Explosion::Horizontal, iTimestamp, iPresentMap, iFutureMap,
+			SetBlast(_strength, GetX(), GetY(), Explosion::Horizontal, iTimestamp, iPresentMap, iFutureMap,
 				[](int i, int* x, int* y) { *x += i; });
-			SetBlast(_strength, x, y, Explosion::Vertical, iTimestamp, iPresentMap, iFutureMap,
+			SetBlast(_strength, GetX(), GetY(), Explosion::Vertical, iTimestamp, iPresentMap, iFutureMap,
 				[](int i, int* x, int* y) { *y += i; });
 
 			if (Mix_PlayChannel(-1, _explosionSound.get(), 0) == -1)
@@ -143,8 +143,8 @@ namespace arsenal {
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
-		r.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X;
-		r.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y;
+		r.x = mx * SUBTILE_WIDTH + MAP_X;
+		r.y = my * SUBTILE_WIDTH + MAP_Y;
 
 		SDL_RenderCopy(iRenderer, _Bomb.get(), &sourceRect, &r);
 	}

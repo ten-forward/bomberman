@@ -39,6 +39,11 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 	_pastMaps(1024),
 	_font(utils::LoadFont("drawable/Gamegirl.ttf", 64))
 {
+    
+	if(!_music)
+	{
+		printlog("Mix_LoadMUS: %s\n", Mix_GetError());
+	}
 }
 
 void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
@@ -84,15 +89,15 @@ void GameScene::InitPlayers(SDL_Renderer* renderer)
 			if (_playerConfig[i].isComputer)
 			{
 				auto player = Computer::Create(id,_playerConfig[i].name, _playerConfig[i].spriteName, _playerConfig[i].aiScript, i, renderer);
-				player->x = pos[i].x;
-				player->y = pos[i].y;		
+				player->SetX(pos[i].x);
+				player->SetY(pos[i].y);
 				_presentMap->SetEntity(player);
 			}
 			else
 			{
 				auto player = Player::Create(id, _playerConfig[i].name, _playerConfig[i].spriteName, i, renderer);
-				player->x = pos[i].x;
-				player->y = pos[i].y;
+                player->SetX(pos[i].x);
+				player->SetY(pos[i].y);
 				_presentMap->SetEntity(player);
 			}
 			umpire->NotifyPlayerBorn(id);
@@ -120,13 +125,12 @@ void GameScene::InitBlocks(SDL_Renderer* renderer)
 		{
 		 	blockEntity = FloorTile::Create();
 		}
-		blockEntity->x = x;
-		blockEntity->y = y;
+		blockEntity->SetX(x);
+		blockEntity->SetY(y);
 		_presentMap->SetEntity(blockEntity);
 	});
-	
-	srand(1);
 
+	return;
 	for (int i=0; i < 100; i++)
 	{
 		int x = rand() % MAP_COLUMNS;
@@ -145,8 +149,8 @@ void GameScene::InitBlocks(SDL_Renderer* renderer)
 		if (_presentMap->CheckPosition(x,y) == Map::FREE)
 		{
 			auto softblock = SoftBlock::Create(0.8);
-			softblock->x = x;
-			softblock->y = y;
+			softblock->SetX(x);
+			softblock->SetY(y);
 			_presentMap->SetEntity(softblock);
 		}
 	}
@@ -242,9 +246,9 @@ void GameScene::Render(SDL_Renderer *renderer)
 	{
 		bool bomb = typeid(*left) == typeid(Bomb) || typeid(*left) == typeid(PropBomb);
 		return left->zlevel == right->zlevel ? 
-					(left->y == right->y ? 	
+					(left->GetY() == right->GetY() ?
 						bomb && typeid(*right) == typeid(Player) 
-					: 	left->y < right->y)
+					: 	left->GetY() < right->GetY())
 				: 	left->zlevel < right->zlevel;
 	});
 

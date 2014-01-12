@@ -41,7 +41,7 @@ void VictoryScene::Update(const std::vector<InputState>& inputs, uint32_t timest
 {
 	for (int i=0;i<4;i++)
 	{	
-		if (inputs[i].GetButtonPressed(InputState::A))
+		if (inputs[i].GetButtonPressed(InputState::B))
 		{
 			_running = false;
 		}

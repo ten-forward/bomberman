@@ -18,9 +18,9 @@ namespace bonus {
 		bonus->_state = Available;
 
 		std::array<double, 3> probabilities;
-		probabilities[PROPBOMB] = 0.50;
-		probabilities[BOMBCOUNT] = 0.25;
-		probabilities[BOMBSTRENGTH] = 0.25;
+		probabilities[PROPBOMB] = 0.10;
+		probabilities[BOMBCOUNT] = 0.45;
+		probabilities[BOMBSTRENGTH] = 0.45;
 		
 		double number = (double)rand() / (double)RAND_MAX;
 		double soFar = 0;
@@ -67,8 +67,8 @@ namespace bonus {
 		SDL_Rect r;
 		r.w = TILE_WIDTH;
 		r.h = TILE_HEIGHT;
-		r.x = x * TILE_WIDTH + MAP_X;
-		r.y = y * TILE_WIDTH + MAP_Y;
+		r.x = GetX() * TILE_WIDTH + MAP_X;
+		r.y = GetY() * TILE_WIDTH + MAP_Y;
 		
 		SDL_RenderCopy(iRenderer, _BonusTexture[_bonusType].get(), nullptr, &r);
 	}

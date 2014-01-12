@@ -78,8 +78,8 @@ namespace bestiary {
 		SDL_Rect dst;
 		dst.w = src[_frameId].w * SPRITE_MAGNIFICATION;
 		dst.h = src[_frameId].h * SPRITE_MAGNIFICATION;
-		dst.x = x * TILE_WIDTH + mx * SUBTILE_WIDTH + MAP_X - (src[_frameId].w * SPRITE_MAGNIFICATION - TILE_WIDTH) / 2;
-		dst.y = y * TILE_WIDTH + my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
+		dst.x = mx * SUBTILE_WIDTH + MAP_X - (src[_frameId].w * SPRITE_MAGNIFICATION - TILE_WIDTH) / 2;
+		dst.y = my * SUBTILE_WIDTH + MAP_Y - (PLAYER_HEIGHT - TILE_HEIGHT);
 
 		SDL_RenderCopy(iRenderer, _BombermanCorpse.get(), &src[_frameId], &dst);
 	}

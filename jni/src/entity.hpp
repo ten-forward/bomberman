@@ -2,6 +2,7 @@
 
 #include "entityptr.hpp"
 #include "map.hpp"
+#include "constants_resolution.hpp"
 
 #include <unordered_set>
 #include <memory>
@@ -14,14 +15,15 @@ namespace bomberman
 	struct Entity
 	{
 		EntityID id;
-		int x;	// tile position
-		int y;
 		int zlevel;
 		int elevel;
 		int mx;	// sub-tile position
 		int my;
 		int dx;
 		int dy;
+
+		int px;
+		int py;
 
 		bool active; // is on the map?
 		bool brakes; // brake on tile?
@@ -34,5 +36,11 @@ namespace bomberman
 
 	protected:
 		Entity();
+        
+    public:
+        void SetX(int x) { mx = x * constants::AMOUNT_PER_TILE; }
+        void SetY(int y) { my = y * constants::AMOUNT_PER_TILE; }
+        int GetX() const { return mx / constants::AMOUNT_PER_TILE; }
+        int GetY() const { return my / constants::AMOUNT_PER_TILE; }
 	};
 }
