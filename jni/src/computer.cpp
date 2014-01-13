@@ -27,7 +27,7 @@ namespace bestiary {
 
 #endif
 
-		ScriptAPI sa(script);
+		std::shared_ptr<ScriptAPI> sa(new ScriptAPI(script));
 
 		auto player = std::make_shared<Computer>(sa);
 		player->id = id;
@@ -51,7 +51,7 @@ namespace bestiary {
 		return player;
 	}
 
-	Computer::Computer(ScriptAPI script) : 
+	Computer::Computer(std::shared_ptr<ScriptAPI> script) :
 		_script(script)
 	{
 	}
@@ -63,7 +63,7 @@ namespace bestiary {
 		if (_nextUpdateDueTime < iTimestamp)
 		{
             // TODO only pass x y
-			inputs[_inputStateIdx] = _script.Resume(GetX(), GetY(), mx, my, iPresentMap);
+			inputs[_inputStateIdx] = _script->Resume(GetX(), GetY(), mx, my, iPresentMap);
 		}
 	
 		EvolutionRoutine(std::make_shared<Computer>(*this), inputs, iTimestamp, iPresentMap, iFutureMap);

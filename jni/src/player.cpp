@@ -51,8 +51,8 @@ namespace bestiary {
 		player->_nbProBomb = 0;
 		player->_availableBombs = 1;
 		player->_bombStrength = 2;
-        player->_bombPosX = -1;
-        player->_bombPosY = -1;
+        player->_bombPosX = -1000;
+        player->_bombPosY = -1000;
 		return player;
 	}
 
@@ -217,8 +217,8 @@ namespace bestiary {
                 player->my + constants::AMOUNT_PER_TILE <= player->_bombPosY
                 )
             {
-                player->_bombPosX = -1;
-                player->_bombPosY = -1;
+                player->_bombPosX = -1000;
+                player->_bombPosY = -1000;
             }
             
             if (player->dx < 0) { player->_state = WalkingLeft; }

@@ -36,7 +36,7 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 	_music(Mix_LoadMUS("music/premonition.flac"), Mix_FreeMusic),
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_playerConfig(playerConfig),
-	_pastMaps(1024),
+	_pastMaps(10),
 	_font(utils::LoadFont("drawable/Gamegirl.ttf", 64))
 {
     

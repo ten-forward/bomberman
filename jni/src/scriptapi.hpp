@@ -10,6 +10,9 @@ namespace bomberman {
 class ScriptAPI
 {
 	Lua _lua;
+    LuaTable _map;
+    LuaTable _actions;
+    
 
 public:
 	ScriptAPI(const std::string &script);
