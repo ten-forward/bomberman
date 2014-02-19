@@ -128,6 +128,46 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
+    
+    
+    {
+		bomberman::PlayerConfigArray players;
+        
+		players[0].name = "Athos";
+		players[0].spriteName = "drawable/miku2.png";
+		players[0].present = true;
+		players[0].isComputer = false;
+		players[0].aiScript = "aiscripts/example.lua";
+        
+		players[1].name = "Porthos";
+		players[1].spriteName = "drawable/duckie.png";
+		players[1].present = true;
+		players[1].isComputer = true;
+		players[1].aiScript = "aiscripts/example.lua";
+        
+		players[2].name = "Aramis";
+		players[2].spriteName = "drawable/manji.png";
+		players[2].present = false;
+		players[2].isComputer = true;
+		players[2].aiScript = "aiscripts/example.lua";
+        
+		players[3].name = "D'Artagnan";
+		players[3].spriteName = "drawable/whitebbman.png";
+		players[3].present = false;
+		players[3].isComputer = true;
+		players[3].aiScript = "aiscripts/example.lua";
+		
+		
+		std::shared_ptr<bomberman::GameScene> ts(new bomberman::GameScene(players));
+		std::shared_ptr<bomberman::FadeScene> cover(new bomberman::FadeScene(ts));
+		run(cover);
+        
+		std::shared_ptr<bomberman::VictoryScene> vs(new bomberman::VictoryScene(ts->GetVictor()));
+		std::shared_ptr<bomberman::FadeScene> fs(new bomberman::FadeScene(vs));
+		run(fs);
+		return;
+    }
+    
 #ifdef PROGRAM_OPTIONS
 	// This is the game's options harness. We perform game testing here without having to go through
 	// the menus which are tedious

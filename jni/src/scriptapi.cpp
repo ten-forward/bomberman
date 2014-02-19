@@ -7,6 +7,7 @@
 #include "softblock.hpp"
 #include "block.hpp"
 #include "explosion.hpp"
+#include "umpire.hpp"
 
 namespace bomberman {
 enum EntityFlags
@@ -132,6 +133,13 @@ ScriptAPI::ScriptAPI(const std::string &script) :
                             input->SetButtonState(InputState::A, true);
                             input->SetButtonPressed(InputState::A, true);
                         });
+    
+    auto getNumOfPlayers = _lua.CreateFunction<int()>([&]
+                                                      {
+                                                          Map* iPresentMap = _map.Get<Map*>("_mapptr");
+                                                          UmpirePtr umpire = std::dynamic_pointer_cast<Umpire>(iPresentMap->GetUmpire());
+                                                          return umpire->GetPlayersRemaining();
+                                                      });
     
 	auto waitUntilFlush = _lua.CreateYieldingFunction<void()>([&]()
                               {

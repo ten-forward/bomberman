@@ -57,12 +57,15 @@ class Map
 
 		int GetWidth() const { return _width; }
 		int GetHeight() const { return _height; }
+    
+        EntityPtr GetUmpire() const { return _umpire; }
 
 	private:
 		std::map<EntityID, EntityConstPtr> _entityIndex;
 		int _width, _height;
 		typedef boost::multi_array<EntitySet, 2> map_type;
 		map_type _map;
+        EntityPtr _umpire;
 };
 
 }

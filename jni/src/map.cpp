@@ -66,6 +66,11 @@ EntitySet &Map::GetEntities(int x, int y)
 
 bool Map::SetEntity(const EntityPtr &ntt)
 {
+    if (typeid(*ntt) == typeid(Umpire))
+    {
+        _umpire = ntt;
+    }
+    
 	int x = ntt->GetX();
 	int y = ntt->GetY();
 

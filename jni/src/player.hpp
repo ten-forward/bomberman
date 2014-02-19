@@ -60,6 +60,7 @@ namespace bestiary {
             int _bombPosY;
 
 			int _nbProBomb;
+            int _nbRemoteBomb;
 
 			int GetFrameIndex() const;
 

@@ -22,6 +22,7 @@ namespace bonus {
 				BOMBCOUNT,
 				BOMBSTRENGTH,
 				PROPBOMB,
+                REMOTEBOMB,
 			};
 
 			static BonusPtr Create();

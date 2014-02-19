@@ -67,7 +67,7 @@
 			"file": "jni/src/gamescene.cpp",
 			"settings":
 			{
-				"buffer_size": 7277,
+				"buffer_size": 7383,
 				"line_ending": "Windows"
 			}
 		},
@@ -83,7 +83,7 @@
 			"file": "jni/src/constants_resolution.hpp",
 			"settings":
 			{
-				"buffer_size": 2370,
+				"buffer_size": 2347,
 				"line_ending": "Windows"
 			}
 		},
@@ -107,7 +107,7 @@
 			"file": "jni/src/menuscene.cpp",
 			"settings":
 			{
-				"buffer_size": 2334,
+				"buffer_size": 2335,
 				"line_ending": "Windows"
 			}
 		},
@@ -123,7 +123,7 @@
 			"file": "jni/src/bonus.cpp",
 			"settings":
 			{
-				"buffer_size": 2128,
+				"buffer_size": 2178,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,7 +131,7 @@
 			"file": "jni/src/player.cpp",
 			"settings":
 			{
-				"buffer_size": 8789,
+				"buffer_size": 11307,
 				"line_ending": "Windows"
 			}
 		},
@@ -139,7 +139,7 @@
 			"file": "assets/aiscripts/example.lua",
 			"settings":
 			{
-				"buffer_size": 64,
+				"buffer_size": 548,
 				"line_ending": "Unix"
 			}
 		},
@@ -163,7 +163,7 @@
 			"file": "jni/src/entity.hpp",
 			"settings":
 			{
-				"buffer_size": 782,
+				"buffer_size": 1074,
 				"line_ending": "Unix"
 			}
 		},
@@ -171,7 +171,7 @@
 			"file": "jni/src/entity.cpp",
 			"settings":
 			{
-				"buffer_size": 293,
+				"buffer_size": 258,
 				"line_ending": "Unix"
 			}
 		},
@@ -179,7 +179,7 @@
 			"file": "jni/src/computer.cpp",
 			"settings":
 			{
-				"buffer_size": 2009,
+				"buffer_size": 2053,
 				"line_ending": "Windows"
 			}
 		},
@@ -520,7 +520,7 @@
 	"groups":
 	[
 		{
-			"selected": 11,
+			"selected": 12,
 			"sheets":
 			[
 				{
@@ -607,15 +607,15 @@
 					"file": "jni/src/gamescene.cpp",
 					"settings":
 					{
-						"buffer_size": 7277,
+						"buffer_size": 7383,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2754,
-								2754
+								0,
+								0
 							]
 						],
 						"settings":
@@ -660,15 +660,15 @@
 					"file": "jni/src/constants_resolution.hpp",
 					"settings":
 					{
-						"buffer_size": 2370,
+						"buffer_size": 2347,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								805,
-								807
+								0,
+								0
 							]
 						],
 						"settings":
@@ -740,15 +740,15 @@
 					"file": "jni/src/menuscene.cpp",
 					"settings":
 					{
-						"buffer_size": 2334,
+						"buffer_size": 2335,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1285,
-								1285
+								0,
+								0
 							]
 						],
 						"settings":
@@ -794,15 +794,15 @@
 					"file": "jni/src/bonus.cpp",
 					"settings":
 					{
-						"buffer_size": 2128,
+						"buffer_size": 2178,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								511,
-								511
+								0,
+								0
 							]
 						],
 						"settings":
@@ -821,15 +821,15 @@
 					"file": "jni/src/player.cpp",
 					"settings":
 					{
-						"buffer_size": 8789,
+						"buffer_size": 11307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5316,
-								5316
+								0,
+								0
 							]
 						],
 						"settings":
@@ -838,7 +838,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3556.0,
+						"translation.y": 2967.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -848,15 +848,15 @@
 					"file": "assets/aiscripts/example.lua",
 					"settings":
 					{
-						"buffer_size": 64,
+						"buffer_size": 548,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								64,
-								64
+								548,
+								548
 							]
 						],
 						"settings":
@@ -929,15 +929,15 @@
 					"file": "jni/src/entity.hpp",
 					"settings":
 					{
-						"buffer_size": 782,
+						"buffer_size": 1074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								338,
-								338
+								0,
+								0
 							]
 						],
 						"settings":
@@ -956,15 +956,15 @@
 					"file": "jni/src/entity.cpp",
 					"settings":
 					{
-						"buffer_size": 293,
+						"buffer_size": 258,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								196,
-								196
+								0,
+								0
 							]
 						],
 						"settings":
@@ -983,15 +983,15 @@
 					"file": "jni/src/computer.cpp",
 					"settings":
 					{
-						"buffer_size": 2009,
+						"buffer_size": 2053,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1276,
-								1276
+								0,
+								0
 							]
 						],
 						"settings":

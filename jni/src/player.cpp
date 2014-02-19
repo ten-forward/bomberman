@@ -404,6 +404,10 @@ namespace bestiary {
 		case Bonus::PROPBOMB:
 			_nbProBomb++;
 			break;
+                
+        case Bonus::REMOTEBOMB:
+            _nbRemoteBomb++;
+            break;
 		}
 		iBonus->NotifyConsumed();
 	  }
