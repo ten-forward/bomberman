@@ -9,6 +9,7 @@ AT = $(AT_$(V))
 REDIR = $(REDIR_$(V))
 
 SDL2PREFIX=$(PWD)/SDL2Framework
+FLAC=$(SDL2PREFIX)/lib/libFLAC.$(EXTENSION)
 SDL2MAIN=$(SDL2PREFIX)/lib/libSDL2.$(EXTENSION)
 SDL2IMAGE=$(SDL2PREFIX)/lib/libSDL2_image.$(EXTENSION)
 SDL2MIXER=$(SDL2PREFIX)/lib/libSDL2_mixer.$(EXTENSION)
@@ -57,7 +58,7 @@ $(TARGET): $(OBJS) $(LUA)
 	$(AT)mkdir -p $(dir $@) 
 	$(AT)touch $@
 
-$(OUT)/%.d:%.cpp $$(@D)/.f $(SDL2MAIN) $(SDL2IMAGE) $(SDL2MIXER) $(SDL2TTF)
+$(OUT)/%.d:%.cpp $$(@D)/.f $(SDL2MAIN) $(SDL2IMAGE) $(SDL2MIXER) $(SDL2TTF) 
 	$(AT)echo [DEP] $<
 	$(AT)$(CXX) $(CXXFLAGS) -MM -MT '$(patsubst %.d,%.o,$@)' $< -MF $@
 
@@ -72,6 +73,12 @@ $(SDL2MAIN):
 	$(AT)cd jni/SDL && ./configure --prefix $(SDL2PREFIX) $(REDIR)
 	$(AT)make -C jni/SDL all install $(REDIR)
 
+$(FLAC):
+	$(AT)echo [BLD] $@
+	$(AT)cd jni/SDL_mixer/external/flac-1.3.0 && autoreconf --force --install $(REDIR)
+	$(AT)cd jni/SDL_mixer/external/flac-1.3.0 && ./configure --prefix $(SDL2PREFIX) $(REDIR)
+	$(AT)make -C jni/SDL_mixer/external/flac-1.3.0 all install $(REDIR)
+
 $(SDL2IMAGE): $(SDL2MAIN)
 	$(AT)echo [BLD] $@
 	$(AT)chmod +x jni/SDL_image/autogen.sh
@@ -79,11 +86,11 @@ $(SDL2IMAGE): $(SDL2MAIN)
 	$(AT)cd jni/SDL_image && ./configure --prefix $(SDL2PREFIX) $(REDIR)
 	$(AT)make -C jni/SDL_image all install $(REDIR)
 
-$(SDL2MIXER): $(SDL2MAIN)
+$(SDL2MIXER): $(SDL2MAIN) $(FLAC)
 	$(AT)echo [BLD] $@
 	$(AT)chmod +x jni/SDL_mixer/autogen.sh $(REDIR)
 	$(AT)cd jni/SDL_mixer && ./autogen.sh $(REDIR)
-	$(AT)cd jni/SDL_mixer && ./configure --prefix $(SDL2PREFIX) $(REDIR)
+	$(AT)cd jni/SDL_mixer && CPPFLAGS=-I$(SDL2PREFIX)/include LDFLAGS=-L$(SDL2PREFIX)/lib ./configure --prefix $(SDL2PREFIX) --enable-music-flac --enable-music-flac-shared=no $(REDIR)
 	$(AT)make -C jni/SDL_mixer all install $(REDIR)
 
 $(SDL2TTF): $(SDL2MAIN)
