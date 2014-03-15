@@ -13,6 +13,8 @@
 #include "computer.hpp"
 #include "umpire.hpp"
 
+#include <iomanip>
+
 //SDL
 #include <SDL_image.h>
 
@@ -37,7 +39,7 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 	_presentMap(new Map(MAP_COLUMNS, MAP_ROWS)),
 	_playerConfig(playerConfig),
 	_pastMaps(10),
-	_font(utils::LoadFont("drawable/Gamegirl.ttf", 64))
+	_font(utils::LoadFont("drawable/Gamegirl.ttf", 40))
 {
     
 	if(!_music)
@@ -50,7 +52,7 @@ void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
 	_running = true;
 
-	if(Mix_PlayMusic(_music.get(), -1) == -1)
+	//if(Mix_PlayMusic(_music.get(), -1) == -1)
 	{
 		printlog("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
@@ -268,8 +270,8 @@ void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Ren
 	dashboard.x = PLAYER_DASHBOARD_X + pos * (dashboard.w + PLAYER_DASHBOARD_PADDING);
 	dashboard.y = PLAYER_DASHBOARD_Y;
 
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderDrawRect(renderer, &dashboard);
+	//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	//SDL_RenderDrawRect(renderer, &dashboard);
 
 	SDL_Rect avatar;
 	avatar.w = PLAYER_WIDTH;
@@ -282,7 +284,7 @@ void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Ren
 	auto umpire = std::static_pointer_cast<Umpire>(_presentMap->GetEntity(constants::UMPIRE));
 
 	std::stringstream ss;
-	ss << "Bx" << (iPlayer->GetAllowedNumberOfBombs() - umpire->GetBombCount(iPlayer->id));
+	ss << std::setw( 2 ) << std::setfill( '0' ) << (iPlayer->GetAllowedNumberOfBombs() - umpire->GetBombCount(iPlayer->id));
 	auto nbBombsImg = utils::DrawString(renderer, _font, ss.str(), utils::MakeColor(0xffffffff));
 
 	SDL_Rect nbBombsRect;

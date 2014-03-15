@@ -51,7 +51,7 @@
 			"file": "jni/src/main.cpp",
 			"settings":
 			{
-				"buffer_size": 8776,
+				"buffer_size": 10017,
 				"line_ending": "Windows"
 			}
 		},
@@ -96,6 +96,22 @@
 			}
 		},
 		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 188,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Makefile.common",
+			"settings":
+			{
+				"buffer_size": 3138,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "jni/src/gamescene.hpp",
 			"settings":
 			{
@@ -131,7 +147,7 @@
 			"file": "jni/src/player.cpp",
 			"settings":
 			{
-				"buffer_size": 11307,
+				"buffer_size": 11404,
 				"line_ending": "Windows"
 			}
 		},
@@ -179,7 +195,7 @@
 			"file": "jni/src/computer.cpp",
 			"settings":
 			{
-				"buffer_size": 2053,
+				"buffer_size": 2102,
 				"line_ending": "Windows"
 			}
 		},
@@ -187,7 +203,23 @@
 			"file": "jni/src/scriptapi.hpp",
 			"settings":
 			{
-				"buffer_size": 307,
+				"buffer_size": 354,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/SDL_mixer/external/flac-1.3.0/src/libFLAC/fixed.c",
+			"settings":
+			{
+				"buffer_size": 17335,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "jni/SDL_mixer/external/flac-1.3.0/configure.ac",
+			"settings":
+			{
+				"buffer_size": 16640,
 				"line_ending": "Unix"
 			}
 		}
@@ -520,7 +552,7 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -554,15 +586,15 @@
 					"file": "jni/src/main.cpp",
 					"settings":
 					{
-						"buffer_size": 8776,
+						"buffer_size": 10017,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8458,
-								8460
+								0,
+								0
 							]
 						],
 						"settings":
@@ -710,6 +742,59 @@
 				},
 				{
 					"buffer": 7,
+					"file": "Makefile",
+					"settings":
+					{
+						"buffer_size": 188,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Makefile.common",
+					"settings":
+					{
+						"buffer_size": 3138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2251,
+								2251
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 850.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
 					"file": "jni/src/gamescene.hpp",
 					"settings":
 					{
@@ -736,7 +821,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "jni/src/menuscene.cpp",
 					"settings":
 					{
@@ -763,7 +848,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "jni/src/inputstate.hpp",
 					"settings":
 					{
@@ -790,7 +875,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "jni/src/bonus.cpp",
 					"settings":
 					{
@@ -817,11 +902,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "jni/src/player.cpp",
 					"settings":
 					{
-						"buffer_size": 11307,
+						"buffer_size": 11404,
 						"regions":
 						{
 						},
@@ -844,7 +929,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "assets/aiscripts/example.lua",
 					"settings":
 					{
@@ -862,7 +947,8 @@
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 8,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -871,7 +957,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "jni/src/setupscene.cpp",
 					"settings":
 					{
@@ -898,7 +984,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
 					"file": "jni/src/victoryscene.cpp",
 					"settings":
 					{
@@ -925,7 +1011,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 17,
 					"file": "jni/src/entity.hpp",
 					"settings":
 					{
@@ -952,7 +1038,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 18,
 					"file": "jni/src/entity.cpp",
 					"settings":
 					{
@@ -979,11 +1065,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 19,
 					"file": "jni/src/computer.cpp",
 					"settings":
 					{
-						"buffer_size": 2053,
+						"buffer_size": 2102,
 						"regions":
 						{
 						},
@@ -1006,11 +1092,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 20,
 					"file": "jni/src/scriptapi.hpp",
 					"settings":
 					{
-						"buffer_size": 307,
+						"buffer_size": 354,
 						"regions":
 						{
 						},
@@ -1027,6 +1113,60 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "jni/SDL_mixer/external/flac-1.3.0/src/libFLAC/fixed.c",
+					"settings":
+					{
+						"buffer_size": 17335,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 49.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "jni/SDL_mixer/external/flac-1.3.0/configure.ac",
+					"settings":
+					{
+						"buffer_size": 16640,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13653,
+								13653
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5567.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
