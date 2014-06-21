@@ -51,7 +51,7 @@
 			"file": "jni/src/main.cpp",
 			"settings":
 			{
-				"buffer_size": 10017,
+				"buffer_size": 10717,
 				"line_ending": "Windows"
 			}
 		},
@@ -67,7 +67,7 @@
 			"file": "jni/src/gamescene.cpp",
 			"settings":
 			{
-				"buffer_size": 7383,
+				"buffer_size": 7464,
 				"line_ending": "Windows"
 			}
 		},
@@ -80,10 +80,19 @@
 			}
 		},
 		{
+			"file": "/Users/davidsiaw/Sites/info.php",
+			"settings":
+			{
+				"buffer_size": 19,
+				"line_ending": "Unix",
+				"name": "<?php phpinfo(); ?>"
+			}
+		},
+		{
 			"file": "jni/src/constants_resolution.hpp",
 			"settings":
 			{
-				"buffer_size": 2347,
+				"buffer_size": 3129,
 				"line_ending": "Windows"
 			}
 		},
@@ -139,7 +148,7 @@
 			"file": "jni/src/bonus.cpp",
 			"settings":
 			{
-				"buffer_size": 2178,
+				"buffer_size": 2177,
 				"line_ending": "Unix"
 			}
 		},
@@ -221,6 +230,16 @@
 			{
 				"buffer_size": 16640,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 2 files for \"rwop\"\n\nUnable to open /home/sb/Hacking/OUYA-ODK/bomberman/jni/src\nUnable to open /Users/davidsiaw/bombermannativeinit\n0 matches across 0 files\n\n\nSearching 2 files for \"nativeinit\"\n\nUnable to open /home/sb/Hacking/OUYA-ODK/bomberman/jni/src\nUnable to open /Users/davidsiaw/bombermannativeinit\n0 matches across 0 files\n\n\nSearching 31197 files for \"nativeinit\"\n\nUnable to open /home/sb/Hacking/OUYA-ODK/bomberman/jni/src\n\n\nSearching 31196 files for \"nativeinit\"\n\n/Users/davidsiaw/bomberman/jni/SDL/android-project/src/org/libsdl/app/SDLActivity.java:\n  231  \n  232      // C functions we call\n  233:     public static native void nativeInit();\n  234      public static native void nativeLowMemory();\n  235      public static native void nativeQuit();\n  ...\n  410  \n  411  /**\n  412:     Simple nativeInit() runnable\n  413  */\n  414  class SDLMain implements Runnable {\n  ...\n  416      public void run() {\n  417          // Runs SDL_main()\n  418:         SDLActivity.nativeInit();\n  419  \n  420          //Log.v(\"SDL\", \"SDL thread terminated\");\n\n/Users/davidsiaw/bomberman/jni/SDL/Android.mk:\n   64  \n   65  LOCAL_LDLIBS := \n   66: LOCAL_EXPORT_LDLIBS := -Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit -ldl -lGLESv1_CM -lGLESv2 -llog -landroid\n   67  \n   68  include $(BUILD_STATIC_LIBRARY)\n\n/Users/davidsiaw/bomberman/jni/SDL/src/main/android/SDL_android_main.c:\n   16  \n   17  /* Start up the SDL app */\n   18: void Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jclass cls, jobject obj)\n   19  {\n   20      /* This interface could expand with ABI negotiation, calbacks, etc. */\n\n/Users/davidsiaw/bomberman/jni/SDL/src/main/android/SDL_android_main.cpp:\n   16  \n   17  // Start up the SDL app\n   18: extern \"C\" void Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jclass cls, jobject obj)\n   19  {\n   20      /* This interface could expand with ABI negotiation, calbacks, etc. */\n\n/Users/davidsiaw/bomberman/src/org/libsdl/app/SDLActivity.java:\n  225  \n  226      // C functions we call\n  227:     public static native void nativeInit();\n  228      public static native void nativeLowMemory();\n  229      public static native void nativeQuit();\n  ...\n  505  \n  506  /**\n  507:     Simple nativeInit() runnable\n  508  */\n  509  class SDLMain implements Runnable {\n  ...\n  511      public void run() {\n  512          // Runs SDL_main()\n  513:         SDLActivity.nativeInit();\n  514  \n  515          //Log.v(\"SDL\", \"SDL thread terminated\");\n\n9 matches across 5 files\n",
+			"settings":
+			{
+				"buffer_size": 2516,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
 			}
 		}
 	],
@@ -466,6 +485,9 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/davidsiaw/bomberman",
+			"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src,/Users/davidsiaw/bomberman",
+			"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src,/Users/davidsiaw/bombermannativeinit",
 			"/home/sb/Hacking/OUYA-ODK/bomberman/jni/src",
 			""
 		]
@@ -475,6 +497,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"nativeinit",
 			"rwop",
 			"example",
 			"lua",
@@ -552,7 +575,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -586,7 +609,7 @@
 					"file": "jni/src/main.cpp",
 					"settings":
 					{
-						"buffer_size": 10017,
+						"buffer_size": 10717,
 						"regions":
 						{
 						},
@@ -639,7 +662,7 @@
 					"file": "jni/src/gamescene.cpp",
 					"settings":
 					{
-						"buffer_size": 7383,
+						"buffer_size": 7464,
 						"regions":
 						{
 						},
@@ -656,7 +679,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 882.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -673,8 +696,8 @@
 						"selection":
 						[
 							[
-								374,
-								374
+								634,
+								634
 							]
 						],
 						"settings":
@@ -689,10 +712,37 @@
 				},
 				{
 					"buffer": 5,
+					"file": "/Users/davidsiaw/Sites/info.php",
+					"settings":
+					{
+						"buffer_size": 19,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<?php phpinfo(); ?>",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "jni/src/constants_resolution.hpp",
 					"settings":
 					{
-						"buffer_size": 2347,
+						"buffer_size": 3129,
 						"regions":
 						{
 						},
@@ -715,7 +765,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "jni/Application.mk",
 					"settings":
 					{
@@ -741,7 +791,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "Makefile",
 					"settings":
 					{
@@ -767,7 +817,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "Makefile.common",
 					"settings":
 					{
@@ -788,13 +838,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 850.0,
+						"translation.y": 1019.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 10,
 					"file": "jni/src/gamescene.hpp",
 					"settings":
 					{
@@ -821,7 +871,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "jni/src/menuscene.cpp",
 					"settings":
 					{
@@ -832,8 +882,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								1468,
+								1468
 							]
 						],
 						"settings":
@@ -842,13 +892,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 511.0,
+						"translation.y": 738.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "jni/src/inputstate.hpp",
 					"settings":
 					{
@@ -875,11 +925,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "jni/src/bonus.cpp",
 					"settings":
 					{
-						"buffer_size": 2178,
+						"buffer_size": 2177,
 						"regions":
 						{
 						},
@@ -902,7 +952,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "jni/src/player.cpp",
 					"settings":
 					{
@@ -929,7 +979,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "assets/aiscripts/example.lua",
 					"settings":
 					{
@@ -957,7 +1007,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 16,
 					"file": "jni/src/setupscene.cpp",
 					"settings":
 					{
@@ -984,7 +1034,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 17,
 					"file": "jni/src/victoryscene.cpp",
 					"settings":
 					{
@@ -1011,7 +1061,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 18,
 					"file": "jni/src/entity.hpp",
 					"settings":
 					{
@@ -1038,7 +1088,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 19,
 					"file": "jni/src/entity.cpp",
 					"settings":
 					{
@@ -1065,7 +1115,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 20,
 					"file": "jni/src/computer.cpp",
 					"settings":
 					{
@@ -1086,13 +1136,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 520.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 21,
 					"file": "jni/src/scriptapi.hpp",
 					"settings":
 					{
@@ -1118,7 +1168,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 22,
 					"file": "jni/SDL_mixer/external/flac-1.3.0/src/libFLAC/fixed.c",
 					"settings":
 					{
@@ -1145,7 +1195,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 23,
 					"file": "jni/SDL_mixer/external/flac-1.3.0/configure.ac",
 					"settings":
 					{
@@ -1167,6 +1217,81 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 5567.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"settings":
+					{
+						"buffer_size": 2516,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										650,
+										660
+									],
+									[
+										814,
+										824
+									],
+									[
+										987,
+										997
+									],
+									[
+										1223,
+										1233
+									],
+									[
+										1482,
+										1492
+									],
+									[
+										1791,
+										1801
+									],
+									[
+										2075,
+										2085
+									],
+									[
+										2239,
+										2249
+									],
+									[
+										2412,
+										2422
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								2516,
+								2516
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 4,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1230.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

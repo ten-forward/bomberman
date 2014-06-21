@@ -9,19 +9,57 @@ namespace constants {
     
 #ifdef SMALL_SCREEN
 
+    
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+    
+	// Resolution
+	const int SCREEN_WIDTH = 1024;
+	const int SCREEN_HEIGHT = 768;
+    
+	// Overscan compensation
+	const int SAFE_WIDTH  = 1024;
+	const int SAFE_HEIGHT  = 768;
+	const int SAFE_X = ((SCREEN_WIDTH-SAFE_WIDTH)/2);
+	const int SAFE_Y = ((SCREEN_HEIGHT-SAFE_HEIGHT)/2);
+    
+	// Game parameters
+	const int MAP_X = (SAFE_X + 112);
+	const int MAP_Y = (SAFE_Y + 96);
+    
+	const int PLAYER_DASHBOARD_WIDTH = 200;
+	const int PLAYER_DASHBOARD_HEIGHT = 60;
+	const int PLAYER_DASHBOARD_X = 62;
+	const int PLAYER_DASHBOARD_Y = 50;
+	const int PLAYER_DASHBOARD_PADDING = 12;
+	const int PLAYER_DASHBOARD_AVATAR_X = 8;
+	const int PLAYER_DASHBOARD_AVATAR_Y = 8;
+    
+#else
+    
 	// Resolution
 	const int SCREEN_WIDTH = 960;
 	const int SCREEN_HEIGHT = 540;
-
+    
 	// Overscan compensation
 	const int SAFE_WIDTH  = 864;
 	const int SAFE_HEIGHT  = 486;
 	const int SAFE_X = ((SCREEN_WIDTH-SAFE_WIDTH)/2);
 	const int SAFE_Y = ((SCREEN_HEIGHT-SAFE_HEIGHT)/2);
-
+    
 	// Game parameters
 	const int MAP_X = (SAFE_X + 32);
 	const int MAP_Y = (SAFE_Y + 32);
+    
+	const int PLAYER_DASHBOARD_WIDTH = 200;
+	const int PLAYER_DASHBOARD_HEIGHT = 60;
+	const int PLAYER_DASHBOARD_X = 62;
+	const int PLAYER_DASHBOARD_Y = 27;
+	const int PLAYER_DASHBOARD_PADDING = 12;
+	const int PLAYER_DASHBOARD_AVATAR_X = 8;
+	const int PLAYER_DASHBOARD_AVATAR_Y = 8;
+    
+#endif //__IPHONE_OS_VERSION_MIN_REQUIRED
+
 
 	const int MAP_COLUMNS = 25;
 	const int MAP_ROWS = 13;
@@ -43,13 +81,6 @@ namespace constants {
 
 	const int PLAYER_SPACE = 2;
 
-	const int PLAYER_DASHBOARD_WIDTH = 200;
-	const int PLAYER_DASHBOARD_HEIGHT = 60;
-	const int PLAYER_DASHBOARD_X = 62;
-	const int PLAYER_DASHBOARD_Y = 27;
-	const int PLAYER_DASHBOARD_PADDING = 12;
-	const int PLAYER_DASHBOARD_AVATAR_X = 8;
-	const int PLAYER_DASHBOARD_AVATAR_Y = 8;
 
 #else // SMALL_SCREEN
 

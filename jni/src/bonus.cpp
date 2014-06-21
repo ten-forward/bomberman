@@ -35,7 +35,6 @@ namespace bonus {
 				break;
 			}
 		}
-
 		return bonus;
 	}
 

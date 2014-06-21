@@ -1,0 +1,2057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imagedesc.hpp"
+            timestampString = "408086083.436321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "4"
+            endingLineNumber = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/manifestbasedresources.hpp"
+            timestampString = "409039011.127303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "ManifestBasedResources(std::string manifest, SDL_Renderer* renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/luacppinterface/LuaCppInterface/luatable.h"
+            timestampString = "408088043.42464"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "Get(std::string key)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LuaTable LuaTable::Get&lt;LuaTable&gt;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;) const"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/xcode-osx/../jni/luacppinterface/LuaCppInterface/luatable.h"
+                  timestampString = "408088043.43189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "591">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "int LuaTable::Get&lt;int&gt;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;) const"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/xcode-osx/../jni/luacppinterface/LuaCppInterface/luatable.h"
+                  timestampString = "408088043.432191"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "578">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; LuaTable::Get&lt;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; &gt;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;) const"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/xcode-osx/../jni/luacppinterface/LuaCppInterface/luatable.h"
+                  timestampString = "408088043.43241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "591">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/manifestbasedresources.hpp"
+            timestampString = "409039011.127303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "ManifestBasedResources(std::string manifest, SDL_Renderer* renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/celviewscene.hpp"
+            timestampString = "408098380.527246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/celviewscene.hpp"
+            timestampString = "408098755.063204"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/containerviewscene.hpp"
+            timestampString = "408855029.121069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/containerviewscene.hpp"
+            timestampString = "408855029.121069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/containerviewscene.hpp"
+            timestampString = "408855029.121069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/main.cpp"
+            timestampString = "416837929.608179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "PollEvents(std::vector&lt;InputState&gt; &amp;oInputState)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/containerviewscene.hpp"
+            timestampString = "408855029.121069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/containerviewscene.hpp"
+            timestampString = "408855029.121069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/transformableviewscene.cpp"
+            timestampString = "408959406.095719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "TransformableViewScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/transformableviewscene.cpp"
+            timestampString = "408959406.095719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "TransformableViewScene::Init(SDL_Window* window, SDL_Renderer* renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/transformableviewscene.cpp"
+            timestampString = "408961470.255371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "TransformableViewScene::Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imageviewscene.cpp"
+            timestampString = "408958830.793991"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "ImageViewScene::Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imageviewscene.cpp"
+            timestampString = "408958833.507725"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "ImageViewScene::Running()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imageviewscene.cpp"
+            timestampString = "408958834.997791"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imageviewscene.cpp"
+            timestampString = "408958835.50755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "ImageViewScene::Running()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imageviewscene.cpp"
+            timestampString = "408958836.393545"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/main.cpp"
+            timestampString = "416793889.855041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "run(std::shared_ptr&lt;bomberman::SceneInterface&gt; scene)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/main.cpp"
+            timestampString = "416793889.855041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/main.cpp"
+            timestampString = "416793889.855041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/transformableviewscene.cpp"
+            timestampString = "408961470.255371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "TransformableViewScene::Running()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/imageviewscene.cpp"
+            timestampString = "408959173.822542"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "ImageViewScene::Stop()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TweenScene::Update(InputState const&amp;, unsigned int)"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/jni/src/tweenscene.cpp"
+                  timestampString = "408959940.670872"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "686">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TweenScene::Update(InputState const&amp;, unsigned int)"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/jni/src/tweenscene.cpp"
+                  timestampString = "408959940.671069"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "737">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TweenScene::Update(InputState const&amp;, unsigned int)"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/jni/src/tweenscene.cpp"
+                  timestampString = "408960447.666836"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "390">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TweenScene::Update(InputState const&amp;, unsigned int)"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/jni/src/tweenscene.cpp"
+                  timestampString = "408960447.667059"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "434">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/tweenscene.cpp"
+            timestampString = "408961097.209284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "TweenScene::Update(const InputState&amp; inputs, Uint32 timestamp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/transformableviewscene.cpp"
+            timestampString = "409015853.025441"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "TransformableViewScene::SetSize(int w, int h)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/transformableviewscene.cpp"
+            timestampString = "409015865.473214"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "TransformableViewScene::SetSize(int w, int h)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/textviewscene.cpp"
+            timestampString = "409039166.538724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "TextViewScene::Render(SDL_Renderer *renderer)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2071"
+            endingLineNumber = "2071"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2110"
+            endingLineNumber = "2110">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2096"
+            endingLineNumber = "2096"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2070"
+            endingLineNumber = "2070"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2074"
+            endingLineNumber = "2074"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2057"
+            endingLineNumber = "2057"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2056"
+            endingLineNumber = "2056"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "aldebaran/ttffontdesc.hpp"
+            timestampString = "409094692.829617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "StringSize(std::string text, int width)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TTFFontDesc::StringSize(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, int) const"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/xcode-osx/aldebaran/ttffontdesc.hpp"
+                  timestampString = "409094869.43395"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "379">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TTFFontDesc::StringSize(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, int) const"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/xcode-osx/aldebaran/ttffontdesc.hpp"
+                  timestampString = "409094869.434162"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "603">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1307"
+            endingLineNumber = "1307"
+            landmarkName = "TTF_SizeUTF8()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2095"
+            endingLineNumber = "2095"
+            landmarkName = "TTF_RenderUTF8_Blended_Wrapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TTF_RenderUTF8_Blended_Wrapped"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/jni/SDL_ttf/SDL_ttf.c"
+                  timestampString = "409099246.253738"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2089"
+                  endingLineNumber = "2089"
+                  offsetFromSymbolStart = "722">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TTF_RenderUTF8_Blended_Wrapped"
+                  moduleName = "aldebaran"
+                  urlString = "file:///Users/davidsiaw/programs/aldebaran/jni/SDL_ttf/SDL_ttf.c"
+                  timestampString = "409099246.254025"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2089"
+                  endingLineNumber = "2089"
+                  offsetFromSymbolStart = "1702">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1281"
+            endingLineNumber = "1281"
+            landmarkName = "TTF_SizeUTF8()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1282"
+            endingLineNumber = "1282"
+            landmarkName = "TTF_SizeUTF8()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "409099782.335446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1279"
+            endingLineNumber = "1279"
+            landmarkName = "TTF_SizeUTF8()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/entity.hpp"
+            timestampString = "411174346.553485"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411213004.16536"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "5206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411213004.165584"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "5236">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411197619.671556"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "4847">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411197619.67179"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "4873">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411197633.231593"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "5149">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411197633.231798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "5173">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411197633.231966"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "5229">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411197633.232168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "5253">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207018.140845"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "5516">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207018.141197"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "5540">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207018.141374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "5721">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207023.191655"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "1050">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207023.191861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "1298">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207023.192026"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "3470">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207023.19219"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "4465">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411207023.192396"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "5811">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/map.cpp"
+            timestampString = "411212971.179529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "Map::CheckPosition(int x, int y)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::Map::CheckPosition(int, int, std::__1::shared_ptr&lt;bomberman::Entity&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/map.cpp"
+                  timestampString = "411208991.286343"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "934">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::Map::CheckPosition(int, int, std::__1::shared_ptr&lt;bomberman::Entity&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/map.cpp"
+                  timestampString = "411208991.286809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "961">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411213004.992286"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "4946">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411213004.99247"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "4976">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411213004.992638"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "5126">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214034.446577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "1567">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214034.446995"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "1587">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214051.672866"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "1274">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214051.673185"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "1313">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214052.749469"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "1274">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214052.749796"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "1313">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214088.452305"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "1567">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214088.452663"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "1587">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214093.985108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "1036">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214093.985357"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "1089">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214293.491788"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "1487">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214293.492102"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "1514">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "Player::CanMoveTo(int mx, int my, const MapConstPtr &amp;iPresentMap, PlayerPtr player)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214391.033905"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "1427">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::CanMoveTo(int, int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214391.034094"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "1454">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214433.181767"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "208"
+                  endingLineNumber = "208"
+                  offsetFromSymbolStart = "6043">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214433.18217"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "208"
+                  endingLineNumber = "208"
+                  offsetFromSymbolStart = "6067">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411214834.655147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214460.346595"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "5769">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214460.34681"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "5793">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411214460.346983"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "5820">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411276112.603893"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/player.cpp"
+            timestampString = "411276119.927891"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "Player::EvolutionRoutine(const PlayerPtr &amp;player, const std::vector&lt;InputState&gt;&amp; iInputs, uint32_t iTimestamp, const MapConstPtr &amp;iPresentMap, const MapPtr &amp;iFutureMap)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411276119.931532"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "2775">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411276119.931861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "2799">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "bomberman::bestiary::Player::EvolutionRoutine(std::__1::shared_ptr&lt;bomberman::bestiary::Player&gt; const&amp;, std::__1::vector&lt;InputState, std::__1::allocator&lt;InputState&gt; &gt; const&amp;, unsigned int, std::__1::shared_ptr&lt;bomberman::Map const&gt; const&amp;, std::__1::shared_ptr&lt;bomberman::Map&gt; const&amp;) const"
+                  moduleName = "bomberman"
+                  urlString = "file:///Users/davidsiaw/bomberman/jni/src/player.cpp"
+                  timestampString = "411276119.932063"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "2826">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/scriptapi.cpp"
+            timestampString = "411304764.700903"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "ScriptAPI::Resume(int x, int y, int mx, int my, const MapConstPtr &amp;iPresentMap)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/src/scriptapi.cpp"
+            timestampString = "411304768.944791"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "ScriptAPI::Resume(int x, int y, int mx, int my, const MapConstPtr &amp;iPresentMap)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../jni/SDL_ttf/SDL_ttf.c"
+            timestampString = "416792802.407932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

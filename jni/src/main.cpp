@@ -19,6 +19,7 @@
 #include "setupscene.hpp"
 #include "fadescene.hpp"
 #include "victoryscene.hpp"
+#include "touchscreenkeyscene.hpp"
 
 void PollEvents(std::vector<InputState> &oInputState);
 
@@ -96,11 +97,13 @@ void PollEvents(std::vector<InputState> &oInputState)
 			exit(0);
 		}
 		else if (e.type == SDL_FINGERUP)
-		{	
+		{
+            printlog("%d UP\n", e.tfinger.fingerId);
 			inputState->SetFingered(false);
 		}
 		else if (e.type == SDL_FINGERDOWN)
 		{
+            printlog("%d DOWN\n", e.tfinger.fingerId);
 			inputState->SetFingered(true);
 			inputState->SetFingerX(e.tfinger.x);
 			inputState->SetFingerY(e.tfinger.y);
@@ -128,9 +131,7 @@ void PollEvents(std::vector<InputState> &oInputState)
 
 void game()
 {
-    
-    
-    {
+    while (true) {
 		bomberman::PlayerConfigArray players;
         
 		players[0].name = "Athos";
@@ -160,12 +161,25 @@ void game()
 		
 		std::shared_ptr<bomberman::GameScene> ts(new bomberman::GameScene(players));
 		std::shared_ptr<bomberman::FadeScene> cover(new bomberman::FadeScene(ts));
+        
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+        std::shared_ptr<bomberman::TouchScreenKeyScene> coverTS(new bomberman::TouchScreenKeyScene(cover));
+        run(coverTS);
+#else
 		run(cover);
+#endif
         
 		std::shared_ptr<bomberman::VictoryScene> vs(new bomberman::VictoryScene(ts->GetVictor()));
 		std::shared_ptr<bomberman::FadeScene> fs(new bomberman::FadeScene(vs));
+        
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+        std::shared_ptr<bomberman::TouchScreenKeyScene> vicTS(new bomberman::TouchScreenKeyScene(fs));
+        run(vicTS);
+#else
 		run(fs);
-		return;
+#endif
+        
+
     }
     
 #ifdef PROGRAM_OPTIONS
@@ -323,7 +337,7 @@ int main(int argc, char** argv)
 	int WIDTH = SCREEN_WIDTH, HEIGHT = SCREEN_HEIGHT;
 
 	printlog("Window size: %d x %d!\n", WIDTH, HEIGHT);
-
+    
 	// Create an application window with the following settings:
 	window = SDL_CreateWindow(
 		"Bomberman",                 
@@ -331,8 +345,10 @@ int main(int argc, char** argv)
 		SDL_WINDOWPOS_UNDEFINED,           
 		WIDTH,
 		HEIGHT,
-		SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL 
-	);		
+		SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL|SDL_WINDOW_ALLOW_HIGHDPI
+	);
+    
+    
 
 	// Check that the window was successfully made
 	if(window == NULL)
@@ -345,7 +361,12 @@ int main(int argc, char** argv)
 	printlog("Beginning game with window=%p\n", window);
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
+    
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+    printlog("iOS detected!");
+    SDL_RenderSetLogicalSize(renderer, WIDTH, HEIGHT);
+#endif
+    
 	try
 	{	
 		game();

@@ -40,6 +40,7 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 	_playerConfig(playerConfig),
 	_pastMaps(10),
 	_font(utils::LoadFont("drawable/Gamegirl.ttf", 40))
+    
 {
     
 	if(!_music)
@@ -50,7 +51,7 @@ GameScene::GameScene(const PlayerConfigArray &playerConfig) :
 
 void GameScene::Init(SDL_Window* window, SDL_Renderer* renderer)
 {
-	_running = true;
+    _running = true;
 
 	//if(Mix_PlayMusic(_music.get(), -1) == -1)
 	{
@@ -159,7 +160,6 @@ void GameScene::InitBlocks(SDL_Renderer* renderer)
 
 void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 {
-
 	if (inputs[0].GetButtonState(InputState::START)) 
 	{
 		return BackThroughTime();
@@ -215,6 +215,8 @@ void GameScene::Update(const std::vector<InputState>& inputs, uint32_t now)
 
 void GameScene::Render(SDL_Renderer *renderer)
 {
+
+        
 	SDL_Rect safeArea = bomberman::utils::GetSafeArea1920();
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderDrawRect(renderer, &safeArea);
@@ -260,6 +262,7 @@ void GameScene::Render(SDL_Renderer *renderer)
 			entity->Render(renderer);
 		}
 	}
+    
 }
 
 void GameScene::RenderPlayerDashBoard(const PlayerPtr &iPlayer, int pos, SDL_Renderer* renderer)
