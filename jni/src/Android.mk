@@ -24,7 +24,10 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 	$(LOCAL_PATH)/$(LUA_PATH)
 
 # Add your application source files here...
-LOCAL_SRC_FILES := $(shell cd jni/src && find . -name "*.cpp") \
+
+FILE_LIST := $(wildcard $(LOCAL_PATH)/*.cpp)
+
+LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%) \
   $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	
 
