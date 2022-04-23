@@ -80,3 +80,10 @@ You have an option of compiling using eclipse or installing the JDK and compilin
 
 	android update project --path . --target "android-10"
 	ant debug
+	
+Docker
+-------
+
+as of writing NDK 10 is basically no longer supported, but you can still use a docker image i built to do this work for you.
+
+`docker run --rm -ti -v /home/david/programs/bomberman:/src davidsiaw/ndk-env ndk-build`
